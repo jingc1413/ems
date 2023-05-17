@@ -1,0 +1,49 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color:fff;">{{title}}:</h4>
+    </div>
+    <h3 class="with-line">Server Status</h3>
+    <div class="modal-body" style="padding: 5px;">
+        <div class="col-lg-12 col-md-12" style="margin: 4px auto;">
+            <label for="" class="zz-label pad0 col-lg-2 col-md-6">Host Name:</label>
+            <input type="text" class="zz-input form-control col-lg-8 col-md-12" id="" ng-model="modal.hostname" readonly required />
+        </div>
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Is Activity:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.isActivity" readonly placeholder="">
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Item:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.item" placeholder="" readonly>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Element Type:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.neType" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Status:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.status" placeholder="" readonly>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Change Time:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.changetime" placeholder="" readonly>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Update Time:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.updatetime" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="modal-footer" style="padding-top: 10px;margin-top: 10px;border-top: 1px solid #e1e1e1;">
+
+        <button type="button" class="btn btn-default btn-raised btn-sm" ng-click=alarmConfirm();>Alarm Confirm</button>
+        <button type="button" class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+</div>

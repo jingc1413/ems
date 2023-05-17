@@ -1,0 +1,118 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="row col-lg-12 col-md-12">
+                <div class="col-lg-3 col-md-3 pad0">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label" translate="AlarmConfiguration.AlarmConfig.SearchCondition.AlarmName">Alarm Name:</label>
+                        <input type="text" class="zz-input form-control" ng-model="query.almName" id="input01" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 pad0">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label zz-label-r" translate="AlarmConfiguration.AlarmConfig.SearchCondition.AlarmLevel">Alarm Level:</label>
+                        <select class="zz-input pad2 form-control inline v-middle" ng-model="query.almLevelid" ng-options="level.alvAlarmlevelid as level.alvName for level in levels ">
+                        <option value="" translate="AlarmConfiguration.AlarmConfig.SearchCondition.PleaseSelect">--Please Select--</option>
+                         <!-- ng-options="alvLevel.alarmLevelId as alvLevel.alarmLevelName for alvLevel in alvLevels" -->
+                            <!-- <option value="">--Please Select--</option>
+                            <option value="2">Warning</option>
+                            <option value="3">Minor</option>
+                            <option value="4">Major</option>
+                            <option value="5">Critical</option>
+                            <option value="6">Warning2</option>
+                            <option value="7">Warning4</option> -->
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i><span translate="buttons.search">Search</span></button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+                </div>
+            </div>
+            <div class="row col-lg-12 col-md-12">
+                <div class="col-lg-3 col-md-3 pad0">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label" translate="AlarmConfiguration.AlarmConfig.SearchCondition.AlarmSound">Alarm Sound:</label>
+                        <input type="text" class="zz-input form-control" id="input01" ng-model="query.almSound" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 pad0">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label zz-label-r" translate="AlarmConfiguration.AlarmConfig.SearchCondition.AlarmKind">AlarmKind:</label>
+                        <select class="zz-input pad2 form-control inline v-middle" ng-model="query.almKindid" style="width: 50%;" ng-options="kind.id as kind.name for kind in kinds">
+                        <option value="" translate="AlarmConfiguration.AlarmConfig.SearchCondition.PleaseSelect">--Please Select--</option>
+                            <!-- <option value="">----Please Select----</option>
+                            <option value="1">device alarm</option>
+                            <option value="2">event alarm</option> -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-6 col-md-6">
+
+                        <!-- <button class="btn btn-warning btn-raised btn-pd" ng-click="toModifyItem('', 'md');">Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-click=toViewItem()>View</button> -->
+                        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left"><span translate="AlarmConfiguration.AlarmConfig.table.thead.AlarmName"></span>
+                                    <my-Order query="query" search="search()" order-name='almName'></my-Order>
+                                </th>
+                                <!-- <th class="align-left"><span translate="AlarmConfiguration.AlarmConfig.table.thead.AlarmID"></span>
+                                    <my-Order query="query" search="search()" order-name='almAlarmid'></my-Order>
+                                </th> -->
+
+                                <th class="align-left"><span translate="AlarmConfiguration.AlarmConfig.table.thead.AlarmLevel"></span>
+                                    <my-Order query="query" search="search()" order-name='almAlarmlevel.alvAlarmlevelid'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.AlarmConfig.table.thead.AlarmSound"></span>
+                                    <my-Order query="query" search="search()" order-name='almSound'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.AlarmConfig.table.thead.Troubleshooting"></span>
+                                    <my-Order query="query" search="search()" order-name='almDealidea'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.AlarmConfig.table.thead.AlarmKind"></span>
+                                    <my-Order query="query" search="search()" order-name='alarmKind.name'></my-Order>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <td>
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                <td class=" align-left ">{{item.almName}}</td>
+                                <!-- <td class=" align-left ">{{item.almAlarmid}}</td> -->
+                                <td class="align-left ">{{item.almAlarmlevel.alvName}}</td>
+                                <td class="align-left ">{{item.almSound}}</td>
+                                <td class="align-left ">{{item.almDealidea}}</td>
+                                <td class="align-left ">{{item.alarmKind.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="widgets">
+    <div class="mar0 row">
+        <!-- <div class="col-lg-12 col-md-12 pad0">
+        </div> -->
+        <div class="col-md-12 col-lg-12 pad0">
+            <div class="col-lg-6 col-md-10 pad2">
+                <div class="col-md-8 col-lg-2 zz-label pad0" translate="LogManagement.ServerStatus.searchCondition.SelectTime">Select Time:</div>
+                <div class="col-md-8 col-lg-4 pad0">
+                    <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="Begin Time" id="startTime" btns="{'ok':'ok','now':'today'}" ng-model="query.startTime">
+                    </wui-date>
+                </div>
+                <span class="col-lg-1 col-md-2 zz-label" translate="LogManagement.ServerStatus.searchCondition.to">to</span>
+                <div class="col-md-8 col-lg-4 pad0">
+                    <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="End Time" id="endTime" btns="{'ok':'ok','now':'today'}" ng-model="query.endTime">
+                    </wui-date>
+                </div>
+            </div>
+            <div class="pad2 col-lg-4 col-md-4">
+                <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i><span translate="buttons.search">Search</span></button>
+                <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+                <!-- <button type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportList();"><i class="ion-android-download"></i>Export</button> -->
+
+            </div>
+        </div>
+        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+    </div>
+    <div class="col-lg-12 col-md-12 pad0">
+        <div ba-panel ba-panel-class="with-scroll table-panel">
+            <div class="horizontal-scroll">
+                <table class="table table-hover table-bordered-m">
+                    <thead>
+                        <tr class="black-muted-bg">
+                            <th class="align-left">
+                                <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                            </th>
+                            <th class="align-left">NO.</th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.table.thead.ServerName">Server Name
+                                <my-Order query="query" search="search()" order-name='hostname'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.table.thead.Active">Active
+                                <my-Order query="query" search="search()" order-name='isConfirm'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.table.thead.Status">Status
+                                <my-Order query="query" search="search()" order-name='status'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.table.thead.UpdateTime">Update Time
+                                <my-Order query="query" search="search()" order-name='updatetime'></my-Order>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                            <td>
+                                <input type="checkbox" name="selected" ng-model="item.checked" ng-change="selectOne()" />
+                            </td>
+                            <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                            <td class="align-left"><a href="" ng-click="detailHostName(item, $event);">{{item.hostname}}</a></td>
+                            <td class="align-left">{{item.isActivity}}</td>
+                            <td class="align-left">{{item.isAlarm}}</td>
+                            <td class="align-left">{{item.updatetime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <tm-pagination conf="paginationConf"></tm-pagination>
+
+        </div>
+    </div>
+</div>

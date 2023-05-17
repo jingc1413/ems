@@ -1,0 +1,186 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <form name="userForm" ng-submit="submitForm()">
+
+            <div class="col-lg-7 col-md-7 mar-b-10 pad0">
+                <div class="form-group">
+                    <label for="name" class="mar-t-10 control-label col-md-4" translate="reportManagement.customReport.modal.ReportName">Report Name:</label>
+                    <div class="col-md-7">
+                        <input id="name" name="name" type="text" class="form-control" ng-model="modal.reportName" ng-maxlength=50 ng-blur="isRoleExist(modal.reportName)" required/>
+                        <span style="color:red" ng-show="userForm.name.$pristine">*</span>
+                        <span style="color:red" ng-show="userForm.name.$dirty && userForm.name.$invalid">
+                               <span style="color:red" ng-show="userForm.name.$error.required">*</span>
+                        </span>
+                        <small class="error" ng-show="userForm.name.$error.maxlength" style="color:red;" translate="reportManagement.customReport.modal.ReportNameTips">
+                            *Report Name cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 mar-b-10 pad0">
+                <div class="form-group">
+                    <label for="number" class="mar-t-10 control-label col-md-4" translate="reportManagement.customReport.modal.selectedNum">selectedNum:</label>
+                    <div class="col-md-8">
+                        <input id="number" name="number" type="number" class="form-control" ng-model="selectedNum" min="0" max="256" required readonly/>
+                        <span ng-show="userForm.number.$error.min || userForm.number.$error.max" style="color:#ff1515" translate="reportManagement.customReport.modal.selectedNumTips">Selected Item Can Not Larger than 256！</span>
+                        <!-- <span ng-show="form.priceminrange.$error.min || form.priceminrange.$error.max">
+    The value must be in range 1 to 100000</span> -->
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div>
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopen=!colisopen" data-toggle="collapse" data-target="#cols">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopen, 'fa fa-minus': colisopen}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAll" type="checkbox" class="" ng-checked="check.checkAllCol" ng-change="checkAll('Basic');">
+                    <span translate="reportManagement.customReport.modal.BasicInformation">Basic Information</span>
+                </label>
+                </div>
+                <div id="cols" class="col-div-scroll collapse col-md-12 col-lg-12">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check in checks" style="margin-bottom: 5px;">
+                        <input ng-model="check.columnChecked" type="checkbox" id="check.columnId" class="" ng-checked="check.columnChecked" ng-change="checkOne('Basic');">
+                        <span>{{check.columnName}}</span>
+                    </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenOther=!colisopenOther" data-toggle="collapse" data-target="#colsOther">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenOther, 'fa fa-minus': colisopenOther}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAllOther" type="checkbox" class="" ng-checked="check.checkAllColOther" ng-change="checkAll('Other');">
+                    <span translate="reportManagement.customReport.modal.BasicOthers">Basic Others</span>
+                </label>
+                </div>
+                <div id="colsOther" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check in checksOther" style="margin-bottom: 5px;">
+                            <input ng-model="check.columnChecked" type="checkbox" id="check.columnId" class="" ng-checked="check.columnChecked" ng-change="checkOne('Other');">
+                            <span>{{check.columnName}}</span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenEnable=!colisopenEnable" data-toggle="collapse" data-target="#colsEnable">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenEnable, 'fa fa-minus': colisopenEnable}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAllEnable" type="checkbox" class="" ng-checked="check.checkAllColEnable" ng-change="checkAll('Enable');">
+                    <span translate="reportManagement.customReport.modal.AlarmEnable">Alarm Enable</span>
+                </label>
+                </div>
+                <div id="colsEnable" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check in checksEnable" style="margin-bottom: 5px;">
+                        <input ng-model="check.columnChecked" type="checkbox" id="check.columnIdEnable" class="" ng-checked="check.columnChecked" ng-change="checkOne('Enable');">
+                        <span>{{check.columnName}}</span>
+                    </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenStatus=!colisopenStatus" data-toggle="collapse" data-target="#colsStatus">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenStatus, 'fa fa-minus': colisopenStatus}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAllStatus" type="checkbox" class="" ng-checked="check.checkAllColStatus" ng-change="checkAll('Status');">
+                    <span translate="reportManagement.customReport.modal.AlarmStatus">Alarm Status</span>
+                </label>
+                </div>
+                <div id="colsStatus" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check in checksStatus" style="margin-bottom: 5px;">
+                        <input ng-model="check.columnChecked" type="checkbox" id="check.columnIdStatus" class="" ng-checked="check.columnChecked" ng-change="checkOne('Status');">
+                        <span>{{check.columnName}}</span>
+                    </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenSamply=!colisopenSamply" data-toggle="collapse" data-target="#colsSamply">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenSamply, 'fa fa-minus': colisopenSamply}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAllSamply" type="checkbox" class="" ng-checked="check.checkAllColSamply" ng-change="checkAll('Samply');">
+                    <span translate="reportManagement.customReport.modal.DeviceSamplingData">Device Sampling Data</span>
+                </label>
+                </div>
+                <div id="colsSamply" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check in checksSamply" style="margin-bottom: 5px;">
+                        <input ng-model="check.columnChecked" type="checkbox" id="check.columnIdSamply" class="" ng-checked="check.columnChecked" ng-change="checkOne('Samply');">
+                        <span>{{check.columnName}}</span>
+                    </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <div>
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenParams=!colisopenParams" data-toggle="collapse" data-target="#colsParams">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenParams, 'fa fa-minus': colisopenParams}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAllParams" type="checkbox" class="" ng-checked="check.checkAllColParams" ng-change="checkAll('Params');">
+                    <span translate="reportManagement.customReport.modal.DeviceSetParameters">Device Set Parameters</span>
+                </label>
+                </div>
+                <div id="colsParams" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check in checksParams" style="margin-bottom: 5px;">
+                        <input ng-model="check.columnChecked" type="checkbox" id="check.columnIdParams" class="" ng-checked="check.columnChecked" ng-change="checkOne('Params');">
+                        <span>{{check.columnName}}</span>
+                    </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+        </form>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" type="submit" ng-click="save();" ng-show="view" translate="buttons.Save">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close();" translate="buttons.Close">Close</button>
+        </div>
+    </div>
+</div>

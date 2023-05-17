@@ -1,0 +1,54 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <!-- <h3 class="with-line">基本信息</h3> -->
+    <div class="modal-body" style="padding-bottom: 5px;">
+        <div class="col-md-12 col-lg-12 pad0">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-bordered-s table-hover">
+                        <thead class="">
+                            <tr class="">
+                                <th>
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th>No.</th>
+                                <th>Alarm ObjId
+                                    <!-- <my-Order query="query" search="searchBatchQuery()" order-name='almObjid'></my-Order> -->
+                                </th>
+                                <th>Alarm Name
+                                    <!-- <my-Order query="query" search="searchBatchQuery()" order-name='almName'></my-Order> -->
+                                </th>
+                                <th>Alarm Level
+                                    <!-- <my-Order query="query" search="searchBatchQuery()" order-name='almAlarmlevel.alvName'></my-Order> -->
+                                </th>
+                                <th>Alarm Kind
+                                    <!-- <my-Order query="query" search="searchBatchQuery()" order-name='alarmKind.name'></my-Order> -->
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="sm-table-body">
+                            <tr class="" ng-repeat="item in items">
+                                <td><input type="checkbox" ng-model="item.checked" ng-change="selectOne()" /></td>
+                                <td>{{$index+1}}</td>
+                                <td>{{item.almObjid}}</td>
+                                <td>{{item.almName}}</td>
+                                <td>{{item.almAlarmlevel.alvName}}</td>
+                                <td>{{item.alarmKind.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+        <div class="clear"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()" ng-show="view">Save</button>
+    </div>
+</div>

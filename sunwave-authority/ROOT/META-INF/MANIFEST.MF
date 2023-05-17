@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: sunwave-authority
+Implementation-Version: 2.0.0
+Built-By: admin
+Implementation-Vendor-Id: sunwave-authority
+Created-By: Apache Maven 3.6.3
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://maven.apache.org
+

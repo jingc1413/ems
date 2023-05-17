@@ -1,0 +1,76 @@
+<div class="widgets">
+    <div class="mar0 row">
+        <div class="col-md-12 col-lg-12 pad0">
+            <div class="pad2 form-group col-lg-6 col-md-12">
+                <label for="input01" class="zz-label zz-label-r" translate="LogManagement.dasLog.SearchCondition.SearchCondition">Search Condition:</label>
+                <select class="zz-input-sm pad2 form-control inline v-middle float-l" ng-model="condition" style="width: 30%;" ng-change="queryCondition()" ng-init="condition==''">
+                <option value='' translate="alarmManagement.searchCondition.PleaseSelect">Please select</option>
+                <option value=0 translate="LogManagement.dasLog.SearchCondition.DeviceName">Device Name</option>
+                <option value=1 translate="LogManagement.dasLog.SearchCondition.DeviceID">Device ID</option>
+                <option value=2 translate="LogManagement.dasLog.SearchCondition.Log">Log</option>
+            </select>
+                <input type="text" class="zz-input-sm form-control" id="conditionValue" placeholder="" ng-model="params" style="width: 40%;" />
+            </div>
+            <div class="pad2 col-lg-6 col-md-12">
+                <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i><span translate="buttons.search">Search</span></button>
+                <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+                <!-- <button-permission type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportList();"><i class="ion-android-download"></i>Export</button> -->
+                <!-- <button class="btn btn-green  btn-sm btn-pd" ng-click="downloadLog();"><i class="fa fa-search"></i>download</button>
+                <button class="btn btn-green  btn-sm btn-pd" ng-click="delete();"><i class="fa fa-search"></i>delete</button> -->
+            </div>
+        </div>
+        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+    </div>
+
+
+    <div class="col-lg-12 col-md-12 pad0">
+        <div ba-panel ba-panel-class="with-scroll table-panel">
+            <div class="horizontal-scroll">
+                <table class="table table-hover table-bordered-m">
+                    <thead>
+                        <tr class="black-muted-bg">
+                            <th class="align-left">
+                                <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                            </th>
+                            <th class="align-left">NO.</th>
+
+                            <th class="align-left">
+                                <span translate="LogManagement.dasLog.table.thead.DeviceName">Device Name</span>
+                                <!-- <my-Order query="query" search="search()" order-name='deviceName'></my-Order> -->
+                            </th>
+                            <th class="align-left"><span translate="LogManagement.dasLog.table.thead.DeviceID">Device ID</span>
+                                <!-- <my-Order query="query" search="search()" order-name='deviceId'></my-Order> -->
+                            </th>
+                            <th class="align-left"><span translate="LogManagement.dasLog.table.thead.Log">Log</span>
+                                <!-- <my-Order query="query" search="search()" order-name='log'></my-Order> -->
+                            </th>
+                            <th class="align-left"><span translate="LogManagement.dasLog.table.thead.UploadTime">Upload Time</span>
+                                <!-- <my-Order query="query" search="search()" order-name='uploadTime'></my-Order> -->
+                            </th>
+                            <!-- <th class="align-left" translate="LogManagement.dasLog.table.thead.operation">operation
+                            </th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                            <td>
+                                <input type="checkbox" name="selected" ng-model="item.checked" ng-change="selectOne()" />
+                            </td>
+                            <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                            <td class="align-left">{{item.deviceName}}</td>
+                            <td class="align-left">{{item.deviceId}}</td>
+                            <td class="align-left">{{item.log}}</td>
+                            <td class="align-left">{{item.uploadTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <!-- <td class="align-left">
+                                <a href="" class="mar-l-r-5"><span>Download</span></a>
+                                <a href="" class="mar-l-r-5"><span>Delete</span></a>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <tm-pagination conf="paginationConf"></tm-pagination>
+
+        </div>
+    </div>
+</div>

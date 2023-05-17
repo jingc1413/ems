@@ -1,0 +1,121 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="row col-lg-12 col-md-12 pad0">
+                <div class="col-lg-4 col-md-4 pad45">
+                    <!-- <div class="form-group">
+                        <label for="input01" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty" translate="deviceManagement.modal.DeviceType">Device Type:</label>
+                        <select class="zz-input pad2 form-control inline v-middle" ng-model="query.deviceTypeId" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'">
+                                <option value="" translate="deviceManagement.modal.PleaseSelect">--Please Select--</option>
+                        </select>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="input01" class="zz-label" translate="SysManagement.parameterConfiguration.searchCondition.AlarmName">Alarm Name:</label>
+                        <input type="text" class="zz-input form-control" id="input01" ng-model="query.alarmName" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <!-- <button-permission2 ng-model="permissions2" nowUrl2={{absUrl2}}></button-permission2> -->
+                    <button class="btn btn-green btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i><span translate="buttons.search"><span translate="buttons.search">Search</span></span></button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+
+
+                    <!-- <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <!-- <div class="col-lg-6 col-md-6"> -->
+                    <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+                    <!-- <button class="btn btn-info btn-raised btn-pd" ng-click="toAddItem('', 'md');">Add</button>
+                    <button class="btn btn-danger btn-raised btn-pd" ng-click="deleteItem();">Delete</button>
+                    <button class="btn btn-warning btn-raised btn-pd" ng-click="toModifyItem('', 'md');">Modify</button>
+                    <button class="btn btn-primary btn-raised btn-pd" ng-click="toShowItem('', 'md');">View</button> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <!-- <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.ID">ID
+                                    <my-Order query="query" search="search()" order-name='afficheTitle'></my-Order>
+                                </th> -->
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.Type">Type
+                                    <my-Order query="query" search="search()" order-name='afficheInvalidate'></my-Order>
+                                </th>
+                                <!-- <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.AlarmObjID">AlarmObjID
+                                    <my-Order query="query" search="search()" order-name='inputTime'></my-Order>
+                                </th> -->
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.AlarmName">AlarmName
+                                    <my-Order query="query" search="search()" order-name='alarmName'></my-Order>
+                                </th>
+                                <!-- <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.DeviceType">deviceType
+                                    <my-Order query="query" search="search()" order-name='afficheInvalidate'></my-Order>
+                                </th> -->
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.QueryParam">QueryParam
+                                    <my-Order query="query" search="search()" order-name='inputTime'></my-Order>
+                                </th>
+                                <!-- <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.Alarm">Alarm
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th>
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.Alarmen">Alarmen
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th>
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.Base">Base
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th>
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.Radio">Radio
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th>
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.Realtime">Realtime
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th>
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.SetParam">Set Param
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th>
+                                <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.SetValue">Set Value
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th> -->
+                                <!-- <th class="align-left" translate="SysManagement.parameterConfiguration.table.thead.DeviceType">Device Type
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <td>
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                <!-- <td class="align-left">{{item.id}}</td> -->
+                                <td class="align-left">{{item.type}}</td>
+                                <td class="align-left">{{item.alarmName}}</td>
+                                <!-- <td class="align-left">{{item.deviceTypeStr}}</td> -->
+                                <td class="align-left">{{item.baseStr}}<span ng-if="item.baseStr">,</span>{{item.queryparamStr}}</td>
+                                <!-- <td class="align-left">{{item.alarm}}</td>
+                                <td class="align-left">{{item.alarmen}}</td>
+                                <td class="align-left">{{item.base}}</td>
+                                <td class="align-left">{{item.radio}}</td>
+                                <td class="align-left">{{item.realtime}}</td> -->
+                                <!-- <td class="align-left">{{item.setparam}}</td>
+                                <td class="align-left">{{item.setvalue}}</td> -->
+                                <!-- <td class="align-left">{{item.deviceTypeStr}}</td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+
+    <div class="modal-body">
+        <form name="userForm" class="" class="form-control" ng-submit="submitForm()">
+
+            <div class="col-lg-12 col-md-12 pad0 table-div-scroll">
+                <!-- <table id="table"></table> -->
+                <table class="table table-bordered-s">
+                    <thead class="">
+                        <tr class="">
+                            <th>
+                                <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                            </th>
+                            <th translate="Authority.safeManagement.modal.DeviceTypeID">Device Type ID</th>
+                            <th translate="Authority.safeManagement.modal.DeviceType">Device Type</th>
+                            <th translate="Authority.safeManagement.modal.DeviceClassification">Device Classification</th>
+                        </tr>
+                    </thead>
+                    <tbody class="sm-table-body">
+                        <tr class="" ng-repeat="row in rows">
+                            <td><input type="checkbox" ng-model="row.checked" ng-change="selectOne()" /></td>
+                            <td>{{row.dtpDevicetypeid}}</td>
+                            <td>{{row.dtpName}}</td>
+                            <td>{{row.neDevicetypeclassify.dtcName}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+            </div>
+
+        </form>
+    </div>
+    <div class="clear"></div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="save();" translate="buttons.Save">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close();" translate="buttons.Close">Close</button>
+    </div>
+</div>

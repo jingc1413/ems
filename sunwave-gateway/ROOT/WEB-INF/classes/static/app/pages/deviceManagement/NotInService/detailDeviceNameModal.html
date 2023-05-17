@@ -1,0 +1,405 @@
+<div class="modal-content">
+    <div class="modal-head-new-nobg modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <div class="modal-body" style="padding-bottom: 5px;padding-top: 0px;">
+        <uib-tabset active="$tabSetStatus.activeTab">
+            <uib-tab heading="Basic Information" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" style="cursor: pointer;">
+                            DeviceInformation(query only)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.select_allQ" ng-change="selectAllQ()" class="input-h"></input>
+                                            </th>
+                                            <th>Parameter Name</th>
+                                            <th>Parameter Value</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="rowQ in rowsQ">
+                                            <td><input class="input-h" type="checkbox" ng-model="rowQ.checked" ng-change="selectOneQ()" /></td>
+                                            <td>{{rowQ.name}}</td>
+                                            <td>{{rowQ.value}}</td>
+                                            <td>{{rowQ.mark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" style="cursor: pointer;">
+                            Network Management Parameter(support both query and set)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.select_allQS" ng-change="selectAllQS()" class="input-h"></input>
+                                            </th>
+                                            <th>Parameter Name</th>
+                                            <th>Parameter Value</th>
+                                            <th>Set Value</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="rowQS in rowsQS">
+                                            <td><input class="input-h" type="checkbox" ng-model="rowQS.checked" ng-change="selectOneQS()" /></td>
+                                            <td>{{rowQS.name}}</td>
+                                            <td>{{rowQS.value}}</td>
+                                            <td ng-click="clickInput(rowQS,$event)">
+                                                <input type="text" class="zz-input-sm form-control" ng-show="rowQS.isInpu" placeholder="Please Input" ng-model="rowQS.setValue" +$index style="width: 120px;" />
+                                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-show="rowQS.isSelec" ng-options="set.valueKey as set.valueValue for set in rowQS.objValueSet" ng-model="rowQS.isEnable" +$index style="width: 120px;">
+
+                                                <option value="">--Please Select--</option>
+                                                </select>
+                                            </td>
+                                            <td>{{rowQS.mark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <button type="button" class="btn btn-primary btn-raised margin-btn btn-sm" ng-click="queryBase('base');">Query</button>
+                        <button type="button" class="btn btn-info btn-raised margin-btn btn-sm" ng-click="setBase('base');">Set</button>
+                        <button type="button" class="btn btn-blue btn-raised margin-btn btn-sm" ng-click="monitorBase('base');">Monitoring parameter query</button>
+                        <button type="button" class="btn btn-warning btn-raised margin-btn btn-sm" ng-click="queryDeviceBase('base');">Query Device</button>
+                        <button type="button" class="btn btn-warning btn-raised margin-btn btn-sm" ng-click="resetBase('base');">Device Reset</button>
+                        <button type="button" class="btn btn-success btn-raised margin-btn btn-sm" ng-click="refreshBase('base');">Refresh</button>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" style="cursor: pointer;">
+                            COMM(support both query and set)
+                            <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.select_allCOM" ng-change="selectAllCOM()" class="input-h"></input>
+                                            </th>
+
+                                            <th>ID</th>
+                                            <th>Send Time</th>
+                                            <th>Receive Time</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="rowCOM in rowsCOM">
+                                            <td><input class="input-h" type="checkbox" ng-model="rowCOM.checked" ng-change="selectOneCOM()" /></td>
+                                            <td>{{rowCOM.Id}}</td>
+                                            <td>{{rowCOM.SendTime}}</td>
+                                            <td>{{rowCOM.ReceiveTime}}</td>
+                                            <td>{{rowCOM.Type}}</td>
+                                            <td>{{rowCOM.Status}}</td>
+                                            <td>{{rowCOM.Details}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Alarm Information" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-body panel-table-gd pad0">
+                        <div class="" style="height: 300px;overflow: scroll;">
+                            <table class="table table-bordered-sm">
+                                <thead class="">
+                                    <tr class="">
+                                        <th>
+                                            <input type="checkbox" ng-model="xx.al_select_all" ng-change="al_selectAll()" class="input-h"></input>
+                                        </th>
+                                        <th>Alarm Name</th>
+                                        <th>Alarm Status</th>
+                                        <th>Alarm Enable</th>
+                                        <th>Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    <!-- ngRepeat: row in rows -->
+                                    <tr class="" ng-repeat="al_row in al_rows">
+                                        <td><input class="input-h" type="checkbox" ng-model="al_row.checked" ng-change="al_selectOne()" /></td>
+                                        <td>{{al_row.name}}</td>
+                                        <td>{{al_row.isAlarm==0?'Normal':'Alarm'}}</td>
+                                        <!-- <td ng-click="edit($event)">{{al_row.isEnable}}</td> -->
+                                        <td ng-click="clickInput(al_row,$event)">
+                                            <input type="text" class="zz-input-sm form-control" ng-show="al_row.isInpu" placeholder="Please Input" ng-model="al_row.setValue" +$index style="width: 120px;" />
+                                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-show="al_row.isSelec" ng-options="set.valueKey as set.valueValue for set in al_row.objValueSet" ng-model="al_row.isEnable" +$index style="width: 120px;">
+
+                                                <option value="">--Please Select--</option>
+                                                </select>
+                                        </td>
+                                        <td>{{al_row.mark}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div class="">
+                    <button type="button" class="btn btn-primary margin-btn btn-sm" ng-click="queryBase('alarm');">Query</button>
+                    <button type="button" class="btn btn-info margin-btn btn-sm" ng-click="setBase('alarm');">Set</button>
+                    <button type="button" class="btn btn-blue margin-btn btn-sm" ng-click="monitorBase('alarm');">Monitoring parameter query</button>
+                    <button type="button" class="btn btn-warning margin-btn btn-sm" ng-click="queryDeviceBase('alarm');">Query Device</button>
+                    <button type="button" class="btn btn-warning margin-btn btn-sm" ng-click="resetBase('alarm');">Device Reset</button>
+                    <button type="button" class="btn btn-success margin-btn btn-sm" ng-click="refreshBase('alarm');">Refresh</button>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse in">
+                    <div class="panel-body panel-table-gd pad0">
+                        <div class="">
+                            <table class="table table-bordered-sm">
+                                <thead class="">
+                                    <tr class="">
+                                        <th>
+                                            <input type="checkbox" ng-model="selectAll" ng-change="al_changeAllCOM()" class="ng-pristine ng-untouched ng-valid ng-empty input-h"></th>
+                                        <th>ID</th>
+                                        <th>Send Time</th>
+                                        <th>Receive Time</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    <!-- ngRepeat: row in rows -->
+                                    <tr class="" ng-repeat="al_COM_row in al_COM_rows" ng-init="outerIndex = $index" ng-click="al_changeCurrentCOM(al_COM_row, $event)">
+                                        <td><input class="input-h" type="checkbox" ng-model="al_COM_row.checked" ng-click="al_changeCurrentCOM(al_COM_row, $event)" /></td>
+                                        <td>{{al_COM_row.Id}}</td>
+                                        <td>{{al_COM_row.SendTime}}</td>
+                                        <td>{{al_COM_row.ReceiveTime}}</td>
+                                        <td>{{al_COM_row.Type}}</td>
+                                        <td>{{al_COM_row.Status}}</td>
+                                        <td>{{al_COM_row.Details}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Radiofrequency Information" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" style="cursor: pointer;">
+                            Set parameter(query and set)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.ra_select_allQS" ng-change="ra_selectAllQS()" class="input-h"></input>
+                                            </th>
+                                            <th>Parameter Name</th>
+                                            <th>Parameter Value</th>
+                                            <th>Set Value</th>
+                                            <th>Update Time</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="ra_rowQS in ra_rowsQS">
+                                            <td><input class="input-h" type="checkbox" ng-model="ra_rowQS.checked" ng-change="ra_selectOneQS()" /></td>
+                                            <td>{{ra_rowQS.name}}</td>
+                                            <td>{{ra_rowQS.value}}</td>
+                                            <td ng-click="clickInput(ra_rowQS,$event)">
+                                                <input type="text" class="zz-input-sm form-control" ng-show="ra_rowQS.isInpu" placeholder="Please Input" ng-model="ra_rowQS.setValue" +$index style="width: 120px;" />
+                                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-show="ra_rowQS.isSelec" ng-options="set.valueKey as set.valueValue for set in ra_rowQS.objValueSet" ng-model="ra_rowQS.isEnable" +$index style="width: 120px;">
+
+                                                <option value="">--Please Select--</option>
+                                                </select>
+                                            </td>
+                                            <td>{{ra_rowQS.updateTime}}</td>
+                                            <td>{{ra_rowQS.mark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" style="cursor: pointer;">
+                            Sampling data(query only)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.ra_select_allQ" ng-change="ra_selectAllQ()" class="input-h"></input>
+                                            </th>
+                                            <th>Parameter Name</th>
+                                            <th>Parameter Value</th>
+                                            <th>Update Time</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="ra_rowQ in ra_rowsQ">
+                                            <td><input class="input-h" type="checkbox" ng-model="ra_rowQ.checked" ng-change="ra_selectOneQ()" /></td>
+                                            <td>{{ra_rowQ.name}}</td>
+                                            <td>{{ra_rowQ.value}}</td>
+                                            <td>{{ra_rowQ.updateTime}}</td>
+                                            <td>{{ra_rowQ.mark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <button type="button" class="btn btn-primary margin-btn btn-sm" ng-click="queryBase('radio');">Query</button>
+                        <button type="button" class="btn btn-info margin-btn btn-sm" ng-click="setBase('radio');">Set</button>
+                        <button type="button" class="btn btn-blue margin-btn btn-sm" ng-click="monitorBase('radio');">Monitoring parameter query</button>
+                        <button type="button" class="btn btn-warning margin-btn btn-sm" ng-click="queryDeviceBase('radio');">Query Device</button>
+                        <button type="button" class="btn btn-warning margin-btn btn-sm" ng-click="resetBase('radio');">Device Reset</button>
+                        <button type="button" class="btn btn-success margin-btn btn-sm" ng-click="refreshBase('radio');">Refresh</button>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" style="cursor: pointer;">
+                            COMM
+                            <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="ra_selectAllCOM" ng-change="ra_changeAllCOM()" class="ng-pristine ng-untouched ng-valid ng-empty input-h"></th>
+                                            <th>ID</th>
+                                            <th>Send Time</th>
+                                            <th>Receive Time</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="ra_rowCOM in ra_rowsCOM" ng-init="outerIndex = $index" ng-click="ra_changeCurrentsCOM(ra_rowCOM, $event)">
+                                            <td><input class="input-h" type="checkbox" ng-model="ra_rowCOM.checked" ng-click="ra_changeCurrentsCOM(ra_rowCOM, $event)" /></td>
+                                            <td>{{ra_rowCOM.Id}}</td>
+                                            <td>{{ra_rowCOM.SendTime}}</td>
+                                            <td>{{ra_rowCOM.ReceiveTime}}</td>
+                                            <td>{{ra_rowCOM.Type}}</td>
+                                            <td>{{ra_rowCOM.Status}}</td>
+                                            <td>{{ra_rowCOM.Details}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Topological Graph" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-body panel-table-gd pad0">
+                        <div class="">
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse in">
+                    <div class="panel-body panel-table-gd pad0">
+                        <div class="">
+                            <table class="table table-bordered-sm">
+                                <thead class="">
+                                    <tr class="">
+                                        <th>
+                                            <input type="checkbox" ng-model="selectAll" ng-change="changeAll()" class="ng-pristine ng-untouched ng-valid ng-empty input-h"></th>
+                                        <th>ID</th>
+                                        <th>Send Time</th>
+                                        <th>Receive Time</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    <!-- ngRepeat: row in rows -->
+                                    <tr class="" ng-repeat="row in rows" ng-init="outerIndex = $index" ng-click="changeCurrents(row, $event)">
+                                        <td><input class="input-h" type="checkbox" ng-model="row.checked" ng-click="changeCurrent(row, $event)" /></td>
+                                        <td>{{row.Id}}</td>
+                                        <td>{{row.SendTime}}</td>
+                                        <td>{{row.ReceiveTime}}</td>
+                                        <td>{{row.Type}}</td>
+                                        <td>{{row.Status}}</td>
+                                        <td>{{row.Details}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div> -->
+</div>

@@ -1,0 +1,129 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="col-lg-12 col-md-12">
+                <uib-tabset active="$tabSetStatus.activeTab">
+                    <uib-tab heading="{{'deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.Status'|translate}}" class="pad0">
+                        <div class="col-lg-12 col-md-12 pad0  panel2">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="col-lg-3 col-md-3" style="min-height: 400px;">
+                                    <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                                        <label for="" class="pad-left-20 mar-t-10">
+                                            <h3 translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.WANDeviceConfig">WAN device IPInterface</h3>
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 pad0">
+                                        <div class="col-lg-12 col-md-12 pad0 mar-bom-10">
+                                            <div class="col-lg-12 col-md-12 pad0">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <label for="" class="zz-label-sm" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.ExternalIPAddress">External IP address:</label>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 ">
+                                                    <input type="text" name="name" class="form-control zz-input  wid-90 float-input " ng-model="task.externalIPAddress" required readonly>
+                                                    <span style="color:red" ng-show="userForm.name.$error.required">*</span>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 pad0">
+                                                <div class="col-lg-12 col-md-12 ">
+                                                    <label for="" class="zz-label-sm " translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.SubnetMask">Subnet mask:</label>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 ">
+                                                    <input type="text" name="description" class="form-control zz-input  wid-90 float-input" ng-model="task.subnetMask" required readonly>
+                                                    <span style="color:red" ng-show="userForm.description.$error.required">*</span>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 pad0">
+                                                <div class="col-lg-12 col-md-12 ">
+                                                    <label for="" class="zz-label-sm "><span translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.DNSServers">DNS servers:</span> </label>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 ">
+                                                    <input type="text" class="form-control zz-input  wid-90" ng-model="task.dnsServers" readonly>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3" style="min-height: 400px;">
+                                    <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                                        <label for="" class="pad-left-20 mar-t-10">
+                                            <h3 translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.LANDeviceConfig">LAN device IPInterface</h3>
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 pad0">
+                                        <div class="col-lg-12 col-md-12 pad0 mar-bom-10">
+                                            <div class="col-lg-12 col-md-12 pad0">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <label for="" class="zz-label-sm" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.ExternalIPAddress">External IP address:</label>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 ">
+                                                    <input type="text" name="name" class="form-control zz-input  wid-90 float-input " ng-model="task.ipInterfaceIpAddress" required readonly>
+                                                    <span style="color:red" ng-show="userForm.name.$error.required">*</span>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 pad0">
+                                                <div class="col-lg-12 col-md-12 ">
+                                                    <label for="" class="zz-label-sm " translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.SubnetMask">Subnet mask:</label>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 ">
+                                                    <input type="text" name="description" class="form-control zz-input  wid-90 float-input" ng-model="task.ipInterfaceSubnetMask" required readonly>
+                                                    <span style="color:red" ng-show="userForm.description.$error.required">*</span>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <!-- <button type="button" class="btn btn-primary float-r" ng-click="save()" type="submit"><span class="glyphicon glyphicon-ok"></span></button> -->
+                                <!-- <button type="button" class="btn btn-primary float-r" translate="buttons.save" ng-click="saveDeviceIP()" type="submit">save</button> -->
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <uib-tab heading="{{'deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.configuration'|translate}}" class="pad0">
+                        <div class="col-lg-12 col-md-12 pad0  panel2">
+                            <div class="modal-body" style="padding-bottom: 5px;">
+                                <div class="form-group">
+                                    <input type="text" class="form-control zz-input float-input" id="1nput01" placeholder="Search by name" ng-model="query.teName" maxlength="30" ng-keypress="($event.which === 13)?search():0" />
+                                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i
+                                            class="fa fa-search"></i></button>
+                                </div>
+                                <div class="col-md-12 col-lg-12 pad0" style="min-height: 400px;">
+                                    <table class="table table-hover table-bordered-m">
+                                        <thead>
+                                            <tr class="black-muted-bg" style="height: 28px;">
+                                                <!-- <th class="align-left">
+                                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                                </th> -->
+                                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.Name">NAME</th>
+                                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.Description">DESCRIPTION
+                                                </th>
+                                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.Action">ACTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in items" style="height: 28px;">
+                                                <!-- <td class="align-left" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                                </td> -->
+                                                <td class="align-left" ng-click="view(item)"><a href="">{{item.teName}}</a></td>
+                                                <td class="align-left">{{item.teDescribe}}</td>
+                                                <!-- <td class="align-left"><button class="btn  btn-primary btn-raised btn-xs" ng-click="save(item)" title="Comfirm"><span class="glyphicon glyphicon-ok"></span></button></td> -->
+                                                <td class="align-left"><button class="btn  btn-primary btn-raised btn-xs" ng-click="save(item)" title="Application" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.Apply">apply</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <tm-pagination conf="paginationConf" class="mat-t-10"></tm-pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>

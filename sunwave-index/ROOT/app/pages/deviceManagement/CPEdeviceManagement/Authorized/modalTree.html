@@ -1,0 +1,114 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">DataModelTree</h4>
+    </div>
+    <div class="col-md-12 col-lg-12 panel2 pad0">
+        <div class="col-md-6 col-lg-6 zTreeDemoBackground left tree-bg-b2">
+            <div class="form-group">
+                <!-- <div class="col-md-12 col-lg-12 pad0">
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <input type="text" class="form-control zz-input float-input" placeholder="Search by MANUFACTURER" style="width: 100%;" ng-model="paramName">
+                    </div>
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <button class="btn btn-primary btn-raised btn-xs" ng-click="search();" title="Refresh"><i class="fa fa-search" title="Search"></i></button>
+                        <button class="btn btn-primary btn-raised btn-xs" ng-click="refresh();" title="Refresh"><span class="glyphicon glyphicon-refresh"></span></button>
+                    </div>
+                </div> -->
+                <button class="btn btn-primary btn-raised btn-xs" ng-click="refresh();" ng-disabled="isLoading" title="Search"><span class="fa fa-search"></span></button>
+                <!-- <button class="btn btn-green  btn-sm btn-pd" ng-click="searchBy();"><i
+                    class="fa fa-search" title="Search"></i></button> -->
+            </div>
+            <!-- <div class="form-group">
+                <ul class="my-select-ul" id="aa">
+                    <li class="my-select-li" ng-repeat="Name in menuItems"
+                        ng-class="{'selected-li':Name.select == true}"
+                        ng-click="getTopByNeId($event,Name);">
+                        {{Name.neName}}</li>
+                </ul>
+                <select ng-options="Name.neNeid as Name.neName for Name in Names" ng-model="tranEleName" ng-change="getEleNames();">
+            </select>
+
+            </div> -->
+
+            <ul id="leftTree" ng-click="getTopByNeId($event,Name);" class="ztree" style="background:#deeceb;height: 400px;overflow: scroll; ">
+            </ul>
+        </div>
+        <div class="col-md-6 col-lg-6 pad0">
+            <div class="col-md-12 col-lg-12 pad0">
+                <div class="col-md-12 col-lg-12 pad0">
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <label for="" class="form-control zz-lable-sm">NAME:</label></div>
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <label for="" class="form-control zz-lable-sm">{{showInfo.name}}</label>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 pad0">
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <label for="" class="form-control zz-lable-sm">PARAMID:</label></div>
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <label for="" class="form-control zz-lable-sm"></label>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 pad0">
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <label for="" class="form-control zz-lable-sm">TYPE:</label></div>
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <label for="" class="form-control zz-lable-sm">{{showInfo.paramType}}</label>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 pad0">
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <label for="" class="form-control zz-lable-sm">VALUE:</label></div>
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <label for="" ng-click="modalValue();" style="cursor: pointer;" class="form-control zz-lable-sm" ng-if="!valueChange"><a href=""
+                                    >{{showInfo.nodeValue}}</a></label>
+                        <!-- <label for="" class="form-control zz-lable-sm" ng-if="valueChange">
+                            <div class="box2" title="Loading">
+                                <div class="r1"></div>
+                                <div class="r2"></div>
+                                <div class="r3"></div>
+                            </div>
+                        </label> -->
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 pad0">
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <label for="" class="form-control zz-lable-sm">PARENTNODE:</label></div>
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <label for="" class="form-control zz-lable-sm">{{showInfo.parentNode}}</label>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 pad0">
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <label for="" class="form-control zz-lable-sm">WRITABLE:</label></div>
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <label for="" class="form-control zz-lable-sm">{{showInfo.writable}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12 pad0 div-center" ng-if="isLoading">
+            <div class="sk-cube-grid">
+                <div class="sk-cube sk-cube1"></div>
+                <div class="sk-cube sk-cube2"></div>
+                <div class="sk-cube sk-cube3"></div>
+                <div class="sk-cube sk-cube4"></div>
+                <div class="sk-cube sk-cube5"></div>
+                <div class="sk-cube sk-cube6"></div>
+                <div class="sk-cube sk-cube7"></div>
+                <div class="sk-cube sk-cube8"></div>
+                <div class="sk-cube sk-cube9"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+    </form> -->
+    <div class="modal-footer">
+        <div id="top" style="width: 100%;height:450px;"></div>
+        <!-- <button type="button" class="btn btn-primary" ng-click="save()" ng-show="notView" ng-disabled="myForm.$invalid" type="submit">Save</button> -->
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Close</button>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{
+    "content": [{
+        "ServerName": "TOM",
+        "Active": "11111111",
+        "Status": "namename111",
+        "UpdateTime": "2019-3-4"
+    }, {
+        "ServerName": "JECK",
+        "Active": "22222222",
+        "Status": "namename222",
+        "UpdateTime": "2020-9-18"
+    }, {
+        "ServerName": "JHON",
+        "Active": "33333",
+        "Status": "namename333",
+        "UpdateTime": "2020-12-11"
+    }],
+    "totalElements": 100,
+    "deleteIs": "OK"
+}

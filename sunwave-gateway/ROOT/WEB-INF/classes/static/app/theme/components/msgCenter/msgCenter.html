@@ -1,0 +1,74 @@
+<ul class="msg-top al-msg-center clearfix">
+
+    <li uib-dropdown>
+        <a href uib-dropdown-toggle>
+            <i class="fa fa-bell-o" title="{{belltooltips}}" style="font-size: 16px;"></i>
+            <!-- <span>5</span> -->
+            <!-- <div class="notification-ring"></div> -->
+            <div class=""></div>
+        </a>
+
+        <div uib-dropdown-menu class="top-dropdown-menu">
+            <i class="dropdown-arr"></i>
+
+            <div class="header clearfix">
+                <strong>New Alarm</strong>
+                <!-- <button class="btn btn-xs btn-info mar-l-30" ng-click="stopAlarm()">Close Alarm Today</button> -->
+            </div>
+            <div class="msg-list">
+                <a href class="clearfix" ng-repeat="alarm in alarms" ng-click="alarmDetail(alarm);">
+                    <div class="">
+                        <span>{{alarm.neElement.neName}} :</span>
+                        <span>{{alarm.almAlarm.almName}}</span>
+
+                    </div>
+                    <div class="msg-area">
+                        <!-- <div ng-bind-html="getMessage(msg)"></div> -->
+                        <span>{{ alarm.algAlarmtime | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+                    </div>
+                </a>
+            </div>
+            <a ng-href="#/AlarmManagement/currentAlarm" ng-click="goCurrentAlarm();">See all Alarms</a>
+        </div>
+    </li>
+    <li uib-dropdown>
+        <a href uib-dropdown-toggle>
+            <!-- controls="controls" -->
+            <!-- popover-title="{{model.url}}" -->
+            <audio ng-src="{{sce(model.url)}}" id="play" loop="loop"></audio>
+            <i class="iconfont icon-jingyin" ng-show="isPlay" title="{{tooltips2}}" style="font-size: 16px;" ng-click="playAudio()"></i>
+            <i class="fa fa-volume-up" ng-show="istPlay" id="tooltip" data-toggle="tooltip" data-placement="left" title="{{tooltips}}" style="font-size: 16px;" ng-click="stopAudio()"></i>
+        </a>
+    </li>
+    <li uib-dropdown>
+        <a href uib-dropdown-toggle>
+            <i class="fa fa-exclamation-circle" title="{{belltooltips}}" style="font-size: 16px;"></i>
+            <!-- <span>5</span> -->
+            <!-- <div class="notification-ring"></div> -->
+            <div class=""></div>
+        </a>
+
+        <div uib-dropdown-menu class="top-dropdown-menu">
+            <i class="dropdown-arr"></i>
+
+            <div class="header clearfix">
+                <strong>Server Alarm</strong>
+                <!-- <button class="btn btn-xs btn-info mar-l-30" ng-click="stopAlarm()">Close Alarm Today</button> -->
+            </div>
+            <div class="msg-list">
+                <a href class="clearfix" ng-repeat="server in servers" ng-click="serverDetail(server);">
+                    <div class="">
+                        <span style="padding-right: 20px;">Hostname:{{server.hostname}}</span>
+                        <span>Status:{{server.status}}</span>
+
+                    </div>
+                    <div class="msg-area">
+                        <!-- <div ng-bind-html="getMessage(msg)"></div> -->
+                        <span>{{ server.updatetime | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+                    </div>
+                </a>
+            </div>
+            <a ng-href="#/LogManagement/serverStatus" ng-click="goServerStatus();">See all Alarms</a>
+        </div>
+    </li>
+</ul>

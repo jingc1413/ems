@@ -1,0 +1,24 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color:#333;">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <!-- <div class="form"> -->
+        <!-- <form name="" class="form-horizontal" class="form-control"> -->
+        <div class="col-md-12 col-lg-10 zTreeDemoBackground left tree-bg-b" style="height:400px;overflow: scroll;">
+            <ul id="AuthorizeTree" class="ztree"></ul>
+        </div>
+        <!-- </form> -->
+        <!-- </div> -->
+        <div class="clear"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save();" translate="buttons.Save">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close();" translate="buttons.Close">Close</button>
+
+        <!-- <button type="submit" class="btn btn-primary">{{title}}</button> -->
+    </div>
+</div>

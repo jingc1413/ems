@@ -1,0 +1,101 @@
+<div class="modal-content">
+    <div class="modal-head-new-nobg modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <div class="modal-body" style="padding-bottom: 5px;padding-top: 0px;">
+        <uib-tabset active="$tabSetStatus.activeTab">
+            <uib-tab heading="Device Log Detail" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;"></div>
+                    <div style="margin-top: 5px;">
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input01" class="zz-label zz-label-r col-md-4 pad0">Device ID:</label>
+                            <input type="text" class="zz-input form-control" ng-model="modal.neElement.neRepeaterid16" id="input01" placeholder="Please Input" readonly>
+                        </div>
+
+                        <div style="text-align: center;" class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input02" class="zz-label zz-label-r col-md-4 pad0">Device Sub ID:</label>
+                            <input type="text" class="zz-input form-control" ng-model="modal.neElement.neDeviceid" id="input02" placeholder="Please Input" readonly>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input03" class="zz-label zz-label-r col-md-4 pad0">Device Name:</label>
+                            <input type="text" class="zz-input form-control" ng-model="modal.neElement.neName" id="input03" placeholder="Please Input" readonly>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input04" class="zz-label zz-label-r col-md-4">Device Type:</label>
+                            <input type="text" class="zz-input form-control" ng-model="modal.neElement.neDevicetype.dtpName" id="input04" placeholder="Please Input" readonly>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input05" class="zz-label zz-label-r col-md-4 pad0">Execution Time:</label>
+                            <input type="text" class="zz-input form-control" ng-model="modal.qrtEventtime" id="input05" placeholder="Please Input" readonly>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input06" class="zz-label zz-label-r col-md-4 pad0">Operation Type:</label>
+                            <input type="text" class="zz-input form-control" ng-model="modal.qryType2" id="input06" placeholder="Please Input" readonly>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input07" class="zz-label zz-label-r col-md-4 pad0">Task:</label>
+                            <input type="text" class="zz-input form-control" ng-model="modal.manTask.tskStyle" id="input07" placeholder="Please Input" readonly>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input08" class="zz-label zz-label-r col-md-4 pad0">Warning:</label>
+                            <input type="text" class="zz-input form-control" id="input08" placeholder="" ng-model="modal.qryFailcontent" readonly>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" style="cursor: pointer;">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="col-lg-12 col-md-12 pad0">
+                            <div ba-panel ba-panel-class="with-scroll table-panel">
+                                <div class="horizontal-scroll">
+                                    <table class="table table-hover table-bordered-sm">
+                                        <thead>
+                                            <tr class="black-muted-bg">
+                                                <!-- <th>
+                                                <input type="checkbox" ng-model="selectAll" ng-change="changeAll()" class="ng-pristine ng-untouched ng-valid ng-empty input-h"></th> -->
+                                                <th class="align-left" style="padding: 8px 16px;">Parameter ID</th>
+                                                <th class="align-left" style="padding: 8px 16px;">Parameter Name</th>
+                                                <th class="align-left" style="padding: 8px 16px;">Contents</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- ngRepeat: row in rows -->
+                                            <tr ng-repeat="row in rows track by row.ParameterId" class="no-top-border">
+
+                                                <!-- <td><input class="input-h" type="checkbox" ng-model="row.checked" ng-click="changeCurrent(row, $event)" /></td> -->
+                                                <td class="align-left" style="padding: 8px 16px;">{{row.ParameterId}}</td>
+                                                <td class="align-left" style="padding: 8px 16px;">{{row.ParameterName}}</td>
+                                                <td class="align-left" style="padding: 8px 16px;">{{row.Contents}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportListDetail();"><i class="ion-android-download"></i>Export</button>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div> -->
+</div>

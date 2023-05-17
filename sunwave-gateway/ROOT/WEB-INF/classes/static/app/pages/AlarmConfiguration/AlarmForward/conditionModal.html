@@ -1,0 +1,42 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <!-- <h3 class="with-line">基本信息</h3> -->
+    <div class="modal-body" style="padding-bottom: 5px;">
+        <div class="col-md-12 col-lg-12 pad0">
+            <!-- <table id="table"></table> -->
+            <div class="horizontal-scroll">
+                <table class="table table-hover table-bordered-s">
+                    <thead class="">
+                        <tr class="black-muted-bg">
+                            <th>
+                                <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                            </th>
+                            <th class="align-left">No.</th>
+                            <th class="align-left">ID</th>
+                            <th class="align-left">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody class="sm-table-body">
+                        <tr class="" ng-repeat="row in rows">
+                            <td><input type="checkbox" ng-model="row.checked" ng-change="selectOne()" /></td>
+                            <td class="align-left">{{$index+1}}</td>
+                            <td class="align-left">{{row.id}}</td>
+                            <td class="align-left">{{row.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()" ng-show="saveShow">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+</div>

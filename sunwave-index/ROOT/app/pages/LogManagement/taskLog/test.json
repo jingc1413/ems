@@ -1,0 +1,32 @@
+{
+    "content": [{
+        "TaskName": "01",
+        "StartTime": "2010-9-1",
+        "EndTime": "2010-12-30",
+        "SendPackets": "type111",
+        "ReceivedPackets": "99999",
+        "TotalQuantity": "result01",
+        "SuccessfulQuantity": "operationType111",
+        "SuccessfulRate": "task111"
+    }, {
+        "TaskName": "02",
+        "StartTime": "2020-9-1",
+        "EndTime": "2020-10-1",
+        "SendPackets": "type222",
+        "ReceivedPackets": "88888",
+        "TotalQuantity": "result02",
+        "SuccessfulQuantity": "operationType222",
+        "SuccessfulRate": "task222"
+    }, {
+        "TaskName": "03",
+        "StartTime": "2021-9-1",
+        "EndTime": "2021-11-11",
+        "SendPackets": "type333",
+        "ReceivedPackets": "66666",
+        "TotalQuantity": "result03",
+        "SuccessfulQuantity": "operationType333",
+        "SuccessfulRate": "task333"
+    }],
+    "totalElements": 100,
+    "deleteIs": "OK"
+}

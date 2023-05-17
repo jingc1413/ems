@@ -1,0 +1,35 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 mar-b-10">
+
+            <div class="">
+                <!-- <button class="btn btn-sm btn-green btn-pd" ng-click="save();">
+		    		<i class="fa fa-check"></i>
+		    		save
+		    	</button> -->
+                <button class="btn btn-sm btn-info btn-pd" ng-click="refresh();">
+		    		<i class="fa fa-rotate-right"></i>
+		    		<span translate="buttons.Refresh">Refresh</span>
+				</button>
+                <button class="btn btn-sm btn-primary btn-pd" ng-click="expanAll();">
+		    		<i class="fa fa-folder-open"></i>
+		    		<span translate="buttons.ExpandAll">ExpandAll</span>
+				</button>
+                <button class="btn btn-sm btn-primary btn-pd" ng-click="collapseAll();">
+		    		<i class="fa fa-folder"></i>
+		    		<span translate="buttons.CollapseAll">CollapseAll</span>
+				</button>
+
+
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="col-md-6 col-lg-6 zTreeDemoBackground left tree-bg-b">
+                <ul id="maskTree" class="ztree"></ul>
+            </div>
+        </div>
+    </div>
+</div>

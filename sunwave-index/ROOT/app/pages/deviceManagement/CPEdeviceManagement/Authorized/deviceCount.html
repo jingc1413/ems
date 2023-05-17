@@ -1,0 +1,82 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Device Count-advance</h4>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div class="col-lg-12 col-md-12">
+                <div class="col-lg-5 col-md-5">
+                    <div class="col-lg-12 col-md-12">
+                        <label for="">Last visit time ranges thresholds:</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <wui-date class="float-l" format="yyyy-mm-dd" placeholder="select date" id="operationDate"
+                            btns="{'ok':'ok','now':'today'}" ng-model="modal.neLastupdatetime" style="width: 100%;">
+                        </wui-date>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <wui-date format="yyyy-mm-dd" placeholder="select date" id="operationDate"
+                            btns="{'ok':'ok','now':'today'}" ng-model="modal.neLastupdatetime" style="width: 100%;">
+                        </wui-date>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <wui-date format="yyyy-mm-dd" placeholder="select date" id="operationDate"
+                            btns="{'ok':'ok','now':'today'}" ng-model="modal.neLastupdatetime" style="width: 100%;">
+                        </wui-date>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <!-- <button type="button" class="btn btn-primary" ng-click="" type="submit">Add time threshold</button> -->
+                        <a href="" ng-click="">Add time threshold </a>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <button type="button" class="btn btn-primary" ng-click="" type="submit">Count</button>
+
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                   <div class="col-lg-12 col-md-12">
+                    <table class="table-gd table table-bordered-m">
+                        <thead class="align-left"  >
+                            <tr class="align-left" style="background: #dbeeff;width: 100%;height: 25px;">
+                                <th class="align-left" >
+                                    RANGE START
+                                </th >
+                                <th class="align-left" >
+                                    RANGE STOP
+                                </th>
+                                <th class="align-left" >
+                                    RELATIVE START
+                                </th>
+                                <th class="align-left" >
+                                    RELATIVE STOP
+                                </th>
+                                <th class="align-left" >
+                                    DEVICE COUNT
+                                </th>
+                            </tr> 
+                        </thead>
+                        <tbody class="">
+                        </tbody>
+                        
+                    </table>
+                   </div>
+                   <div class="col-lg-12 col-md-12">
+                    <button type="button" class="btn btn-primary" ng-click="save()" type="submit" >Image</button>
+                    <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Download CSV</button>
+                   </div>
+                   <div class="col-lg-12 col-md-12">
+                       <input type="textarea" style="width: 600px;height: 300px;" readonly>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()" type="submit">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Close</button>
+    </div>
+</div>

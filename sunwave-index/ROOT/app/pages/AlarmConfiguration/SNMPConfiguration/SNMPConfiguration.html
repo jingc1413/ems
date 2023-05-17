@@ -1,0 +1,124 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="row col-lg-12 col-md-12">
+                <div class="col-lg-3 col-md-3">
+                    <div class="form-group">
+                        <!-- <label for="input01" class="zz-label" translate="AlarmConfiguration.SNMPConfiguration.SearchCondition.IP">IP:</label>
+                        <input type="text" class="zz-input form-control" id="input01" ng-model="query.trapIp" placeholder="" /> -->
+                        <label for="" class="zz-label col-md-3">Type</label>
+                        <div class="col-md-8">
+                            <select class="zz-input pad2 form-control inline v-middle float-l" ng-model="query.trapType" name="trapVer" style="width: 95%;">
+                            <option value=''>--please select--</option>
+                            <option value='Alarm'>Alarm</option>
+                            <option value='ServerAlarm'>Server Alarm</option>
+                            <option value='Heartbeat'>Heartbeat</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i><span translate="buttons.search">Search</span></button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-6 col-md-6">
+                        <!-- <button class="btn btn-info btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem('', 'md');">Add</button>
+                        <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();">Delete</button>
+                        <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModify('', 'md');">Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-model="toShowItem" ng-click="toShowItem('', 'md');">View</button> -->
+                        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+                        <!-- <button class="btn btn-primary btn-raised btn-pd" ng-model="toShowItem" ng-click="toShowItem('', 'md');">View</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.Type"></span>
+                                    <my-Order query="query" search="search()" order-name='trapType'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.Status"></span>
+                                    <my-Order query="query" search="search()" order-name='trapStatus'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.IP"></span>
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.Port"></span>
+                                    <my-Order query="query" search="search()" order-name='trapPort'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.SNMPversion"></span>
+                                    <my-Order query="query" search="search()" order-name='trapVer'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.Community"></span>
+                                    <my-Order query="query" search="search()" order-name='community'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.SecurityLevel"></span>
+                                    <my-Order query="query" search="search()" order-name='securityLevel'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.UserName"></span>
+                                    <my-Order query="query" search="search()" order-name='username'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.EngineId"></span>
+                                    <my-Order query="query" search="search()" order-name='engineId'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.AuthProtocol"></span>
+                                    <my-Order query="query" search="search()" order-name='authProtocol'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.AuthPassword"></span>
+                                    <my-Order query="query" search="search()" order-name='authPwd'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.PrivacyProtocol"></span>
+                                    <my-Order query="query" search="search()" order-name='privacyProtocol'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.PrivacyPassword"></span>
+                                    <my-Order query="query" search="search()" order-name='privacyPwd'></my-Order>
+                                </th>
+                                <th class="align-left"><span translate="AlarmConfiguration.SNMPConfiguration.table.thead.Interval"></span>
+                                    <my-Order query="query" search="search()" order-name='intervalTime'></my-Order>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <td>
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left">{{$index+1}}</td>
+                                <td class="align-left">{{item.trapType}}</td>
+                                <td class="align-left">{{item.trapStatusStr}}</td>
+                                <td class="align-left">{{item.trapIp}}</td>
+                                <td class="align-left">{{item.trapPort}}</td>
+                                <td class="align-left">{{item.trapVer}}</td>
+                                <td class="align-left">{{item.community}}</td>
+                                <td class="align-left">{{item.securityLevel}}</td>
+                                <td class="align-left">{{item.username}}</td>
+                                <td class="align-left">{{item.engineId}}</td>
+                                <td class="align-left">{{item.authProtocol}}</td>
+                                <td class="align-left">{{item.authPwd}}</td>
+                                <td class="align-left">{{item.privacyProtocol}}</td>
+                                <td class="align-left">{{item.privacyPwd}}</td>
+                                <td class="align-left">{{item.intervalTime}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+
+            </div>
+        </div>
+    </div>
+</div>

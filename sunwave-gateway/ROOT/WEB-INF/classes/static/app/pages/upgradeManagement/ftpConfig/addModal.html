@@ -1,0 +1,118 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal" class="form-control" ng-submit="submitForm()">
+        <div class="modal-body">
+            <div class="form">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-2">Name:</label>
+                        <div class="col-md-9">
+                            <input id="name" name="name" type="text" class="form-control" ng-model="ftpConfig.name" ng-blur="isRoleExist(ftpConfig.name)" required ng-maxlength=100 />
+                            <span style="color:red" ng-show="userForm.name.$dirty && userForm.name.$invalid">
+                                <!-- <span style="color:red" ng-show="userForm.name.$error.required">Required</span> -->
+                            <span style="color:red" class="ftpAdd-valid" ng-show="userForm.name.$error.maxlength">*The length cannot exceed 100</span>
+                            </span>
+                        </div>
+                        <span class="ftpAdd-valid" style="color:red" ng-show="userForm.name.$error.required">*</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label for="path" class="control-label col-md-2">Path:</label>
+                        <div class="col-md-9">
+                            <input id="path" name="path" type="text" class="form-control" ng-model="ftpConfig.path" ng-blur="isRoleExist(ftpConfig.path)" ng-maxlength="100" required/>
+                            <span style="color:red" ng-show="userForm.path.$dirty && userForm.path.$invalid">
+                                <!-- <span style="color:red" ng-show="userForm.path.$error.required">Required</span> -->
+                            </span>
+                            <span style="color:red;float:left;" ng-show="userForm.path.$error.maxlength">*The length cannot exceed 100</span>
+                        </div>
+                        <span class="ftpAdd-valid" style="color:red" ng-show="userForm.path.$error.required">*</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label for="host" class="control-label col-md-2">IP:</label>
+                        <div class="col-md-9">
+                            <input id="host" name="host" type="text" class="form-control" ng-model="ftpConfig.host" ng-blur="isRoleExist(ftpConfig.host)" required ng-pattern="/^(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}$/" />
+                            <span style="color:red" ng-show="userForm.host.$dirty && userForm.host.$invalid">
+                                <!-- <span style="color:red" ng-show="userForm.host.$error.required">Required</span> -->
+                            <span style="color:red" ng-show="userForm.host.$error.pattern">*Ip Incorrect format! eg 1.1.1.1</span>
+                            </span>
+                        </div>
+                        <span class="ftpAdd-valid" style="color:red" ng-show="userForm.host.$error.required">*</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label for="port" class="control-label col-md-2">Port:</label>
+                        <div class="col-md-9">
+                            <input id="port" name="port" type="text" class="form-control" ng-model="ftpConfig.port" ng-blur="isRoleExist(ftpConfig.port)" required ng-pattern="/^(([0-9]|([1-9]\d)|([1-9]\d\d)|([1-9]\d\d\d)|([1-5]\d\d\d\d)|(6[0-5]([0-4]\d\d|5([0-2]\d|3[0-5])))))$/"
+                            />
+
+                            <span style="color:red" ng-show="userForm.port.$dirty && userForm.port.$invalid">
+                                <!-- <span style="color:red" ng-show="userForm.port.$error.required">Required</span> -->
+                            <span style="color:red;float: left;" ng-show="userForm.port.$error.pattern">
+                                 *Can only be numbers, range: 0-65535!</span>
+                            </span>
+
+                        </div>
+                        <span class="ftpAdd-valid" style="color:red" ng-show="userForm.port.$error.required">*</span>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label for="userName" class="control-label col-md-2">User Name:</label>
+                        <div class="col-md-9">
+                            <input id="userName" name="userName" type="text" class="form-control" ng-model="ftpConfig.userName" ng-blur="isRoleExist(ftpConfig.userName)" required ng-maxlength=20 />
+                            <span style="color:red" ng-show="userForm.userName.$dirty && userForm.userName.$invalid">
+                                <!-- <span style="color:red" ng-show="userForm.userName.$error.required">Required</span> -->
+                            </span>
+                            <span style="color:red;float:left;" ng-show="userForm.userName.$error.maxlength">*The length cannot exceed 20</span>
+                        </div>
+                        <span class="ftpAdd-valid" style="color:red" ng-show="userForm.userName.$error.required">*</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label for="pwassword" class="control-label col-md-2">Password:</label>
+                        <div class="col-md-9">
+                            <input id="pwassword" name="pwassword" type="text" class="form-control" ng-model="ftpConfig.pwassword" ng-blur="isRoleExist(ftpConfig.pwassword)" required ng-maxlength=40 />
+                            <span style="color:red" ng-show="userForm.pwassword.$dirty && userForm.pwassword.$invalid">
+                                <!-- <span style="color:red" ng-show="userForm.pwassword.$error.required">Required</span> -->
+                            </span>
+                            <span style="color:red;float:left;" ng-show="userForm.pwassword.$error.maxlength">*The length cannot exceed 40</span>
+                        </div>
+                        <span class="ftpAdd-valid" style="color:red" ng-show="userForm.pwassword.$error.required">*</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <div class="form-in">
+                            <label for="input01" class="control-label col-md-2">Protocol:</label>
+                            <!-- <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadiosinline" id="optionsRadios3" ng-model="ftpConfig.ftpSftpFlag"
+                               value="1" checked />FTP
+                            </label> -->
+                            <label class="checkbox-inline col-md-8">
+                            <input type="radio" name="optionsRadiosinline" id="optionsRadios4" ng-model="ftpConfig.ftpSftpFlag"
+                            value="1" checked />SFTP
+                        </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-click="save();" ng-disabled="userForm.$invalid" ng-show="view">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close();">Close</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,72 @@
+<div class="widgets">
+    <div class="mar0 row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="pad2 form-group col-lg-6 col-md-12">
+                <label for="input01" class="zz-label zz-label-r">Module Log:</label>
+                <input type="text" class="zz-input form-control" ng-model="query.moduleLog" id="input01" placeholder="Input ModuleLog">
+            </div>
+            <div class="pad2 col-lg-6 col-md-12">
+                <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i>Search</button>
+                <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+                <!-- <button type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportList();"><i class="ion-android-download"></i>Export</button> -->
+
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12 pad0">
+            <!-- <div class="col-lg-6 col-md-10 pad2">
+                <div class="col-md-8 col-lg-2 zz-label pad0">StartTime:</div>
+                <div class="col-md-8 col-lg-3 pad0">
+                    <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="BeginTimenTime" id="beginTime" btns="{'ok':'ok','now':'today'}" ng-model="query.beginTime">
+                    </wui-date>
+                </div>
+                <div class="col-md-8 col-lg-2 zz-label pad0">EndTime:</div>
+                <div class="col-md-8 col-lg-3 pad0">
+                    <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="EndTime" id="beginTime" btns="{'ok':'ok','now':'today'}" ng-model="query.endTime">
+                    </wui-date>
+                </div>
+            </div> -->
+
+        </div>
+        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+    </div>
+
+    <div class="col-lg-12 col-md-12 pad0">
+        <div ba-panel ba-panel-class="with-scroll table-panel">
+            <div class="horizontal-scroll">
+                <table class="table table-hover table-bordered-m">
+                    <thead>
+                        <tr class="black-muted-bg">
+                            <th class="align-left">
+                                <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                            </th>
+                            <th class="align-left">NO.</th>
+                            <th class="align-left">Log Number</th>
+                            <th class="align-left">User Name</th>
+                            <th class="align-left">Module Name</th>
+                            <th class="align-left">IP Address</th>
+                            <th class="align-left">Issued Time</th>
+                            <th class="align-left">Operation Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                            <td>
+                                <input type="checkbox" name="selected" ng-model="item.checked" ng-change="selectOne()" />
+                            </td>
+                            <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                            <td class=" align-left ">{{item.optId}}</td>
+                            <td class=" align-left ">{{item.optUserName}}</td>
+                            <td class="align-left ">{{item.optModuleid}}</td>
+                            <td class="align-left ">{{item.optPcIp}}</td>
+                            <td class="align-left ">{{item.optTime | date:'yyyy-MM-dd'}}</td>
+                            <td class="align-left ">{{item.optResult}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <tm-pagination conf="paginationConf"></tm-pagination>
+
+        </div>
+    </div>
+</div>

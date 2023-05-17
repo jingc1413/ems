@@ -1,0 +1,67 @@
+<div class="modal-content">
+    <div class="modal-head-new-nobg modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color:#7d7d7d">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <!-- <div class="panel b-a"> -->
+        <div ba-panel ba-panel-class="with-scroll table-panel">
+            <div class="horizontal-scroll">
+                <table class="table table-hover table-bordered-m">
+                    <thead>
+                        <tr class="black-muted-bg" style="height: 24px;">
+                            <!-- <th class="align-left">
+                                <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                            </th> -->
+                            <th class="align-left">NO.</th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.modal.table.thead.ServerName">Server Name
+                                <my-Order query="query" search="search()" order-name='hostname'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.modal.table.thead.Item">Item
+                                <my-Order query="query" search="search()" order-name='item'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.modal.table.thead.Status">Status
+                                <my-Order query="query" search="search()" order-name='status'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.modal.table.thead.UpdateTime">Update Time
+                                <my-Order query="query" search="search()" order-name='updatetime'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.modal.table.thead.ModuleName">Module Name
+                                <my-Order query="query" search="search()" order-name='module'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.modal.table.thead.EventID">Event ID
+                                <my-Order query="query" search="search()" order-name='eventid'></my-Order>
+                            </th>
+                            <th class="align-left" translate="LogManagement.ServerStatus.modal.table.thead.Message">Message
+                                <my-Order query="query" search="search()" order-name='msg'></my-Order>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}" style="height: 24px;">
+                            <!-- <td>
+                                <input type="checkbox" name="selected" ng-model="item.checked" ng-change="selectOne()" />
+                            </td> -->
+                            <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                            <td class="align-left">{{item.hostname}}</td>
+                            <td class="align-left">{{item.item}}</td>
+                            <td class="align-left">{{item.status}}</td>
+                            <td class="align-left">{{item.updatetime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td class="align-left">{{item.module}}</td>
+                            <td class="align-left">{{item.eventid}}</td>
+                            <td class="align-left">{{item.msg}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+        </div>
+        <!-- </div> -->
+    </div>
+</div>
+<!-- <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div> -->
+</div>

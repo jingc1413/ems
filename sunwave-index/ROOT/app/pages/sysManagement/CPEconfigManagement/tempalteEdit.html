@@ -1,0 +1,169 @@
+<div class="modal-content">
+
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal" ng-submit="submitForm(userForm.$valid)">
+        <div class="col-lg-12 col-md-12 ">
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0 ">
+                    <label for="" class="zz-lable-sm float-l" translate="SysManagement.CPEconfigManagement.configModel.TempalteProperties">Tempalte properties</label>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0 ">
+                    <label for="" class="zz-lable float-r " translate="SysManagement.CPEconfigManagement.configModel.Name">NAME:</label>
+                </div>
+                <div class="col-lg-9 col-md-9 ">
+                    <input type="text" name="name" class="form-control zz-input float-input " ng-model="info.teName" ng-readonly="!isAdd" required ng-maxlength="20">
+                    <span style="color:red;float: left;" ng-show="userForm.name.$error.required">*</span>
+                    <span style="color:red" ng-show="userForm.name.$dirty && userForm.name.$invalid">
+                        <span style="color:red" ng-show="userForm.name.$error.maxlength">*Maximum length cannot
+                                exceed 20</span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0">
+                    <label for="" class="zz-lable float-r " translate="SysManagement.CPEconfigManagement.configModel.Description">DESCRIPTION:</label>
+                </div>
+                <div class="col-lg-9 col-md-9 ">
+                    <input type="text" name="description" class="form-control zz-input float-input " ng-model="info.teDescribe" ng-readonly="!isShow" ng-maxlength="40">
+                    <span style="color:red" ng-show="userForm.description.$dirty && userForm.description.$invalid">
+                        <span style="color:red" ng-show="userForm.description.$error.maxlength">*Maximum length cannot
+                                exceed 40</span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0">
+                    <label for="" class="zz-lable float-r" translate="SysManagement.CPEconfigManagement.configModel.Model">MODEL:</label>
+                </div>
+                <div class="col-lg-9 col-md-9 ">
+                    <select ng-show="isShow" class="zz-input pad2 form-control inline v-middle" ng-change="searchNdmPathById()" ng-model="modelItem" ng-options="data.modelName for data in ModelNameData">
+                    </select>
+                    <input type="text" ng-show="!isShow" class="form-control zz-input float-input " ng-model="info.modelName" ng-readonly="!isAdd">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12 ">
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0 ">
+                    <label for="" class="zz-lable-sm float-l" translate="SysManagement.CPEconfigManagement.configModel.TempalteParameters">Tempalte parameters</label>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 pad0">
+                <div ba-panel ba-panel-class="with-scroll table-panel">
+                    <div class="horizontal-scroll2">
+                        <table class="table table-hover table-bordered-m">
+                            <thead>
+                                <tr class="black-muted-bg">
+                                    <th class="align-left">
+                                        <input id="flag" type="checkbox" class="cursor" ng-model="checkbox.select_all" ng-change="selectAll()" ng-disabled="canCheck"></input>
+                                    </th>
+                                    <th class="align-left" translate="SysManagement.CPEconfigManagement.configModel.ParametersName">PARAMETERS NAME</th>
+                                    <th class="align-left" translate="SysManagement.CPEconfigManagement.configModel.Value">VALUE</th>
+                                    <th class="align-left" translate="SysManagement.CPEconfigManagement.configModel.Type">TYPE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in items">
+                                    <td class="align-left">
+                                        <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" ng-disabled="canCheck" />
+                                    </td>
+                                    <!-- <td class="align-left pad0"><input type="text" value="{{item.proName}}" style="width: 100%;padding:0 0 0 6px ;" class="form-control zz-input float-input mar0" ng-readonly="isAdd"></td>
+                                    <td class="align-left pad0"><input type="text" value="{{item.proValue}}" style="width: 100%;padding: 0 0 0 6px;" class="form-control zz-input float-input mar0" ng-readonly="isAdd"></td> -->
+                                    <td class="align-center" ng-click="editValue(item)" ng-show="isShow"><a href="" title="Modify">{{item.proName}}</a></td>
+                                    <td class="align-center" ng-show="!isShow">{{item.proName}}</td>
+                                    <td class="align-center">{{item.proValue}}</td>
+                                    <td class="align-center">{{item.proType}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-center" colspan="4" ng-show="isShow">
+                                        <button style="vertical-align: middle;" class="btn btn-danger btn-raised btn-pd" title="Delete Param" ng-click="deleteParam()">
+                                            <span class="glyphicon glyphicon-minus"></span></button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+                </div>
+            </div>
+        </div>
+    </form>
+    <form name="userForm2" class="form-horizontal" ng-submit="submitForm(userForm2.$valid)">
+        <div class="col-md-12 col-lg-12 pad0" ng-show="isShow">
+            <div class="col-md-12 col-lg-12 " style="min-height: 200px;">
+                <div ba-panel ba-panel-class="with-scroll table-panel">
+                    <div class="horizontal-scroll">
+                        <table class="table table-hover table-bordered-m" id="testTable">
+                            <thead>
+                                <tr class="black-muted-bg" style="height:23px ;">
+                                    <th class="align-left" style="text-align: left;" translate="SysManagement.CPEconfigManagement.configModel.ParametersName">PARAMETERS NAME</th>
+                                    <th class="align-left" translate="SysManagement.CPEconfigManagement.configModel.Value">VALUE</th>
+                                    <th class="align-left" translate="SysManagement.CPEconfigManagement.configModel.Type">TYPE</th>
+                                    <th class="align-left"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <!-- <td class="align-left"> <input ng-readonly="editCheck" type="text" name="paramName" style="width: 90%;" class="form-control zz-input float-input " ng-model="params.proName" placeholder="PARAMETERS NAME" required>
+                                    <span style="color:red;float: left;" class="mar-t-10" ng-show="userForm2.paramName.$error.required">*</span></td> -->
+                                    <td class="align-left pad0" style="text-align: left;">
+                                        <div class="wapper" ng-show="!editCheck">
+                                            <div class="select-wapper" style="width: 500px;">
+                                                <input type="text" name="paramName" ng-model="params.proName" class="form-control zz-input float-input" id="select-input-mark" ng-change="valueChange(params)" placeholder="{{params.proName}}" autocomplete="off" input-search/>
+                                                <ul class="select-content-panel hidden-cls" input-select>
+                                                    <li ng-repeat="data in dataList" ng-bind="data.name" ng-click="valueChange1(data)"></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- <input ng-show="editCheck" type="text" name="editParamName" style="width: 100%;" class="form-control zz-input float-input " ng-model="editparams.proName" placeholder="PARAMETERS NAME" readonly> -->
+                                        <span ng-show="editCheck">{{editparams.proName}}</span>
+                                    </td>
+                                    <td class="align-left pad0">
+                                        <div ng-show="!editCheck">
+                                            <div class="col-md-12 col-lg-12 pad0">
+                                                <input type="text" name="ParamValue" style="width: 90%;" class="form-control zz-input float-input " ng-model="params.proValue" placeholder="VALUE" required maxlength="20">
+                                                <span style="color:red;float: left;" class="mar-t-10" ng-show="userForm2.ParamValue.$error.required">*</span>
+                                            </div>
+                                            <!-- <div class="col-md-12 col-lg-12 pad0" ng-show="userForm2.ParamValue.$dirty && userForm2.ParamValue.$invalid">
+                                                <span style="color:red" ng-show="userForm2.ParamValue.$error.maxlength">*Maximum length cannot exceed 20</span>
+                                            </div> -->
+                                        </div>
+                                        <div ng-show="editCheck">
+                                            <input type="text" name="editParamValue" style="width: 90%;" class="form-control zz-input float-input " ng-model="editparams.proValue" placeholder="VALUE">
+                                            <!-- <span style="color:red;float: left;" class="mar-t-10" ng-show="userForm3.editParamValue.$error.required">*</span> -->
+                                        </div>
+                                    </td>
+                                    <td class="align-left pad0">
+                                        <span ng-show="!editCheck">{{params.proType}}</span>
+                                        <span ng-show="editCheck">{{editparams.proType}}</span>
+                                    </td>
+                                    <td class="align-left pad0">
+                                        <button ng-show="!editCheck" type="button" class="btn btn-primary btn-pd float-l" ng-disabled="userForm2.$invalid " ng-click="addParams()" title="Add parameters" type="submit">
+                                        <span translate="buttons.add">Add</span></button>
+                                        <button ng-show="editCheck" type="button" class="btn btn-primary btn-pd float-l" ng-disabled="userForm3.$invalid" ng-click="saveEditValue()" title="Edit parameters" type="submit">
+                                            <span translate="buttons.Save">Save</span></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="save()" ng-show="isShow" type="submit" translate="buttons.Save">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit" translate="buttons.Close">Close</button>
+    </div>
+
+</div>

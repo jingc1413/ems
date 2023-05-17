@@ -1,0 +1,277 @@
+<div class="widgets">
+
+    <ul class="bg-none safe-tab-ul nav-tabs">
+        <li class="safe-tab-li active">
+            <a href="#safe1" class="bg-none" data-toggle="tab" style="display: block;">
+                <h3 class="safe-line"><i class="fa fa-exclamation-circle safe-line-i"></i>Security Rules</h3>
+            </a>
+        </li>
+        <li class="safe-tab-li">
+            <a href="#safe2" class="bg-none" data-toggle="tab" style="display: block;">
+                <h3 class="safe-line"><i class="fa fa-ban safe-line-i"></i>IP blacklist</h3>
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="safe1">
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+                    <div class="col-lg-4 col-md-6 form-group">
+                        <!-- <label for="" class="">登录失败最大重试次数:</label> -->
+                        <label for="" class="">Maximum number of failed login attempts:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.loginRetryTimes" ng-options="loginRetryTimes.id as loginRetryTimes.name for loginRetryTimes in loginRetryTimess" id="" ng-init="log.logRetry = '0'"><option value="">----please select----</option></select>
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 form-group">
+                        <!-- <label for="" class="">登陆失败次数判断时长（分钟）:</label> -->
+                        <label for="" class="">Judgment time of failed login times (minutes):</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.loginRetryDuration" ng-options="logLong.id as logLong.name for logLong in logLongs" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 form-group">
+                        <!-- <label for="" class="">登陆失败用户自动锁定时长（分钟）:</label> -->
+                        <label for="" class="">Duration of automatic user lockout after login failure (minutes):</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.loginLockDuration" ng-options="logLockLong.id as logLockLong.name for logLockLong in logLockLongs" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12">
+                    <div class="col-lg-4 col-md-6 form-group">
+                        <!-- <label for="" class="">登录用户在线最大空闲时长（分钟）:</label> -->
+                        <label for="" class="">Maximum online idle time of the logged-in user (minutes):</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.loginFreeTime" ng-options="freeLong.id as freeLong.name for freeLong in freeLongs" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 form-group">
+                        <!-- <label for="" class="">是否显示登陆消息通知:</label> -->
+                        <label for="" class="">Whether to display the login message notification:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.isLoginMessage" ng-options="isLoginMessage.id as isLoginMessage.name for isLoginMessage in isLoginMessages" id="" ng-init="log.isLoginMessage =0"><option value="">----please select----</option></select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12">
+                    <div class="col-lg-6 col-md-12 form-group">
+                        <!-- <label for="" class="control-label">简单密码过滤:</label> -->
+                        <label for="" class="control-label">Simple password filtering:</label>
+                        <div class="">
+                            <textarea id="simplePassword" name="simplePassword" type="text" class="form-control" ng-model="log.simplePassword"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 form-group">
+                        <!-- <label for="" class="control-label">登陆消息通知内容:</label> -->
+                        <label for="" class="control-label">Login message notification content:</label>
+                        <div class="">
+                            <textarea id="notice" name="notice" type="text" class="form-control" ng-model="log.loginMessageContent"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12 ">
+                    <div class="col-lg-3 col-md-6 form-group ">
+                        <!-- <label for=" " class=" ">用户名称最小长度:</label> -->
+                        <label for="" class="">Minimum length of user name:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.usernameMinLen" ng-options="nameMin.id as nameMin.name for nameMin in nameMins" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">用户名称最大长度:</label> -->
+                        <label for="" class="">Maximum length of user name:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.usernameMaxLen" ng-options="nameMax.id as nameMax.name for nameMax in nameMaxs" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码最小长度:</label> -->
+                        <label for="" class="">Minimum length of password:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordMinLen" ng-options="passwordMin.id as passwordMin.name for passwordMin in passwordMins" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码最大长度:</label> -->
+                        <label for="" class="">Maximum length of password:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordMaxLen" ng-options="passwordMax.id as passwordMax.name for passwordMax in passwordMaxs" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12 ">
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for=" " class=" ">密码数字字符最小个数:</label> -->
+                        <label for="" class="">Minimum number of password numeric characters:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordNumMinLen" ng-options="characterNumMin.id as characterNumMin.name for characterNumMin in characterNumMins" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码数字字符最大个数:</label> -->
+                        <label for="" class="">Maximum number of password numeric characters:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordNumMaxLen" ng-options="characterNumMax.id as characterNumMax.name for characterNumMax in characterNumMaxs" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for=" " class=" ">密码大写字母最小个数:</label> -->
+                        <label for="" class="">Minimum number of capital letters in password:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordBigCharMinLen" ng-options="characterABCMin.id as characterABCMin.name for characterABCMin in characterABCMins" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for=" " class=" ">密码大写字母最大个数:</label> -->
+                        <label for="" class="">Maximum number of capital letters in password:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordBigCharMaxLen" ng-options="characterABCMax.id as characterABCMax.name for characterABCMax in characterABCMaxs" id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12">
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码小写字母最小个数:</label> -->
+                        <label for="" class="">Minimum number of lowercase letters for password:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordSmallCharMinLen" ng-options="characterMin.id as characterMin.name for characterMin in characterMins" id=" "><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码小写字母最大个数:</label> -->
+                        <label for="" class="">Maximum number of lowercase letters in password:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordSmallCharMaxLen" ng-options="characterMax.id as characterMax.name for characterMax in characterMaxs " id=" "><option value="">----please select----</option></select>
+
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码特殊字符最小个数:</label> -->
+                        <label for="" class="">Minimum number of special characters in password:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordSpecialMinLen" ng-options="specialCharacterMin.id as specialCharacterMin.name for specialCharacterMin in specialCharactersMins " id=""><option value="">----please select----</option></select>
+
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码特殊字符最大个数:</label> -->
+                        <label for="" class="">Maximum number of special characters in password:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordSpecialMaxLen" ng-options="specialCharactersMax.id as specialCharactersMax.name for specialCharactersMax in specialCharactersMaxs " id=" "><option value="">----please select----</option></select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12 ">
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码最大有效期（天）:</label> -->
+                        <label for="" class="">Maximum password validity period (days):</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordValidityDay" ng-options="passwordValidityDay.id as passwordValidityDay.name for passwordValidityDay in passwordValidityDays" id=""><option value="">----please select----</option></select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码过期提醒提前时间（天）:</label> -->
+                        <label for="" class="">Password expiration reminder advance time (days):</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="log.passwordRemindDay" ng-options="reminderDate.id as reminderDate.name for reminderDate in reminderDates" id=""><option value="">----please select----</option></select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">密码过期是否提醒:</label> -->
+                        <label for="" class="">Whether the password expires reminder:</label>
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" ng-model="log.isPassowrdRemind" ng-checked="log.isPassowrdRemind == '0'">
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group">
+                        <!-- <label for="" class="">首次登陆必须修改密码:</label> -->
+                        <label for="" class="">The password must be changed for the first login:</label>
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="" ng-model="log.isMustModifyPassword" ng-checked="log.isMustModifyPassword == '0'">
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12" style="text-align: center;">
+                    <button class="btn btn-info btn-sm" ng-click="save();">Save</button>
+                    <button class="btn btn-reset btn-sm" ng-click="reset();">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="safe2">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <!-- <div class="col-lg-3 col-md-3 pad0">
+                            <label for="" class="zz-label col-lg-2 col-md-4 pad0">Condition:</label>
+                            <select class="zz-input col-lg-10 col-md-8 pad2 form-control inline v-middle" ng-model="condition" ng-options="condition.id as condition.name for condition in conditions" id="" ng-init="query.condition='0'
+                            " style="width: 80%;"></select>
+                        </div> -->
+                        <div class="col-lg-8 col-md-8 pad0">
+                            <input type="text" class="form-control zz-input float-input" id="input01" placeholder="Input BeginIP" style="width: 40%;" ng-model="query.beginIp">
+
+                            <input type="text" class="form-control zz-input float-input" id="input02" placeholder="Input EndIP" style="width: 40%;" ng-model="query.endIp">
+
+                            <button type="button " class="btn btn-sm btn-success btn-raised " style="margin-bottom: 5px;" ng-click="search();">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+
+                        <div class="col-md-3 col-lg-3 " style="text-align: center;">
+                            <!-- <button class="btn btn-info btn-sm">Save</button> -->
+                            <button class="btn btn-reset btn-sm" ng-click="reset();">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-6 col-md-6">
+                        <button class="btn btn-info btn-pd" ng-model="viewItem" ng-click="viewItem();"><i></i>View</button>
+                        <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModify();"><i></i>Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem();"><i></i>Add</button>
+                        <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();"><i></i>Delete</button>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div ba-panel ba-panel-class="with-scroll table-panel">
+                        <div class="horizontal-scroll">
+                            <table class="table table-hover table-bordered-m">
+                                <thead>
+                                    <tr class="black-muted-bg">
+                                        <th class="align-left">
+                                            <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                        </th>
+                                        <th class="align-left">NO.</th>
+                                        <th class="align-left">ID</th>
+
+                                        <th class="align-left">Starting IP</th>
+                                        <th class="align-left">Ending IP</th>
+
+                                        <th class="align-left">Create Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in items" class="no-top-border">
+                                        <td>
+                                            <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                        </td>
+                                        <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                        <td class="align-left">{{item.id}}</td>
+                                        <td class="align-left">{{item.beginIp}}</td>
+                                        <td class="align-left">{{item.endIp}}</td>
+                                        <td class="align-left">{{item.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <tm-pagination conf="paginationConf"></tm-pagination>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,64 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal" class="form-control" ng-submit="submitForm()"></form>
+    <div class="modal-body">
+        <div class="form">
+            <div class="row col-lg-12 col-md-12">
+                <div class="col-lg-8 col-md-8 pad0">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label">FTPServer Name:</label>
+                        <input type="text" class="zz-input form-control" id="input01" ng-model="query.ftpName" placeholder="please input" style="width:60%;" />
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 pad0">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="searchFtpS();"><i class="fa fa-search" ng-click="search();"></i>Search</button>
+                    <!-- <button class="btn btn-reset btn-primary btn-sm btn-pd" ng-click="confirm();"><i class="fa fa-rotate-right"></i>Confirm</button> -->
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="row col-lg-12 col-md-12 horizontal-scroll mar-b-20">
+                <table class="table table-hover table-bordered-m">
+                    <thead>
+                        <tr class="black-muted-bg">
+                            <th width="3%">
+                                <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                            </th>
+                            <th class="align-left">NO.</th>
+                            <th class="align-left">FtpServerName</th>
+                            <th class="align-left">IP</th>
+                            <th class="align-left">Port</th>
+                            <th class="align-left">Path</th>
+                            <th class="align-left">User Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                            <td>
+                                <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                            </td>
+                            <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                            <td class=" align-left ">{{item.name}}</td>
+                            <td class=" align-left ">{{item.host}}</td>
+                            <td class="align-left ">{{item.port}}</td>
+                            <td class="align-left ">{{item.path}}</td>
+                            <td class="align-left ">{{item.userName}}</td>
+                    </tbody>
+                </table>
+            </div>
+            <tm-pagination conf="paginationConf"></tm-pagination>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="submit " class="btn btn-primary " ng-click="save(); ">Save</button>
+        <button type="button " class="btn btn-primary " ng-click="close() ">Close</button>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,85 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="closeWindow()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel" translate="reportManagement.CPEmonitorManagement.modelManagement.ModelConfig.SetNDMPath">Set NDMPath</h4>
+    </div>
+    <div class="col-lg-12 col-md-12 mar-t-20">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div ba-panel ba-panel-class="with-scroll table-panel">
+                    <div class="horizontal-scroll">
+                        <table class="table table-hover table-bordered-m table-td">
+                            <thead>
+                                <tr class="black-muted-bg" style="height: 28px;">
+                                    <th class="align-left" translate="reportManagement.CPEmonitorManagement.modelManagement.ModelConfig.TypeName">TYPE NAME
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in items" style="height: 28px;">
+                                    <td class="align-left" ng-click="searchNdmPath(item);"><a href="">{{item.typeName}}</a></td>
+                                    <!-- <td class="align-left"><button class="btn btn-green  btn-sm btn-pd" ng-click="searchNdmPath(item);"><i
+                                        class="fa fa-search"></i></button></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div ba-panel ba-panel-class="with-scroll table-panel" ng-show="isShow" ng-click="hideSelect()">
+                    <div class="horizontal-scroll">
+                        <table class="table table-hover table-bordered-m">
+                            <thead>
+                                <tr class="black-muted-bg" style="height: 28px;">
+                                    <th class="align-left" style="width: 100px" translate="reportManagement.CPEmonitorManagement.modelManagement.ModelConfig.VDMPath">VDMPATH
+                                    </th>
+                                    <th class="align-left" translate="reportManagement.CPEmonitorManagement.modelManagement.ModelConfig.NDMPath">NDMPATH
+                                        <!-- </th>
+                                    <th class="align-left">TEST</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in monitorPath" style="height: 28px;">
+                                    <td class="align-left">{{item.vdmPath}}</td>
+                                    <!-- <td class="align-left"><input type="text" class="form-control zz-input float-input" placeholder="" ng-model="item.ndmPath" style="width: 100%;" /></td> -->
+                                    <!-- <td class="align-left clearfix" style="table-layout: fixed;">
+                                        <input type='test' ng-change="changeKeyValue(item.ndmPath)" ng-model="item.ndmPath" class="form-control zz-input" style="width: 100%;" ng-click='hidden=!hidden' value="{{searchField}}" /></input>
+                                        <div ng-if="hidden">
+                                            <select style='width:100%' ng-change="change(x)" ng-model="x" multiple>
+                                                <option ng-repeat="data in datas" >{{data}}</option>
+                                               </select> -->
+                                    <!-- <select style='width:100%;max-height: 100px;z-index: 99999;' ng-change="change(x)" ng-model="x" ng-options="data.id as data.paramName for data in datas">
+                                            <option value="">--Please Select--</option>
+                                        </select> -->
+                                    <!-- </div>
+                                    </td> -->
+                                    <td class="align-left">
+                                        <div class="wapper">
+                                            <div class="select-wapper">
+                                                <input type="text" ng-model="item.ndmPath" id="select-input-mark" ng-click="valueChange(item)" style="width: 100%;" placeholder="{{item.ndmPath}}" autocomplete="off" input-search/>
+                                                <ul class="select-content-panel hidden-cls" input-select>
+                                                    <li ng-repeat="data in dataList" ng-bind="data.name" ng-click="valueChange1(data.name)"></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <button type="button" class="btn btn-primary float-r" ng-disabled="isSave" ng-click="save()" type="submit" translate="buttons.Save">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="closeWindow()" type="submit" translate="buttons.Close">Close</button>
+</div>
+</div>

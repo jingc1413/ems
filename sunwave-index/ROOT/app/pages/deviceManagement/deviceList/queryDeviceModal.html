@@ -1,0 +1,80 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" translate="deviceManagement.queryDeviceModal.QueryDevice">Query Device</h4>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm">
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body" style="padding-bottom: 5px;">
+
+
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="inputStatus" class="zz-label-sm"><span translate="deviceManagement.queryDeviceModal.CommunicationType">Communication Type:</span></label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.ctpId" ng-options="commtype.ctpId as commtype.ctpName for commtype in commtypes" style="width: 40%;" ng-init="modal.ctpId =6" ng-change="selectCommtype();" required>
+                        <!-- <option value="">--Please Select--</option> -->
+                        <!-- <option value="6">UDP</option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="inputStatus" class="zz-label-sm" translate="deviceManagement.queryDeviceModal.DeviceType">Device Type:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle float-l" ng-model="modal.neDevicetype.dtpDevicetypeid" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'"
+                        name="deviceType" style="width: 40%;" ng-change="changeDeviceType();" ng-disabled="isUDP" ng-required="modal.neDevicetype.dtpDevicetypeid==7||modal.neDevicetype.dtpDevicetypeid==8">
+                            <option value="">--Please Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm" translate="deviceManagement.queryDeviceModal.DeviceID">Device ID:</label>
+                    <input type="text" class="zz-input-sm form-control" name="DeviceID" id="DeviceID" ng-model="modal.neQryRepeaterId" placeholder="" ng-maxlength=8 ng-pattern="/^[\dA-F]{8}$/" required/>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.DeviceID.$error.required">*</span>
+                </div>
+                <div class="clear"></div>
+                <div class="error" ng-show="myForm.DeviceID.$dirty && myForm.DeviceID.$invalid">
+                    <small class="error" ng-show="myForm.DeviceID.$error.required" style="color:red;" translate="deviceManagement.modal.DeviceIDTips1">
+                        *Device ID is required!
+                    </small>
+                    <small class="error" ng-show="myForm.DeviceID.$error.maxlength" style="color:red;display: block;" translate="deviceManagement.modal.DeviceIDTips2">
+                        *Device ID cannot be longer than 8 characters!
+                    </small>
+                    <small class="error" ng-show="myForm.DeviceID.$error.pattern" style="color:red;display: block;" translate="deviceManagement.modal.DeviceIDTips3">
+                        *Can only be 8-bit hex!
+                    </small>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm" translate="deviceManagement.queryDeviceModal.DeviceIp">Device Ip:</label>
+                    <input type="text" class="zz-input-sm form-control" name="neDeviceIP" id="DeviceIp" ng-model="modal.neDeviceIP" ng-pattern="/^(?:(?:1[0-9][0-9]\.)|(?:2[0-4][0-9]\.)|(?:25[0-5]\.)|(?:[1-9][0-9]\.)|(?:[0-9]\.)){3}(?:(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5])|(?:[1-9][0-9])|(?:[0-9]))$/"
+                        placeholder="" required/>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.neDeviceIP.$error.required">*</span>
+                </div>
+
+                <div class="clear"></div>
+                <small class="error" ng-show="myForm.neDeviceIP.$error.pattern" style="color:red;" translate="deviceManagement.modal.DeviceIpTips">
+                        *Device Ip Incorrect format! eg 1.1.1.1
+                    </small>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm" translate="deviceManagement.queryDeviceModal.DevicePort">Device Port:</label>
+                    <input type="text" name="DevicePort" class="zz-input-sm form-control" id="DevicePort" ng-model="modal.neDevicePort" placeholder="" ng-pattern="/^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/" required/>
+                    <span style="color:red;float: left;" ng-show="myForm.DevicePort.$error.required">*</span>
+                </div>
+                <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.DevicePort.$error.pattern" translate="deviceManagement.modal.DevicePortTips">*</span>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="myForm.$invalid" type="submit" translate="buttons.Query">Query</button>
+            <button type="button" class="btn btn-default" ng-click="close()" type="submit" translate="buttons.Close">Close</button>
+        </div>
+    </form>
+</div>

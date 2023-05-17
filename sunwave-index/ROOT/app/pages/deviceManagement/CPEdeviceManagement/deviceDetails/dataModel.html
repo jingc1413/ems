@@ -1,0 +1,90 @@
+<div class="widgets">
+    <div class="modal-content">
+        <div class="col-md-12 col-lg-12">
+            <div class="modal-head-new modal-header">
+                <h4 class="modal-title" id="myModalLabel" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.DataModelTree.title">Data Model</h4>
+            </div>
+            <div class="col-md-12 col-lg-12 panel2 pad0">
+                <div class="col-md-6 col-lg-6 zTreeDemoBackground left tree-bg-b2 ">
+                    <div class="form-group">
+                        <!-- <button class="btn btn-primary btn-raised btn-xs" ng-click="refresh();" title="Refresh"><span class="glyphicon glyphicon-refresh"></span></button> -->
+                        <button class="btn btn-primary btn-raised btn-xs" ng-click="refresh();" title="Refresh Value"><span class="fa fa-search"></span></button>
+                    </div>
+                    <ul id="leftTree" ng-click="getTopByNeId($event,Name);" class="ztree" style="background:#deeceb;height: 500px;overflow: scroll; ">
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-6 pad0">
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <div class="col-md-4 col-lg-4 pad0">
+                                <label for="" class="form-control zz-lable-sm float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.DataModelTree.Name">NAME:</label></div>
+                            <div class="col-md-8 col-lg-8 pad0">
+                                <label for="" class="form-control zz-lable-sm">{{showInfo.name}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <div class="col-md-4 col-lg-4 pad0">
+                                <label for="" class="form-control zz-lable-sm float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.DataModelTree.ParamId">PARAMID:</label></div>
+                            <div class="col-md-8 col-lg-8 pad0">
+                                <label for="" class="form-control zz-lable-sm"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <div class="col-md-4 col-lg-4 pad0">
+                                <label for="" class="form-control zz-lable-sm float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.DataModelTree.Type">TYPE:</label></div>
+                            <div class="col-md-8 col-lg-8 pad0">
+                                <label for="" class="form-control zz-lable-sm">{{showInfo.paramType}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <div class="col-md-4 col-lg-4 pad0">
+                                <label for="" class="form-control zz-lable-sm float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.DataModelTree.Value">VALUE:</label></div>
+                            <div class="col-md-8 col-lg-8 pad0">
+                                <label for="" ng-click="modalValue();" style="cursor: pointer;" class="form-control zz-lable-sm" ng-if="!valueChange"><a href=""
+                                            >{{showInfo.nodeValue}}</a></label>
+                                <!-- <label for="" class="form-control zz-lable-sm" ng-if="valueChange">
+                                    <div class="box2" title="Loading">
+                                        <div class="r1"></div>
+                                        <div class="r2"></div>
+                                        <div class="r3"></div>
+                                    </div>
+                                </label> -->
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <div class="col-md-4 col-lg-4 pad0">
+                                <label for="" class="form-control zz-lable-sm float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.DataModelTree.ParentNode">PARENTNODE:</label></div>
+                            <div class="col-md-8 col-lg-8 pad0">
+                                <label for="" class="form-control zz-lable-sm">{{showInfo.parentNode}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <div class="col-md-4 col-lg-4 pad0">
+                                <label for="" class="form-control zz-lable-sm float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.DataModelTree.Writable">WRITABLE:</label></div>
+                            <div class="col-md-8 col-lg-8 pad0">
+                                <label for="" class="form-control zz-lable-sm">{{showInfo.writable}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 pad0 div-center" ng-if="isLoading">
+                    <div class="sk-cube-grid">
+                        <div class="sk-cube sk-cube1"></div>
+                        <div class="sk-cube sk-cube2"></div>
+                        <div class="sk-cube sk-cube3"></div>
+                        <div class="sk-cube sk-cube4"></div>
+                        <div class="sk-cube sk-cube5"></div>
+                        <div class="sk-cube sk-cube6"></div>
+                        <div class="sk-cube sk-cube7"></div>
+                        <div class="sk-cube sk-cube8"></div>
+                        <div class="sk-cube sk-cube9"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- <div class="modal-content">
+
+</div> -->

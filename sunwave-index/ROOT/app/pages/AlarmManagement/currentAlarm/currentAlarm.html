@@ -1,0 +1,224 @@
+<div class="widgets">
+    <div class="col-lg-12 col-md-12 pad0">
+        <div class="col-lg-6 col-md-12 pad0">
+            <div class="pad2 form-group col-lg-12 col-md-12 mar-b-0">
+                <label for="input01" class="zz-label zz-label-r" translate="alarmManagement.searchCondition.searchCondition">Search Condition:</label>
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="searchCondition" style="width: 30%;float: left;" ng-change="switchSearchCondition();">
+                        <option value="0" ng-selected="searchCondition == 0" translate="alarmManagement.searchCondition.PleaseSelect">--Please Select--</option>
+                        <option value="1" ng-selected="searchCondition == 1" translate="alarmManagement.searchCondition.DeviceName">Device Name</option>
+                        <option value="2" ng-selected="searchCondition == 2" translate="alarmManagement.searchCondition.DeviceID">Device ID</option>
+                        <option value="3" ng-selected="searchCondition == 3" translate="alarmManagement.searchCondition.DeviceType">Device Type</option>
+                        <!-- <option value="7" ng-selected="searchCondition == 7" translate="alarmManagement.searchCondition.DeviceTypeAll">Device Type All</option> -->
+                        <option value="7" ng-selected="searchCondition == 7" translate="deviceManagement.searchCondition.DeviceClassification">Device Classification</option>
+                        <option value="4" ng-selected="searchCondition == 4" translate="alarmManagement.searchCondition.AlarmName">Alarm Name</option>
+                        <option value="5" ng-selected="searchCondition == 5" translate="alarmManagement.searchCondition.AlarmLevel">Alarm Level</option>
+                        <option value="6" ng-selected="searchCondition == 6" translate="alarmManagement.searchCondition.VendorName">Vendor Name</option>
+                        <option value="8" ng-selected="searchCondition == 8" translate="deviceManagement.searchCondition.BaseStationName">Base Station Name</option>
+                        <option value="9" ng-selected="searchCondition == 9" translate="deviceManagement.searchCondition.BaseStationID">Base Station ID</option>
+                    </select>
+                <input type="text" style="width:40%;" class="zz-input form-control" id="input01" placeholder="" ng-show="devAlarmNameAndId" ng-model="conditionValue" />
+                <!--deviceType-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.neDevicetypeid" ng-show="deviceTypeShow" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'"
+                    style="width: 30%;">
+                        <option value="" translate="alarmManagement.searchCondition.PleaseSelect">--Please Select--</option>
+                    </select>
+                <!--type all-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.neDevicetypeAllid" ng-show="deviceTypeAllShow" ng-options="devTypeAll.dtcDevicetypeclassifyid as devTypeAll.dtcName for devTypeAll in devTypeAlls" style="width: 30%;">
+                    <option value="" translate="alarmManagement.searchCondition.PleaseSelect">--Please Select--</option>
+                </select>
+                <!---alarmlevel-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.alvAlarmlevelid" ng-show="alarmLevelShow" ng-options="alarmLevel.alvAlarmlevelid as alarmLevel.alvName for alarmLevel in alarmLevels" style="width: 30%;">
+                        <option value="" translate="alarmManagement.searchCondition.PleaseSelect">--Please Select--</option>
+                    </select>
+                <!--deviceStatus-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.neDevicestatusid" ng-show="deviceStatusShow" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" style="width: 30%;">
+                        <option value="" translate="alarmManagement.searchCondition.PleaseSelect">--Please Select--</option>
+                    </select>
+                <!--vendorName-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.coName" ng-options="vName.coName as vName.coName for vName in vNames" ng-show="VendorShow" style="width: 40%;">
+                        <option value="" translate="alarmManagement.searchCondition.PleaseSelect">--Please Select--</option>
+                    </select>
+                <!--deviceLevel-->
+                <!-- <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicelevelid" style="width: 40%;" ng-init="modal.neDevicelevelid='1'">
+                        <option value="1" ng-selected="modal.neDevicelevelid == 1">normal</option>
+                        <option value="2" ng-selected="modal.neDevicelevelid == 2">vip</option>
+                    </select> -->
+                <!--alrmLevel-->
+                <!-- <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicelevelid" style="width: 40%;" ng-init="modal.neDevicelevelid='1'">
+                        <option value="1" ng-selected="modal.neDevicelevelid == 1">normal</option>
+                        <option value="2" ng-selected="modal.neDevicelevelid == 2">vip</option>
+                    </select> -->
+            </div>
+
+            <!-- <div class="pad2 col-lg-2 col-md-4">
+                    <select class="zz-input pad2 form-control inline v-middle" style="width: 90%;">
+                        <option value="0">Enable</option>
+                        <option value="1">Disable</option>
+                    </select>
+                </div> -->
+        </div>
+
+        <div class="pad2 form-group col-lg-5 col-md-6 mar-b-0">
+            <!-- <label for="" class="zz-label-sm">Area:</label> -->
+            <button class="btn btn-xxs btn-sm btn-info float-l" ng-click="searchAreaTree();" translate="buttons.area">Area</button>
+            <!-- <span>Selected:{{modal.neAreaid}}</span> -->
+            <input type="text" class="zz-input form-control" id="AreaInput" ng-model="area.selectArea" placeholder="" readonly="true" />
+        </div>
+
+    </div>
+    <div class="col-lg-12 col-md-12 pad0">
+        <div class="col-lg-6 col-md-10 pad2">
+            <div class="col-md-8 col-lg-2 zz-label pad0" translate="alarmManagement.searchCondition.AlarmTime">AlarmTime:</div>
+            <div class="col-md-8 col-lg-4 pad0">
+                <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="Begin Time" id="beginTime" btns="{'ok':'ok','now':'today'}" ng-model="query.startTime">
+                </wui-date>
+            </div>
+            <span class="col-lg-1 col-md-2 zz-label">to</span>
+            <div class="col-md-8 col-lg-4 pad0">
+                <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="End Time" id="endTime" btns="{'ok':'ok','now':'today'}" ng-model="query.endTime">
+                </wui-date>
+            </div>
+
+        </div>
+        <div class="col-md-6 col-lg-6 pad2">
+            <button class="btn btn-green btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i><span translate="buttons.search">Search</span></button>
+            <button class="btn btn-reset btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+        </div>
+    </div>
+    <div class="mar0 row">
+        <div class="pad2 col-lg-12 col-md-12">
+
+            <!-- <button type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportList();"><i class="ion-android-download"></i>Export</button>
+                <button class="btn btn-info btn-sm btn-pd" ng-click="Acknowledge();">Acknowledge</button>
+                <button class="btn btn-info btn-sm btn-pd" ng-click="reactiveAlarm();">ReactiveAlarm</button>
+                <button class="btn btn-info btn-sm btn-pd" ng-click="clearAlarm();">ClearAlarm</button> -->
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 pad0" ba-panel ba-panel-class="with-scroll table-panel">
+        <div class="horizontal-scroll">
+            <table class="table table-hover table-bordered-m">
+                <thead>
+                    <tr class="black-muted-bg">
+                        <th width="3%">
+                            <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                        </th>
+                        <th class="align-left">NO.</th>
+                        <!-- <th>color</th> -->
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmTime"></span>
+                            <my-Order query="query" search="search()" order-name='algAlarmtime'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmClearedTime"></span>
+                            <my-Order query="query" search="search()" order-name='algCleartime'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmConfirmedTime"></span>
+                            <my-Order query="query" search="search()" order-name='algConfirmtime'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.DeviceName"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.neName'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmName"></span>
+                            <my-Order query="query" search="search()" order-name='almAlarm.almName'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.DeviceType"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.neDevicetype.dtpDevicetypeid'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.DeviceSubID"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.neDeviceid'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.RouteAddress"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.neRoute'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.DeviceID"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.neRepeaterid'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmLevel"></span>
+                            <my-Order query="query" search="search()" order-name='almAlarmlevel'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmStatus"></span>
+                            <my-Order query="query" search="search()" order-name='alarmStatus.astAlarmStatusName'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.Area"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.sysArea.areaName'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.DeviceStatus"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.neDevicestatus.dsId'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.VendorName"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.neCompany.coCompanyid'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.DeviceLevel"></span>
+                            <my-Order query="query" search="search()" order-name='neElement.neSitelevelid'></my-Order>
+                        </th>
+                        <!-- <th class="align-left"><span translate="alarmManagement.table.thead.AlarmTimes"></span>
+                            <my-Order query="query" search="search()" order-name='almAlarm.AlarmTimes'></my-Order>
+                        </th> -->
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmDurations"></span>
+                            <my-Order query="query" search="search()" order-name='algAlarmduration'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmType"></span>
+                            <my-Order query="query" search="search()" order-name='almAlarm.alarmKind.name'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmClearancePerson"></span>
+                            <my-Order query="query" search="search()" order-name='algClearusername'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="alarmManagement.table.thead.AlarmConfirmPerson"></span>
+                            <my-Order query="query" search="search()" order-name='algConfirmname'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.BaseStationID"></span>
+                            <my-Order query="query" search="search()" order-name='btsId'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.BaseStationName"></span>
+                            <my-Order query="query" search="search()" order-name='btsName'></my-Order>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items" class="no-top-border txt-2b" ng-click="changeCurrent(item,$event);" ng-class="{'table-tr-checked':item.checked}" ng-style="{'background-color':item.almAlarmlevel.alvColor}">
+                        <td>
+                            <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                        </td>
+                        <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                        <!-- <td><span class="tdInspan" ng-style="{'background-color':item.almAlarmlevel.alvColor}"></span></td> -->
+                        <td class=" align-left">{{item.algAlarmtime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td class=" align-left">{{item.algCleartime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td class="align-left">{{item.algConfirmtime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td class="align-left"><a href="" ng-click="detailDeviceName(item);">{{item.neElement.neName}}</a></td>
+                        <td class="align-left"><a href="" ng-click="detailAlarmName(item);">{{item.almAlarm.almName}}</a></td>
+                        <td class="align-left">{{item.neElement.neDevicetype.dtpName}}</td>
+                        <td class="align-left">{{item.neElement.neDeviceid}}</td>
+                        <td class="align-left">{{item.neElement.neRoute}}</td>
+                        <td class="align-left">{{item.neElement.neRepeaterid16}}</td>
+                        <td class="align-left">{{item.almAlarmlevel.alvName}}</td>
+                        <td class="align-left">
+                            {{item.alarmStatus.astAlarmStatusName}}
+                            <!-- <a href="" id="context" data-toggle="context" data-target="#context-menu"></a> -->
+                            <!-- <div id="context-menu">
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li style="cursor: pointer;"><a tabindex="-1" ng-click="Acknowledge();">Acknowledge</a></li>
+                                            <li style="cursor: pointer;"><a tabindex="-1" ng-click="reactiveAlarm();">reactiveAlarm</a></li>
+                                            <li style="cursor: pointer;"><a tabindex="-1" ng-click="clearAlarm();">clearAlarm</a></li>
+                                        </ul>
+                                    </div> -->
+                        </td>
+                        <td class=" align-left ">{{item.neElement.areaName}}</td>
+                        <td class="align-left ">{{item.neElement.neDevicestatus.dsName}}</td>
+                        <td class="align-left ">{{item.neElement.neCompany.coName}}</td>
+                        <td class="align-left ">{{item.neElement.neSitelevelid==1?'normal':'vip'}}</td>
+                        <!-- <td class="align-left ">{{item.AlarmTimes}}</td> -->
+                        <!-- <td class="align-left ">1</td> -->
+                        <!-- <td class="align-left ">{{item.AlarmDurations}}</td> -->
+                        <td class="align-left ">{{item.alarmDuration}}</td>
+                        <td class="align-left ">{{item.almAlarm.alarmKind.name}}</td>
+                        <td class="align-left ">{{item.algClearusername}}</td>
+                        <td class="align-left ">{{item.algConfirmname}}</td>
+                        <td class="align-left ">{{item.neElement.btsId}}</td>
+                        <td class="align-left ">{{item.neElement.btsName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <tm-pagination conf="paginationConf "></tm-pagination>
+    </div>
+</div>

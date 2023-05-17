@@ -1,0 +1,84 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <!-- <div class="col-lg-6 col-md-6"> -->
+            <div class="form-group">
+                <div class="col-lg-2 col-md-2 pad0">
+                    <input type="text" class="form-control zz-input float-input" style="width: 100%;" id="input02" placeholder="Search by VERSION" ng-model="query.version" maxlength="20" autocomplete="on" ng-keypress="($event.which === 13)?search():0" />
+                </div>
+                <div class="col-lg-2 col-md-2 pad0">
+                    <!-- <input type="text" class="form-control zz-input float-input" style="width: 100%;" id="input01" placeholder="Search by MANUFACTURER" ng-model="query.manufacturer" maxlength="20" ng-keypress="($event.which === 13)?search():0" /> -->
+                    <select class="zz-input pad2 form-control inline v-middle wid-100" ng-model="query1.manufacturer" ng-options="data for data in ManufacturerItems">
+                        </select>
+                </div>
+                <div class="col-lg-8 col-md-8 pad0">
+                    <button class="btn btn-green  btn-sm btn-pd float-l" ng-click="search();"><i
+                        class="fa fa-search">Search</i></button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i
+                            class="fa fa-rotate-right" title="Reset">Reset</i></button>
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col-lg-6 col-md-6">
+                <span style="float: right;">
+                    <button class="btn  btn-primary btn-raised btn-xs" ng-click="toAddItem()" title="Upload File"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-info btn-xs" ng-click="toModifyItem()" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-danger btn-xs" ng-model="deleteItem" title="Delete File" ng-click="deleteItem()"><span class="glyphicon glyphicon-minus align-center"></span></button>
+                <button class="btn btn-warning btn-raised btn-xs" ng-click="toConfigure()" title="Locked">
+                    <span class="glyphicon glyphicon-lock"></span></button>
+                <button-permission ng-model="permissions2" nowUrl={{absUrl}}></button-permission>
+                </span>
+            </div> -->
+        </div>
+        <!-- <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-12 col-md-12">
+                
+            </div>
+        </div> -->
+    </div>
+    <div class="mar0 row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" class="cursor" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left" translate="UpgradeManagement.CPEfileManagement.fileManagement.Name">FILE NAME
+                                </th>
+                                <th class="align-left" translate="UpgradeManagement.CPEfileManagement.fileManagement.UploadTime">UPLOAD TIME
+                                </th>
+                                <th class="align-left" translate="UpgradeManagement.CPEfileManagement.fileManagement.Version">VERSION
+                                </th>
+                                <th class="align-left" translate="UpgradeManagement.CPEfileManagement.fileManagement.Manufacturer">MANUFACTURER
+                                </th>
+                                <th class="align-left" translate="UpgradeManagement.CPEfileManagement.fileManagement.Remark">REMARK
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items">
+                                <td class="align-left">
+                                    <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left">{{item.name}}</td>
+                                <td class="align-left">{{item.uploadTime}}</td>
+                                <td class="align-left">{{item.version}}</td>
+                                <td class="align-left">{{item.manufacturer}}</td>
+                                <td class="align-left">{{item.remark}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

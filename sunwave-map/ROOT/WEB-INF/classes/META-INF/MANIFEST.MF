@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: admin
+Build-Jdk: 10.0.1
+Implementation-Title: sunwave-topological-map
+Implementation-Version: 2.0.0
+Implementation-Vendor-Id: sunwave-topological-map
+Implementation-URL: http://maven.apache.org
+Created-By: Maven Integration for Eclipse
+

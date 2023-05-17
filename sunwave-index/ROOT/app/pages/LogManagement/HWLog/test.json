@@ -1,0 +1,42 @@
+{
+    "content": [{
+        "id": "01",
+        "deviceId": "1",
+        "deviceSubId": "11111111",
+        "deviceName": "namename111",
+        "deviceType": "type111",
+        "executionTime": "2019-9-7",
+        "result": "result01",
+        "operationType": "operationType111",
+        "task": "task111"
+    }, {
+        "id": "02",
+        "deviceId": "2",
+        "deviceSubId": "22222222",
+        "deviceName": "namename222",
+        "deviceType": "type2222",
+        "executionTime": "2019-9-7",
+        "result": "result01",
+        "operationType": "operationType222",
+        "task": "task2221"
+    }, {
+        "id": "03",
+        "deviceId": "3",
+        "deviceSubId": "33333",
+        "deviceName": "namename333",
+        "deviceType": "type33331",
+        "executionTime": "2019-9-7",
+        "result": "result03",
+        "operationType": "operationType3",
+        "task": "task133333"
+    }],
+    "totalElements": 100,
+    "deleteIs": "OK",
+    "OperationTypes": [{
+        "Id": "01",
+        "Label": "type1"
+    }, {
+        "Id": "02",
+        "Label": "type2"
+    }]
+}

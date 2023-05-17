@@ -1,0 +1,24 @@
+{
+    "tree": [{
+        "checked": true,
+        "id": "1",
+        "name": "浙江",
+        "open": "true",
+        "pId": "0",
+        "t": "string"
+    }, {
+        "checked": true,
+        "id": "2",
+        "name": "上海",
+        "open": "true",
+        "pId": "0",
+        "t": "string"
+    }, {
+        "checked": true,
+        "id": "3",
+        "name": "杭州",
+        "open": "true",
+        "pId": "1",
+        "t": "string"
+    }]
+}

@@ -1,0 +1,35 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div class="col-md-12 col-lg-12">
+                <h4>Original Value </h4>
+                <input type="text" name="OriValue" ng-model="info.nodeValue" class="zz-input-sm" readonly>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-t-10">
+                <h4>New Value </h4>
+                <input type="text" name="NewValue" ng-model="newValue" class="zz-input-sm" required maxlength="40" ng-change="valueIsChange();">
+            </div>
+            <!-- <div class="col-md-12 col-lg-12">
+                <span>
+                <label for=""class="zz-lable-sm" >Validate Value</label>
+                <input type="checkbox"  value="0">
+            </span>
+            </div> -->
+            <!-- <div class="col-md-12 col-lg-12">
+            <h4>Type</h4>
+           <select name="" id="">
+               <option value="1" selected>automatic type</option>
+           </select>
+        </div> -->
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="myForm.$invalid" type="submit">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Close</button>
+    </div>
+</div>

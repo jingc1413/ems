@@ -1,0 +1,56 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="listForm" class="form-horizontal" class="form-control" ng-submit="submitForm()"></form>
+    <div class="modal-body">
+        <div class="form">
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-3">dtpClassifyid: </label>
+                <div class="col-md-9">
+                    <input id="dtpClassifyid" name="dtpClassifyid" type="text" class="form-control " maxlength="25 " ng-model="list.dtpClassifyid" ng-readonly="isReadonly" required/>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-3">dtpDevicetypeid: </label>
+                <div class="col-md-9">
+                    <input id="dtpDevicetypeid" name="dtpDevicetypeid" type="text" class="form-control" maxlength="120" ng-model="list.dtpDevicetypeid" ng-readonly="isModify" />
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-3">dtpName: </label>
+                <div class="col-md-9">
+                    <input id="dtpName" name="dtpName" type="text" class="form-control " maxlength="25 " ng-model="list.dtpName" required/>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-3">dtpProtocoldevicetypeid: </label>
+                <div class="col-md-9">
+                    <input id="dtpProtocoldevicetypeid" name="dtpProtocoldevicetypeid" type="text" class="form-control" maxlength="120" ng-model="list.dtpProtocoldevicetypeid" />
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-3">dtpProtocoltypeid: </label>
+                <div class="col-md-9">
+                    <input id="dtpProtocoltypeid" name="dtpProtocoltypeid" type="text" class="form-control " maxlength="25" ng-model="list.dtpProtocoltypeid" required/>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-3">dtpIseffectcontrol: </label>
+                <div class="col-md-9">
+                    <input id="dtpIseffectcontrol" name="dtpIseffectcontrol" type="text" class="form-control" maxlength="120" ng-model="list.dtpIseffectcontrol" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="submit " class="btn btn-primary " ng-click="saveEdit();">Sava {{title}}</button>
+        <button type="button " class="btn btn-primary " ng-click="cancel();">close</button>
+    </div>
+    </form>
+</div>

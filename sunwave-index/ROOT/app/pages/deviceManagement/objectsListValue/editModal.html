@@ -1,0 +1,46 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="listValueForm" class="form-horizontal" class="form-control" ng-submit="submitForm()"></form>
+    <div class="modal-body">
+        <div class="form">
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-2" translate="deviceManagement.objectListValue.modal.valueDesc">valueDesc</label>
+                <div class="col-md-4">
+                    <input id="valueDesc" name="valueDesc" type="text" class="form-control " maxlength="25 " ng-model="listValue.valueDesc" required/>
+                </div>
+                <label class="edit-label control-label col-md-2" translate="deviceManagement.objectListValue.modal.valueId">valueId</label>
+                <div class="col-md-4">
+                    <input id="valueId" name="valueId" type="text" class="form-control" maxlength="100" ng-model="listValue.valueId" />
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-2" translate="deviceManagement.objectListValue.modal.valueKey">valueKey</label>
+                <div class="col-md-6">
+                    <input id="valueKey" name="valueKey" type="text" class="form-control" ng-model="listValue.valueKey" />
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-2" translate="deviceManagement.objectListValue.modal.valueSort">valueSort</label>
+                <div class="col-md-6">
+                    <input id="valueSort" name="valueSort" type="text" class="form-control" ng-model="listValue.valueSort" />
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 form-group">
+                <label class="edit-label control-label col-md-2" translate="deviceManagement.objectListValue.modal.valueValue">valueValue</label>
+                <div class="col-md-6">
+                    <input id="valueValue" name="valueValue" type="text" class="form-control" ng-model="listValue.valueValue" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="submit " class="btn btn-primary" ng-click="saveEdit();" translate="buttons.Save">Save</button>
+        <button type="button " class="btn btn-primary" ng-click="cancel();" translate="buttons.Close">Close</button>
+    </div>
+    </form>
+</div>

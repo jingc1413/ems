@@ -1,0 +1,45 @@
+<div class="page-top clearfix {{app.settings.navbarHeaderColor}}" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled, }">
+
+    <a href="#/dashboard" class="navbar-logo clearfix">{{::app.name}}</a>
+    <a href class="collapse-menu-link" ba-sidebar-toggle-menu ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+        <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+    </a>
+
+    <!--
+    <div class="search">
+        <input id="searchInput" type="text" placeholder="Search for...">
+        <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+    </div> -->
+
+    <div class="user-profile clearfix">
+        <div class="al-user-profile" uib-dropdown>
+            <a uib-dropdown-toggle class="profile-toggle-link">
+                <img ng-src="assets/img/app/profile/sw.jpg" src="assets/img/app/profile/sw.jpg">
+                <span class="text-white p-l-sm">{{user.username}}</span>
+                <i class="ion-chevron-down text-white"></i>
+            </a>
+            <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+                <li ng-click="openPassword();"><a href=""><i class="fa fa-user"></i>Modify Password</a></li>
+                <li ng-click="openpdf();"><a href=" #/mail/inbox "><i class="fa fa-question-circle"></i>Help</a></li>
+                <li ng-click="openAbout();"><a href><i class="fa fa-cog"></i>About</a></li>
+                <li><a href ng-click="signOut();" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+            </ul>
+
+        </div>
+        <!-- <div class="language-top al-user-profile" uib-dropdown>
+            <a uib-dropdown-toggle class="profile-toggle-link ">
+                <span class="text-white p-l-sm">language</span>
+                <i class="ion-chevron-down text-white "></i>
+            </a>
+            <ul class="top-dropdown-menu2 profile-dropdown" uib-dropdown-menu style="top:20px;right:0; " ng-model="langs">
+                <li ng-model="langs.cn" ng-click="setLang('cn');"><a href=""><i class="fa fa-cog pad-0-10"></i>中文</a></li>
+                <li ng-model="langs.en" ng-click="setLang('en');"><a href=""><i class="fa fa-cog pad-0-10"></i>English</a></li>
+                <li ng-model="langs.German" ng-click="setLang('de_DE');"><a href=""><i class="fa fa-cog pad-0-10"></i>German</a></li>
+            </ul>
+        </div> -->
+
+        <msg-center></msg-center>
+    </div>
+</div>
+
+</div>

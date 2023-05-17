@@ -1,0 +1,348 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <h3 class="with-line">Basic Information</h3>
+    <div class="modal-body" style="padding-bottom: 5px;">
+        <div class="col-md-12 pad0">
+            <div class="col-lg-3 col-md-3 pad45">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm">TaskName：</label>
+                    <input type="text" id="tskTaskname" name="tskTaskname" class="zz-input-sm form-control" name="tskTaskname" ng-model="modal.tskTaskname" placeholder="Please Input" ng-change="checkName()" style="float: left;" ng-readonly="isView" required>
+                    <span style="color:red;float: left;" ng-show="checkData.nameCheck=='m'||modal.tskTaskname == ''">*</span>
+                    <span style="color:red" class="zz-label-sm" ng-show="checkData.nameCheck=='e'">
+                        Cannot exceed 50 characters </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2 pad45">
+                <!-- <div class="form-group">
+                    <label for="inputStatus" class="zz-label-sm">Status:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.Status" ng-options="status.statusId as status.statusLabel for status in statuses">
+                        <option value="">--Please Select--</option>
+                    </select>
+                </div> -->
+                <div class="form-group">
+                    <label for="state " class="zz-label-sm">Status:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.state " style="width: 60%;" ng-init="modal.state ='0'" ng-disabled="isView">
+                        <option value="0" ng-selected="modal.state  == 0">Enable</option>
+                        <option value="1" ng-selected="modal.state  == 1">Disable</option>
+                        <!-- <option value="2" ng-selected="modal.state  == 2">Delete</option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 pad45">
+                <div class="col-md-12 col-lg-12">
+                    <div class="col-md-7 col-lg-7 form-group pad0">
+                        <label for="input01" class="zz-label-sm">Cycle:</label>
+                        <input type="text" class="zz-input-sm form-control" ng-model="modal.cycle" ng-show="isInput" placeholder="Please Input" ng-change="checkCycle()" style="float: left;" ng-readonly="isView">
+                        <select class="zz-input-sm pad2 form-control inline v-middle" style="width: 70%;float: left;" ng-show="isWeek" ng-model="modal.weekSelect" ng-change="dd()" ng-disabled="isView">
+                            <option value="1">Monday</option>
+                            <option value="2">Tuesday</option>
+                            <option value="3">Wednesday</option>
+                            <option value="4">Thursday</option>
+                            <option value="5">Friday</option>
+                            <option value="6">Saturday</option>
+                            <option value="7">Sunday</option>
+                        </select>
+                        <span style="color:red;float: left;" ng-show="modal.cycleValue !='2'?(modal.cycle =='' ? (checkData.CycleCheck =='m' || checkData.CycleCheck ==''):false):false ">*</span>
+                    </div>
+                    <div class="col-md-5 col-lg-5 pad0">
+                        <div class="form-group">
+                            <select class="zz-input-sm pad2 form-control inline v-middle" style="width: 90%;" ng-model="modal.cycleValue" ng-change="selectPeriod()" ng-init="modal.cycleValue ='0'" ng-disabled="isView">
+                                <option value="0">Hour</option>
+                                <option value="1">Day</option>
+                                <option value="2">Week</option>
+                                <option value="3">Month</option>
+                                <option value="9">One Time</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <span style="color:red;padding: 0px;margin: 0px;float: left;" class="zz-label-sm" ng-show="checkData.CycleCheck=='e9'">The format of One Time is Up to 11
+                        digits</span>
+                    <span style="color:red;padding: 0px;margin: 0px;float: left;" class="zz-label-sm" ng-show="checkData.CycleCheck=='e0'">The format of
+                        Hour is 1-24</span>
+                    <span style="color:red;padding: 0px;margin: 0px;float: left;" class="zz-label-sm" ng-show="checkData.CycleCheck=='e1'">The format of
+                        Day is 1-100</span>
+                    <span style="color:red;padding: 0px;margin: 0px;float: left;" class="zz-label-sm" ng-show="checkData.CycleCheck=='e3'">The format of
+                        Month is 1-31</span>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 pad45">
+                <div class="form-group">
+                    <label for="type" class="zz-label-sm">Type:</label>
+                    <!-- <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.Type" ng-options="type.typeId as type.typeLabel for type in types">
+                        <option value="">--Please Select--</option>
+                    </select> -->
+                    <select class="zz-input-sm pad2 float-l form-control inline v-middle" ng-model="modal.tskStyle" ng-change="pollingTypeSelect();" ng-disabled="isView">
+                        <option value="1" ng-selected="modal.tskStyle == 1">General Polling</option>
+                        <option value="2" ng-selected="modal.tskStyle == 2">Fast Polling</option>
+                        <option value="213" ng-selected="modal.tskStyle == 213">Batch Query Task</option>
+                        <option value="214" ng-selected="modal.tskStyle == 214">Batch Design Task</option>
+                    </select>
+
+                    <button class="btn btn-info btn-sm params-btn" ng-show="paramsBtn" ng-click="paramsClick();" ng-disabled="isView">{{setOradd}}</button>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12 pad0">
+            <div class="col-lg-3 col-md-3 pad45">
+                <div class="form-group botm-0">
+                    <label for="input01" class="zz-label-sm">RetryTimes:</label>
+                    <input type="text" class="zz-input-sm form-control" ng-model="modal.RetryTimes" ng-change="checkRetryTimes()" style="float: left;" readonly />
+                    <!-- <span style="color:red;float: left;" ng-show="checkData.RetryTimesCheck=='m'||modal.RetryTimes==null ">*</span>
+                    <span style="color:red" class="zz-label-sm" ng-show="checkData.RetryTimesCheck=='e'">
+                        Number only, range: 1-255</span> -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 pad45">
+                <div class="form-group botm-0">
+                    <label for="input01" class="zz-label-sm">ExecutionTime:</label>
+                    <input type="text" class="zz-input-sm form-control" style="width: 50%;float: left;" ng-model="modal.tskNexttime" ng-change="checkTskNexttime()" ng-readonly="isView">
+                    <span style="color:red;float: left;" ng-show="checkData.tskNexttimeCheck=='m'||modal.tskNexttime==''">*</span>
+                    <span style="color:red" class="zz-label-sm" ng-show="checkData.tskNexttimeCheck=='e'">
+                        The format should be: 00:00-24:00</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 pad45">
+                <div class="form-group botm-0">
+                    <label for="input01" class="zz-label-sm ">Duration:</label>
+                    <input type="text" popover="1111" popover-trigger="focus" class="zz-input-sm form-control float-l" ng-model="modal.tskFailtimes" placeholder="Please Input" style="width: 45%;float: left;" ng-change="checkTskFailTimes()" ng-readonly="isView">
+                    <span class="duration-span">Min</span>
+                    <span style="color:red;float: left;" ng-show="checkData.tskFailtimesCheck=='m'||modal.tskFailtimes == ''">*</span>
+                    <span style="color:red" class="zz-label-sm" ng-show="checkData.tskFailtimesCheck=='e'">
+                        Can only be numbers, range: 1-86400</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 pad45">
+                <div class="form-group botm-0">
+                    <div class="form-in">
+                        <label for="input01">Devices:</label>
+                        <label class="custom-radio">
+                            <input type="radio" ng-model="devices" value="1" class="" ng-readonly="isView"><span>All</span>
+                        </label>
+                        <label class="custom-radio">
+                            <input type="radio" ng-model="devices" value="2" class="" ng-readonly="isView"><span>Partial</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12 pad0" ng-show="devices=='2'">
+            <div class="col-md-6 col-lg-6 border-blue">
+                <div class="with-line-bg">
+                    <h3 class="with-line-2">Available Device</h3>
+                </div>
+                <div class="">
+                    <div class="col-md-12 col-lg-12 pad0 mar-b-0">
+                        <!-- <div class="col-lg-6 col-md-12"> -->
+                        <div class="pad0 form-group col-lg-8 col-md-8 mar-b-0">
+                            <label for="input01" class="zz-label col-md-2 pad0">Condition:</label>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="searchCondition" style="width: 30%;float:left;" ng-init="searchCondition = '0'" ng-change="switchSearchCondition();">
+                                <option value="0" ng-selected="searchCondition == 0">Device Type</option>
+                                <option value="1" ng-selected="searchCondition == 1">Device Status</option>
+                                <option value="2" ng-selected="searchCondition == 2">Device ID</option>
+                                <option value="3" ng-selected="searchCondition == 3">Device Name</option>
+                                <option value="4" ng-selected="searchCondition == 4">Vendor Name</option>
+                            </select>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicetypeid" ng-show="deviceTypeShow" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes" style="width: 30%;">
+                                <option value="">--Please Select--</option>
+                            </select>
+                            <!--vendor-->
+                            <select class="zz-input pad2 form-control inline v-middle" ng-model="modal.coCompanyid" ng-show="vendorShow" ng-options="vName.coCompanyid as vName.coName for vName in vNames" style="width: 30%;">
+                                    <option value="">--Please Select--</option>
+                            </select>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicestatusid" ng-show="deviceStatusShow" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" style="width: 30%;">
+                                <option value="">--Please Select--</option>
+                            </select>
+                            <input type="text" class="zz-input-sm form-control" id="conditionValue" placeholder="Please Input" ng-show="devNameAndId" ng-model="conditionValue" style="width: 40%;" />
+                        </div>
+                        <div class="form-group col-md-4 col-lg-4 pad0">
+                            <button class="btn btn-green btn-sm btn-pd pad-sm-btn" ng-click="search();" ng-disabled="isView"><i class="fa fa-search"></i>Search</button>
+
+                            <button class="btn btn-reset btn-sm btn-pd pad-sm-btn" ng-click="recoveryLeft();" ng-disabled="isView"><i class="fa fa-rotate-right"></i>Reset</button>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <!--area-->
+                        <div class="pad2 form-group col-lg-6 col-md-6 mar-b-0">
+                            <!-- <label for="" class="zz-label-sm">Area:</label> -->
+                            <button class="btn btn-xxs btn-sm btn-info float-l" ng-click="searchAreaTree();">Area</button>
+                            <input type="text" class="zz-input-sm form-control" id="AreaInput" ng-model="area.selectArea" placeholder="Please Select" readonly="true" />
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-12 col-lg-12 pad0">
+                        <div class="form-group col-md-4 col-lg-4 pad0">
+                            <label for="input01" class="zz-label-sm">Area:</label>
+                            <select class="zz-input-sm pad2 form-control inline v-middle">
+                                <option value="0">All</option>
+                                <option value="1">STATION01</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4 col-lg-4 pad0">
+                            <button class="btn btn-success btn-sm pad-sm-btn" ng-click="search();">Search</button>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="">
+                    <table class="table-gd table table-bordered-s">
+                        <thead class="">
+                            <tr class="" style="background: #dbeeff;">
+                                <th>
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th>Deveice ID
+                                    <my-Order query="query" search="search()" order-name='neRepeaterid'></my-Order>
+                                </th>
+                                <th>Deveice Type
+                                    <my-Order query="query" search="search()" order-name='neDevicetype.dtpName'>
+                                    </my-Order>
+                                </th>
+                                <th>Deveice Name
+                                    <my-Order query="query" search="search()" order-name='neName'></my-Order>
+                                </th>
+                                <th>Deveice Status
+                                    <my-Order query="query" search="search()" order-name='neDevicestatus.dsName'>
+                                    </my-Order>
+                                </th>
+                                <th>Deveice SubID
+                                    <my-Order query="query" search="search()" order-name='neDeviceid'></my-Order>
+                                </th>
+                                <th>Route
+                                    <my-Order query="query" search="search()" order-name='neRoute'></my-Order>
+                                </th>
+                                <th>Area
+                                    <my-Order query="query" search="search()" order-name='areaName'></my-Order>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <!-- ngRepeat: row in rows -->
+                            <tr class="" ng-repeat="row in rows">
+                                <td><input type="checkbox" ng-model="row.checked" ng-change="selectOne()" /></td>
+                                <td>{{row.neRepeaterid16}}</td>
+                                <td>{{row.neDevicetype.dtpName}}</td>
+                                <td>{{row.neName}}</td>
+                                <td>{{row.neDevicestatus.dsName}}</td>
+                                <td>{{row.neDeviceid}}</td>
+                                <td>{{row.neRoute}}</td>
+                                <td>{{row.areaName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+                <!-- <div>已选数量：{{count}}</div>
+                <div>已选对象：{{selectData}}</div> -->
+            </div>
+            <div class="center-f">
+                <button type="button" class="btn btn-info btn-with-icon center-f-btn" ng-click="doubleSelectToRight();" ng-disabled="isView"><i class="fa fa-arrow-right"></i></button>
+                <button type="button" class="btn btn-info btn-with-icon center-f-btn" style="display: block;margin-top: 20px;" ng-click="doubleSelectToLeft();" ng-disabled="isView"><i
+                        class="fa fa-arrow-left"></i></button>
+
+            </div>
+            <div class="col-md-6 col-lg-6 border-blue" style="padding-bottom: 32.5px;">
+                <div class="with-line-bg">
+                    <h3 class="with-line-2">Selected Device</h3>
+                </div>
+                <div class="">
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <div class="pad0 form-group col-lg-8 col-md-8 mar-b-0">
+                            <label for="input01" class="zz-label col-md-2 pad0">Condition:</label>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="searchCondition2" style="width: 30%;float:left;" ng-init="searchCondition2 = '0'" ng-change="switchSearchCondition2();">
+                                <option value="0" ng-selected="searchCondition2 == 0">Device Type</option>
+                                <option value="1" ng-selected="searchCondition2 == 1">Device Status</option>
+                                <option value="2" ng-selected="searchCondition2 == 2">Device ID</option>
+                                <option value="3" ng-selected="searchCondition2 == 3">Device Name</option>
+                                <option value="4" ng-selected="searchCondition2 == 4">Vendor Name</option>
+                                <!-- <option value="4" ng-selected="searchCondition2 == 4">Vendor Name</option> -->
+                            </select>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query2.neDevicetypeid" ng-show="deviceTypeShow2" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes" style="width: 30%;">
+                                <option value="">--Please Select--</option>
+                            </select>
+                            <!--vendor-->
+                            <select class="zz-input pad2 form-control inline v-middle" ng-model="query2.coCompanyid" ng-show="vendorShow2" ng-options="vName.coCompanyid as vName.coName for vName in vNames2" style="width: 30%;">
+                                    <option value="">--Please Select--</option>
+                            </select>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query2.neDevicestatusid" ng-show="deviceStatusShow2" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" style="width: 30%;">
+                                <option value="">--Please Select--</option>
+                            </select>
+                            <input type="text" class="zz-input-sm form-control" id="conditionValue" placeholder="Please Input" ng-show="devNameAndId2" ng-model="conditionValue2" style="width: 40%;" />
+                        </div>
+                        <div class="form-group col-md-4 col-lg-4 pad0">
+
+                            <!-- <button class="btn btn-success btn-sm pad-sm-btn" ng-click="search2();">Search</button>
+
+                            <button class="btn btn-info btn-sm pad-sm-btn" ng-click="recovery();">Recovery</button> -->
+
+                            <button class="btn btn-green btn-sm btn-pd pad-sm-btn" ng-click="search2();" ng-disabled="isView"><i class="fa fa-search"></i>Search</button>
+
+                            <button class="btn btn-reset btn-sm btn-pd pad-sm-btn" ng-click="recovery();" ng-disabled="isView"><i class="fa fa-rotate-right"></i>Reset</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <!--area-->
+                        <div class="pad2 form-group col-lg-6 col-md-6 mar-b-0">
+                            <!-- <label for="" class="zz-label-sm">Area:</label> -->
+                            <button class="btn btn-xxs btn-sm btn-info float-l" ng-click="searchAreaTree2();">Area</button>
+                            <input type="text" class="zz-input-sm form-control" id="AreaInput2" ng-model="query2.area" placeholder="Please Select" readonly="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <table class="table-gd table table-bordered-s">
+                        <thead class="">
+                            <tr class="" style="background: #dbeeff;">
+                                <th>
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all2" ng-change="selectAll2()"></input>
+                                </th>
+                                <th ng-click="orderFun('neRepeaterid16')">Deveice ID
+                                    <i class="fa fa-caret-up" ng-show="faUp">
+                                    </i>
+                                    <i class="fa fa-caret-down" ng-show="faDown"></i>
+                                </th>
+                                <th ng-click="orderFun('neDevicetype.dtpName')">Deveice Type</th>
+                                <th ng-click="orderFun('neName')">Deveice Name</th>
+                                <th ng-click="orderFun('neDevicestatus.dsName')">Deveice Status</th>
+                                <th ng-click="orderFun('neDeviceid')">Deveice SubID</th>
+                                <th ng-click="orderFun('neRoute')">Route</th>
+                                <th ng-click="orderFun('areaName')">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <!-- ngRepeat: row in rows2 -->
+                            <tr class="" ng-repeat="row2 in rows2 | orderBy:order">
+                                <td><input type="checkbox" ng-model="row2.checked" ng-change="selectOne2()" /></td>
+                                <td>{{row2.neRepeaterid16}}</td>
+                                <td>{{row2.neDevicetype.dtpName}}</td>
+                                <td>{{row2.neName}}</td>
+                                <td>{{row2.neDevicestatus.dsName}}</td>
+                                <td>{{row2.neDeviceid}}</td>
+                                <td>{{row2.neRoute}}</td>
+                                <td>{{row2.areaName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+                    <div class="right-select-div">Selected:<span class="right-select-span">{{count2}}</span></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="checkAll()" ng-show="isSave">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+</div>

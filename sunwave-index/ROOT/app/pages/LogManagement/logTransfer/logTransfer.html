@@ -1,0 +1,99 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="row col-lg-12 col-md-12">
+                <div class="col-lg-3 col-md-3">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label" translate="LogManagement.AlarmtransferLog.searchCondition.taskName"></label>
+                        <input type="text" class="zz-input form-control" id="input01" ng-model="query.taskName" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i><span translate="buttons.search">Search</span></button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-6 col-md-6">
+                        <!-- <button class="btn btn-info btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem('', 'md');">Add</button>
+                        <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();">Delete</button>
+                        <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModify('', 'md');">Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-model="toShowItem" ng-click="toShowItem('', 'md');">View</button> -->
+                        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+                        <!-- <button class="btn btn-primary btn-raised btn-pd" ng-model="toShowItem" ng-click="toShowItem('', 'md');">View</button> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.TaskName">TaskName
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.IP">IP
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.Port">Port
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.Path">Path
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.UserName">UserName
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.Password">Password
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.Type">Type
+                                    <my-Order query="query" search="search()" order-name='Type'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.Interval">Interval
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.ConnectStatus">Connect Status
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                                <th class="align-left" translate="LogManagement.logTransfer.table.thead.Status">Status
+                                    <my-Order query="query" search="search()" order-name='trapIp'></my-Order>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <td>
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left">{{$index+1}}</td>
+                                <td class="align-left">{{item.taskName}}</td>
+                                <td class="align-left">{{item.sftpIp}}</td>
+                                <td class="align-left">{{item.sftpPort}}</td>
+                                <td class="align-left">{{item.sftpSavePath}}</td>
+                                <td class="align-left">{{item.sftpUser}}</td>
+                                <td class="align-left">******</td>
+                                <td class="align-left">{{item.neObjectslistConfig.type}}</td>
+                                <td class="align-left">{{item.taskIntervalStr}}</td>
+                                <td class="align-left">{{item.connectStatus}}</td>
+                                <td class="align-left">{{item.taskStatusStr}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+
+            </div>
+        </div>
+    </div>
+</div>

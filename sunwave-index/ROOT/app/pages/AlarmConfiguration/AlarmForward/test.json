@@ -1,0 +1,71 @@
+{
+  "code": 0,
+  "data": {
+    "content": [
+      {
+        "useAlarmlevel": "string",
+        "useAlarmturncondition": "string",
+        "useArea": "string",
+        "useCompany": "string",
+        "useEmail": "string",
+        "useEmailturn": 0,
+        "useMobile": "string",
+        "useMobileturn": 0,
+        "useName": "string",
+        "useSitelevel": "string",
+        "useUserid": "string"
+      },
+      {
+        "useAlarmlevel": "string2",
+        "useAlarmturncondition": "string2",
+        "useArea": "string2",
+        "useCompany": "string2",
+        "useEmail": "string2",
+        "useEmailturn": 0,
+        "useMobile": "string2",
+        "useMobileturn": 0,
+        "useName": "string2",
+        "useSitelevel": "string2",
+        "useUserid": "string2"
+      },
+      {
+        "useAlarmlevel": "string3",
+        "useAlarmturncondition": "string3",
+        "useArea": "string3",
+        "useCompany": "string3",
+        "useEmail": "string3",
+        "useEmailturn": 0,
+        "useMobile": "string3",
+        "useMobileturn": 0,
+        "useName": "string3",
+        "useSitelevel": "string3",
+        "useUserid": "string3"
+      }
+
+    ],
+    "first": true,
+    "last": true,
+    "number": 0,
+    "numberOfElements": 0,
+    "pageable": {
+      "offset": 0,
+      "pageNumber": 0,
+      "pageSize": 0,
+      "paged": true,
+      "sort": {
+        "sorted": true,
+        "unsorted": true
+      },
+      "unpaged": true
+    },
+    "size": 0,
+    "sort": {
+      "sorted": true,
+      "unsorted": true
+    },
+    "totalElements": 0,
+    "totalPages": 0
+  },
+  "description": "string",
+  "msg": "string"
+}

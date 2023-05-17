@@ -1,0 +1,41 @@
+<div class="widgets">
+    <div class="col-lg-12 col-md-12">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg" style="height: 28px;">
+                                <!-- <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th> -->
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Monitoring.NO">NO.</th>
+                                <!-- <th class="align-left">ITEM NAME
+                                    <my-Order query="query" search="search()" order-name='identify'></my-Order> 
+                                </th>-->
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Monitoring.TaskName">TASK NANE
+                                    <!-- <my-Order query="query" search="search()" order-name='cc'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Monitoring.MonitorBeginTime">MONITORING BEGIN TIME
+                                    <!-- <my-Order query="query" search="search()" order-name='description'></my-Order> -->
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" style="height: 28px;">
+                                <!-- <td class="align-left">
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td> -->
+                                <td class="align-left">{{$index+1}}</td>
+                                <!-- <td class="align-left" ng-click="toChart(item)"><a href="">{{item.itemName}}</a></td> -->
+                                <td class="align-left" ng-click="toChart(item)"><a href="" title="toView">{{item.taskName}}</a></td>
+                                <td class="align-left">{{item.monitoringBeginTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

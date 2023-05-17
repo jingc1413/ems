@@ -1,0 +1,40 @@
+[{
+        "neNeid": "11111",
+        "cc": "cc",
+        "description": "description",
+        "ip": "10.3.6.9",
+        "manufacturer": "sunwave",
+        "modalName": "modalName",
+        "version": "1.0.0",
+        "lastConnetionTime": "2020-07-01 12:00",
+        "provisioning": "2020-07-01 12:00",
+        "onlineStatus": false,
+        "isLoading": false
+    },
+    {
+        "neNeid": "111112",
+        "cc": "cc",
+        "description": "description",
+        "ip": "10.3.6.9",
+        "manufacturer": "sunwave",
+        "modalName": "modalName",
+        "version": "1.0.0",
+        "lastConnetionTime": "2020-07-01 12:00",
+        "provisioning": "2020-07-01 12:00",
+        "onlineStatus": true,
+        "isLoading": false
+    },
+    {
+        "neNeid": "111113",
+        "cc": "cc",
+        "description": "description",
+        "ip": "10.3.6.9",
+        "manufacturer": "sunwave",
+        "modalName": "modalName",
+        "version": "1.0.0",
+        "lastConnetionTime": "2020-07-01 12:00",
+        "provisioning": "2020-07-01 12:00",
+        "onlineStatus": false,
+        "isLoading": true
+    }
+]

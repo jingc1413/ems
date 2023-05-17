@@ -1,0 +1,30 @@
+ {
+     "data": [{
+         "checked": false,
+         "code": "01",
+         "furl": null,
+         "id": "01",
+         "name": "01",
+         "open": null,
+         "pCode": null,
+         "subMenu": null
+     }, {
+         "checked": false,
+         "code": "0101",
+         "furl": null,
+         "id": "0101",
+         "name": "0101",
+         "open": null,
+         "pCode": "01",
+         "subMenu": null
+     }, {
+         "checked": false,
+         "code": "010101",
+         "furl": null,
+         "id": "010101",
+         "name": "010101",
+         "open": null,
+         "pCode": "0101",
+         "subMenu": null
+     }]
+ }

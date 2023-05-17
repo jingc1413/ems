@@ -1,0 +1,200 @@
+<div class="widgets">
+    <div class="col-lg-12 col-md-12 pad0">
+        <div class="col-lg-6 col-md-12 pad0">
+            <div class="pad2 form-group col-lg-12 col-md-12 mar-b-0">
+                <label for="input01" class="zz-label zz-label-r">Search Condition:</label>
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="searchCondition" style="width: 30%;float: left;" ng-change="switchSearchCondition();">
+                        <option value="0" ng-selected="searchCondition == 0">--Please Select--</option>
+                        <option value="1" ng-selected="searchCondition == 1">Device Name</option>
+                        <option value="2" ng-selected="searchCondition == 2">Device ID</option>
+                        <option value="3" ng-selected="searchCondition == 3">Device Type</option>
+                        <option value="7" ng-selected="searchCondition == 7">Device Type All</option>
+                        <option value="4" ng-selected="searchCondition == 4">Alarm Name</option>
+                        <option value="5" ng-selected="searchCondition == 5">Alarm Level</option>
+                        <option value="6" ng-selected="searchCondition == 6">Vendor Name</option>
+                    </select>
+                <input type="text" style="width:40%;" class="zz-input form-control" id="input01" placeholder="Please Input" ng-show="devAlarmNameAndId" ng-model="conditionValue" />
+                <!--deviceType-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.neDevicetypeid" ng-show="deviceTypeShow" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes" style="width: 30%;">
+                        <option value="">--Please Select--</option>
+                    </select>
+                <!--type all-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.neDevicetypeAllid" ng-show="deviceTypeAllShow" ng-options="devTypeAll.dtcDevicetypeclassifyid as devTypeAll.dtcName for devTypeAll in devTypeAlls" style="width: 30%;">
+                    <option value="">--Please Select--</option>
+                </select>
+                <!---alarmlevel-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.alvAlarmlevelid" ng-show="alarmLevelShow" ng-options="alarmLevel.alvAlarmlevelid as alarmLevel.alvName for alarmLevel in alarmLevels" style="width: 30%;">
+                        <option value="">--Please Select--</option>
+                    </select>
+                <!--deviceStatus-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.neDevicestatusid" ng-show="deviceStatusShow" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" style="width: 30%;">
+                        <option value="">--Please Select--</option>
+                    </select>
+                <!--vendorName-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="condition.neCompanyid" ng-options="vName.coName for vName in vNames" ng-show="VendorShow" style="width: 40%;">
+                        <option value="">--Please Select--</option>
+                    </select>
+                <!--deviceLevel-->
+                <!-- <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicelevelid" style="width: 40%;" ng-init="modal.neDevicelevelid='1'">
+                        <option value="1" ng-selected="modal.neDevicelevelid == 1">normal</option>
+                        <option value="2" ng-selected="modal.neDevicelevelid == 2">vip</option>
+                    </select> -->
+                <!--alrmLevel-->
+                <!-- <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicelevelid" style="width: 40%;" ng-init="modal.neDevicelevelid='1'">
+                        <option value="1" ng-selected="modal.neDevicelevelid == 1">normal</option>
+                        <option value="2" ng-selected="modal.neDevicelevelid == 2">vip</option>
+                    </select> -->
+            </div>
+
+            <!-- <div class="pad2 col-lg-2 col-md-4">
+                    <select class="zz-input pad2 form-control inline v-middle" style="width: 90%;">
+                        <option value="0">Enable</option>
+                        <option value="1">Disable</option>
+                    </select>
+                </div> -->
+        </div>
+
+        <div class="pad2 form-group col-lg-5 col-md-6 mar-b-0">
+            <!-- <label for="" class="zz-label-sm">Area:</label> -->
+            <button class="btn btn-xxs btn-sm btn-info float-l" ng-click="searchAreaTree();">Area</button>
+            <!-- <span>Selected:{{modal.neAreaid}}</span> -->
+            <input type="text" class="zz-input form-control" id="AreaInput" ng-model="area.selectArea" placeholder="Please Select" readonly="true" />
+        </div>
+
+    </div>
+    <div class="col-lg-12 col-md-12 pad0">
+        <div class="col-lg-6 col-md-10 pad2">
+            <div class="col-md-8 col-lg-2 zz-label pad0">AlarmTime:</div>
+            <div class="col-md-8 col-lg-4 pad0">
+                <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="BeginTime" id="beginTime" btns="{'ok':'ok','now':'today'}" ng-model="query.startTime">
+                </wui-date>
+            </div>
+            <span class="col-lg-1 col-md-2 zz-label">to</span>
+            <div class="col-md-8 col-lg-4 pad0">
+                <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="EndTime" id="endTime" btns="{'ok':'ok','now':'today'}" ng-model="query.endTime">
+                </wui-date>
+            </div>
+
+        </div>
+        <div class="col-md-6 col-lg-6 pad2">
+            <button class="btn btn-green btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i>Search</button>
+            <button class="btn btn-reset btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+        </div>
+    </div>
+    <div class="mar0 row">
+        <div class="pad2 col-lg-12 col-md-12">
+
+            <!-- <button type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportList();"><i class="ion-android-download"></i>Export</button>
+                <button class="btn btn-info btn-sm btn-pd" ng-click="Acknowledge();">Acknowledge</button>
+                <button class="btn btn-info btn-sm btn-pd" ng-click="reactiveAlarm();">ReactiveAlarm</button>
+                <button class="btn btn-info btn-sm btn-pd" ng-click="clearAlarm();">ClearAlarm</button> -->
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 pad0" ba-panel ba-panel-class="with-scroll table-panel">
+        <div class="horizontal-scroll">
+            <table class="table table-hover table-bordered-m">
+                <thead>
+                    <tr class="black-muted-bg">
+                        <th width="3%">
+                            <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                        </th>
+                        <th class="align-left">NO.</th>
+                        <th class="align-left">Alarm Time
+                            <my-Order query="query" search="search()" order-name='algAlarmtime'></my-Order>
+                        </th>
+                        <th class="align-left">Alarm Cleared Time
+                            <my-Order query="query" search="search()" order-name='algCleartime'></my-Order>
+                        </th>
+                        <th class="align-left">Alarm Confirmed Time
+                            <my-Order query="query" search="search()" order-name='algConfirmtime'></my-Order>
+                        </th>
+                        <th class="align-left">Device Name
+                            <my-Order query="query" search="search()" order-name='neElement.neName'></my-Order>
+                        </th>
+                        <th class="align-left">Alarm Name
+                            <my-Order query="query" search="search()" order-name='almAlarm.almName'></my-Order>
+                        </th>
+                        <th class="align-left">Device Type
+                            <my-Order query="query" search="search()" order-name='neElement.neDevicetype.dtpDevicetypeid'></my-Order>
+                        </th>
+                        <th class="align-left">Device Sub ID
+                            <my-Order query="query" search="search()" order-name='neElement.neDeviceid'></my-Order>
+                        </th>
+                        <th class="align-left">Route Address
+                            <my-Order query="query" search="search()" order-name='neElement.neRoute'></my-Order>
+                        </th>
+                        <th class="align-left">Device ID
+                            <my-Order query="query" search="search()" order-name='neElement.neRepeaterid'></my-Order>
+                        </th>
+                        <th class="align-left">Alarm Level
+                            <my-Order query="query" search="search()" order-name='almAlarmlevel'></my-Order>
+                        </th>
+                        <th class="align-left">Alarm Status
+                            <my-Order query="query" search="search()" order-name='alarmStatus.astAlarmStatusId'></my-Order>
+                        </th>
+                        <th class="align-left">Area
+                            <my-Order query="query" search="search()" order-name='neElement.sysArea.areaName'></my-Order>
+                        </th>
+
+                        <th class="align-left">Device Status
+                            <my-Order query="query" search="search()" order-name='neElement.neDevicestatus.dsId'></my-Order>
+                        </th>
+                        <th class="align-left">Vendor Name
+                            <my-Order query="query" search="search()" order-name='neElement.neCompany.coCompanyid'></my-Order>
+                        </th>
+                        <th class="align-left">Device Level
+                            <my-Order query="query" search="search()" order-name='neElement.neSitelevelid'></my-Order>
+                        </th>
+                        <!-- <th class="align-left">AlarmTimes
+                                    <my-Order query="query" search="search()" order-name='AlarmTimes'></my-Order>
+                                </th> -->
+                        <th class="align-left">Alarm Durations
+                            <my-Order query="query" search="search()" order-name='algAlarmduration'></my-Order>
+                        </th>
+                        <th class="align-left">Alarm Type
+                            <my-Order query="query" search="search()" order-name='almAlarm.alarmKind.name'></my-Order>
+                        </th>
+                        <th class="align-left">Alarm Clearance Person
+                            <my-Order query="query" search="search()" order-name='algClearusername'></my-Order>
+                        </th>
+                        <th class="align-left">Alarm Confirm Person
+                            <my-Order query="query" search="search()" order-name='algConfirmname'></my-Order>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items" class="no-top-border">
+                        <td>
+                            <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                        </td>
+                        <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                        <td class=" align-left">{{item.algAlarmtime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td class=" align-left">{{item.algCleartime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td class="align-left">{{item.algConfirmtime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td class="align-left"><a href="" ng-click="detailDeviceName(item);">{{item.neElement.neName}}</a></td>
+                        <td class="align-left"><a href="" ng-click="detailAlarmName(item);">{{item.almAlarm.almName}}</a></td>
+                        <td class="align-left">{{item.neElement.neDevicetype.dtpName}}</td>
+                        <td class="align-left">{{item.neElement.neDeviceid}}</td>
+                        <td class="align-left">{{item.neElement.neRoute}}</td>
+                        <td class="align-left">{{item.neElement.neRepeaterid16}}</td>
+                        <td class="align-left">{{item.almAlarmlevel.alvName}}</td>
+                        <td class="align-left">{{item.alarmStatus.astAlarmStatusName}}</td>
+                        <td class="align-left">{{item.neElement.areaName}}</td>
+                        <td class="align-left">{{item.neElement.neDevicestatus.dsName}}</td>
+                        <td class="align-left">{{item.neElement.neCompany.coName}}</td>
+                        <td class="align-left">{{item.neElement.neSitelevelid==1?'normal':'vip'}}</td>
+                        <!-- <td class="align-left">{{item.AlarmTimes}}</td> -->
+                        <td class="align-left">{{item.AlarmDurations}}</td>
+                        <td class="align-left">{{item.almAlarm.alarmKind.name}}</td>
+                        <td class="align-left">{{item.algClearusername}}</td>
+                        <td class="align-left">{{item.algConfirmname}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <tm-pagination conf="paginationConf"></tm-pagination>
+
+    </div>
+</div>

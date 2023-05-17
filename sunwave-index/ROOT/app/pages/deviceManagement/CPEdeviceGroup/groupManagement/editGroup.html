@@ -1,0 +1,53 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Edite group</h4>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body">
+            <div class="col-lg-12 col-md-12 pad0">
+                <label for="">Manage dialect and remapping dialect</label>
+                <div class="col-lg-12 col-md-12 pad0"></div>
+            </div>
+            <div class="col-lg-12 col-md-12 pad0" style="margin: 10px 0;">
+                <label for="">Action</label>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <button type="button" class="btn btn-primary" type="submit">Delect</button>
+                    <button type="button" class="btn btn-primary" type="submit">Detach all devices from group</button>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 pad0" style="margin: 10px 0;" >
+                <label for="" >Edite group</label>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-2 col-md-2 pad0"><label for="">Full name</label></div>
+                    <div class="col-lg-10 col-md-10 pad0"><input ng-model="info.fullName" type="text" class="zz-input-sm form-control"></div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-2 col-md-2 pad0"><label for="">Name</label></div>
+                    <div class="col-lg-10 col-md-10 pad0"><input ng-model="info.name" type="text" class="zz-input-sm form-control"></div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-2 col-md-2 pad0"><label for="">Domain</label></div>
+                    <div class="col-lg-10 col-md-10 pad0"><input type="text" class="zz-input-sm form-control"></div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-2 col-md-2 pad0"><label for="">Priority</label></div>
+                    <div class="col-lg-10 col-md-10 pad0"><select name="" id="" class="zz-input-sm form-control">
+                        <option value="1">Inherited</option>
+                    </select></div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0" style="margin: 10px 0;">
+                    <div class="col-lg-2 col-md-2 pad0"><label for="">Description</label></div>
+                    <div class="col-lg-10 col-md-10 pad0"><input type="text" class="zz-input-sm form-control"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" type="submit">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Close</button>
+    </div>
+</div>

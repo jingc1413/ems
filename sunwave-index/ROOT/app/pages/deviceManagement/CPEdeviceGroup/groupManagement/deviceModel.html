@@ -1,0 +1,147 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-2 col-md-2 pad0" style="padding: 0 0 0 15px;">
+                <div class="form-group">
+                    <!-- <select class="form-control zz-input float-input" id="1nput01" placeholder="Select filter" ng-model="search.search1" style="width: 100%;">
+                        <option value="0" ng-selected="search.state1  == 0">contains</option>
+                        <option value="1">==</option>
+                        <option value="2">!=</option>
+                        <option value="3">starts with</option>
+                    </select> -->
+                    <input type="text" class="form-control zz-input float-input" placeholder="Search by WAN INTERFACE IP " style="width: 100%;" ng-model="query.searchValue" maxlength="20">
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 pad0">
+                <div class="form-group">
+                    <!-- <select class="form-control zz-input float-input" id="1nput01" placeholder="Select filter" ng-model="search.search2" style="width: 100%;">
+                        <option value="0" ng-selected="search.state2  == 0">IDENTIFY</option>
+                        <option value="1">CC</option>
+                        <option value="2">DESCRIPTION</option>
+                        <option value="3">WAN INTERFACE IP</option>
+                        <option value="4">MANUFACTURER</option>
+                        <option value="5">MODEL NAME</option>
+                        <option value="6">SOFTWAVE VERSION</option>
+                        <option value="7">LAST CONNECTION TIME</option>
+                        <option value="8">PROVISIONING</option>
+                    </select> -->
+                    <input type="text" class="form-control zz-input float-input" placeholder="Search by MANUFACTURER" style="width: 100%;" ng-model="query.searchValue1" maxlength="20">
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <button class="btn btn-green  btn-sm btn-pd" ng-click="searchBy();"><i
+                        class="fa fa-search"></i>Search</button>
+                <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i
+                        class="fa fa-rotate-right"></i>Reset</button>
+
+
+            </div>
+            <div class="col-lg-2 col-md-2"></div>
+            <div class="col-lg-4 col-md-4">
+                <span style="float: right;">
+                    <button class="btn btn-info btn-raised btn-pd" title="Add new device" ng-model="toAddItem"
+                        ng-click="toDetails();"><span class="glyphicon glyphicon-plus"></span></button>
+                <!-- <button class="btn btn-danger btn-raised btn-pd" title="CSV export" ng-click=""><span class="glyphicon glyphicon-export"></span></button> -->
+                <button class="btn btn-warning btn-raised btn-pd" title="Edit group" ng-click="addToGroup();"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-danger btn-raised btn-pd" ng-click="toUpgrade()" title="Upgrade"><span class="glyphicon glyphicon-arrow-up"></span></button>
+                <!-- <button class="btn btn-info btn-raised btn-pd" ng-click="advanceExportCSV()" title="Advanced export to CSV"><span class="glyphicon glyphicon-export"></span></button>
+                <button class="btn btn-warning btn-raised btn-pd" ng-click="" title="Import device from CSV"><span class="glyphicon glyphicon-import"></span></button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-click="deviceCount();" title="Device Count-Advance"><span class="glyphicon glyphicon-paperclip"></span></button> -->
+                <button class="btn btn-primary btn-raised btn-pd" ng-click="reboot();" title="Reboot"><span class="glyphicon glyphicon-refresh"></span></button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-click="recovery();" title="Restore factory settings"><span class="glyphicon glyphicon-wrench"></span></button>
+                <button class="btn btn-warning btn-raised btn-pd" ng-click="toConfigure()" title="Configure">
+                    <span class="glyphicon glyphicon-cog"></span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" class="cursor" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left">DEVICEID
+                                    <!-- <my-Order query="query" search="search()" order-name='identify'></my-Order> -->
+                                </th>
+                                <th class="align-left">CC
+                                    <!-- <my-Order query="query" search="search()" order-name='cc'></my-Order> -->
+                                </th>
+                                <th class="align-left">DESCRIPTION
+                                    <!-- <my-Order query="query" search="search()" order-name='description'></my-Order> -->
+                                </th>
+                                <th class="align-left">WAN INTERFACE IP
+                                    <!-- <my-Order query="query" search="search()" order-name='ip'></my-Order> -->
+                                </th>
+                                <th class="align-left">MANUFACTURER
+                                    <!-- <my-Order query="query" search="search()" order-name='manufacturer'></my-Order> -->
+                                </th>
+                                <th class="align-left">MODEL NAME
+                                    <!-- <my-Order query="query" search="search()" order-name='modalName'></my-Order> -->
+                                </th>
+                                <th class="align-left">SOFTWAVE VERSION
+                                    <!-- <my-Order query="query" search="search()" order-name='version'></my-Order> -->
+                                </th>
+                                <th class="align-left">LAST CONNECTION TIME
+                                    <!-- <my-Order query="query" search="search()" order-name='lastConnetionTime'></my-Order> -->
+                                </th>
+                                <th class="align-left">ONLINESTATUS
+                                    <!-- <my-Order query="query" search="search()" order-name='provisioning'></my-Order> -->
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items">
+                                <td class="align-left">
+                                    <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left">{{$index+1}}</td>
+                                <td class="align-left" ng-click="toSummary(item)"><a href="">{{item.neNeid}}</a></td>
+                                <td class="align-left">{{item.cc}}</td>
+                                <td class="align-left">{{item.description}}</td>
+                                <td class="align-left">{{item.deviceIp}}</td>
+                                <td class="align-left" ng-click="toSearchTree(item)">{{item.manufacturer}}</td>
+                                <td class="align-left" ng-click="toSearchTree(item)"><a href="">{{item.modalName}}</a>
+                                </td>
+                                <td class="align-left">{{item.softwareVersion}}</td>
+                                <td class="align-left">{{item.lastConnetionTime}}</td>
+                                <td class="align-left">
+                                    <!-- <div class="loadingBox" id="box" ng-if="isLoading">
+                                        <div class="innerBox"></div>
+                                        <div class="outerBox"></div>
+                                    </div> -->
+                                    <div class="box2" ng-if="item.isLoading" title="Loading">
+                                        <div class="r1"></div>
+                                        <div class="r2"></div>
+                                        <div class="r3"></div>
+                                        <!-- <div class="r4"></div>
+                                        <div class="r5"></div> -->
+                                    </div>
+                                    <div ng-if="!item.onlineStatus &&  item.isLoading == false">
+                                        <div class="markerRed" title="OutLine"></div>
+                                    </div>
+                                    <div ng-if="item.onlineStatus &&  item.isLoading == false">
+                                        <div class="markerGreen" title="OnLine"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <p style="width:15%; margin: auto ;padding-top:10px">
+            <!--居中显示-->
+            <ion-spinner icon="bubbles" style="width:10%;stroke:#33cd5f;fill:#33cd5f;"></ion-spinner>
+            <!--bubbles加载动画的样式-->
+        </p>
+    </div>
+</div>

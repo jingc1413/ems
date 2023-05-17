@@ -1,0 +1,118 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal" ng-submit="submitForm(userForm.$valid)">
+        <div class="col-lg-12 col-md-12 ">
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0 ">
+                    <label for="" class="zz-lable-sm float-l" translate="SysManagement.MonitorTypeManagement.MonitorTypeModel.TempalteProperties">Tempalte properties</label>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0 ">
+                    <label for="" class="zz-lable float-r mar-tb5" translate="SysManagement.MonitorTypeManagement.MonitorTypeModel.TypeName">NAME:</label>
+                </div>
+                <div class="col-lg-9 col-md-9 ">
+                    <input type="text" name="name" class="form-control zz-input float-input " ng-model="info.typeName" ng-readonly="!isAdd" required>
+                    <span style="color:red;float: left;" ng-show="userForm.name.$error.required">*</span>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0">
+                    <label for="" class="zz-lable float-r mar-tb5" translate="SysManagement.MonitorTypeManagement.MonitorTypeModel.Description">DESCRIPTION:</label>
+                </div>
+                <div class="col-lg-9 col-md-9 ">
+                    <input type="text" name="description" class="form-control zz-input float-input " ng-model="info.description" ng-readonly="!isShow">
+                    <!-- <span style="color:red;float: left;" ng-show="userForm.description.$error.required">*</span> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12 ">
+            <div class="col-lg-12 col-md-12 pad0 mar-top10">
+                <div class="col-lg-3 col-md-3 pad0 ">
+                    <label for="" class="zz-lable-sm float-l" translate="SysManagement.MonitorTypeManagement.MonitorTypeModel.TempalteParameters">Tempalte parameters</label>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 pad0">
+                <div ba-panel ba-panel-class="with-scroll table-panel">
+                    <div class="horizontal-scroll">
+                        <table class="table table-hover table-bordered-m">
+                            <thead>
+                                <tr class="black-muted-bg">
+                                    <th class="align-left">
+                                        <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()" ng-disabled="canCheck"></input>
+                                    </th>
+                                    <th class="align-left" translate="SysManagement.MonitorTypeManagement.MonitorTypeModel.UIName">UI NAME</th>
+                                    <th class="align-left" translate="SysManagement.MonitorTypeManagement.MonitorTypeModel.VDMPath">VDMPATH</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in items">
+                                    <td class="align-left">
+                                        <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" ng-disabled="canCheck" />
+                                    </td>
+                                    <!-- <td class="align-left pad0"><input type="text" value="{{item.proName}}" style="width: 100%;padding:0 0 0 6px ;" class="form-control zz-input float-input mar0" ng-readonly="isAdd"></td>
+                                    <td class="align-left pad0"><input type="text" value="{{item.proValue}}" style="width: 100%;padding: 0 0 0 6px;" class="form-control zz-input float-input mar0" ng-readonly="isAdd"></td> -->
+                                    <td class="align-center" ng-click="editValue(item)" ng-show="isShow"><a href="" title="Modify">{{item.uiName}}</a></td>
+                                    <td class="align-center" ng-show="!isShow">{{item.uiName}}</td>
+                                    <td class="align-center">{{item.vdmPath}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-center" colspan="4" ng-show="isShow">
+                                        <button style="vertical-align: middle;" class="btn btn-danger btn-raised btn-pd" title="Delete Param" ng-click="deleteParam()">
+                                            <span class="glyphicon glyphicon-minus"></span></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <tm-pagination conf="paginationConf"></tm-pagination>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form name="userForm2" class="form-horizontal" ng-submit="submitForm(userForm2.$valid)">
+        <div class="col-md-12 col-lg-12 pad0" ng-show="isShow">
+            <div class="col-md-12 col-lg-12 ">
+                <div ba-panel ba-panel-class="with-scroll table-panel">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg" style="height:23px ;">
+                                <th class="align-left" translate="SysManagement.MonitorTypeManagement.MonitorTypeModel.UIName">UI NAME</th>
+                                <th class="align-left" translate="SysManagement.MonitorTypeManagement.MonitorTypeModel.VDMPath">VDMPATH</th>
+                                <th class="align-left"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-left"> <input ng-readonly="editCheck" type="text" name="uiName" style="width: 90%;" class="form-control zz-input float-input " ng-model="params.uiName" placeholder="UI NAME" required>
+                                    <span style="color:red;float: left;" class="mar-t-10" ng-show="userForm2.uiName.$error.required">*</span></td>
+                                <td class="align-left pad0"> <input type="text" name="vdmPath" style="width: 90%;" class="form-control zz-input float-input " ng-model="params.vdmPath" placeholder="VDMPATH" required>
+                                    <span style="color:red;float: left;" class="mar-t-10" ng-show="userForm2.vdmPath.$error.required">*</span></td>
+                                <td class="align-left pad0">
+                                    <button ng-show="!editCheck" type="button" class="btn btn-primary btn-pd float-l" ng-disabled="userForm2.$invalid" ng-click="addParams()" title="Add parameters" type="submit">
+                                        <span class="glyphicon glyphicon-plus"></span></button>
+                                    <button ng-show="editCheck" type="button" class="btn btn-primary btn-pd float-l" ng-disabled="userForm2.$invalid" ng-click="saveEditValue()" title="Edit parameters" type="submit">
+                                            <span class="glyphicon glyphicon-ok"></span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 ">
+                <div></div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="save()" ng-show="isShow" type="submit" translate="buttons.Save">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit" translate="buttons.Close">Close</button>
+    </div>
+
+</div>

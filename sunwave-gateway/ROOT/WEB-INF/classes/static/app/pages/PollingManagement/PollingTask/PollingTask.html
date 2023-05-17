@@ -1,0 +1,104 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="row col-lg-12 col-md-12">
+                <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label">Task Name:</label>
+                        <input type="text" class="zz-input form-control" id="input01" ng-model="query.tskTaskname" placeholder="Please Input" />
+                    </div>
+                </div>
+
+                <!-- <div class="form-group form-in col-lg-3 col-md-3">
+                    <label class="zz-label">开启/结束:</label>
+                    <label class="custom-radio" style="margin:5px;">
+                        <input type="radio" ng-model="query.affichePulish" name="toasts" value="1" class="" id="optionsRadios3"><span>Yes</span>
+                    </label>
+                    <label class="custom-radio" style="margin:5px;">
+                        <input type="radio" ng-model="query.affichePulish" name="toasts" value="2" class="" id="optionsRadios4"><span>No</span>
+                    </label>
+                </div> -->
+
+                <div class="col-lg-3 col-md-3">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i>Search</button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+                </div>
+                <!-- <div class="col-lg-4 col-md-4">
+                    <span class="switchSpan">开启/结束：</span>
+                    <div ng-controller="PollingTaskCtrl as vm">
+                        <ba-switcher switcher-style="success" switcher-value="vm.switches.s2"></ba-switcher>
+                    </div>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-6 col-md-6">
+                        <!-- <button class="btn btn-info btn-raised btn-pd" ng-click="toAddItem('', 'lg');">Add</button>
+                        <button class="btn btn-danger btn-raised btn-pd" ng-click="delete();">Delete</button>
+                        <button class="btn btn-warning btn-raised btn-pd" ng-click="toModifyItem('', 'lg');">Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-click="toViewItem('', 'lg');">View</button>
+                        <button class="btn btn-start btn-raised btn-pd" ng-click="startPoll();">Enable</button>
+                        <button class="btn btn-start btn-raised btn-pd" ng-click="endPoll();">Disable</button> -->
+                        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th width="3%">
+                                    <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left">Task Name
+                                    <my-Order query="query" search="search()" order-name='tskTaskname'></my-Order>
+                                </th>
+                                <th class="align-left">Create Time
+                                    <my-Order query="query" search="search()" order-name='tskBegintime'></my-Order>
+                                </th>
+                                <th class="align-left">Duration
+                                    <my-Order query="query" search="search()" order-name='tskFailtimes'></my-Order>
+                                </th>
+                                <th class="align-left">Status
+                                    <my-Order query="query" search="search()" order-name='tskIsuse'></my-Order>
+                                </th>
+                                <th class="align-left">Type
+                                    <my-Order query="query" search="search()" order-name='tskStyle'></my-Order>
+                                </th>
+                                <th class="align-left">Next Execution Time
+                                    <my-Order query="query" search="search()" order-name='tskNexttime'></my-Order>
+                                </th>
+                                <th class="align-left">Area
+                                    <my-Order query="query" search="search()" order-name='tskAreaid'></my-Order>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <td>
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                <td class="align-left">{{item.tskTaskname}}</td>
+                                <td class="align-left">{{item.tskBegintime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td class="align-left">{{item.tskFailtimes}}</td>
+                                <td class="align-left">{{item.tskIsuse==0?'Enable':'Disable'}}</td>
+                                <td class="align-left">{{item.tskStyle}}</td>
+                                <td class="align-left">{{item.tskNexttime | date:'HH:mm:ss'}}</td>
+                                <td class="align-left">{{item.tskAreaName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

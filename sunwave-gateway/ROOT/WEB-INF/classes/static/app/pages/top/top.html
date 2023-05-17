@@ -1,0 +1,79 @@
+<div class="widgets">
+    <div class="row col-lg-12 col-md-12">
+        <!-- <div class="col-lg-1 col-md-1 pad0">
+            <label for="" class="zz-label">Condition:</label>
+        </div>
+        <div class="col-lg-3 col-md-3 pad0">
+            <div class="form-group">
+                <label class="zz-label ng-scope">Device Name:</label>
+                <input type="text" class="zz-input-sm form-control" id="input07" placeholder="Input DeviceName" ng-model="treeQuery.elementName">
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 pad0">
+            <div class="form-group">
+                <label class="zz-label ng-scope">TreeID:</label>
+                <input type="text" class="zz-input-sm form-control" id="input09" placeholder="Input treeID" ng-model="treeQuery.treeId">
+            </div>
+        </div> -->
+        <div class="col-lg-4 col-md-4 pad0">
+            <!-- <button class="btn btn-green btn-xs" ng-click="searchArea();"><i class="fa fa-search pad0-2"></i>SearchArea</button> -->
+            <button class="btn btn-reset btn-xs" ng-click="reset();"><i class="fa fa-rotate-right pad0-4"></i>Reset</button>
+            <button class="btn btn-info btn-xs" ng-click="refresh();">Refresh</button>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 pad0">
+        <div class="col-md-3 col-lg-3 zTreeDemoBackground left tree-bg-b2">
+            <div class="form-group">
+                <label for="id_select" class="zz-label ng-scope">search:</label>
+                <input type="search" class="zz-input-sm form-control" id="" placeholder="Please Input treeName" ng-model="tranEleName" ng-change="getEleNames();" style="width: 80%;">
+                <ul ng-show="isSearch" class="my-select-ul" id="aa">
+                    <li class="my-select-li" ng-repeat="Name in Names" ng-class="{'selected-li':Name.select == true}" ng-click="getTopByNeId($event,Name);">{{Name.neName}}</li>
+                </ul>
+                <!-- <select ng-options="Name.neNeid as Name.neName for Name in Names" ng-model="tranEleName" ng-change="getEleNames();">
+                </select> -->
+
+            </div>
+            <!-- <ui-select ng-model="selected.value">
+                <ui-select-match>
+                    <span ng-bind="$select.selected.name"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item in (itemArray | filter: $select.search) track by item.id">
+                    <span ng-bind="item.name"></span>
+                </ui-select-choices>
+            </ui-select> -->
+
+
+            <ul id="leftTree" class="ztree" style="background:#deeceb;height: 400px;overflow: scroll; "></ul>
+        </div>
+        <div class="col-lg-9 col-md-9">
+            <div class="col-lg-2 col-md-4" id="menuuu" ng-show="showContextMen" style="float: left;position: absolute;z-index:9999;">
+                <ul class="bg-white nav nav-pills nav-stacked">
+                    <li class="">
+                        <a href="#" ng-click="addTop();">Add</a></li>
+                    <li><a href="#" ng-click="modifyTop();">Modify</a></li>
+                    <li><a href="#" ng-click="viewTop();">View</a></li>
+                    <li><a href="#" ng-click="detailTop();">Detail</a></li>
+                    <li><a href="#" ng-click="goOmc();">Link</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-4" id="menuuu_Au" ng-show="showContextMen_Au" style="float: left;position: absolute;z-index:9999;">
+                <ul class="bg-white nav nav-pills nav-stacked">
+                    <li class="">
+                        <a href="#" class="top-rightMenu-li" ng-click="addTop();">Add</a></li>
+                    <li><a href="#" class="top-rightMenu-li" ng-click="modifyTop();">Modify</a></li>
+                    <li><a href="#" class="top-rightMenu-li" ng-click="viewTop();">View</a></li>
+                    <li><a href="#" class="top-rightMenu-li" ng-click="detailTop();">Detail</a></li>
+                    <li><a href="#" class="top-rightMenu-li" ng-click="queryDevice();">Query Device</a></li>
+                    <li><a href="#" ng-click="goOmc();">Link</a></li>
+
+                </ul>
+            </div>
+            <!-- <div>
+                <button class="btn btn-sm btn-info " style="padding: 2px 8px; " ng-click="refresh(); ">refresh</button>
+            </div> -->
+            <div id="top" style="width: 100%;height:450px;">
+            </div>
+
+        </div>
+    </div>
+</div>

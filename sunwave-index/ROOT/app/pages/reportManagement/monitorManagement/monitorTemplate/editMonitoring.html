@@ -1,0 +1,291 @@
+<div class="widgets">
+    <div class="row" style="background:#eefaff">
+        <form action="" name="userForm">
+            <div class="col-lg-12 col-md-12 ">
+                <div class="col-lg-2 col-md-2 pad-0-5" style="height: 220px;">
+                    <div class="col-lg-12 col-md-12 pad0 panel2 mar-10" style="height: 220px;">
+                        <div class="col-lg-12 col-md-12 pad0 mar-bom-10 " style="background:#eefaff">
+                            <label for="" class="pad-left-20 mar-t-10">
+                                <h3 translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.MonitoringType">Monitoring type</h3>
+                            </label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 pad0 font-center">
+                            <span class="span-center">
+                                <font>{{title}}</font>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 pad-0-5" style="height: 220px;">
+                    <div class="col-lg-12 col-md-12 pad0  panel2 mar-10">
+                        <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                            <label for="" class="pad-left-20 mar-t-10">
+                                <h3 translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.BasicConfiguration">Basic configuration</h3>
+                            </label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 pad0">
+                            <div class="col-lg-6 col-md-6 pad0 mar-bom-10">
+                                <div class="col-lg-12 col-md-12 pad0 mar-t-20 ">
+                                    <div class="col-lg-3 col-md-3 pad0">
+                                        <label for="" class="zz-label-sm  float-r" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.Name">Name:</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 ">
+                                        <input type="text" name="name" class="form-control zz-input  wid-90 float-input " ng-readonly="nameEdit" ng-model="task.name" required maxlength="20">
+                                        <span style="color:red" ng-show="userForm.name.$error.required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 pad0 mar-t-20 ">
+                                    <div class="col-lg-3 col-md-3 pad0">
+                                        <label for="" class="zz-label-sm float-r" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.Description">Description:</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 ">
+                                        <input type="text" name="description" class="form-control zz-input  wid-90 float-input" ng-readonly="isView" ng-model="task.description" maxlength="50">
+                                        <!-- <span style="color:red" ng-show="userForm.description.$error.required">*</span> -->
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 pad0 mar-t-20 mar-bom-20">
+                                    <div class="col-lg-3 col-md-3 pad0">
+                                        <label for="" class="zz-label-sm float-r" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.SamplingInterval">SamplingInterval:</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 ">
+                                        <input type="text" class="form-control zz-input  wid-90 float-input" name="samplingInterval" ng-readonly="isView" ng-model="task.samplingInterval" ng-pattern="/^\d{1,5}$/" placeholder="time unit : minute" required>
+                                        <span style="color:red" ng-show="userForm.samplingInterval.$error.required">*</span><br><br>
+                                        <span style="color:red;" ng-show="userForm.samplingInterval.$dirty && userForm.samplingInterval.$invalid">
+                                            <span style="color:red" ng-show="userForm.samplingInterval.$error.pattern">*Can only be 1-5 digits</span>
+                                        </span>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 pad0 mar-bom-10">
+                                <div class="col-lg-12 col-md-12 pad0 mar-t-20 mar-bom-10">
+                                    <div class="col-lg-3 col-md-3 pad0">
+                                        <label for="" class="zz-label-sm float-r"> <span
+                                                class="float-r" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.ExecutionCondition">ExecutionCondition:</span> </label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 ">
+                                        <input type="text" class="form-control zz-input  wid-90" ng-readonly="isView" ng-model="task.executionCondition">
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 pad-0-5" style="height: 220px;">
+                    <div class="col-lg-12 col-md-12 pad0 panel2 mar-10" style="height: 221px;">
+                        <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                            <label for="" class="pad-left-20 mar-t-10">
+                                <h3 translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.Actions">Actions</h3>
+                            </label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 mar-t-20">
+                            <!-- <button type="button" class="btn btn-primary float-l" ng-click="save()" title="Save" ng-disabled="userForm.$invalid" type="submit"><span
+                                    class="glyphicon glyphicon-ok"></span></button> -->
+                            <button ng-show="!isView" type="button" class="btn btn-primary float-l" ng-click="save()" title="Save" ng-disabled="userForm.$invalid" type="submit" translate="buttons.Save">Save</button>
+                            <!-- <button-permission ng-model="permissions2" nowUrl={{absUrl}}></button-permission> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-lg-12 col-md-12  mar-t-20" style="min-height: 600px;">
+            <div class="col-lg-2 col-md-2 pad-0-5" style="min-height: 600px;">
+                <div class="col-lg-12 col-md-12 pad0 panel2 mar-10" style="height: 600px;">
+                    <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                        <label for="" class="pad-left-20 mar-t-10">
+                            <h3 translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.AvailableMonitoring">Available monitoring</h3>
+                        </label>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <ul class="nav nav-pills nav-stacked" ng-repeat="item in monitoringTypes">
+                            <!-- ng-repeat="item in monitoringTypes" -->
+                            <li ng-click="source(item)"><a href=""><span class="glyphicon glyphicon-stats pad0-10-5-10"></span>
+                                <span class="pad0-10-5-10">{{item.typeName}}</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 pad-0-5" id="view1" style="min-height: 600px;">
+                <div class="col-lg-12 col-md-12 pad0 panel2 mar-10" style="min-height: 600px;">
+                    <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                        <label for="" class="pad-left-20 mar-t-10">
+                            <h3 translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.AdvanceConfiguration">Advance configuration</h3>
+                        </label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 pad0 ">
+                        <ul ng-repeat="item in task.items">
+                            <li>
+                                <div class="col-lg-12 col-md-12 pad0 mar-t-20">
+                                    <div class="col-lg-1 col-md-1 " style="text-align:center;height: 100%;line-height: 100%;font-size: larger;">
+                                        <!-- <label for="" class="zz-label-sm float-r">CPU:</label> -->
+                                        {{item.itemName}}:
+                                    </div>
+                                    <div class="col-lg-11 col-md-11 ">
+                                        <div class="col-lg-12 col-md-12 pad0 mar-t-10">
+                                            <div class="col-lg-2 col-md-2 pad0">
+                                                <label for="" class="zz-label-sm float-r" style="color: sandybrown;" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.Info">info</label>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 ">
+                                                <select class="form-control zz-input float-input" ng-model="item.infoExecutionCondition" style="width: 100%;" nginit="item.infoExecutionCondition ='not used'" ng-disabled="isView">                                                   
+                                                    <option value="not used">not used</option>
+                                                    <option value="above">above</option>
+                                                    <option value="above equal">above equal</option>
+                                                    <option value="equal">equal</option>
+                                                    <option value="below equal">below equal</option>
+                                                    <option value="in the range">in the range</option>
+                                                    <option value="out the range">out the range</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 ">
+                                                <div class="col-lg-12 col-md-12 pad0" ng-if="item.infoExecutionCondition !='in the range' && item.infoExecutionCondition !='out the range'">
+                                                    <input type="text" class="form-control zz-input  wid-90" ng-model="item.infoThreshold" ng-readonly="isView">
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 pad0" ng-if="item.infoExecutionCondition =='in the range' || item.infoExecutionCondition =='out the range'">
+                                                    <div class="col-lg-5 col-md-5 col-sm-5  pad0">
+                                                        <input type="text" class="form-control zz-input  " ng-readonly="isView" style="width: 100%;" ng-model="item.infoThreshold">
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1">
+                                                        <span class="span-center" style="font-size: x-large;height: 20px;margin-top: 10px;">~</span>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 pad0">
+                                                        <input type="text" class="form-control zz-input " ng-readonly="isView" style="width: 100%;" ng-model="item.infoThreshold1">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 pad0 mar-t-10">
+                                            <div class="col-lg-2 col-md-2 pad0">
+                                                <label for="" class="zz-label-sm float-r" style="color: chocolate;" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.Waring">waring</label>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 ">
+                                                <select class="form-control zz-input float-input" ng-model="item.warnExecutionCondition" style="width: 100%;" nginit="item.warnExecutionCondition ='not used'" ng-disabled="isView">                                                    
+                                                    <option value="not used">not used</option>
+                                                    <option value="above">above</option>
+                                                    <option value="above equal">above equal</option>
+                                                    <option value="equal">equal</option>
+                                                    <option value="below equal">below equal</option>
+                                                    <option value="in the range">in the range</option>
+                                                    <option value="out the range">out the range</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 ">
+                                                <div class="col-lg-12 col-md-12 pad0" ng-if="item.warnExecutionCondition !='in the range' && item.warnExecutionCondition !='out the range'">
+                                                    <input type="text" class="form-control zz-input  wid-90" ng-model="item.warnThreshold" ng-readonly="isView">
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 pad0" ng-if="item.warnExecutionCondition =='in the range' || item.warnExecutionCondition =='out the range'">
+                                                    <div class="col-lg-5 col-md-5 pad0">
+                                                        <input type="text" class="form-control zz-input  " ng-readonly="isView" style="width: 100%;" ng-model="item.warnThreshold">
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1">
+                                                        <label class="span-center" style="font-size: x-large;height: 20px;margin-top: 10px;">~</label>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 pad0">
+                                                        <input type="text" class="form-control zz-input  " ng-readonly="isView" style="width: 100%;" ng-model="item.warnThreshold1">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 pad0 mar-t-10">
+                                            <div class="col-lg-2 col-md-2 pad0">
+                                                <label for="" class="zz-label-sm float-r" style="color: red;" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.Error">error</label>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 ">
+                                                <select class="form-control zz-input float-input" ng-model="item.errorExecutionCondition" style="width: 100%;" nginit="item.errorExecutionCondition ='not used'" ng-disabled="isView">                                                    
+                                                    <option value="not used">not used</option>
+                                                    <option value="above">above</option>
+                                                    <option value="above equal">above equal</option>
+                                                    <option value="equal">equal</option>
+                                                    <option value="below equal">below equal</option>
+                                                    <option value="in the range">in the range</option>
+                                                    <option value="out the range">out the range</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5">
+                                                <div class="col-lg-12 col-md-12 pad0" ng-if="item.errorExecutionCondition !='in the range' && item.errorExecutionCondition !='out the range'">
+                                                    <input type="text" class="form-control zz-input  wid-90" ng-readonly="isView" ng-model="item.errorThreshold">
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 pad0" ng-if="item.errorExecutionCondition =='in the range' || item.errorExecutionCondition =='out the range'">
+                                                    <div class="col-lg-5 col-md-5 pad0">
+                                                        <input type="text" class="form-control zz-input " ng-readonly="isView" style="width: 100%;" ng-model="item.errorThreshold">
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1">
+                                                        <span class="span-center" style="font-size: x-large;height: 20px;margin-top: 10px;">~</span>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 pad0">
+                                                        <input type="text" class="form-control zz-input " ng-readonly="isView" style="width: 100%;" ng-model="item.errorThreshold1">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 pad-0-5" style="min-height: 600px;">
+                <div class="col-lg-12 col-md-12 pad0 panel2 mar-10" style="min-height: 600px;">
+                    <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                        <label for="" class="pad-left-20 mar-t-10">
+                            <h3 translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.MonitoringTargetGroups">Monitoring target groups </h3>
+                        </label>
+                    </div>
+                    <div class="col-lg-12 col-md-12  mar-bom-10 mar-t-10">
+                        <label for="" class="zz-label" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.ExecuteOn">Execute On:</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mar-bom-10 mar-t-10">
+                        <button class="btn btn-info btn-raised btn-pd" title="selete groups" ng-model="toAddItem" ng-disabled="isView" ng-click="selectGroup();"><span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
+                    <div class="col-lg-12 col-md-12 pad0">
+                        <div ba-panel ba-panel-class="with-scroll table-panel">
+
+                            <table class="table table-hover table-bordered-m">
+                                <thead>
+                                    <tr class="black-muted-bg" style="height: 25px;">
+                                        <th class="align-left" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.Delete">DELETE</th>
+                                        <th class="align-left" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.GroupName">NAME</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in groups">
+                                        <td class="align-left">
+                                            <button class="btn btn-danger btn-raised btn-xs" ng-disabled="isView" title="delete Item" ng-click="deleteItem(item)"><span
+                                                    class="glyphicon glyphicon-minus align-center"></span></button>
+                                        </td>
+                                        <td class="align-left">
+                                            {{item.groupName}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 ">
+                        <label for="" class="zz-label" translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.AggregateDataOn">Aggregate data on</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 ">
+                        <div class="col-lg-12 col-md-12 ">
+                            <span><input type="radio" name="check" value="1" ng-model="checkgroup" ><span translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.ExecutionGroups">Executiongroups</span></span>
+                        </div>
+                        <div class="col-lg-12 col-md-12 ">
+                            <span><input type="radio" name="check" value="2" ng-model="checkgroup" ><span translate="reportManagement.CPEmonitorManagement.monitorTemplate.MonitorModel.AllDeviceGroup">All device group</span></span>
+                        </div>
+                        <!-- <div class="col-lg-12 col-md-12 ">
+                            <span><input type="radio" name="check">Select manually</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 pad0">
+            </div>
+        </div>
+    </div>

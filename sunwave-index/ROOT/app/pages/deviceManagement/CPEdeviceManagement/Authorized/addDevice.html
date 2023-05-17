@@ -1,0 +1,179 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-6 col-lg-6">
+                    <div class="col-md-12 col-lg-12" style="padding-left: 0px;">
+                        <label for="identify" class="col-md-4 col-lg-4 zz-label-sm float-l pad0">Identify</label>
+                        <input type="text" class="zz-input-sm form-control float-l" name="identify" id="identify" ng-model="modal.identify" />
+                    </div>
+                    <div class="clean"></div>
+                    <div class="col-md-12 col-lg-12" style="padding-left: 0px;">
+                        <label for="oui" class="col-md-4 col-lg-4 zz-label-sm float-l pad0">OUI</label>
+                        <input type="text" class="zz-input-sm form-control float-l" name="oui" id="oui" ng-model="modal.oui" />
+                    </div>
+                    <div class="clean"></div>
+                    <div class="fcol-md-12 col-lg-12" style="padding-left: 0px;">
+                        <label for="description" class="col-md-4 col-lg-4 zz-label-sm float-l pad0">Description</label>
+                        <input type="text" class="zz-input-sm form-control float-l" name="description" id="description" ng-model="modal.description" />
+                    </div>
+                    <div class="clean"></div>
+                    <div class="col-md-12 col-lg-12" style="padding-left: 0px;">
+                        <span>
+                            <input type="checkbox" class="cursor" name="authentication" id="authentication"
+                                ng-model="modal.authentication" value="0" />
+                            <label for="authentication"
+                                class="col-md-5 col-lg-5 zz-label-sm float-l pad0">Authentication required</label>
+                        </span>
+                    </div>
+                    <div class="clean"></div>
+                    <div class="col-md-12 col-lg-12" style="padding-left: 0px;">
+                        <label for="Passward" class="col-md-4 col-lg-4 zz-label-sm float-l pad0">Passward</label>
+                        <input type="password" class="zz-input-sm form-control float-l" name="Passward" id="Passward" ng-model="modal.Passward" />
+                    </div>
+                    <div class="clean"></div>
+                    <div class="col-md-12 col-lg-12" style="padding-left: 0px;">
+                        <span>
+                            <input type="checkbox"  class="cursor" name="Provisioning" id="Provisioning" ng-model="modal.Provisioning"
+                                value="0" />
+                            <label for="Provisioning" class="col-md-4 col-lg-4 zz-label-sm float-l pad0">Provisioning
+                                enabled</label>
+                        </span>
+                    </div>
+                    <div class="clean"></div>
+                    <div class="col-md-12 col-lg-12" style="padding-left: 0px;">
+                        <label for="domain" class="col-md-4 col-lg-4 zz-label-sm float-l pad0">Domain</label>
+                        <input type="text" class="zz-input-sm form-control float-l" name="domain" id="domain" ng-model="modal.domain" />
+                    </div>
+                    <div class="clean"></div>
+                    <div class="col-md-12 col-lg-12" style="padding-left: 0px;">
+                        <span>
+                            <label for="logLevel" class="col-md-4 col-lg-4 zz-label-sm float-l pad0">Log Level</label>
+                            <select class="zz-input-sm form-controlfloat-l" ng-model="modal.logLevel" name="logLevel"
+                                ng-click="selectPeriod()" ng-init="modal.logLevel ='0'" >
+                                <option value="0">WARN</option>
+                                <option value="1">TRACE</option>
+                                <option value="2">DEBUG</option>
+                                <option value="3">INFO</option>
+                                <option value="4">ERROR</option>
+                                <option value="5">OFF</option>
+                            </select>
+                        </span>
+                        <input type="text" class="zz-input-sm form-control float-l pad0" name="logLevel" ng-show="isWarn" value="Indefinitely" readonly>
+                        <!-- <select class="zz-input-sm form-control float-l pad0" ng-model="modal.logLevel" name="logLevel" ng-show="isWarn">
+                            <option value="0">Indefinitely</option>
+                        </select> -->
+                        <select class="zz-input-sm form-control float-l pad0" ng-model="modal.time" name="time" ng-show="isWarn == false " ng-init="modal.time ='0'">
+                            <option value="0">30 minutes</option>
+                            <option value="1">1 hour</option>
+                            <option value="2">8 hours</option>
+                            <option value="3">1 day</option>
+                            <option value="4">3 days</option>
+                        </select>
+                    </div>
+                    <div class="clean"></div>
+                    <div class="col-md-12 col-lg-12" style="padding-left: 0px;">
+                        <label for="ip" class="col-md-4 col-lg-4 zz-label-sm float-l pad0">WAN IP</label>
+                        <input type="text" class="zz-input-sm form-control" name="ip" id="ip" ng-model="modal.ip" />
+                    </div>
+                    <div class="clean"></div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="col-md-12 col-lg-12">
+                        <label for="" class="zz-label-sm">Groups</label>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        <uib-tabset active="$tabSetStatus.activeTab">
+                            <uib-tab heading="View" class="pad0" index="0">
+                                <table class="table-gd table table-bordered-s">
+                                    <thead class="">
+                                        <tr class="" style="background: #dbeeff;width: 100%;">
+                                            <input type="text" placeholder="Search..." class=" zz-input-sm form-control float-l" style="width: 100%;">
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <tr ng-repeat="item in selectItems">
+                                            <td class="align-left">
+                                                <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" />
+                                            </td>
+                                            <td class="align-left" style="width: 100%;">{{item.name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="col-md-12 col-lg-12 pad0">
+                                    <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" title="Remove select" ng-click="removeSelect()"><span
+                                            class="glyphicon glyphicon-minus align-center"></span></button>
+                                </div>
+                            </uib-tab>
+                            <uib-tab heading="Add" class="pad0" index="1">
+                                <table class="table-gd table table-bordered-s pad0">
+                                    <thead class="">
+                                        <tr class="" style="background: #dbeeff;width: 100%;">
+                                            <input type="text" placeholder="Search..." class=" zz-input-sm form-control float-l pad0" aria-colspan="2">
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <tr ng-repeat="item in items">
+                                            <td class="align-left">
+                                                <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" />
+                                            </td>
+                                            <td class="align-left" style="width: 100%;">{{item.name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-md-12 col-lg-12 pad0">
+                                    <button class="btn btn-primary btn-raised btn-pd" title="Add select" ng-model="toAddItem" ng-click="addSelect($tabSetStatus.activeTab);"><span
+                                            class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 pad0">
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <label for="" class="zz-label-sm float-l pad0">Properties</label>
+                    </div>
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <input type="text" placeholder="Seach..." class="col-md-12 col-lg-12 zz-input-sm form-control float-l">
+                    </div>
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <table class="table-gd table table-bordered-s pad0">
+                            <thead class="">
+                                <tr class="pad0" style="background: #dbeeff;width: 100%;">
+                                    <th class="align-left pad0">
+                                        <input id="flag" type="checkbox" class="cursor" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                    </th>
+                                    <th class="align-left">
+                                        ACTION
+                                    </th>
+                                    <th class="align-left">
+                                        KEY
+                                    </th>
+                                    <th class="align-left" style="width: 100%;">
+                                        VALUE
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()" type="submit">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Close</button>
+    </div>
+
+    </div>

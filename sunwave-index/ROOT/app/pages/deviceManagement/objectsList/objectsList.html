@@ -1,0 +1,72 @@
+<div class="widgets">
+
+    <div class="col-lg-12 col-md-12 pad0">
+        <div class="form-group">
+            <label for="input01" class="zz-label" translate="deviceManagement.objectList.searchobjId">search:</label>
+            <input type="text" class="form-control zz-input float-input" id="input01" placeholder="" style="width: 30%;" ng-model="query.objObjid">
+
+            <!-- <button type="button" class="btn btn-sm btn-success btn-raised" style="margin-bottom: 5px;" ng-click="search
+                    ();">
+                        <i class="fa fa-search"></i>
+                    </button> -->
+            <button class="btn btn-green btn-sm btn-pd" ng-click="search();"><i class="fa fa-search" ng-click="search();"></i><span translate="buttons.search">Search</span></button>
+        </div>
+    </div>
+    <div class="mar0 row">
+        <div class="col-lg-10 col-md-10 pad0">
+            <!-- <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModifyItem('', 'md');"><i></i>Modify</button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem('', 'md');"><i></i>Add</button>
+                <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();"><i></i>Delete</button>
+                <button class="btn btn-info btn-raised btn-pd" ng-model="getTree" ng-click="getAreaTree();"><i></i>授权</button> -->
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-12 pad0" ba-panel ba-panel-class="with-scroll table-panel">
+        <div class="horizontal-scroll" style="overflow-x:scroll;overflow-y:scroll;">
+            <table class="table table-hover table-bordered-m">
+                <thead>
+                    <tr class="black-muted-bg">
+                        <th width="3%">
+                            <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                        </th>
+                        <th><span translate="deviceManagement.objectList.table.objActiveTypeDiv"></span>
+                            <my-Order query="query" search="search()" order-name='objActivetype'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.objectList.table.objObjid"></span>
+                            <my-Order query="query" search="search()" order-name='objObjid'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.objectList.table.objObjname"></span>
+                            <my-Order query="query" search="search()" order-name='objObjname'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.objectList.table.objObjtype"></span>
+                            <my-Order query="query" search="search()" order-name='objObjtype'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.objectList.table.objOid"></span>
+                            <my-Order query="query" search="search()" order-name='objOid'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.objectList.table.objMark"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items" ng-class="{'table-tr-checked':item.checked}">
+                        <td>
+                            <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                        </td>
+                        <!-- <td>{{item.objActiveTypeDiv}}</td> -->
+                        <td>{{item.objActivetype}}</td>
+                        <td>{{item.objObjid}}</td>
+                        <td>{{item.objObjname}}</td>
+                        <td>{{item.objObjtype}}</td>
+                        <td>{{item.objOid}}</td>
+                        <td>{{item.objMark}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal" class="form-control" ng-submit="submitForm()">
+        <div class="modal-body">
+            <div class="form">
+                <!-- <div class="col-lg-12 col-md-12 form-group">
+                    <label class=" control-label col-md-2" translate="Authority.safeManagement.modal.Name">Name</label>
+                    <div class="col-md-9 pad0">
+                        <input id="name" name="name" type="text" class="form-control" ng-model="user.name" ng-maxlength=20 placeholder="" required ng-pattern="/^[a-zA-Z0-9]+$/" />
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.name.$error.required">*</span>
+
+                    <div class="error" ng-show="userForm.name.$dirty && userForm.name.$invalid" style="display: inline-block;margin-left: 40px;">
+                        <small class="error" ng-show="userForm.name.$error.maxlength" style="color:red;float:left;" translate="Authority.safeManagement.modal.NameTips1">
+                        *Name cannot be longer than 20 characters.
+                        </small>
+                        <small class="error" ng-show="userForm.name.$error.pattern" style="color:red;float:left;" translate="Authority.safeManagement.modal.NameTips2">
+                        *A name can only consist of numbers, letters and underscores.
+                        </small>
+                    </div>
+                </div> -->
+
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class=" control-label col-md-2">UserName</label>
+                    <div class="col-md-9 pad0">
+                        <input id="username" name="username" type="text" class="form-control" ng-model="user.userName" placeholder="" ng-maxlength=20 ng-readonly="isSelf" required />
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.username.$error.required">*</span>
+
+                    <div class="error" ng-show="userForm.username.$dirty && userForm.username.$invalid" style="display: inline-block;margin-left: 40px;">
+                        <small class="error" ng-show="userForm.username.$error.maxlength" style="color:red;float:left;" translate="Authority.safeManagement.modal.UserNameTips">
+                        *UserName cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class=" control-label col-md-2">Password</label>
+                    <div class="col-md-9 pad0">
+                        <input id="password" name="password" type="text" class="form-control" ng-model="user.password" placeholder="" required />
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.password.$error.required">*</span>
+                    <!-- <div class="control-label col-md-2"></div>
+                    <div class="error"  ng-show="userForm.password.$dirty && userForm.password.$invalid">
+                        <small class="error" ng-show="userForm.password.$error.maxlength" style="color:red;float:right;">
+                        *Password cannot be longer than 20 characters.
+                        </small>
+                        <small class="error" ng-show="userForm.password.$error.pattern" style="color:red;float:left;">
+                            *The password consists of numbers and is between 8 and 15 in length.
+                            </small>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="save();" translate="buttons.Save">Copy</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" translate="buttons.Close">Close</button>
+    </div>
+    </form>
+</div>

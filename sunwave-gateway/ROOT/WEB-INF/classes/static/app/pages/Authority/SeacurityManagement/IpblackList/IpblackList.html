@@ -1,0 +1,176 @@
+<div class="widgets">
+
+    <!-- <ul class="bg-none safe-tab-ul nav-tabs"> -->
+    <!-- <li class="safe-tab-li active">
+            <a href="#safe1" class="bg-none" data-toggle="tab" style="display: block;">
+                <h3 class="safe-line"><i class="fa fa-exclamation-circle safe-line-i"></i>Security Rules</h3>
+            </a>
+        </li> -->
+    <!-- <li class="safe-tab-li active">
+            <a href="/#safe2" class="bg-none" data-toggle="tab" style="display: block;">
+                <h3 class="safe-line"><i class="fa fa-ban safe-line-i"></i>IP blacklist</h3>
+            </a>
+        </li>
+        <li class="safe-tab-li" ng-click="aler();">
+            <a href="/#safe3" class="bg-none" data-toggle="tab" style="display: block;">
+                <h3 class="safe-line"><i class="fa fa-ban safe-line-i"></i>IP blacklist2</h3>
+            </a>
+        </li> -->
+
+    <nav class="bg-none safe-tab-ul nav-tabs mar-b-10">
+        <a href="javascript:;" ng-click="myClick('safe2')" ng-class="{tab_active:type == 'safe2'}" class="safe-tab-li tab_active"><i class="fa fa-ban safe-line-i"></i>IP blacklist</a>
+        <a href="javascript:;" ng-click="myClick('safe3')" ng-class="{tab_active:type == 'safe3'}" class="safe-tab-li"><i class="fa fa-ban safe-line-i"></i>IP blacklist2</a>
+        <h3 class="safe-line"></h3>
+    </nav>
+
+    <!-- </ul> -->
+
+    <div ng-switch on="type">
+        <section ng-switch-when="safe2">
+            <div class="mar0 row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <!-- <div class="col-lg-3 col-md-3 pad0">
+                            <label for="" class="zz-label col-lg-2 col-md-4 pad0">Condition:</label>
+                            <select class="zz-input col-lg-10 col-md-8 pad2 form-control inline v-middle" ng-model="condition" ng-options="condition.id as condition.name for condition in conditions" id="" ng-init="query.condition='0'
+                            " style="width: 80%;"></select>
+                        </div> -->
+                        <div class="col-lg-10 col-md-10 pad0">
+                            <input type="text" class="form-control zz-input float-input" id="input01" placeholder="Input BeginIP" style="width: 40%;" ng-model="query.beginIp">
+
+                            <input type="text" class="form-control zz-input float-input" id="input02" placeholder="Input EndIP" style="width: 40%;" ng-model="query.endIp">
+
+                            <!-- <button type="button " class="btn btn-sm btn-success btn-raised " style="margin-bottom: 5px;" ng-click="search();">
+                                <i class="fa fa-search"></i>
+                            </button> -->
+                            <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i>Search</button>
+                            <button class="btn btn-reset btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+                        </div>
+
+                        <!-- <div class="col-md-3 col-lg-3 " style="text-align: center;">
+                            <button class="btn btn-info btn-sm">Save</button>
+                            <button class="btn btn-reset btn-sm" ng-click="reset();">Reset</button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <!-- <div class="col-lg-6 col-md-6">
+                        <button class="btn btn-info btn-pd" ng-model="viewItem" ng-click="viewItem();"><i></i>View</button>
+                        <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModify();"><i></i>Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem();"><i></i>Add</button>
+                        <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();"><i></i>Delete</button>
+                    </div> -->
+                    <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12" ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left">ID</th>
+
+                                <th class="align-left">Starting IP</th>
+                                <th class="align-left">Ending IP</th>
+
+                                <th class="align-left">Create Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border">
+                                <td>
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                <td class="align-left">{{item.id}}</td>
+                                <td class="align-left">{{item.beginIp}}</td>
+                                <td class="align-left">{{item.endIp}}</td>
+                                <td class="align-left">{{item.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+
+            </div>
+        </section>
+        <section ng-switch-when="safe3">
+            <div class="mar0 row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <!-- <div class="col-lg-3 col-md-3 pad0">
+                            <label for="" class="zz-label col-lg-2 col-md-4 pad0">Condition:</label>
+                            <select class="zz-input col-lg-10 col-md-8 pad2 form-control inline v-middle" ng-model="condition" ng-options="condition.id as condition.name for condition in conditions" id="" ng-init="query.condition='0'
+                            " style="width: 80%;"></select>
+                        </div> -->
+                        <div class="col-lg-10 col-md-10 pad0">
+                            <input type="text" class="form-control zz-input float-input" id="input01" placeholder="Input IP" style="width: 40%;" ng-model="query2.ip">
+
+                            <!-- <input type="text" class="form-control zz-input float-input" id="input02" placeholder="Input EndIP" style="width: 40%;" ng-model="query.endIp"> -->
+
+                            <!-- <button type="button " class="btn btn-sm btn-success btn-raised " style="margin-bottom: 5px;" ng-click="search();">
+                                <i class="fa fa-search"></i>
+                            </button> -->
+                            <button class="btn btn-green  btn-sm btn-pd" ng-click="search_black();"><i class="fa fa-search"></i>Search</button>
+                            <button class="btn btn-reset btn-sm btn-pd" ng-click="reset_black();"><i class="fa fa-rotate-right"></i>Reset</button>
+                        </div>
+
+                        <!-- <div class="col-md-3 col-lg-3 " style="text-align: center;">
+                            <button class="btn btn-info btn-sm">Save</button>
+                            <button class="btn btn-reset btn-sm" ng-click="reset();">Reset</button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <!-- <div class="col-lg-6 col-md-6"> -->
+                    <!-- <button class="btn btn-info btn-pd" ng-model="viewItem" ng-click="viewItem();"><i></i>View</button> -->
+                    <!-- <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModify();"><i></i>Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem();"><i></i>Add</button> -->
+                    <!-- <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem_black();"><i></i>Delete</button> -->
+                    <!-- </div> -->
+                    <!-- <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission> -->
+
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12" ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all2" ng-change="selectAll2()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left">ID</th>
+
+                                <th class="align-left">IP</th>
+                                <!-- <th class="align-left">Ending IP</th>
+
+                                <th class="align-left">Create Time</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item2 in items2" class="no-top-border">
+                                <td>
+                                    <input type="checkbox" ng-model="item2.checked" ng-change="selectOne2()" />
+                                </td>
+                                <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                <td class="align-left">{{item2.id}}</td>
+                                <td class="align-left">{{item2.ip}}</td>
+                                <!-- <td class="align-left">{{item2.endIp}}</td>
+                                <td class="align-left">{{item2.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf2"></tm-pagination>
+
+            </div>
+        </section>
+    </div>
+</div>

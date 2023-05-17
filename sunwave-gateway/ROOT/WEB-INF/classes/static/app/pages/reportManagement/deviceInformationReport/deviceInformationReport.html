@@ -1,0 +1,95 @@
+<div class="widgets">
+    <div class="col-lg-12 col-md-12 pad0">
+        <div ba-panel ba-panel-class="with-scroll table-panel">
+            <div class="col-lg-12 col-md-12 pad0">
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="" class="zz-label-sm">Device Name:</label>
+                    <input type="text" class="zz-input-sm form-control" ng-model="query.deviceName" id="" placeholder="Please Input">
+                </div>
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="" class="zz-label-sm">Vendor Name:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query.companyStr" ng-options="vName.coCompanyid as vName.coName for vName in vNames" id="" placeholder="Please Input">
+                        <option value="">--Please Select--</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="" class="zz-label-sm">Serial Number:</label>
+                    <input type="text" class="zz-input-sm form-control" ng-model="query.deviceSn" id="" placeholder="Please Input">
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12 pad0">
+
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="neInoutid" class="zz-label-sm">Device Position:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query.deviceCoverType;" name="DevicePosition" required>
+                        <option value="">--Please Select--</option>
+                        <option value="1" ng-selected="query.deviceCoverType == 1">indoor</option>
+                        <option value="2" ng-selected="query.deviceCoverType == 2">outdoor</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="inputStatus" class="zz-label-sm">Device Status:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle float-l" ng-model="query.deviceStatus" name="deviceStatus" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" required>
+                        <option value="">--Please Select--</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="input01" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty">Protocol Type:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle float-l" ng-model="query.protocolType" name="protocolType" required>
+                        <option value="">--Please Select--</option>
+                        <option value='0'>All</option>
+                        <option value='1'>GROUP PROTOCOLTYPE</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12 pad0 mar-bom-10">
+                <div class="col-lg-6 col-md-10 pad2 form-group pad0">
+                    <div class="col-md-8 col-lg-2 zz-label-sm pad0">Update Time:</div>
+                    <div class="col-md-8 col-lg-4 pad0">
+                        <wui-date format="yyyy-mm-dd hh:mm:ss" class="zz-input-sm" placeholder="BeginTime" id="beginTime" btns="{'ok':'ok','now':'today'}" ng-model="query.startTime">
+                        </wui-date>
+                    </div>
+                    <span class="col-lg-1 col-md-2 zz-label">to</span>
+                    <div class="col-md-8 col-lg-4 pad0">
+                        <wui-date format="yyyy-mm-dd hh:mm:ss" class="zz-input-sm" placeholder="EndTime" id="endTime" btns="{'ok':'ok','now':'today'}" ng-model="query.endTime">
+                        </wui-date>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-md-6 mar-bom-10 form-group">
+                    <label for="" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty">Device Type:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query.deviceType" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes" ng-change="checkTypeAll();">
+                        <option value="">--Please Select--</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-6 mar-bom-10 form-group pad0">
+                    <label for="neDevicelevelid" class="zz-label-sm">Device Level:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query. deviceLevel" style="width:50%;">
+                        <option value="">--Please Select--</option>
+                        <option value="1" ng-selected="query.deviceLevel == 1">normal</option>
+                        <option value="2" ng-selected="query.deviceLevel == 2">vip</option>
+                    </select>
+                </div>
+                <!-- <div class="clear"></div> -->
+                <div class="col-lg-1 col-md-6 mar-bom-10 form-group pad0">
+                    <!-- <button type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportList();"><i class="ion-android-download"></i>Export</button> -->
+                    <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-6 col-lg-6 zTreeDemoBackground left tree-bg-b2">
+                    <ul id="areaTree" class="ztree" style="min-height: 250px;overflow: scroll;"></ul>
+                </div>
+                <!-- <div class="col-md-6 col-lg-6 zTreeDemoBackground left tree-bg-b2">
+                    <ul id="aTree2" class="ztree"></ul>
+                </div> -->
+            </div>
+            <div class="clear"></div>
+
+        </div>
+    </div>
+</div>
+</div>

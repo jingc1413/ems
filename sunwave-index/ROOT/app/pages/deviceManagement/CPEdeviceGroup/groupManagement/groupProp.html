@@ -1,0 +1,78 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 ">
+            <div class="col-md-6 col-lg-6 pad0">
+                <div class="col-md-10 col-lg-10 pad0">
+                    <input type="text" style="width: 100%;" placeholder="Search ..." class="form-control zz-input float-input" ng-model="query.keyword" maxlength="20" ng-keypress="($event.which === 13)?search():0">
+                </div>
+                <div class="col-md-2 col-lg-2 pad0">
+                    <button class="btn btn-green  btn-sm btn-pd float-l" ng-click="searchBy();"><i
+                    class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 pad0">
+                <span style="float: right;">
+                        <button class="btn  btn-primary btn-raised btn-xs" ng-click="toConfiguration()" title="Configuration"><span class="glyphicon glyphicon-cog"></span></button>
+                <!-- <button class="btn btn-info btn-xs" ng-click="edit()" title="Edite"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-danger btn-xs" ng-model="deleteItem" title="delete" ng-click=""><span class="glyphicon glyphicon-minus align-center"></span></button>
+                <button class="btn btn-warning btn-raised btn-xs" ng-click="toConfigure()" title="locked">
+                        <span class="glyphicon glyphicon-lock"></span></button> -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 ">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+                        <!-- <h3 class="with-line">基本信息</h3> -->
+                        <div class="col-md-12 col-lg-12 ">
+                            <table class="table table-hover table-bordered-m">
+                                <thead>
+                                    <tr class="black-muted-bg" style="height: 28px;">
+                                        <!-- <th class="align-left">
+                                        <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                    </th> -->
+                                        <th class="align-left" translate="deviceManagement.CPEdeviceGroup.groupManagement.Properties.Name">NAME</th>
+                                        <th class="align-left" translate="deviceManagement.CPEdeviceGroup.groupManagement.Properties.Description">DESCRIPTION</th>
+                                        <th class="align-left" translate="deviceManagement.CPEdeviceGroup.groupManagement.Properties.Application">APPLICATION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in items" style="height: 28px;">
+                                        <!-- <td class="align-left" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                        <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                    </td> -->
+                                        <td class="align-left" ng-click="toView(item)"><a href="" title="View details">{{item.teName}}</a></td>
+                                        <td class="align-left">{{item.teDescribe}}</td>
+                                        <!-- <td class="align-left"><button class="btn  btn-primary btn-raised btn-xs" ng-click="save(item)" title="Comfirm"><span class="glyphicon glyphicon-ok"></span></button></td> -->
+                                        <td class="align-left"><button class="btn  btn-primary btn-raised btn-xs" ng-click="save(item)" title="apply" translate="deviceManagement.CPEdeviceGroup.groupManagement.Properties.Apply">apply</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <tm-pagination conf="paginationConf"></tm-pagination>
+                    </form>
+                    <!-- <div class="col-md-12 col-lg-12  panel-body mar-t-20" ng-show="isAdd">
+                    <div class="col-md-12 col-lg-12 mar-t-5 pad0">
+                        <label for="" class="zz-lable-sm">NAME</label>
+                    </div>
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <input type="text" style="width: 90%;" class="form-control zz-input float-input" ng-model="value.name">
+                    </div>
+                    <div class="col-md-12 col-lg-12  mar-t-5 pad0">
+                        <label for="" class="zz-lable-sm">VALUE</label>
+                    </div>
+                    <div class="col-md-12 col-lg-12 pad0">
+                        <input type="text" style="width: 90%;" class="form-control zz-input float-input " ng-model="value.value">
+                    </div>
+                    <div class="col-md-12 col-lg-12 mar-t-5 pad0">
+                        <button type="button" class="btn btn-primary btn-xs float-l" ng-click="save()" title="Confirm" type="submit"><span class="glyphicon glyphicon-ok"></span></button>
+                    </div>
+                </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

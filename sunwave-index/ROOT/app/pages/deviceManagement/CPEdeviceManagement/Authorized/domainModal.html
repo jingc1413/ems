@@ -1,0 +1,21 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div class="col-lg-12 col-md-12">
+                <label for="">Domain</label>
+                <input type="text" class="form-control zz-input " ng-model="items">
+            </div>
+     </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save(items)"  type="submit">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Close</button>
+    </div>
+</div>

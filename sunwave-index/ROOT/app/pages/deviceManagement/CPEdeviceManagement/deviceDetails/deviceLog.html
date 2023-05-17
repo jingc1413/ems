@@ -1,0 +1,73 @@
+<div class="widgets">
+    <div class="col-md-12 col-lg-12 panel2">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="col-lg-4 col-md-4">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-lable float-r mar-t-5" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.LogsManager.BeginTime">BeginTime:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="select date" id="operationDate" btns="{'ok':'ok','now':'today'}" ng-model="query.beginTime" style="width: 100%;">
+                        </wui-date>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-lable float-r mar-t-5" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.LogsManager.EndTime">End Time:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="select date" id="operationDate" btns="{'ok':'ok','now':'today'}" ng-model="query.endTime" style="width: 100%;">
+                        </wui-date>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="searchByTime();"><i
+                        class="fa fa-search"></i translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.LogsManager.Search">Search</button>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <button class="btn btn-danger btn-raised btn-pd float-r" ng-click="downloadFile()" title="Download" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.LogsManager.Download">Download</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="row">
+                <div ba-panel ba-panel-class="with-scroll table-panel pad0">
+                    <div class="horizontal-scroll">
+                        <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+                            <!-- <h3 class="with-line">基本信息</h3> -->
+                            <div class="col-md-12 col-lg-12 pad0">
+                                <table class="table table-hover table-bordered-m">
+                                    <thead>
+                                        <tr class="black-muted-bg" style="height: 28px;">
+                                            <th class="align-left">
+                                                <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                            </th>
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.LogsManager.NO">NO.</th>
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.LogsManager.LogFileName">LOG FILE NAME</th>
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.LogsManager.LogGeneratedTime">LOG GENERATION TIME</th>
+                                            <!-- <th class="align-left">ACTION</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in items" style="height: 28px;">
+                                            <td class="align-left" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                                <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                            </td>
+                                            <td class="align-left">{{$index+1}}</td>
+                                            <td class="align-left">{{item.logName}}</td>
+                                            <td class="align-left">{{item.generatedTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                            <!-- <td class="align-left"> <button class="btn btn-danger btn-raised btn-pd float-r" ng-click="upgrade(item)" title="Upgrade"><span class="glyphicon glyphicon-arrow-up"></span></button></td> -->
+                                            <!-- <td class="align-left"> <button class="btn btn-danger btn-raised btn-pd float-r" ng-click="downloadFile(item)" title="Download">Download</button></td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <tm-pagination conf="paginationConf"></tm-pagination>
+                        </form>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

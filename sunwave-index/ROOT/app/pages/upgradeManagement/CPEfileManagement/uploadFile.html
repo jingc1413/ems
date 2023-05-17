@@ -1,0 +1,84 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" ng-disabled="fileIsUpload" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel" translate="UpgradeManagement.CPEfileManagement.fileModel.title">File Upgrade</h4>
+    </div>
+    <div class="col-lg-12 col-md-12 mar-t-20">
+        <form name="userForm" class="form-horizontal" enctype="multipart/form-data" class="form-control" ng-submit="submitForm()">
+            <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+            <div class="col-md-12 col-lg-12 pad0">
+                <div class="col-lg-12 col-md-12 mar-t-5">
+                    <div class="col-lg-3 col-md-3 pad0">
+                        <label for="" class="zz-lable float-r" translate="UpgradeManagement.CPEfileManagement.fileModel.Manufacturer">MANUFACTURER:</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 ">
+                        <input type="text" name="manufacturer" class="form-control zz-input float-input" style="width: 90%;" ng-model="modal.manufacturer" required ng-maxlength="40">
+                        <span style="color:red" ng-show="userForm.manufacturer.$error.required">*</span>
+                        <span style="color:red" ng-show="userForm.manufacturer.$dirty && userForm.manufacturer.$invalid">
+                        <span style="color:red" ng-show="userForm.manufacturer.$error.maxlength">*Maximum length cannot
+                                exceed 40</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-lg-12 col-md-12 mar-t-5">
+                    <div class="col-lg-3 col-md-3 pad0">
+                        <label for="" class="zz-lable float-r" translate="UpgradeManagement.CPEfileManagement.fileModel.Version">VERSION:</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 ">
+                        <input type="text" name="version" class="form-control zz-input  float-input" style="width: 90%;" ng-model="modal.version" required ng-maxlength="20">
+                        <span style="color:red" ng-show="userForm.version.$error.required">*</span>
+                        <span style="color:red" ng-show="userForm.version.$dirty && userForm.version.$invalid">
+                            <span style="color:red" ng-show="userForm.version.$error.maxlength">*Maximum length cannot
+                                    exceed 20</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-lg-12 col-md-12 mar-t-5">
+                    <div class="col-lg-3 col-md-3 pad0">
+                        <label for="" class="zz-lable float-r" translate="UpgradeManagement.CPEfileManagement.fileModel.Remark">REMARK:</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 ">
+                        <input type="text" class="form-control zz-input  float-input" name="remark" style="width: 90%;" ng-model="modal.remark" ng-maxlength="100">
+                        <span style="color:red" ng-show="userForm.remark.$dirty && userForm.remark.$invalid">
+                            <span style="color:red" ng-show="userForm.remark.$error.maxlength">*Maximum length cannot
+                                    exceed 100</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-lg-12 col-md-12 mar-t-5" ng-show="isEdit">
+                    <div class="col-lg-3 col-md-3 pad0">
+                        <label for="" class="zz-lable float-r" translate="UpgradeManagement.CPEfileManagement.fileModel.File">File:</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 ">
+                        <input type="file" class="form-control zz-input pad0  float-input" style="width:90%;" name="fileUpload" id="fileUpload" file-model="myFile" ng-model="modal.file" />
+
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+                <!-- <span class="fileInput" id="text" ng-show="filegetClick" ng-bind="textS">{{textS}}</span> -->
+                <div class="col-lg-12 col-md-12 mar-t-5" ng-show="isEdit">
+                    <div class="col-lg-3 col-md-3 pad0">
+                        <label for="" class="zz-lable float-r" translate="UpgradeManagement.CPEfileManagement.fileModel.UploadProgress">Upload progress:</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 ">
+                        <label for="" class="zz-lable  float-l">{{progressPercentage}}%</label>
+                        <!-- <input type="input" class="form-control zz-input pad0  float-input" style="width:90%;" ng-model="progressPercentage" readonly/> -->
+                    </div>
+                </div>
+            </div>
+            <!-- <p class="m-t-md">Single</p>
+                <input type="file" nv-file-select="" uploader="uploader"> -->
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-show="!fileIsUpload" ng-click="save()" type="submit" translate="buttons.Save">Save</button>
+    <button type="button" class="btn btn-primary" ng-click="close()" ng-disabled="fileIsUpload" type="submit" translate="buttons.Close">Close</button>
+</div>
+</div>

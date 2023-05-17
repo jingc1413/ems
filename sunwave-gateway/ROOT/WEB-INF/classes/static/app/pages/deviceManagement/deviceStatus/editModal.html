@@ -1,0 +1,42 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="listForm" class="form-horizontal" class="form-control" ng-submit="submitForm()">
+    <div class="modal-body">
+        <div class="form">
+            <div class="col-lg-12 col-md-12 form-group">
+                <label  class="edit-label control-label col-md-2" style="margin: 0;">dsId</label>
+                <div class="col-md-4">
+                    <input id="dsId" name="dsId" type="text" class="form-control" ng-model="list.dsId" style="width: 95%;float: left;" required ng-pattern="/^([1-9]\d|\d)$/">
+                    <span style="color:red;font-size: 10px;float: left;" ng-show="listForm.dsId.$error.required">*</span>
+                    <div class="error" ng-show="listForm.dsId.$dirty && listForm.dsId.$invalid">
+                        <small class="error" ng-show="listForm.dsId.$error.pattern" style="color:red;float:left;">
+                        *ID can only consist of numbers and the range is 0-99.
+                        </small>
+                    </div> 
+                </div>
+                     
+                <label class="edit-label control-label col-md-2" style="margin: 0;">dsName</label>
+                <div class="col-md-4">
+                    <input id="dsName" name="dsName" type="text" class="form-control" ng-maxlength=50 ng-model="list.dsName" required style="width: 95%;float: left;" />
+                    <span style="color:red;font-size: 10px;float: left;" ng-show="listForm.dsName.$error.required">*</span>
+                <div class="error" ng-show="listForm.dsName.$dirty && listForm.dsName.$invalid">
+                    <small class="error" ng-show="listForm.dsName.$error.maxlength" style="color:red;float:left;">
+                    *dsName cannot be longer than 50 characters.
+                    </small>
+                </div> 
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="submit " class="btn btn-primary "  ng-disabled="listForm.$invalid" ng-click="saveEdit(); ">{{title}}</button>
+        <button type="button " class="btn btn-primary " ng-click="cancel() ">close</button>
+    </div>
+    </form>
+</div>

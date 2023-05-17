@@ -1,0 +1,98 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-4">
+                <div class="form-group">
+                    <label for="inpit01" class="zz-label">User Name:</label>
+                    <input type="text" class="form-control zz-input float-input" id="inpit01" placeholder="Input User Name" ng-model="query.userName" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="form-group">
+                    <label for="1nput01" class="zz-label">User Mobile:</label>
+                    <input type="text" class="form-control zz-input float-input" id="1nput01" placeholder="Input ID" ng-model="query.mobile" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i>Search</button>
+                <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-6 col-md-6">
+                <!-- <button class="btn btn-info btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem('', 'md');"><i></i>Add</button>
+                <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();"><i></i>Delete</button>
+                <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModify('', 'md');"><i></i>Modify</button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-model="toModifyItem" ng-click="tolook('', 'md');"><i></i>View</button> -->
+                <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left">User Name
+                                    <my-Order query="query" search="search()" order-name='useName'></my-Order>
+                                </th>
+                                <th class="align-left">User ID
+                                    <my-Order query="query" search="search()" order-name='useUserid'></my-Order>
+                                </th>
+                                <th class="align-left">User Mobile
+                                    <my-Order query="query" search="search()" order-name='useMobile'></my-Order>
+                                </th>
+                                <th class="align-left">User Email
+                                    <my-Order query="query" search="search()" order-name='useEmail'></my-Order>
+                                </th>
+                                <th class="align-left">User Alarmturncondition
+                                    <my-Order query="query" search="search()" order-name='useAlarmturncondition'></my-Order>
+                                </th>
+                                <th class="align-left">User Company
+                                    <my-Order query="query" search="search()" order-name='useCompany'></my-Order>
+                                </th>
+                                <th class="align-left">User Sitelevel
+                                    <my-Order query="query" search="search()" order-name='useSitelevel'></my-Order>
+                                </th>
+                                <th class="align-left">User Alarmlevel
+                                    <my-Order query="query" search="search()" order-name='useAlarmlevel'></my-Order>
+                                </th>
+                                <th class="align-left">User Area
+                                    <my-Order query="query" search="search()" order-name='useArea'></my-Order>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items">
+                                <td class="align-left">
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left">{{$index+1}}</td>
+                                <td class="align-left">{{item.useName}}</td>
+                                <td class="align-left">{{item.useUserid}}</td>
+                                <td class="align-left">{{item.useMobile}}</td>
+                                <td class="align-left">{{item.useEmail}}</td>
+                                <td class="align-left">{{item.useAlarmturncondition | cut:true:20:' ...' }}</td>
+                                <td class="align-left">{{item.useCompany}}</td>
+                                <td class="align-left">{{item.useSitelevel}}</td>
+                                <td class="align-left">{{item.useAlarmlevel}}</td>
+                                <td class="align-left">{{item.useArea}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+<div class="widgets">
+    <div class="col-md-12 col-lg-12">
+        <!--BEGIN TABS-->
+        <!-- <ul class="nav nav-tabs tabqhul" ng-init="vm.activeTab=0">
+            <li class="tabqh" ng-class="{true:'item_on',flase:'item'}[vm.activeTab==$index]" ng-repeat="item in ['周期','手动']" ng-click="vm.activeTab = $index" style="cursor:pointer; width:60px;"><a href="">{{item}}</a></li>
+        </ul> -->
+        <!-- <ul class="bg-none safe-tab-ul nav-tabs">
+            <li class="safe-tab-li active">
+                <a href="#zz" class="bg-none" data-toggle="tab" style="display: block;">
+                    <h3 class="safe-line"><i class="fa fa-circle-o safe-line-i"></i>Automatic</h3>
+                </a>
+            </li>
+            <li class="safe-tab-li">
+                <a href="#ss" class="bg-none" data-toggle="tab" style="display: block;">
+                    <h3 class="safe-line"><i class="fa fa-edit safe-line-i"></i>Manual</h3>
+                </a>
+            </li>
+        </ul> -->
+        <nav class="bg-none safe-tab-ul nav-tabs mar-b-10">
+            <a href="javascript:;" ng-click="myClick('zz')" ng-class="{tab_active:type == 'zz'}" class="safe-tab-li tab_active"><i class="fa fa-ban safe-line-i"></i><span translate="DatabaseBackUp.backupSetting.Automatic">Automatic</span></a>
+            <a href="javascript:;" ng-click="myClick('ss')" ng-class="{tab_active:type == 'ss'}" class="safe-tab-li"><i class="fa fa-ban safe-line-i"></i><span translate="DatabaseBackUp.backupSetting.Manual">Manual</span></a>
+            <h3 class="safe-line"></h3>
+        </nav>
+
+        <div ng-switch on="type">
+            <section ng-switch-when="zz">
+                <form name="form" ng-submit="submitForm(form.$valid)" class="">
+                    <div class="col-md-12 col-lg-12 col-xs-12 mar-t-10 pad0">
+                        <div class="form-group">
+                            <label for="input01" class="zz-label zz-label-r" translate="DatabaseBackUp.backupSetting.Backuptime">Backup time:</label>
+                            <span class="backup-time-lb" translate="DatabaseBackUp.backupSetting.Week">Week:</span>
+
+                            <select class="zz-input col-md-3 col-lg-3 col-xs-3 pad2 form-control inline v-middle" ng-model="period.week" ng-options="week.id as week.name for week in weeks" style="width:20%;" required>
+                                <option value="" translate="DatabaseBackUp.backupSetting.PleaseSelect">--Please Select--</option>
+
+                            </select>
+                            <span class="backup-time-lb" translate="DatabaseBackUp.backupSetting.Hour">Hour:</span>
+                            <select class="zz-input col-md-3 col-lg-3 col-xs-3 pad2 form-control inline v-middle" ng-model="period.hour" ng-options="hour.id as hour.name for hour in hours" style="width:20%;" required>
+                                <option value="" translate="DatabaseBackUp.backupSetting.PleaseSelect">--Please Select--</option>
+
+                            </select>
+                            <span class="backup-time-lb" translate="DatabaseBackUp.backupSetting.Minute">Minute:</span>
+                            <select class="zz-input col-md-3 col-lg-3 col-xs-3 pad2 form-control inline v-middle" ng-model="period.minute" ng-options="minute.id as minute.name for minute in minutes" style="width:20%;" required>
+                                <option value="" translate="DatabaseBackUp.backupSetting.PleaseSelect">--Please Select--</option>
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-xs-12 mar-t-10 pad0">
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input01" class="zz-label zz-label-r" translate="DatabaseBackUp.backupSetting.Backupcontent">Backup content:</label>
+                            <select class="zz-input pad2 form-control inline v-middle" ng-model="content.backtables" ng-options="table.tableName as table.name for table in tables" ng-change="tablesFun()" required>
+                                <option value="" translate="DatabaseBackUp.backupSetting.PleaseSelect">--Please Select--</option>
+
+                            </select>
+                        </div>
+                        <!-- <div class="col-md-6 col-lg-6 col-xs-6 form-group">
+
+                            <label class="zz-label zz-label-r">Backup location:</label>
+
+                            <input type="text" class="zz-input form-control" data-trigger="hover" data-original-title="填写要求xxxx" ng-model="submit.path">
+                        </div> -->
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-xs-12 mar-t-10 pad0">
+                        <div class="form-group">
+                            <label class="zz-label zz-label-r" translate="DatabaseBackUp.backupSetting.Backupmode">Backup mode</label>
+                            <div class="col-lg-3 col-md-6 form-group" style="line-height: 26px;">
+                                <label for="" class="" translate="DatabaseBackUp.backupSetting.Hotstandbyornot">Hot standby or not:</label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" ng-model="submit.onlineBack" style="margin: 0;vertical-align: middle;">
+                                </label>
+                            </div>
+                            <!-- <div class="col-lg-3 col-md-6 form-group" style="line-height: 26px;">
+                                <label for="" class="">Incremental backup or not:</label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" ng-model="submit.binlogBack" style="margin: 0;vertical-align: middle;">
+                                </label>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 pad0 mar-t-10">
+                        <!-- <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission> -->
+                        <button type="submit" ng_click="submitForm()" class="btn btn-sm btn-info"><span translate="buttons.Save">save</span></button>
+
+
+                        <!-- <button type="submit" class="btn btn-sm btn-info">Determine</button>
+
+                        <button type="button" class="btn btn-sm btn-reset">Cancel</button> -->
+
+                    </div>
+
+                </form>
+            </section>
+            <section ng-switch-when="ss">
+                <form action="" class="">
+
+                    <div class="col-md-12 col-lg-12 col-xs-12 pad0 mar-t-10">
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label class="zz-label zz-label-r" translate="DatabaseBackUp.backupSetting.Backuptime">Backup time:</label>
+                            <div class="col-md-8 col-lg-4 pad0">
+                                <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="" id="beginTime" btns="{'ok':'ok','now':'today'}" ng-model="submit.backtime">
+                                </wui-date>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+                            <label for="input01" class="zz-label zz-label-r" translate="DatabaseBackUp.backupSetting.Backupcontent">Backup content:</label>
+                            <select class="zz-input pad2 form-control inline v-middle" ng-model="content.backtables" ng-options="table.tableName as table.name for table in tables" required>
+                                <option value="" translate="DatabaseBackUp.backupSetting.PleaseSelect">--Please Select--</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 col-lg-12 col-xs-12 mar-t-10 pad0">
+                        <!-- <div class="col-md-6 col-lg-6 col-xs-6 form-group pad0">
+
+                            <label class="zz-label zz-label-r">Backup location:</label>
+                            <input type="text" class="zz-input form-control" data-trigger="hover" data-original-title="xxx" ng-model="submit.path">
+                        </div> -->
+                        <div class="form-group col-md-6 col-lg-6 col-xs-6 pad0" style="line-height: 28px;">
+                            <label class="zz-label zz-label-r" style="margin: 0;" translate="DatabaseBackUp.backupSetting.Backupmode">Backup mode:</label>
+                            <div class="col-lg-5 col-md-6 form-group">
+                                <label for="" class="" translate="DatabaseBackUp.backupSetting.Hotstandbyornot">Hot standby or not:</label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" style="margin: 0;vertical-align: middle;" ng-model="submit.onlineBack">
+                                </label>
+                            </div>
+                            <!-- <div class="col-lg-5 col-md-6 form-group">
+                                <label for="" class="">Incremental backup or not:</label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" style="margin: 0;vertical-align: middle;" ng-model="submit.binlogBack">
+                                </label>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 pad0 mar-t-10">
+
+                        <button type="submit" ng_click="hmSubmit()" class="btn btn-sm btn-info"><span translate="buttons.Determine">Determine</span></button>
+
+                        <!-- <button type="button" ng_click="download();" class="btn btn-sm btn-reset">Cancel</button> -->
+                        <button type="button" ng_click="reset();" class="btn btn-sm btn-reset" translate="buttons.Cancel">Cancel</button>
+
+                    </div>
+
+                </form>
+            </section>
+        </div>
+        <!-- END PAGE CONTENT-->
+    </div>
+</div>

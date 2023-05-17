@@ -1,0 +1,85 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+
+    <div class="modal-body">
+        <form name="userForm" class="" class="form-control" ng-submit="submitForm()">
+            <div class="col-lg-12 col-md-12 pad0">
+                <div class="col-lg-5 col-md-5">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label-sm line-height-15">Alarm Name:</label>
+                        <input type="text" class="zz-input-sm form-control" ng-model="query.almName" placeholder="">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-5 col-md-5">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label-sm">alarm Type:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="paramsType" ng-change="filterParamsType();" ng-init="paramsType='0'" style="width: 50%;">
+                                <option value="0">All</option>
+                                <option value="1">Device Information</option>
+                                <option value="2">Network Management</option>
+                                <option value="3">Alarm Name</option>
+                                <option value="4">Alarm Enable</option>
+                                <option value="5">Set Parameter</option>
+                                <option value="6">Sampling data</option>
+                            </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-2 col-md-2">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="searchContent();"><i class="fa fa-search"></i>Search</button>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 pad0 table-div-scroll">
+                <table class="table table-bordered-s">
+                    <thead class="">
+                        <tr class="">
+                            <th>
+                                <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                            </th>
+                            <th>No.</th>
+                            <th>Alarm ObjId
+                                <my-Order query="query" search="searchContent()" order-name='almObjid'></my-Order>
+                            </th>
+                            <!-- <th>Alarm ID
+                                <my-Order query="query" search="searchContent()" order-name='almAlarmid'></my-Order>
+                            </th> -->
+                            <th>Alarm Name
+                                <my-Order query="query" search="searchContent()" order-name='almName'></my-Order>
+                            </th>
+                            <th>Alarm Kind
+                                <my-Order query="query" search="searchContent()" order-name='alarmKind.name'></my-Order>
+                            </th>
+                            <th>Alarm Level
+                                <my-Order query="query" search="searchContent()" order-name='almAlarmlevel.alvName'></my-Order>
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody class="sm-table-body">
+                        <tr class="" ng-repeat="row in rows">
+                            <td><input type="checkbox" ng-model="row.checked" ng-change="selectOne()" /></td>
+                            <td>{{$index+1}}</td>
+                            <!-- <td>{{row.almAlarmid}}</td> -->
+                            <td>{{row.almObjid}}</td>
+                            <td>{{row.almName}}</td>
+                            <td>{{row.alarmKind.name}}</td>
+                            <td>{{row.almAlarmlevel.alvName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <tm-pagination conf="paginationConf"></tm-pagination>
+        </form>
+    </div>
+    <div class="clear"></div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="save();">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="cancel();">Close</button>
+    </div>
+</div>

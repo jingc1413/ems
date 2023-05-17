@@ -1,0 +1,84 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <div class="col-md-12 col-lg-12">
+        <!-- <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation"> -->
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div class="form-group">
+                <input type="text" class="form-control zz-input float-input" id="1nput01" placeholder="{{'deviceManagement.CPEdeviceManagement.CPEdevice.Group.SearchInput'|translate}}" ng-model="query.groupName" maxlength="50" ng-keypress="($event.which === 13)?search():0"
+                />
+                <button class="btn btn-green  btn-sm btn-pd" title="{{'deviceManagement.CPEdeviceManagement.CPEdevice.Group.Search'|translate}}" ng-click="search();"><i class="fa fa-search"></i></button>
+            </div>
+            <div class="col-md-12 col-lg-12 pad0">
+                <table class="table table-hover table-bordered-m">
+                    <thead>
+                        <tr class="black-muted-bg">
+                            <th class="align-left">
+                                <input id="flag" type="checkbox" class="cursor" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                            </th>
+                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Group.name">NAME</th>
+                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Group.description">DESCRIPTION
+                            </th>
+                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Group.action">ACTION
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items">
+                            <td class="align-left" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" />
+                            </td>
+                            <td class="align-left" ng-click="editGroup(item)"><a href="">{{item.groupName}}</a></td>
+                            <td class="align-left">{{item.description}}</td>
+                            <!-- <td class="align-left"><button class="btn btn-danger btn-raised btn-xs" ng-model="deleteItem" ng-click="deleteItem(item)"><span class="glyphicon glyphicon-minus align-center"></span></button></td> -->
+                            <td class="align-left"><button class="btn btn-danger btn-raised btn-xs" ng-model="deleteItem" ng-click="deleteItem(item)"><span
+                                        class="align-center" translate="buttons.delete">delete</span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+        <!-- </form> -->
+    </div>
+    <div class="col-md-12 col-lg-12 mar-t-20" ng-show="isAdd == false">
+        <form action="" name="addForm" ng-submit="submitForm(addForm.$valid)">
+            <div class="col-md-12 col-lg-12 ">
+                <label for="" class="zz-lable-sm" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Group.name">NAME</label>
+            </div>
+            <div class="col-md-12 col-lg-12 ">
+                <input type="text" style="width: 80%;" name="paramsName" class="form-control zz-input float-input" ng-model="param.groupName" required ng-pattern="/^[\u4e00-\u9fa5\d]{1,10}$|^[\dA-Za-z_]{1,20}$/">
+                <span style="color:red" ng-show="addForm.paramsName.$error.required">*</span>
+                <span style="color:red" ng-show="addForm.paramsName.$dirty && addForm.paramsName.$invalid">
+                    <!-- <span style="color:red" ng-show="addForm.paramsName.$error.maxlength">*Maximum length cannot
+                        exceed 10</span> -->
+                <span style="color:red" ng-show="addForm.paramsName.$error.pattern">*No more than 10 Chinese characters, or 20 bytes (numbers, letters, underscores)!</span>
+                </span>
+                </span>
+            </div>
+            <div class="col-md-12 col-lg-12 ">
+                <label for="" class="zz-lable-sm" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Group.description">DESCRIPTION</label>
+            </div>
+            <div class="col-md-12 col-lg-12 ">
+                <input type="text" style="width: 80%;" name="description" class="form-control zz-input float-input" ng-model="param.description" ng-maxlength="50">
+                <span style="color:red" ng-show="addForm.description.$error.required">*</span>
+                <span style="color:red" ng-show="addForm.description.$dirty && addForm.description.$invalid">
+                    <span style="color:red" ng-show="addForm.description.$error.maxlength">*Maximum length cannot
+                        exceed 50</span>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary float-l" ng-show="isAdd" ng-click="add()" title="{{'deviceManagement.CPEdeviceManagement.CPEdevice.Group.addNewGroup'|translate}}" type="submit"><span class="glyphicon glyphicon-plus"></span></button>
+        <!-- <button type="button" class="btn btn-primary float-l" ng-show="isAdd == false" ng-click="addGroup()" title="Confirm" ng-disabled="addForm.$invalid" type="submit"><span class="glyphicon glyphicon-ok"></span></button> -->
+        <button type="button" class="btn btn-primary float-l" translate="buttons.add" ng-show="isAdd == false" ng-click="addGroup()" title="Confirm" ng-disabled="addForm.$invalid" type="submit">Add</button>
+        <button type="button" class="btn btn-primary" translate="buttons.Save" ng-disabled="isSave" ng-click="save()" ng-show="isShow" type="submit">Save</button>
+        <button type="button" class="btn btn-primary" translate="buttons.Close" ng-click="close()" type="submit">Close</button>
+    </div>
+</div>

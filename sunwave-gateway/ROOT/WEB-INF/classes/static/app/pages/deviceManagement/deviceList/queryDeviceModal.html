@@ -1,0 +1,56 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">Query Device</h4>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm">
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="inputStatus" class="zz-label-sm">Communication Type:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.ctpId" ng-options="commtype.ctpId as commtype.ctpName for commtype in commtypes" style="width: 40%;" ng-init="modal.ctpId =7" ng-change="selectCommtype();" required>
+                        <!-- <option value="">--Please Select--</option> -->
+                        <!-- <option value="6">UDP</option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="inputStatus" class="zz-label-sm">Device Type:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle float-l" ng-model="modal.neDevicetype.dtpDevicetypeid" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes" name="deviceType" style="width: 40%;" ng-change="changeDeviceType();"
+                        required>
+                            <option value="">--Please Select--</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm">Device ID:</label>
+                    <input type="text" class="zz-input-sm form-control" id="DeviceID" ng-model="modal.neQryRepeaterId" placeholder="Please Input">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm">Device Ip:</label>
+                    <input type="text" class="zz-input-sm form-control" id="DeviceIp" ng-model="modal.neDeviceIP" placeholder="Please Input">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5 mar-l-60">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm">Device Port:</label>
+                    <input type="text" class="zz-input-sm form-control" id="DevicePort" ng-model="modal.neDevicePort" placeholder="Please Input">
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="myForm.$invalid" type="submit">Query</button>
+            <button type="button" class="btn btn-default" ng-click="close()" ng-disabled="myForm.$invalid" type="submit">Close</button>
+        </div>
+    </form>
+</div>

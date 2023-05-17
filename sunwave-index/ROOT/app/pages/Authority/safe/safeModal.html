@@ -1,0 +1,150 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal form-validation" class="form-control" ng-submit="submitForm()">
+        <div class="modal-body">
+            <div class="form">
+                <!-- <div class="col-lg-12 col-md-12 form-group">
+                <div class="col-lg-3 col-md-3" style="margin-top: 5px;">
+                    <button class="btn m-b-xs btn-sm btn-info" ng-model="getAreaTree" ng-click="getAreaTree();"><i></i>选择上级地区</button>
+                </div>
+                <div class="col-lg-4 col-md-4 pad0" style="margin-top: 10px;">
+                    <span>上级地区：{{upAreaName}}</span>
+                </div>
+            </div> -->
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class=" control-label col-md-2" translate="Authority.safeManagement.modal.Name">Name</label>
+                    <div class="col-md-9 pad0">
+                        <input id="name" name="name" type="text" class="form-control" ng-model="user.name" ng-maxlength=20 placeholder="" required />
+                        <small class="error" ng-show="userForm.name.$error.maxlength" style="color:red;float:left;" translate="Authority.safeManagement.modal.NameTips1">
+                        *Name cannot be longer than 20 characters.
+                        ng-pattern="/^[A-Za-z0-9_\u0800-\u4e00\u4e00-\u9fa5]+$/"
+                        </small>
+                        <small class="error" ng-show="userForm.name.$error.pattern" style="color:red;float:left;" translate="Authority.safeManagement.modal.NameTips2">
+                        *A name can only consist of numbers, letters and underscores.
+                        </small>
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.name.$error.required">*</span>
+
+                    <div class="error" ng-show="userForm.name.$dirty && userForm.name.$invalid" style="display: inline-block;margin-left: 40px;">
+                        <!-- <small class="error" ng-show="userForm.name.$error.required" style="color:red;float:right;">
+                        *Name is required.
+                        </small> -->
+
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 form-group">
+                    <label class=" control-label col-md-2">ID</label>
+                    <div class="col-md-9 pad0">
+                        <input id="id" name="id" type="text" class="form-control" ng-model="user.id" required placeholder="" ng-pattern="/^(([0-9]|([1-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5]))))$/"/>
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.id.$error.required">*</span>
+                    <div class="control-label col-md-2"></div>
+                    <div class="error" ng-show="userForm.id.$dirty && userForm.id.$invalid">
+
+                        <small class="error" ng-show="userForm.id.$error.pattern" style="color:red;float:left;">
+                        *ID can only consist of numbers and the range is 0-255.
+                        </small>
+                    </div>
+                </div> -->
+
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class=" control-label col-md-2" translate="Authority.safeManagement.modal.UserName">UserName</label>
+                    <div class="col-md-9 pad0">
+                        <input id="username" name="username" type="text" class="form-control" ng-model="user.username" placeholder="" ng-maxlength=20 ng-readonly="isSelf" required />
+                        <small class="error" ng-show="userForm.username.$error.maxlength" style="color:red;float:left;" translate="Authority.safeManagement.modal.UserNameTips">
+                        *UserName cannot be longer than 20 characters.
+                        ng-pattern="/^[A-Za-z0-9_\u0800-\u4e00\u4e00-\u9fa5]+$/"
+                        </small>
+                        <small class="error" ng-show="userForm.username.$error.pattern" style="color:red;float:left;" translate="Authority.safeManagement.modal.NameTips2">
+                        *A name can only consist of numbers, letters and underscores.
+                        </small>
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.username.$error.required">*</span>
+
+                    <div class="error" ng-show="userForm.username.$dirty && userForm.username.$invalid" style="display: inline-block;margin-left: 40px;">
+                        <!-- <small class="error" ng-show="userForm.username.$error.required" style="color:red;float:right;">
+                        *UserName is required.
+                        </small> -->
+
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 form-group" ng-if="isPassword">
+                    <label class=" control-label col-md-2" translate="Authority.safeManagement.modal.Password">Password</label>
+                    <div class="col-md-9 pad0">
+                        <input id="password" name="password" type="text" class="form-control" ng-model="user.password" placeholder="" ng-required="isPassword" ng-readonly="readonlyPasw" ng-maxlength="40" />
+                        <small class="error" ng-show="userForm.password.$error.maxlength" style="color:red;" translate="Authority.safeManagement.modal.PasswordTips">*Password cannot be longer than 40 characters.</small>
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.password.$error.required">*</span>
+
+                    <!-- <div class="control-label col-md-2"></div>
+                    <div class="error"  ng-show="userForm.password.$dirty && userForm.password.$invalid">
+                        <small class="error" ng-show="userForm.password.$error.maxlength" style="color:red;float:right;">
+                        *Password cannot be longer than 20 characters.
+                        </small>
+                        <small class="error" ng-show="userForm.password.$error.pattern" style="color:red;float:left;">
+                            *The password consists of numbers and is between 8 and 15 in length.
+                            </small>
+                    </div> -->
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label for="email" class=" control-label col-md-2" translate="Authority.safeManagement.modal.Email">Email</label>
+                    <div class="col-md-9 pad0">
+                        <input id="email" name="email" type="text" class="form-control" ng-model="user.email" placeholder="" ng-pattern="/^([A-Za-z0-9_\-\.])+\@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/" ng-maxlength="40" required />
+
+                        <small class="error" ng-show="userForm.email.$error.pattern" style="color:red;float: left;" translate="Authority.safeManagement.modal.EmailTips">
+                        *Email format is wrong!
+                        </small>
+                        <small class="error" ng-show="userForm.email.$error.maxlength" style="color:red;float: left;" translate="Authority.safeManagement.modal.PasswordTips"></small>
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.email.$error.required">*</span>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label for="phone" class=" control-label col-md-2" translate="Authority.safeManagement.modal.Phone">Phone</label>
+                    <div class="col-md-9 pad0">
+                        <input id="phone" name="phone" type="text" class="form-control" ng-model="user.phone" ng-maxlength="20" ng-pattern="/^(\+|\d)[\-0-9]{0,20}$/" placeholder="" />
+                        <span style="color:red" ng-show="userForm.phone.$dirty && userForm.phone.$invalid">
+                            <small class="error" ng-show="userForm.phone.$error.pattern || userForm.phone.$error.maxlength" style="color:red;" translate="SysManagement.vendorManagement.modal.PhoneTips">
+                                *Phone can only contain numbers or +, - and cannot exceed 20 digits
+                            </small>
+                        </span>
+                    </div>
+
+                    <!--ng-pattern="/^\d{3}-\d{8}|\d{4}-\d{7}|\+\d{0,19}|[0-9]{11}$/"
+                     <small class="error" ng-show="userForm.phone.$error.pattern" style="color:red;float: left;display: inline-block;margin-left: 40px;" translate="Authority.safeManagement.modal.PhoneTips">
+                        *Phone format is 555-55555555 or 5555-5555555 or +5555555 or 11 digits!
+                    </small> -->
+
+
+                </div>
+
+                <!-- <div class="col-lg-12 col-md-12 form-group">
+                    <label class=" control-label col-md-2">Area</label>
+                    <button class="btn btn-sm btn-info btn-raised btn-pd-sm col-md-1" ng-model="getTree" ng-click="getAreaTree();"><i></i>select</button>
+                    <div class="col-md-8 pad0">
+                        <input id="area" name="area" type="text" class="form-control" ng-model="user.areaName" readonly required placeholder="Please Select" />
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.area.$error.required">*</span>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class=" control-label col-md-2">Role</label>
+                    <button class="btn btn-sm btn-info btn-raised btn-pd-sm col-md-1" ng-model="getRole" ng-click="getRole();"><i></i>select</button>
+                    <div class="col-md-8 pad0">
+                        <input id="role" name="role" type="text" class="form-control" ng-model="user.roleName" readonly required />
+                    </div>
+                    <span style="color:red;font-size: 10px;" ng-show="userForm.role.$error.required">*</span>
+                </div> -->
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="saveEdit();" translate="buttons.Save">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" translate="buttons.Close">Close</button>
+    </div>
+    </form>
+</div>

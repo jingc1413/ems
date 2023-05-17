@@ -1,0 +1,97 @@
+<div class="col-md-12 col-lg-12">
+    <div class="col-md-4 col-lg-4">
+        <div class="panel panel-default bootstrap-panel xsmall-panel">
+            <div class="panel-heading">Current Alarm</div>
+            <div class="panel-body flex-panel-body">
+                <div class="control-group margin-botm-20">
+                    <!-- <div class="control">
+                        <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="options.compress" type="checkbox" id="closeButton" class="ng-pristine ng-untouched ng-valid ng-empty">
+                        <span>Alarm Compress</span>
+                    </label>
+                    </div> -->
+                    <div class="control">
+                        <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="options.mask" type="checkbox" id="html"  class="ng-valid ng-dirty ng-valid-parse ng-touched ng-empty" >
+                        <span>Alarm Mask</span>
+                    </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <div class="panel panel-default bootstrap-panel xsmall-panel">
+            <div class="panel-heading">Alarm Forward</div>
+            <div class="panel-body flex-panel-body">
+                <div class="control-group margin-botm-20">
+                    <div class="control">
+                        <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="options.forward" type="checkbox" id="alarmForward"  class="ng-pristine ng-untouched ng-valid ng-empty">
+                        <span>Alarm Forward</span>
+                    </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <!-- <button class="btn btn-green btn-sm btn-pd" ng-click="save();"><i class="fa fa-check"></i>save</button>
+        <button class="btn btn-reset btn-sm btn-pd"><i class="fa fa-rotate-right"></i>reset</button> -->
+        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+    </div>
+</div>
+
+<div class="col-md-12 col-lg-12">
+    <div class="col-md-12 col-lg-4" ng-show="options.forward">
+        <div class="panel panel-default bootstrap-panel xsmall-panel">
+            <div class="panel-heading">Forward Time</div>
+            <div class="panel-body flex-panel-body">
+                <div class="controls radio-controls margin-botm-20 no-wrap-box">
+                    <div class="input-demo radio-demo row">
+                        <div class="col-md-4">
+                            <label class="radio-inline custom-radio nowrap">
+                            <input type="radio" name="Select" id="inlineRadio1" value="1" ng-model="options.timeSelect">
+                            <span>24</span>
+                          </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="radio-inline custom-radio nowrap">
+                            <input type="radio" name="timeSelect" id="inlineRadio2" value="2" ng-model="options.timeSelect">
+                            <span>time</span>
+                          </label>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-8" ng-show="options.timeSelect == '2'">
+        <div class="panel panel-default bootstrap-panel xsmall-panel">
+            <div class="panel-heading">Part</div>
+            <div class="panel-body">
+                <!-- <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-4 col-md-12" uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                    <span class="col-md-2 col-lg-1" style="padding: 40px 0;text-align: center;">To</span>
+                    <div class="col-lg-4 col-md-12" uib-timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep" minute-step="mstep" second-step="sstep" show-meridian="ismeridian"></div>
+
+                    <div class="time-btn-col col-md-12 col-lg-3" style="padding: 35px 0;">
+                        <button type="button" class="btn btn-sm btn-info" ng-click="toggleMode()">12H / 24H</button>
+                        <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+                    </div>
+                </div> -->
+
+                <div class="col-md-12 col-lg-12 cent">
+                    <!-- <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="BeginTime" id="beginTime" btns="{'ok':'ok','now':'today'}" ng-model="query.beginTime">
+                    </wui-date> -->
+                    <wui-date class="mar-r-20" format="yyyy-mm-dd hh:mm:ss" placeholder="Please Select" id="date4" btns="{'ok':'ok','now':'now'}" ng-model="options.forwardTime1">
+                    </wui-date>
+                    <wui-date class="mar-r-20" format="yyyy-mm-dd hh:mm:ss" placeholder="Please Select" id="date4" btns="{'ok':'ok','now':'now'}" ng-model="options.forwardTime2">
+                    </wui-date>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

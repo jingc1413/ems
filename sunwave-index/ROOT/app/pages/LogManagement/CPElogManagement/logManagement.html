@@ -1,0 +1,97 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <input type="text" class="form-control zz-input float-input" style="width: 100%;" id="1nput02" placeholder="Search by SERIALNUMBER" ng-model="query.serialNumber" maxlength="20" />
+                    </div>
+                    <div class="col-lg-2 col-md-2 pad0">
+                        <!-- <input type="text" class="form-control zz-input float-input" style="width: 100%;" id="1nput01" placeholder="Search by MANUFACTURER" ng-model="query.manufacturer" maxlength="20" /> -->
+                        <select class="zz-input pad2 form-control inline v-middle wid-100" ng-model="query1.manufacturer" ng-options="data for data in ManufacturerItems">
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-2 pad0">
+                        <select class="zz-input pad2 form-control inline v-middle wid-100" ng-model="query.isDone">
+                            <option value="" translate="LogManagement.CPElogManagement.All">All</option>
+                            <option value="1" translate="LogManagement.CPElogManagement.UpgradeComplete">Upgrade Complete</option>
+                            <option value="0" translate="LogManagement.CPElogManagement.UpgradeIncomplete">Upgrade Incomplete</option>
+                            </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <button class="btn btn-green  btn-sm btn-pd float-l" ng-click="search();" ng-keypress="($event.which === 13)?search():0"><i
+                        class="fa fa-search">Search</i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-6 col-md-6">
+                <span style="float: right;">
+                     <button class="btn  btn-primary btn-raised btn-xs" ng-click="toAddItem()" title="Upload File"><span class="glyphicon glyphicon-plus"></span></button> 
+                <button class="btn btn-info btn-xs" ng-click="toModifyItem()" title="Edite"><span class="glyphicon glyphicon-edit"></span></button> 
+                 <button class="btn btn-danger btn-xs" ng-model="deleteItem" title="Delete File" ng-click="deleteItem()"><span class="glyphicon glyphicon-minus align-center"></span></button>
+                 <button class="btn btn-warning btn-raised btn-xs" ng-click="toConfigure()" title="Locked">
+                    <span class="glyphicon glyphicon-lock"></span></button> 
+
+                </span>
+                <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="select date" id="operationDate" btns="{'ok':'ok','now':'today'}" ng-model="mi.endTime" style="width: 100%;">
+                </wui-date> 
+            </div> -->
+        </div>
+        <!-- <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-12 col-md-12">
+                
+            </div>
+        </div> -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg" style="height:28px">
+                                <!-- <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th> -->
+                                <th class="align-left" translate="LogManagement.CPElogManagement.NO">NO.</th>
+                                <th class="align-left" translate="LogManagement.CPElogManagement.SerialNumber">SERIALNUMBER
+                                </th>
+                                <th class="align-left" translate="LogManagement.CPElogManagement.Manufacturer">MANUFACTURER
+                                </th>
+                                <th class="align-left" translate="LogManagement.CPElogManagement.CreationTime">CREATIONTIME
+                                </th>
+                                <th class="align-left" translate="LogManagement.CPElogManagement.DoneTime">DONETIME
+                                </th>
+                                <th class="align-left" translate="LogManagement.CPElogManagement.OldVersion">OLD VERSION
+                                </th>
+                                <th class="align-left" translate="LogManagement.CPElogManagement.NewVersion">NEW VERSION
+                                </th>
+                                <th class="align-left" translate="LogManagement.CPElogManagement.Message">MESSAGE
+                                </th>
+                                <th class="align-left" translate="LogManagement.CPElogManagement.Done">Done
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" style="height:28px">
+                                <!-- <td class="align-left">
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td> -->
+                                <td class="align-left">{{$index+1+query.pageIndex*query.pageSize-query.pageSize}}</td>
+                                <td class="align-left">{{item.serialNumber}}</td>
+                                <td class="align-left">{{item.manufacturer}}</td>
+                                <td class="align-left">{{item.creationTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td class="align-left">{{item.doneTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td class="align-left">{{item.oldVersion}}</td>
+                                <td class="align-left">{{item.newVersion}}</td>
+                                <td class="align-left">{{item.message}}</td>
+                                <td class="align-left">{{item.isDone}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

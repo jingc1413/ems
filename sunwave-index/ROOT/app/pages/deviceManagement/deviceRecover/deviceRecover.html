@@ -1,0 +1,101 @@
+<div class="widgets">
+    <!-- <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-3 col-md-6 pad0">
+                <div class="form-group">
+                    <label for="input01" class="zz-label">设备编号：</label>
+                    <input type="text" class="zz-input form-control" id="input01" placeholder="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 pad0">
+                <div class="pad0 float-l form-group col-lg-6 col-md-12">
+                    <label for="input01" class="zz-label zz-label-r">Search Condition:</label>
+                    <select class="zz-input pad2 form-control inline v-middle">
+                        <option value="0">设备名字</option>
+                        <option value="1">设备类型</option>
+                        <option value="2">设备状态</option>
+                    </select>
+                </div>
+                <input type="text" class="zz-input form-control" id="input01" placeholder="" style="width:40%" />
+            </div>
+        </div> -->
+    <div class="col-lg-12 col-md-12 pad0">
+        <div class="pad2 form-group col-lg-3 col-md-4">
+            <button class="btn btn-info btn-raised btn-pd float-l" ng-model="getTree" ng-click="getAreaTree();" translate="buttons.area">Area</button>
+            <input type="text" class="zz-input form-control" id="AreaInput" ng-model="areaInput" placeholder="" readonly="true">
+        </div>
+        <div class="pad2 col-lg-4 col-md-4">
+            <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i><span translate="buttons.search">Search</span></button>
+            <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+        </div>
+    </div>
+    <div class="mar0 row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <!-- <button class="btn btn-info btn-raised btn-pd" ng-click="startRecover();">start to recover</button>
+                <button class="btn btn-danger btn-raised btn-pd" ng-click="physicalDele();">physical delete</button> -->
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+        </div>
+    </div>
+    <div class="pad0 col-lg-12 col-md-12" ba-panel ba-panel-class="with-scroll table-panel">
+        <div class="horizontal-scroll">
+            <table class="table table-hover table-bordered-m">
+                <thead>
+                    <tr class="black-muted-bg">
+                        <!-- <th class="align-left">
+                                <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                            </th> -->
+                        <th width="3%">
+                            <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                        </th>
+                        <th class="align-left">NO.</th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.DeviceName"></span>
+                            <my-Order query="query" search="search()" order-name='neName'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.DeviceID"></span>
+                            <my-Order query="query" search="search()" order-name='neRepeaterid'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.DeviceSubID"></span>
+                            <my-Order query="query" search="search()" order-name='neDeviceid'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.DevicePort"></span>
+                            <my-Order query="query" search="search()" order-name='neDeviceport'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.RouteAddress"></span>
+                            <my-Order query="query" search="search()" order-name='neRoute'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.UpdateTime"></span>
+                            <my-Order query="query" search="search()" order-name='neLastupdatetime'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.DeviceStatus"></span>
+                            <my-Order query="query" search="search()" order-name='neDevicestatus'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.VendorName"></span>
+                            <my-Order query="query" search="search()" order-name='neCompany'></my-Order>
+                        </th>
+                        <th class="align-left"><span translate="deviceManagement.table.thead.Area"></span>
+                            <my-Order query="query" search="search()" order-name='sysArea.areaName'></my-Order>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                        <td>
+                            <input type="checkbox" name="selected" ng-model="item.checked" ng-change="selectOne()" />
+                        </td>
+                        <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                        <td class="align-left ">{{item.neName}}</td>
+                        <td class="align-left ">{{item.neRepeaterid16}}</td>
+                        <td class="align-left ">{{item.neDeviceid}}</td>
+                        <td class="align-left ">{{item.neDeviceport}}</td>
+                        <td class="align-left ">{{item.neRoute}}</td>
+                        <td class="align-left ">{{item.neLastupdatetime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td class="align-left ">{{item.neDevicestatus.dsName}}</td>
+                        <td class="align-left ">{{item.neCompany.coName}}</td>
+                        <td class="align-left ">{{item.sysArea.areaName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <!-- <h3 class="with-line">基本信息</h3> -->
+    <div class="modal-body" style="padding-bottom: 5px;">
+        <div class="col-md-12 col-lg-12 pad0">
+            <div class="col-md-6 col-lg-6 border-blue">
+                <div class="with-line-bg">
+                    <h3 class="with-line-2">Available Parameters</h3>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-5 col-md-5 pad0">
+                        <div class="form-group">
+                            <label for="input01" class="zz-label-sm line-height-15">Params Name:</label>
+                            <input type="text" class="zz-input-sm form-control" ng-model="query.objObjname" placeholder="Please Input">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 pad0">
+                        <div class="form-group">
+                            <label for="input01" class="zz-label-sm">Parameter Type:</label>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="paramsType" ng-change="filterParamsType();" ng-init="paramsType='0'" style="width: 58%;">
+                                <option value="0">All</option>
+                                <option value="1">Device Information</option>
+                                <option value="2">Network Management</option>
+                                <option value="3">Alarm Name</option>
+                                <option value="4">Alarm Enable</option>
+                                <option value="5">Set Parameter</option>
+                                <option value="6">Sampling data</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 pad0">
+                        <button class="btn params-btn btn-green btn-sm" ng-click="searchBatchQuery();"><i class="fa fa-search"></i>Search</button>
+                    </div>
+                </div>
+                <div>
+                    <!-- <table id="table"></table> -->
+                    <table class="table-gd table table-bordered-s">
+                        <thead class="">
+                            <tr class="">
+                                <th>
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th>No.</th>
+                                <th>Parameter ID
+                                    <my-Order query="query" search="searchBatchQuery()" order-name='objObjid'></my-Order>
+                                </th>
+                                <th>Parameter Name
+                                    <my-Order query="query" search="searchBatchQuery()" order-name='objObjname'></my-Order>
+                                </th>
+                                <!-- <th>Set Value</th> -->
+                                <th>Parameter Type
+                                    <my-Order query="query" search="searchBatchQuery()" order-name='objActivetype'></my-Order>
+                                </th>
+                                <!-- <th>objEnname</th> -->
+                            </tr>
+                        </thead>
+                        <tbody class="sm-table-body">
+                            <tr class="" ng-repeat="row in rows">
+                                <td><input type="checkbox" ng-model="row.checked" ng-change="selectOne()" /></td>
+                                <td>{{$index+1}}</td>
+                                <td>{{row.objObjid}}</td>
+                                <td>{{row.objObjname}}</td>
+                                <!-- <td ng-click="edit($event)">{{row.setValue}}</td> -->
+                                <td>{{row.objActivetype}}</td>
+                                <!-- <td>{{row.objEnname}}</td> -->
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+
+            </div>
+            <div class="center-f">
+                <button type="button" class="btn btn-info btn-with-icon center-f-btn" ng-click="doubleSelectToRight();"><i class="fa fa-arrow-right"></i></button>
+                <button type="button" class="btn btn-info btn-with-icon center-f-btn" style="display: block;margin-top: 20px;" ng-click="doubleSelectToLeft();"><i class="fa fa-arrow-left"></i></button>
+
+            </div>
+            <div class="col-md-6 col-lg-6 border-blue">
+                <div class="with-line-bg">
+                    <h3 class="with-line-2">Selected Parameters</h3>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-5 col-md-5 pad0">
+                        <div class="form-group">
+                            <label for="input01" class="zz-label-sm line-height-15">Params Name:</label>
+                            <input type="text" class="zz-input-sm form-control" ng-model="query_front.objObjname_front" placeholder="Please Input">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 pad0">
+                        <div class="form-group">
+                            <label for="input01" class="zz-label-sm">Parameter Type:</label>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" style="width: 40%;" ng-model="paramsType_front" ng-change="filterParamsType_front();" ng-init="paramsType_front ='0'">
+                                <option value="0">All</option>
+                                <option value="1">Device Information</option>
+                                <option value="2">Network Management</option>
+                                <option value="3">Alarm Name</option>
+                                <option value="4">Alarm Enable</option>
+                                <option value="5">Set Parameter</option>
+                                <option value="6">Sampling data</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 pad0">
+                        <button class="btn btn-green params-btn btn-sm" ng-click="searchForm2();"><i class="fa fa-search"></i>Search</button>
+                    </div>
+                </div>
+                <div>
+                    <!-- <table id="table"></table> -->
+                    <table class="table-gd table table-bordered-s" style="height: 242px;">
+                        <thead class="">
+                            <tr class="">
+                                <th>
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all2" ng-change="selectAll2()"></input>
+                                </th>
+                                <th>No.</th>
+                                <th>Parameter ID</th>
+                                <th>Parameter Name</th>
+                                <!-- <th>Set Value</th> -->
+                                <th>Parameter Type</th>
+                                <!-- <th>objEnname</th> -->
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <!-- ngRepeat: row in rows2 -->
+                            <tr class="" ng-repeat="row2 in rows2">
+                                <td><input type="checkbox" ng-model="row2.checked" ng-change="selectOne2()" /></td>
+                                <td>{{$index+1}}</td>
+                                <td>{{row2.objObjid}}</td>
+                                <td>{{row2.objObjname}}</td>
+                                <!-- <td ng-click="edit($event)">{{row.setValue}}</td> -->
+                                <td>{{row2.objActivetype}}</td>
+                                <!-- <td>{{row2.objEnname}}</td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="right-select-div">Selected:<span class="right-select-span">{{count2}}</span></div>
+                </div>
+                <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>

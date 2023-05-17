@@ -1,0 +1,90 @@
+<div class="modal-content myDir my-dir container-fiuled" my-dir id="mymodal">
+    <div class="modal-head-new-nobg modal-header">
+        <button type="button" class="close" ng-click="close();" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <button type="button" class="close" ng-click="InitInterface($event,elem);" ng-show="max">
+        <i class="fa fa-square-o max-icon"></i>
+      </button>
+        <button type="button" class="close" ng-click="InitInterface2($event,elem);" ng-show="min">
+        <i class="fa fa-minus max-icon"></i>
+      </button>
+        <!-- <max></max> -->
+        <span class="modal-title" id="myModalLabel" style="color: #525252;">{{title}}</span>
+    </div>
+    <div class="modal-body pad0" style="padding-bottom: 5px;padding-top: 0px;">
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-3 col-lg-3 col-sm-12 pad-left-0">
+                <div class="panel with-scroll heading-widget animated zoomIn">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title">Params Management</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="zTreeDemoBackground left tree-bg-b">
+                            <ul id="paramTree" class="ztree"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 pad0">
+                <div class="panel with-scroll heading-widget animated zoomIn">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title">Params Management</h3>
+                    </div>
+                    <div class="panel-body horizontal-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead class="low-green">
+                                <tr>
+                                    <th width="3%">
+                                        <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                    </th>
+                                    <th class="table-id">#</th>
+                                    <th>Parameter Name
+                                        <my-Order query="query" search="search()" order-name='ParameterName'></my-Order>
+                                    </th>
+                                    <th>Parameter Identification
+                                        <my-Order query="query" search="search()" order-name='ParameterIdentification'></my-Order>
+                                    </th>
+                                    <th>Parameter Value
+                                        <my-Order query="query" search="search()" order-name='ParameterValue'></my-Order>
+                                    </th>
+                                    <th>Set Value
+                                        <my-Order query="query" search="search()" order-name='SetValue'></my-Order>
+                                    </th>
+                                    <th>Notification Type
+                                        <my-Order query="query" search="search()" order-name='NotificationType'></my-Order>
+                                    </th>
+                                    <th>Update Time
+                                        <my-Order query="query" search="search()" order-name='UpdateTime'></my-Order>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in items" class="" ng-class="{'table-tr-checked':item.checked}">
+                                    <td>
+                                        <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                    </td>
+                                    <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                    <td class="align-left">{{item.ParameterName}}</td>
+                                    <td class="align-left">{{item.ParameterIdentification}}</td>
+                                    <td class="align-left">{{item.ParameterValue}}</td>
+                                    <td class="align-left">
+                                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-show="value_isSet" ng-options="set.valueKey as set.valueValue for set in item.SetValue" ng-model="params.setValue" style="width: 120px;">
+                                            <option value="">--Please Select--</option>
+                                        </select>
+                                    </td>
+                                    <td class="align-left">{{item.NotificationType}}</td>
+                                    <td class="align-left">{{item.UpdateTime}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <tm-pagination conf="paginationConf"></tm-pagination>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

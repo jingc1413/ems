@@ -1,0 +1,28 @@
+{
+    "name": "flare",
+    "children": [
+        {
+            "name": "flex",
+            "children": [
+                {"name": "FlareVis", "value": 11}
+            ]
+        },
+        {
+            "name": "scale",
+            "children": [
+                {"name": "IScaleMap", "value": 112},
+                {"name": "LinearScale", "value": 12},
+                {"name": "LogScale", "value": 13},
+                {"name": "OrdinalScale", "value": 14},
+                {"name": "QuantileScale", "value": 15}
+
+            ]
+        },
+        {
+            "name": "display",
+            "children": [
+                {"name": "DirtySprite", "value": 2}
+            ]
+        }
+    ]
+}

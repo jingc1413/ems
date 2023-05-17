@@ -1,0 +1,20 @@
+{
+    "content": [{
+        "DeviceName": "test1",
+        "DeviceID": "11111111",
+        "DeviceSubID": "namename111",
+        "HeartbeatTime": "type111"
+    }, {
+        "DeviceName": "test2",
+        "DeviceID": "22222222",
+        "DeviceSubID": "namename222",
+        "HeartbeatTime": "type2222"
+    }, {
+        "DeviceName": "test3",
+        "DeviceID": "33333",
+        "DeviceSubID": "namename333",
+        "HeartbeatTime": "type33331"
+    }],
+    "totalElements": 100,
+    "deleteIs": "OK"
+}

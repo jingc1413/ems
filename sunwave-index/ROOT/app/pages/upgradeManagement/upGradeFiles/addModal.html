@@ -1,0 +1,55 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal" class="form-control" ng-submit="submitForm()"></form>
+    <div class="modal-body">
+        <div ng-class="{'cantModify':showSave==false}"></div>
+
+        <div class="form">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <label for="inputStatus" class="zz-label-sm col-md-3 col-lg-3 align-right" translate="UpgradeManagement.upGradeFiles.modal.VendorName">Vendor Name:</label>
+                    <select class="zz-input pad2 form-control inline v-middle" ng-model="modal.neCompanyId" ng-options="vName.coCompanyid as vName.coName for vName in vNames">
+                            <option value="" translate="UpgradeManagement.upGradeFiles.modal.PleaseSelect">--Please Select--</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm col-md-3 col-lg-3 align-right" translate="UpgradeManagement.upGradeFiles.modal.DeviceType">Device Type:</label>
+                    <select class="zz-input pad2 form-control inline v-middle" ng-model="modal.neDevicetypeId" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'">
+                            <option value="" translate="UpgradeManagement.upGradeFiles.modal.PleaseSelect">--Please Select--</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <label for="input01" class="zz-label-sm col-md-3 col-lg-3 align-right" translate="UpgradeManagement.upGradeFiles.modal.FTPServer">FTP Server:</label>
+                    <input type="text" class="zz-input form-control fl" id="input01" ng-model="modal.upFtpServerConfig.name" placeholder="" readonly="true" />
+                    <button type="button" class="btn btn-sm btn-success btn-raised" ng-click="getFTP();">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+                <p class="no-marg-p col-md-3 col-lg-3 align-right" translate="UpgradeManagement.upGradeFiles.modal.SelectFile">Select File: </p>
+                <span class="fileInput" id="text" ng-show="filegetClick" ng-bind="textS">{{textS}}</span>
+                <input type="file" onchange="angular.element(this).scope().fileGet()" ng-class="{'opcat': filegetClick}" id="fileUpload" ng-model="modal.file" nv-file-select="" uploader="uploader" multiple="true" style="height: 28px;">
+
+                <!-- <p class="m-t-md">Single</p>
+                        <input type="file" nv-file-select="" uploader="uploader"> -->
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="save();" ng-show="showSave" translate="buttons.Save">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="cancel();" translate="buttons.Close">Close</button>
+    </div>
+    </form>
+</div>

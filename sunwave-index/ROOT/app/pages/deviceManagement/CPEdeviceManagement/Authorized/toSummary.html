@@ -1,0 +1,205 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Device summary</h4>
+    </div>
+    <div class="col-lg-12 col-md-12 pad0">
+        <!-- <div class="col-lg-12 col-md-12">
+            <button class="btn btn-info btn-raised btn-pd" ng-model="toAddItem" ng-click="toDMC()"><i></i>DMC</button>
+        </div> -->
+    </div>
+    <div class="modal-body" style="padding-bottom: 5px;padding-top: 0px;">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-6 col-md-6 pad0">
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Identify:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.neNeid}}</label>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Manufaturer:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.manufacturer}}</label>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Edite by:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.updateUser}}</label>
+                    </div>
+                </div> -->
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Product:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.product}}</label>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">SerialNumber:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.serialNumber}}</label>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r" style="text-align: right;">SofewaveVersion:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.softwareVersion}}</label>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">CreatTime:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.creationTime}}</label>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">LastVisitTime:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.lastVisitTime}}</label>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Last boostract:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.lastBootstrapTime}}</label>
+                    </div>
+                </div> -->
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">LastReboot:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.lastRebootTime}}</label>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Deaiect:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.dialectIP}}</label>
+                    </div>
+                </div> -->
+                <!-- <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">IP:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.ip}}</label>
+                    </div>
+                </div> -->
+            </div>
+            <div class="col-lg-6 col-md-6 pad0">
+                <!-- <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Update:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.lastConnTime}}</label>
+                    </div>
+                </div> -->
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Status:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">
+                            <div class="box2" ng-if="info.onlineStatus == 2" title="Loading">
+                                <div class="r1"></div>
+                                <div class="r2"></div>
+                                <div class="r3"></div>
+                                <!-- <div class="r4"></div>
+                            <div class="r5"></div> -->
+                            </div>
+                            <div ng-if="info.onlineStatus == 0 ">
+                                <div class="markerRed" title="OutLine"></div>
+                            </div>
+                            <div ng-if="info.onlineStatus == 1 ">
+                                <div class="markerGreen" title="OnLine"></div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Access:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.access}}</label>
+                    </div>
+                </div> -->
+                <!-- <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Node affinity:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.nodeAffinit}}</label>
+                    </div>
+                </div> -->
+                <!-- <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">MAC address:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.macAddress}}</label>
+                    </div>
+                </div> -->
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-4 col-md-4 pad0">
+                        <label for="" class="zz-label-sm float-r">Auth req:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 pad0">
+                        <label for="" class="zz-label-sm pad0-0-5-10">{{info.coonReqUrl}}</label>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 ">
+                    <label for="" class="zz-label-sm">Action</label>
+                    <div class="col-lg-12 col-md-12 pad0">
+                        <button class="btn btn-danger btn-raised btn-pd" ng-click="toUpgrade()" title="Upgrade">
+                            <span class="glyphicon glyphicon-arrow-up"></span></button>
+                        <!-- <button class="btn btn-info btn-raised btn-pd" title="Add to favorite" ng-click="addFavorite()">
+                            <span class="glyphicon glyphicon-plus"></span></button> -->
+                        <button class="btn btn-info btn-raised btn-pd" ng-click="toSearchTree()" title="Parametric model tree">
+                            <span class="glyphicon glyphicon-tree-deciduous"></span></button>
+                        <button class="btn btn-warning btn-raised btn-pd" ng-click="toConfigure()" title="Configure">
+                            <span class="glyphicon glyphicon-cog"></span></button>
+                        <!-- <button class="btn btn-danger btn-raised btn-pd" ng-model="toModifyItem" ng-click=""
+                            title="Remove"><span class="glyphicon glyphicon-trash"></span></button> -->
+                        <button class="btn btn-primary btn-raised btn-pd" ng-click="reboot();" title="Reboot">
+                            <span class="glyphicon glyphicon-refresh"></span></button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-click="recovery();" title="Restore factory settings">
+                            <span class="glyphicon glyphicon-wrench"></span></button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-click="toDetails();" title="DeviceDetails">
+                                <span class="glyphicon glyphicon-stats"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-primary" ng-click="save()" ng-show="notView" ng-disabled="myForm.$invalid"
+            type="submit">Save</button> -->
+        <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Close</button>
+    </div>
+</div>

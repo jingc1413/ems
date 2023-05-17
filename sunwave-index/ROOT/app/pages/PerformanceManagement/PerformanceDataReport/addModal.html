@@ -1,0 +1,89 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <!-- <h3 class="with-line" translate="UpgradeManagement.searchCondition.TaskName">Basic Information</h3> -->
+    <form class="" name="myForm">
+        <div class="col-md-12 col-lg-12" style="padding-bottom: 5px;">
+            <div class="col-md-12 col-lg-12 pad0 mar-bom-10 mar-t-10">
+                <div class="col-lg-6 col-md-6 ">
+                    <div class="form-group">
+                        <label class="zz-label">报表名称:</label>
+                        <input type="text" class="zz-input-sm form-control" ng-model="modal.statementName" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="zz-label">所属厂商:</label>
+                        <select class="zz-input pad2 form-control inline v-middle " ng-model="selectIndexItem" ng-options="data.name for data in ManufactuerItem">
+                            <option value="">请选择</option>
+                    </div>
+                </div>
+                             
+            </div>
+            <div class="col-md-12 col-lg-12 pad0">
+                <div class="col-md-12 col-lg-12 ">
+                    <label class="zz-label">描述:</label>
+                </div>
+                <div class="col-md-12 col-lg-12 ">
+                    <textarea class="form-control" style="resize: none;" cols="30" rows="5" ng-model="modal.description"></textarea>
+                </div>
+            </div>
+           
+        </div>
+        <div class="col-md-12 col-lg-12 pad0">
+            <div class="col-md-6 col-lg-6 border-blue">
+                <div class="with-line-bg">
+                    <h3 class="with-line-2" translate="UpgradeManagement.modal.AvailableDevice">指标公式</h3>
+                </div>
+                <div class="">
+                    <div class="col-md-12 col-lg-12 zTreeDemoBackground left tree-bg-b pad0" style="height:400px;overflow: scroll;">
+                        <ul id="AuthorizeTree1" class="ztree"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="center-f">
+                <button type="button" class="btn btn-info btn-with-icon center-f-btn" ng-click="doubleSelectToRight();" ng-disabled="readOnly"><i class="fa fa-arrow-right"></i></button>
+                <button type="button" class="btn btn-info btn-with-icon center-f-btn" style="display: block;margin-top: 20px;" ng-click="doubleSelectToLeft();" ng-disabled="readOnly"><i class="fa fa-arrow-left"></i></button>
+            </div>
+            <div class="col-md-6 col-lg-6 border-blue">
+                <div class="with-line-bg">
+                    <h3 class="with-line-2">已选指标</h3>
+                </div>
+                <div class="" style="height: 400px;">
+                    <table class="table table-hover table-bordered-m">
+                        <thead class="">
+                            <tr class="black-muted-bg" style="background: #dbeeff;">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all2" ng-change="selectAll2()"></input>
+                                </th>
+                                <th class="align-left">指标名称
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <!-- ngRepeat: row in rows2 -->
+                            <tr class="black-muted-bg" ng-repeat="item in chooseSelect">
+                                <td class="align-left"><input type="checkbox" ng-model="item.checked" ng-change="selectOne2()" /></td>
+                                <td class="align-left">{{item.kpiName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+                    <!-- <div class="right-select-div" translate="UpgradeManagement.modal.Selected">Selected:<span class="right-select-span">{{count2}}</span></div> -->
+                </div>
+
+            </div>
+        </div>
+        <div class="clear"></div>
+</div>
+<div class="modal-footer">
+    <div class="col-md-12 col-lg-12"></div>
+    <button type="button" type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary" ng-click="save()"  translate="buttons.Save">Save</button>
+    <button type="button" class="btn btn-primary" ng-click="close();" translate="buttons.Close">Close</button>
+</div>
+</form>
+</div>

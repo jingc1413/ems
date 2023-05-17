@@ -1,0 +1,41 @@
+<main class="auth-main margin-login" ng-controller="LoginController">
+    <div class="auth-block">
+        <h1 style="text-align:center;">Sign11111 in to SUNWAVE CROSSFIRE NMS</h1>
+        <!-- <a href="reg.html" class="auth-link">New to Owl Admin? Sign up!</a> -->
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-offset-4 col-sm-4">
+                    <input type="text" class="login-input-txt form-control" ng-model="user.username" id="inputEmail3" placeholder="username">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-sm-4">
+                    <input type="password" class="login-input-txt form-control" ng-model="user.password" id="inputPassword3" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-sm-4">
+                    <button type="button" ng-click="login()" class="btn btn-info btn-auth btn-block">Sign in</button>
+                    <button type="button" ng-click="getUserInfo()" class="btn btn-primary btn-auth btn-block">Test token</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-sm-4">
+                    <a href class="forgot-pass">Forgot password?</a>
+                </div>
+            </div>
+        </form>
+
+
+        <!-- <div class="al-share-auth">
+            <ul class="al-share clearfix">
+                <li><i class="socicon socicon-facebook" title="Sign in with Facebook"></i></li>
+                <li><i class="socicon socicon-twitter" title="Sign in with Twitter"></i></li>
+                <li><i class="socicon socicon-google" title="Sign in with Google Plus"></i></li>
+                <li><i class="socicon socicon-linkedin" title="Sign in with Linkedin"></i></li>
+            </ul>
+        </div> -->
+        <p class="text-center m-t-m text-sm">2020 © SUNWAVE CROSSFIRE NMS 1.0</p>
+    </div>
+</main>

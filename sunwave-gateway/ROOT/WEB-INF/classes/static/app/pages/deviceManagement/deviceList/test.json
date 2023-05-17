@@ -1,0 +1,160 @@
+ {
+     "content": [{
+         "id": 0,
+         "DeviceID": "0000",
+         "DeviceSubID": "0",
+         "DeviceType": "Master A2",
+         "RouteAddress": "0.0.0.0",
+         "DeviceName": "N2AU2_3280",
+         "DeviceInstallationLocation": "581,hangzhousjkwj",
+         "City": "STATION01",
+         "County": "center01",
+         "SoftwareVersion": "1.1",
+         "SerialNumber": "111",
+         "UpdateTime": "2019-2-2",
+         "DeviceStatus": "in operation",
+         "DeviceIP": "10.0.3.2",
+         "OMTIP": "10.9.8.7",
+         "DevicePort": "2222",
+         "VendorName": "SUNWAVE",
+         "DevicePosition": "indoor",
+         "DeviceLevel": "normal"
+     }, {
+         "id": 1,
+         "DeviceID": "0001",
+         "DeviceSubID": "0",
+         "DeviceType": "Master A2",
+         "RouteAddress": "0.0.0.0",
+         "DeviceName": "N2AU2_3280",
+         "DeviceInstallationLocation": "581,hangzhousjkwj",
+         "City": "STATION01",
+         "County": "center01",
+         "SoftwareVersion": "1.1",
+         "SerialNumber": "111",
+         "UpdateTime": "2019-2-2",
+         "DeviceStatus": "in operation",
+         "DeviceIP": "10.0.3.2",
+         "OMTIP": "10.9.8.7",
+         "DevicePort": "2222",
+         "VendorName": "SUNWAVE",
+         "DevicePosition": "indoor",
+         "DeviceLevel": "normal"
+     }, {
+         "id": 2,
+         "DeviceID": "0002",
+         "DeviceSubID": "0",
+         "DeviceType": "Master A2",
+         "RouteAddress": "0.0.0.0",
+         "DeviceName": "N2AU2_3280",
+         "DeviceInstallationLocation": "581,hangzhousjkwj",
+         "City": "STATION01",
+         "County": "center01",
+         "SoftwareVersion": "1.1",
+         "SerialNumber": "111",
+         "UpdateTime": "2019-2-2",
+         "DeviceStatus": "in operation",
+         "DeviceIP": "10.0.3.2",
+         "OMTIP": "10.9.8.7",
+         "DevicePort": "2222",
+         "VendorName": "SUNWAVE",
+         "DevicePosition": "indoor",
+         "DeviceLevel": "normal"
+     }, {
+         "id": 3,
+         "DeviceID": "0003",
+         "DeviceSubID": "0",
+         "DeviceType": "Master A2",
+         "RouteAddress": "0.0.0.0",
+         "DeviceName": "N2AU2_3280",
+         "DeviceInstallationLocation": "581,hangzhousjkwj",
+         "City": "STATION01",
+         "County": "center01",
+         "SoftwareVersion": "1.1",
+         "SerialNumber": "111",
+         "UpdateTime": "2019-2-2",
+         "DeviceStatus": "in operation",
+         "DeviceIP": "10.0.3.2",
+         "OMTIP": "10.9.8.7",
+         "DevicePort": "2222",
+         "VendorName": "SUNWAVE",
+         "DevicePosition": "indoor",
+         "DeviceLevel": "normal"
+     }, {
+         "id": 4,
+         "DeviceID": "0004",
+         "DeviceSubID": "0",
+         "DeviceType": "Master A2",
+         "RouteAddress": "0.0.0.0",
+         "DeviceName": "N2AU2_3280",
+         "DeviceInstallationLocation": "581,hangzhousjkwj",
+         "City": "STATION01",
+         "County": "center01",
+         "SoftwareVersion": "1.1",
+         "SerialNumber": "111",
+         "UpdateTime": "2019-2-2",
+         "DeviceStatus": "in operation",
+         "DeviceIP": "10.0.3.2",
+         "OMTIP": "10.9.8.7",
+         "DevicePort": "2222",
+         "VendorName": "SUNWAVE",
+         "DevicePosition": "indoor",
+         "DeviceLevel": "normal"
+     }],
+     "cities": [{
+         "cityId": "1",
+         "cityLabel": "centres01"
+     }, {
+         "cityId": "2",
+         "cityLabel": "centres02"
+     }, {
+         "cityId": "3",
+         "cityLabel": "centres03"
+     }, {
+         "cityId": "4",
+         "cityLabel": "centres04"
+     }],
+     "counties": [{
+         "countyId": "1",
+         "countyLabel": "STATION01"
+     }, {
+         "countyId": "2",
+         "countyLabel": "STATION01"
+     }, {
+         "countyId": "3",
+         "countyLabel": "SUNWAVE"
+     }, {
+         "countyId": "4",
+         "countyLabel": "Floors"
+     }],
+     "treeData": [{
+         "id": "1",
+         "name": "SUNWAVE1",
+         "pId": "0",
+         "open": "true",
+         "checked": "true"
+     }, {
+         "id": "2",
+         "name": "SUNWAVE2",
+         "pId": "0"
+     }, {
+         "id": "11",
+         "name": "SUNWAVE11",
+         "pId": "1"
+     }, {
+         "id": "22",
+         "name": "SUNWAVE22",
+         "pId": "2"
+     }, {
+         "id": "222",
+         "name": "SUNWAVE222",
+         "pId": "22"
+     }, {
+         "id": "2222",
+         "name": "SUNWAVE2222",
+         "pId": "222"
+     }, {
+         "id": "22222",
+         "name": "SUNWAVE22222",
+         "pId": "2222"
+     }]
+ }

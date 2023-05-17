@@ -1,0 +1,457 @@
+<!-- <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" οnmοuseοut="removeModalBackdrop()">
+    <div class="modal-dialog" role="document"> -->
+<div class="modal-content myDir my-dir container-fiuled" my-dir id="mymodal">
+    <div class="modal-head-new-nobg modal-header">
+        <button type="button" class="close" ng-click="close();" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <button type="button" class="close" ng-click="InitInterface($event,elem);" ng-show="max">
+        <i class="fa fa-square-o max-icon"></i>
+      </button>
+        <button type="button" class="close" ng-click="InitInterface2($event,elem);" ng-show="min">
+        <i class="fa fa-minus max-icon"></i>
+      </button>
+        <!-- <max></max> -->
+
+        <span class="modal-title" id="myModalLabel" style="color: #525252;">{{title}}</span>
+    </div>
+    <div class="modal-body" style="padding-bottom: 5px;padding-top: 0px;">
+        <uib-tabset active="$tabSetStatus.activeTab">
+            <uib-tab heading="Basic Information" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" style="cursor: pointer;" translate="deviceManagement.detail.DeviceInformation">
+                            DeviceInformation(query only)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.select_allQ" ng-change="selectAllQ()" class="input-h"></input>
+                                            </th>
+                                            <th translate="deviceManagement.detail.table.ParameterName">Parameter Name
+                                                <i class="fa fa-caret-up" ng-show="faUp1" ng-click="orderFun('name','order1')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown1" ng-click="orderFun('name','order1')"></i>
+                                            </th>
+                                            <th translate="deviceManagement.detail.table.ParameterValue">Parameter Value
+                                                <i class="fa fa-caret-up" ng-show="faUp1" ng-click="orderFun('value','order1')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown1" ng-click="orderFun('value','order1')"></i>
+                                            </th>
+                                            <th translate="deviceManagement.detail.table.Remark">Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="rowQ in rowsQ | orderBy:order1">
+                                            <td><input class="input-h" type="checkbox" ng-model="rowQ.checked" ng-change="selectOneQ()" /></td>
+                                            <td>{{rowQ.name}}</td>
+                                            <td>{{rowQ.value}}</td>
+                                            <td>{{rowQ.mark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" style="cursor: pointer;" translate="deviceManagement.detail.NetworkManagementParameter">
+                            Network Management Parameter(support both query and set)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.select_allQS" ng-change="selectAllQS()" class="input-h"></input>
+                                            </th>
+                                            <th translate="deviceManagement.detail.table.ParameterName">Parameter Name
+                                                <i class="fa fa-caret-up" ng-show="faUp2" ng-click="orderFun('name','order2')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown2" ng-click="orderFun('name','order2')"></i></th>
+                                            <th translate="deviceManagement.detail.table.ParameterValue">Parameter Value
+                                                <i class="fa fa-caret-up" ng-show="faUp2" ng-click="orderFun('value','order2')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown2" ng-click="orderFun('value','order2')"></i></th>
+                                            <th translate="deviceManagement.detail.table.SetValue">Set Value</th>
+                                            <th translate="deviceManagement.detail.table.Remark">Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="rowQS in rowsQS | orderBy:order2">
+                                            <td><input class="input-h" type="checkbox" ng-model="rowQS.checked" ng-change="selectOneQS()" /></td>
+                                            <td>{{rowQS.name}}</td>
+                                            <td>{{rowQS.value}}</td>
+                                            <td ng-click="clickInput(rowQS,$event)">
+                                                <input type="text" class="zz-input-sm form-control" ng-show="rowQS.isInpu" placeholder="" ng-model="rowQS.setValue" +$index style="width: 120px;" />
+                                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-show="rowQS.isSelec" ng-options="set.valueKey as set.valueValue for set in rowQS.objValueSet" ng-model="rowQS.setSelecValue" +$index style="width: 120px;">
+
+                                                <option value="">--Please Select--</option>
+                                                </select>
+                                            </td>
+                                            <td>{{rowQS.mark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <button type="button" class="btn btn-primary btn-raised margin-btn btn-sm" ng-click="queryBase('base');" translate="buttons.Query">Query</button>
+                        <button type="button" class="btn btn-info btn-raised margin-btn btn-sm" ng-click="setBase('base');" translate="buttons.Set">Set</button>
+                        <button type="button" class="btn btn-blue btn-raised margin-btn btn-sm" ng-click="monitorBase('base');" ng-disabled="isUDP" translate="buttons.Monitoringparameterquery">Monitoring parameter query</button>
+                        <button type="button" class="btn btn-warning btn-raised margin-btn btn-sm" ng-click="queryDeviceBase('base');" ng-disabled="noClick" translate="buttons.QueryDevice">Query Device</button>
+                        <button type="button" class="btn btn-warning btn-raised margin-btn btn-sm" ng-click="resetBase('base');" translate="buttons.DeviceReset">Device Reset</button>
+                        <button type="button" class="btn btn-success btn-raised margin-btn btn-sm" ng-click="refresh('base');" translate="buttons.Refresh">Refresh</button>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" style="cursor: pointer;" translate="deviceManagement.detail.COMM">
+                            COMM(support both query and set)
+                            <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.select_allCOM" ng-change="selectAllCOM()" class="input-h"></input>
+                                            </th>
+
+                                            <th>ID</th>
+                                            <th translate="deviceManagement.detail.table.SendTime">Send Time
+                                                <i class="fa fa-caret-up" ng-show="faUp3" ng-click="orderFun('begintime','order3')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown3" ng-click="orderFun('begintime','order3')"></i></th>
+                                            <th translate="deviceManagement.detail.table.ReceiveTime">Receive Time
+                                                <i class="fa fa-caret-up" ng-show="faUp3" ng-click="orderFun('endtime','order3')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown3" ng-click="orderFun('endtime','order3')"></i></th>
+                                            <th translate="deviceManagement.detail.table.Type">Type</th>
+                                            <th translate="deviceManagement.detail.table.Status">Status</th>
+                                            <th translate="deviceManagement.detail.table.Details">Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="rowCOM in rowsCOM">
+                                            <td><input class="input-h" type="checkbox" ng-model="rowCOM.checked" ng-change="selectOneCOM()" /></td>
+                                            <td>{{rowCOM.commid}}</td>
+                                            <td>{{rowCOM.begintime}}</td>
+                                            <td>{{rowCOM.endtime}}</td>
+                                            <td>{{rowCOM.type}}</td>
+                                            <td>{{rowCOM.status}}</td>
+                                            <td><a ng-click="detailShow(rowCOM,$event)" href="">{{rowCOM.detail}}</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Alarm Information" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-body panel-table-gd pad0">
+                        <div class="" style="height: 300px;overflow: scroll;">
+                            <table class="table table-bordered-sm">
+                                <thead class="">
+                                    <tr class="">
+                                        <th>
+                                            <input type="checkbox" ng-model="xx.al_select_all" ng-change="al_selectAll()" class="input-h"></input>
+                                        </th>
+                                        <th translate="deviceManagement.detail.table.AlarmName">Alarm Name
+                                            <i class="fa fa-caret-up" ng-show="faUp4" ng-click="orderFun('name','order4')"></i>
+                                            <i class="fa fa-caret-down" ng-show="faDown4" ng-click="orderFun('name','order4')"></i></th>
+                                        <th translate="deviceManagement.detail.table.AlarmStatus">Alarm Status</th>
+                                        <th translate="deviceManagement.detail.table.AlarmEnable">Alarm Enable</th>
+                                        <th translate="deviceManagement.detail.table.Remark">Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    <!-- ngRepeat: row in rows -->
+                                    <tr class="" ng-repeat="al_row in al_rows | orderBy:order4">
+                                        <td><input class="input-h" type="checkbox" ng-model="al_row.checked" ng-change="al_selectOne()" /></td>
+                                        <td>{{al_row.name}}</td>
+                                        <td><i class="fa fa-circle" ng-class="al_row.isAlarm==0?'greenCircle':'redCircle'"></i>{{al_row.isAlarm==0?'Normal':'Alarm'}}</td>
+                                        <!-- <td ng-click="edit($event)">{{al_row.isEnable}}</td> -->
+                                        <td ng-click="clickInput(al_row,$event)">
+                                            <input type="text" class="zz-input-sm form-control" ng-show="al_row.isInpu" placeholder="" ng-model="al_row.setValue" +$index style="width: 120px;" />
+                                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-show="al_row.isSelec" ng-options="set.valueKey as set.valueValue for set in al_row.objEnableValueSet" ng-model="al_row.isEnable" style="width: 120px;">
+
+                                                <option value="">--Please Select--</option>
+                                                </select>
+                                        </td>
+                                        <td>{{al_row.mark}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div class="">
+                    <button type="button" class="btn btn-primary margin-btn btn-sm" ng-click="queryBase('alarm');" translate="buttons.Query">Query</button>
+                    <button type="button" class="btn btn-info margin-btn btn-sm" ng-click="setBase('alarm');" translate="buttons.Set">Set</button>
+                    <button type="button" class="btn btn-blue margin-btn btn-sm" ng-click="monitorBase('alarm');" ng-disabled="isUDP" translate="buttons.Monitoringparameterquery">Monitoring parameter query</button>
+                    <button type="button" class="btn btn-warning margin-btn btn-sm" ng-click="queryDeviceBase('alarm');" ng-disabled="noClick" translate="buttons.QueryDevice">Query Device</button>
+                    <button type="button" class="btn btn-warning margin-btn btn-sm" ng-click="resetBase('alarm');" translate="buttons.DeviceReset">Device Reset</button>
+                    <button type="button" class="btn btn-success margin-btn btn-sm" ng-click="refresh('alarm');" translate="buttons.Refresh">Refresh</button>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse in">
+                    <div class="panel-body panel-table-gd pad0">
+                        <div class="">
+                            <table class="table table-bordered-sm">
+                                <thead class="">
+                                    <tr class="">
+                                        <th>
+                                            <input type="checkbox" ng-model="selectAll" ng-change="al_changeAllCOM()" class="ng-pristine ng-untouched ng-valid ng-empty input-h"></th>
+                                        <th>ID</th>
+                                        <th translate="deviceManagement.detail.table.SendTime">
+                                            Send Time
+                                            <i class="fa fa-caret-up" ng-show="faUp5" ng-click="orderFun('begintime','order5')"></i>
+                                            <i class="fa fa-caret-down" ng-show="faDown5" ng-click="orderFun('begintime','order5')"></i></th>
+                                        <th translate="deviceManagement.detail.table.ReceiveTime">
+                                            Receive Time
+                                            <i class="fa fa-caret-up" ng-show="faUp5" ng-click="orderFun('endtime','order5')"></i>
+                                            <i class="fa fa-caret-down" ng-show="faDown5" ng-click="orderFun('endtime','order5')"></i></th>
+                                        <th translate="deviceManagement.detail.table.Type">Type</th>
+                                        <th translate="deviceManagement.detail.table.Status">Status</th>
+                                        <th translate="deviceManagement.detail.table.Details">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    <!-- ngRepeat: row in rows -->
+                                    <tr class="" ng-repeat="al_COM_row in al_COM_rows | orderBy:order5" ng-init="outerIndex = $index" ng-click="al_changeCurrentCOM(al_COM_row, $event)">
+                                        <td><input class="input-h" type="checkbox" ng-model="al_COM_row.checked" ng-click="al_changeCurrentCOM(al_COM_row, $event)" /></td>
+                                        <td>{{al_COM_row.commid}}</td>
+                                        <td>{{al_COM_row.begintime}}</td>
+                                        <td>{{al_COM_row.endtime}}</td>
+                                        <td>{{al_COM_row.type}}</td>
+                                        <td>{{al_COM_row.status}}</td>
+                                        <td><a ng-click="detailShow(al_COM_row,$event)" href="">{{al_COM_row.detail}}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Radiofrequency Information" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" style="cursor: pointer;" translate="deviceManagement.detail.Setparameter">
+                            Set parameter(query and set)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.ra_select_allQS" ng-change="ra_selectAllQS()" class="input-h"></input>
+                                            </th>
+                                            <th translate="deviceManagement.detail.table.ParameterName">Parameter Name
+                                                <i class="fa fa-caret-up" ng-show="faUp6" ng-click="orderFun('name','order6')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown6" ng-click="orderFun('name','order6')"></i></th>
+                                            <th translate="deviceManagement.detail.table.ParameterValue">Parameter Value
+                                                <i class="fa fa-caret-up" ng-show="faUp6" ng-click="orderFun('value','order6')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown6" ng-click="orderFun('value','order6')"></i></th>
+                                            <th translate="deviceManagement.detail.table.SetValue">Set Value</th>
+                                            <th translate="deviceManagement.detail.table.UpdateTime">Update Time
+                                                <i class="fa fa-caret-up" ng-show="faUp6" ng-click="orderFun('updateTime','order6')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown6" ng-click="orderFun('updateTime','order6')"></i></th>
+                                            <th translate="deviceManagement.detail.table.Remark">Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="ra_rowQS in ra_rowsQS | orderBy:order6">
+                                            <td><input class="input-h" type="checkbox" ng-model="ra_rowQS.checked" ng-change="ra_selectOneQS()" /></td>
+                                            <td>{{ra_rowQS.name}}</td>
+                                            <td>{{ra_rowQS.value}}</td>
+                                            <td ng-click="clickInput(ra_rowQS,$event)">
+                                                <input type="text" class="zz-input-sm form-control" ng-show="ra_rowQS.isInpu" placeholder="" ng-model="ra_rowQS.setValue" +$index style="width: 120px;" />
+                                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-show="ra_rowQS.isSelec" ng-options="set.valueKey as set.valueValue for set in ra_rowQS.objValueSet" ng-model="ra_rowQS.isEnable" +$index style="width: 120px;">
+
+                                                <option value="">--Please Select--</option>
+                                                </select>
+                                            </td>
+                                            <td>{{ra_rowQS.updateTime}}</td>
+                                            <td>{{ra_rowQS.mark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" style="cursor: pointer;" translate="deviceManagement.detail.Samplingdata">
+                            Sampling data(query only)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="xx.ra_select_allQ" ng-change="ra_selectAllQ()" class="input-h"></input>
+                                            </th>
+                                            <th translate="deviceManagement.detail.table.ParameterName">Parameter Name
+                                                <i class="fa fa-caret-up" ng-show="faUp7" ng-click="orderFun('name','order7')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown7" ng-click="orderFun('name','order7')"></i></th>
+                                            <th translate="deviceManagement.detail.table.ParameterValue">Parameter Value
+                                                <i class="fa fa-caret-up" ng-show="faUp7" ng-click="orderFun('value','order7')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown7" ng-click="orderFun('value','order7')"></i></th>
+                                            <th translate="deviceManagement.detail.table.UpdateTime">Update Time
+                                                <i class="fa fa-caret-up" ng-show="faUp7" ng-click="orderFun('updateTime','order7')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown7" ng-click="orderFun('updateTime','order7')"></i></th>
+                                            <th translate="deviceManagement.detail.table.Remark">Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="ra_rowQ in ra_rowsQ | orderBy:order7">
+                                            <td><input class="input-h" type="checkbox" ng-model="ra_rowQ.checked" ng-change="ra_selectOneQ()" /></td>
+                                            <td>{{ra_rowQ.name}}</td>
+                                            <td>{{ra_rowQ.value}}</td>
+                                            <td>{{ra_rowQ.updateTime}}</td>
+                                            <td>{{ra_rowQ.mark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <button type="button" class="btn btn-primary margin-btn btn-sm" ng-click="queryBase('radio');" translate="buttons.Query">Query</button>
+                        <button type="button" class="btn btn-info margin-btn btn-sm" ng-click="setBase('radio');" translate="buttons.Set">Set</button>
+                        <button type="button" class="btn btn-blue margin-btn btn-sm" ng-click="monitorBase('radio');" ng-disabled="isUDP" translate="buttons.Monitoringparameterquery">Monitoring parameter query</button>
+                        <button type="button" class="btn btn-warning margin-btn btn-sm" ng-click="queryDeviceBase('radio');" ng-disabled="noClick" translate="buttons.QueryDevice">Query Device</button>
+                        <button type="button" class="btn btn-warning margin-btn btn-sm" ng-click="resetBase('radio');" translate="buttons.DeviceReset">Device Reset</button>
+                        <button type="button" class="btn btn-success margin-btn btn-sm" ng-click="refresh('radio');" translate="buttons.Refresh">Refresh</button>
+                    </div>
+                </div>
+                <div class="panel b-a">
+                    <div class="panel-heading b-b b-light" style="padding: 4px 10px;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" style="cursor: pointer;" translate="deviceManagement.detail.COMM2">
+                            COMM
+                            <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body panel-table-gd pad0">
+                            <div class="">
+                                <table class="table table-bordered-sm">
+                                    <thead class="">
+                                        <tr class="">
+                                            <th>
+                                                <input type="checkbox" ng-model="ra_selectAllCOM" ng-change="ra_changeAllCOM()" class="ng-pristine ng-untouched ng-valid ng-empty input-h"></th>
+                                            <th>ID</th>
+                                            <th translate="deviceManagement.detail.table.SendTime">Send Time
+                                                <i class="fa fa-caret-up" ng-show="faUp8" ng-click="orderFun('begintime','order8')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown8" ng-click="orderFun('begintime','order8')"></i></th>
+                                            <th translate="deviceManagement.detail.table.ReceiveTime">Receive Time
+                                                <i class="fa fa-caret-up" ng-show="faUp8" ng-click="orderFun('endtime','order8')"></i>
+                                                <i class="fa fa-caret-down" ng-show="faDown8" ng-click="orderFun('endtime','order8')"></i></th>
+                                            <th translate="deviceManagement.detail.table.Type">Type</th>
+                                            <th translate="deviceManagement.detail.table.Status">Status</th>
+                                            <th translate="deviceManagement.detail.table.Details">Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <!-- ngRepeat: row in rows -->
+                                        <tr class="" ng-repeat="ra_rowCOM in ra_rowsCOM | orderBy:order8" ng-init="outerIndex = $index" ng-click="ra_changeCurrentsCOM(ra_rowCOM, $event)">
+                                            <td><input class="input-h" type="checkbox" ng-model="ra_rowCOM.checked" ng-click="ra_changeCurrentsCOM(ra_rowCOM, $event)" /></td>
+                                            <td>{{ra_rowCOM.commid}}</td>
+                                            <td>{{ra_rowCOM.begintime}}</td>
+                                            <td>{{ra_rowCOM.endtime}}</td>
+                                            <td>{{ra_rowCOM.type}}</td>
+                                            <td>{{ra_rowCOM.status}}</td>
+                                            <td>
+                                                <a href="" ng-click="detailShow(ra_rowCOM,$event)">{{ra_rowCOM.detail}}</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Topological Graph" class="pad0">
+                <div class="panel b-a">
+                    <div class="panel-body panel-table-gd pad0">
+                        <h3 ng-show="noTop" style="min-height: 450px;" translate="deviceManagement.detail.tips.toptips">This node has no topology data!</h3>
+                        <button class="btn btn-info btn-xs" ng-click="refreshTop();" translate="buttons.Refresh">Refresh</button>
+
+                        <div ng-show="haveTop" id="topInDevice" style="width: 1000px;height:450px;">
+                        </div>
+                    </div>
+                </div>
+                <!-- <div id="collapseThree" class="panel-collapse collapse in">
+                    <div class="panel-body panel-table-gd pad0">
+                        <div class="">
+                            <table class="table table-bordered-sm">
+                                <thead class="">
+                                    <tr class="">
+                                        <th>
+                                            <input type="checkbox" ng-model="selectAll" ng-change="changeAll()" class="ng-pristine ng-untouched ng-valid ng-empty input-h"></th>
+                                        <th>ID</th>
+                                        <th>Send Time</th>
+                                        <th>Receive Time</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    <tr class="" ng-repeat="row in rows" ng-init="outerIndex = $index" ng-click="changeCurrents(row, $event)">
+                                        <td><input class="input-h" type="checkbox" ng-model="row.checked" ng-click="changeCurrent(row, $event)" /></td>
+                                        <td>{{row.Id}}</td>
+                                        <td>{{row.SendTime}}</td>
+                                        <td>{{row.ReceiveTime}}</td>
+                                        <td>{{row.Type}}</td>
+                                        <td>{{row.Status}}</td>
+                                        <td>{{row.Details}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div> -->
+</div>
+<!-- </div>
+</div> -->

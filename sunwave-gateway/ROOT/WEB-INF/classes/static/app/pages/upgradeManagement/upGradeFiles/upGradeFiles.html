@@ -1,0 +1,82 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="row col-lg-12 col-md-12">
+                <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label">File Name:</label>
+                        <input type="text" class="zz-input form-control" id="input01" ng-model="query.name" placeholder="Please Input" />
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search" ng-click="search();"></i>Search</button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-6 col-md-6">
+                        <!-- <button class="btn btn-info btn-raised btn-pd" ng-click="toAddItem('', 'md');">Add</button>
+                        <button class="btn btn-danger btn-raised btn-pd" ng-click="deleteItem();">Delete</button>
+                        <button class="btn btn-warning btn-raised btn-pd" ng-click="toModifyItem('', 'md');">Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-click="toShowItem('', 'md');">View</button> -->
+                        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th width="3%">
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left">File Name
+                                    <my-Order query="query" search="search()" order-name='name'></my-Order>
+                                </th>
+                                <th class="align-left">File Size
+                                    <my-Order query="query" search="search()" order-name='size'></my-Order>
+                                </th>
+                                <th class="align-left">Date
+                                    <my-Order query="query" search="search()" order-name='date'></my-Order>
+                                </th>
+                                <th class="align-left">Vendor Name
+                                    <my-Order query="query" search="search()" order-name='neCompanyId'></my-Order>
+                                </th>
+                                <th class="align-left">Device Type
+                                    <my-Order query="query" search="search()" order-name='neDevicetypeId'></my-Order>
+                                </th>
+                                <th class="align-left">FTP Server
+                                    <my-Order query="query" search="search()" order-name='upFtpServerConfig.name'></my-Order>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <td>
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                <td class=" align-left ">{{item.name}}</td>
+                                <td class=" align-left ">{{item.size}}</td>
+                                <td class="align-left ">{{item.date | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td class="align-left ">{{item.neCompanyName}}</td>
+                                <td class="align-left ">{{item.neDevicetypeName}}</td>
+                                <td class="align-left ">{{item.upFtpServerConfig.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

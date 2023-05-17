@@ -1,0 +1,45 @@
+ {
+     "data": [{
+         "id": 1,
+         "ParameterName": "name",
+         "ParameterIdentification": "ifff",
+         "ParameterValue": "null",
+         "SetValue": {
+             "valueId": 41,
+             "valueKey": 5,
+             "valueValue": "Critical",
+             "valueDesc": "",
+             "valueSort": ""
+         },
+         "NotificationType": "query",
+         "UpdateTime": "21212"
+     }, {
+         "id": 2,
+         "ParameterName": "name2",
+         "ParameterIdentification": "ifff2",
+         "ParameterValue": "null2",
+         "SetValue": {
+             "valueId": 41,
+             "valueKey": 6,
+             "valueValue": "Critical2",
+             "valueDesc": "",
+             "valueSort": ""
+         },
+         "NotificationType": "query2",
+         "UpdateTime": "21212"
+     }, {
+         "id": 3,
+         "ParameterName": "name3",
+         "ParameterIdentification": "ifff3",
+         "ParameterValue": "null3",
+         "SetValue": {
+             "valueId": 41,
+             "valueKey": 7,
+             "valueValue": "Critical",
+             "valueDesc": "",
+             "valueSort": ""
+         },
+         "NotificationType": "query3",
+         "UpdateTime": "212123"
+     }]
+ }

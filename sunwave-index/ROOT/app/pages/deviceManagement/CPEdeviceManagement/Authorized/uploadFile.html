@@ -1,0 +1,69 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Upgrade.title">Device upgrade</h4>
+    </div>
+    <div class="col-lg-12 col-md-12 mar-t-20">
+        <div class="form-group">
+            <div class="col-lg-5 col-md-5 pad0">
+                <input type="text" class="form-control zz-input float-input" style="width: 100%;" id="1nput01" placeholder="Search by FileName" ng-model="query.name" maxlength="20" ng-keypress="($event.which === 13)?search():0" />
+            </div>
+            <div class="col-lg-5 col-md-5 pad0">
+                <input type="text" class="form-control zz-input float-input" style="width: 100%;" id="1nput02" placeholder="Search by Version" ng-model="query.version" maxlength="20" ng-keypress="($event.which === 13)?search():0" />
+            </div>
+            <div class="col-lg-2 col-md-2 pad0">
+                <button class="btn btn-green  btn-sm btn-pd float-l" ng-click="search();"><i
+                class="fa fa-search" title="Search"></i></button>
+                <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i
+                    class="fa fa-rotate-right" title="Reset"></i></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div ba-panel ba-panel-class="with-scroll table-panel">
+                    <div class="horizontal-scroll">
+                        <table class="table table-hover table-bordered-m">
+                            <thead>
+                                <tr class="black-muted-bg">
+                                    <th class="align-left" style="height: 25px;" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Upgrade.FileName">FILE NAME
+
+                                    </th>
+                                    <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Upgrade.UploadTime">UPLOAD TIME
+
+                                    </th>
+                                    <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Upgrade.Version">VERSION
+
+                                    </th>
+                                    <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Upgrade.Remark">REMARK
+
+                                    </th>
+                                    <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.Upgrade.Action">ACTION
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in items">
+                                    <td class="align-left">{{item.name}}</td>
+                                    <td class="align-left">{{item.uploadTime}}</td>
+                                    <td class="align-left">{{item.version}}</td>
+                                    <!-- <td class="align-left">{{item.manufacturer}}</td> -->
+                                    <td class="align-left">{{item.remark}}</td>
+                                    <td class="align-left"><button class="btn btn-danger btn-raised btn-xs" ng-click="upgrade(item)"><span class="glyphicon glyphicon-arrow-up"></span></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <tm-pagination conf="paginationConf"></tm-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button type="button" class="btn btn-primary" ng-click="save()" type="submit">Comfirm</button> -->
+    <button type="button" class="btn btn-primary" translate="buttons.Close" ng-click="close()" type="submit">Close</button>
+</div>
+</div>

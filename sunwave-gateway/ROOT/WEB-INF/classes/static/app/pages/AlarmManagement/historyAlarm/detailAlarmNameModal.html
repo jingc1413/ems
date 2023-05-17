@@ -1,0 +1,83 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color:fff;">{{title}}:</h4>
+    </div>
+    <h3 class="with-line">Information</h3>
+    <div class="modal-body" style="padding: 5px;">
+        <div class="col-lg-12 col-md-12" style="margin: 4px auto;">
+            <label for="" class="zz-label pad0 col-lg-3 col-md-6">Alarm Name:</label>
+            <input type="text" class="zz-input form-control col-lg-8 col-md-12" id="" ng-model="modal.almAlarm.almName" readonly required />
+        </div>
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Alarm Level:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.almAlarmlevel.alvName" readonly placeholder="">
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Alarm Times:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.AlarmTimes" placeholder="" readonly>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Alarm Time:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.algAlarmtime" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Alarm Durations:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.AlarmDurations" placeholder="" readonly>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Device ID:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.neElement.neRepeaterid16" placeholder="" readonly>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Device SubID:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.neElement.neDeviceid" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12" style="margin: 8px auto;"> 
+            <label for="" class="zz-label pad0 col-lg-3 col-md-6">Device Name:</label>
+            <input type="text" class="zz-input form-control col-lg-8 col-md-12" id="" ng-model="modal.neElement.neName" placeholder="" readonly>
+        </div>
+        <div class="col-lg-12 col-md-12" style="margin: 4px auto;">
+            <label for="" class="zz-label pad0 col-lg-3 col-md-6">Vendor Name:</label>
+            <input type="text" class="zz-input form-control col-lg-8 col-md-12" id="" ng-model="modal.neElement.neCompany.coName" placeholder="" readonly>
+        </div>
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Area:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.neElement.sysArea.areaName" placeholder="" readonly>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Device Level:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.neElement.neSitelevel" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Alarm Status:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.alarmStatus.astAlarmStatusName" placeholder="" readonly>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Alarm Type:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.almAlarm.alarmKind.name" placeholder="" readonly>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label for="" class="zz-label zz-label-r">Device Status:</label>
+                <input type="text" style="width:100%;" class="zz-input form-control" id="" ng-model="modal.neElement.neDevicestatus.dsName" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="modal-footer" style="padding-top: 10px;margin-top: 10px;border-top: 1px solid #e1e1e1;">
+        <button type="button" class="btn btn-default btn-raised btn-sm" ng-show="isCurrent" ng-click="Acknowledge();">Acknowledged</button>
+        <button type="button" class="btn btn-default btn-raised btn-sm" ng-show="isCurrent" ng-click="reactiveAlarm();">Reactived alarm</button>
+        <button type="button" class="btn btn-default btn-raised btn-sm" ng-show="clearALM" ng-click=clearAlarm();>Clear Alarm</button>
+        <button type="button" class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+</div>

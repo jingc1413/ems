@@ -1,0 +1,206 @@
+<div class="widgets">
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 pad0 mar-t-10">
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"><label for="" class="zz-label float-r">统计维度:</label></div>
+                <div class="col-lg-8 col-md-8 pad0"><select class="zz-input pad2 form-control inline v-middle wid-100">
+                    <option value="">全网</option>
+                    <option value="1">地区</option>
+                    <option value="2">基站</option>
+                    <option value="3">小区</option>
+                    </select></div>
+            </div>
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"><label for="" class="zz-label float-r">小区名称:</label></div>
+                <div class="col-lg-8 col-md-8 pad0"><input type="text" class="zz-input-sm form-control wid-100" placeholder=""></div>
+            </div>
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"><label for="" class="zz-label float-r">基站名称:</label></div>
+                <div class="col-lg-8 col-md-8 pad0"><input type="text" class="zz-input-sm form-control wid-100" placeholder=""></div>
+            </div>
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"> <label for="" class="zz-label float-r">SN:</label></div>
+                <div class="col-lg-8 col-md-8 pad0">
+                    <!-- <input type="text" class="zz-input-sm form-control wid-100" placeholder="" ng-model="query.serialNumber"> -->
+                    <div class="wapper">
+                        <div class="select-wapper">
+                            <input type="text" ng-model="query.serialNumber" class="form-control zz-input-sm float-input" id="select-input-mark" ng-change="valueChange(params)" autocomplete="off" input-search/>
+                            <ul class="select-content-panel hidden-cls" input-select>
+                                <li ng-repeat="data in dataList" ng-bind="data" ng-click="valueChange1(data)"></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- <select-search datas="initList"></select-search> -->
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 ">
+                <div class="col-lg-2 col-md-2 pad0"> <label for="" class="zz-label float-r">所属区域:</label></div>
+                <div class="col-lg-10 col-md-10 pad0"> <input type="text" class="zz-input-sm form-control wid-100" placeholder=""></div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 pad0 mar-t-10 mar-bom-10">
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"><label for="" class="zz-label float-r">粒度:</label></div>
+                <div class="col-lg-8 col-md-8 pad0"><select class="zz-input pad2 form-control inline v-middle wid-100" ng-model="query.grade">
+                    <option value="1">刻</option>
+                    <option value="2">时</option>
+                    <option value="3">天</option>
+                    <option value="4">周</option>
+                    <option value="5">月</option>
+
+                    </select></div>
+            </div>
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"><label for="" class="zz-label float-r">开始时间:</label></div>
+
+                <div class="col-lg-8 col-md-8 pad0">
+                    <!-- <input type="text" class="zz-input-sm form-control wid-100" placeholder=""> -->
+                    <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="select date" id="operationDate" btns="{'ok':'ok','now':'today'}" ng-model="query.beginTime" style="width: 100%;">
+                    </wui-date>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"><label for="" class="zz-label float-r">结束时间:</label></div>
+                <div class="col-lg-8 col-md-8 pad0">
+                    <wui-date format="yyyy-mm-dd hh:mm:ss" placeholder="select date" id="operationDate" btns="{'ok':'ok','now':'today'}" ng-model="query.endTime" style="width: 100%;">
+                    </wui-date>
+                    <!-- <input type="text" class="zz-input-sm form-control wid-100" placeholder=""> -->
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"> <label for="" class="zz-label float-r">忙时:</label></div>
+                <div class="col-lg-8 col-md-8 pad0"> <input type="text" class="zz-input-sm form-control wid-100" placeholder=""></div>
+            </div>
+            <div class="col-lg-2 col-md-2 ">
+                <div class="col-lg-4 col-md-4 pad0"> <label for="" class="zz-label float-r">分组名称:</label></div>
+                <div class="col-lg-8 col-md-8 pad0"> <input type="text" class="zz-input-sm form-control wid-100" placeholder=""></div>
+            </div>
+            <div class="col-lg-2 col-md-2 ">
+                <button class="btn btn-green  btn-sm btn-pd float-l" ng-click="search();"><i
+                    class="fa fa-search">Search</i></button>
+                <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i
+                        class="fa fa-rotate-right" title="Reset">Reset</i></button>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <uib-tabset active="$tabSetStatus.activeTab">
+            <uib-tab heading="列表" class="pad0">
+                <div class="col-lg-12 col-md-12 pad0  panel2">
+                    <div class="modal-body" style="padding-bottom: 5px;">
+                        <!-- <div class="form-group">
+                            <input type="text" class="form-control zz-input float-input" id="1nput01" placeholder="Search by name" ng-model="query.teName" maxlength="30" ng-keypress="($event.which === 13)?search():0" />
+                            <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i
+                                    class="fa fa-search"></i></button>
+                        </div> -->
+                        <div class="col-md-12 col-lg-12 pad0" style="min-height: 400px;">
+                            <table class="table table-hover table-bordered-m">
+                                <thead>
+                                    <tr class="black-muted-bg" style="height: 28px;">
+                                        <!-- <th class="align-left">
+                                            <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                        </th> -->
+                                        <th class="align-left" ng-repeat="item in headerItems" style="height:28px">
+                                            {{item.name}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in bodyItems" style="height: 28px;">
+                                        <!-- <td class="align-left" style="height: 28px;">{{item.period}}</td> -->
+                                        <td class="align-left" ng-repeat="i in item track by $index" style="height: 28px;">{{i}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <tm-pagination conf="paginationConf" class="mat-t-10"></tm-pagination>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="图表" class="pad0">
+                <div class="col-lg-12 col-md-12 pad0  panel2">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="col-lg-3 col-md-3" style="min-height: 400px;">
+                            <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                                <label for="" class="pad-left-20 mar-t-10">
+                                    <h3 translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.WANDeviceConfig">WAN device IPInterface</h3>
+                                </label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 pad0">
+                                <div class="col-lg-12 col-md-12 pad0 mar-bom-10">
+                                    <div class="col-lg-12 col-md-12 pad0">
+                                        <div class="col-lg-12 col-md-12">
+                                            <label for="" class="zz-label-sm" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.ExternalIPAddress">External IP address:</label>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 ">
+                                            <input type="text" name="name" class="form-control zz-input  wid-90 float-input " ng-model="task.externalIPAddress" required readonly>
+                                            <span style="color:red" ng-show="userForm.name.$error.required">*</span>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 pad0">
+                                        <div class="col-lg-12 col-md-12 ">
+                                            <label for="" class="zz-label-sm " translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.SubnetMask">Subnet mask:</label>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 ">
+                                            <input type="text" name="description" class="form-control zz-input  wid-90 float-input" ng-model="task.subnetMask" required readonly>
+                                            <span style="color:red" ng-show="userForm.description.$error.required">*</span>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 pad0">
+                                        <div class="col-lg-12 col-md-12 ">
+                                            <label for="" class="zz-label-sm "><span translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.DNSServers">DNS servers:</span> </label>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 ">
+                                            <input type="text" class="form-control zz-input  wid-90" ng-model="task.dnsServers" readonly>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3" style="min-height: 400px;">
+                            <div class="col-lg-12 col-md-12 pad0" style="background:#eefaff">
+                                <label for="" class="pad-left-20 mar-t-10">
+                                    <h3 translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.LANDeviceConfig">LAN device IPInterface</h3>
+                                </label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 pad0">
+                                <div class="col-lg-12 col-md-12 pad0 mar-bom-10">
+                                    <div class="col-lg-12 col-md-12 pad0">
+                                        <div class="col-lg-12 col-md-12">
+                                            <label for="" class="zz-label-sm" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.ExternalIPAddress">External IP address:</label>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 ">
+                                            <input type="text" name="name" class="form-control zz-input  wid-90 float-input " ng-model="task.ipInterfaceIpAddress" required readonly>
+                                            <span style="color:red" ng-show="userForm.name.$error.required">*</span>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 pad0">
+                                        <div class="col-lg-12 col-md-12 ">
+                                            <label for="" class="zz-label-sm " translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.configuration.SubnetMask">Subnet mask:</label>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 ">
+                                            <input type="text" name="description" class="form-control zz-input  wid-90 float-input" ng-model="task.ipInterfaceSubnetMask" required readonly>
+                                            <span style="color:red" ng-show="userForm.description.$error.required">*</span>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <!-- <button type="button" class="btn btn-primary float-r" ng-click="save()" type="submit"><span class="glyphicon glyphicon-ok"></span></button> -->
+                        <!-- <button type="button" class="btn btn-primary float-r" translate="buttons.save" ng-click="saveDeviceIP()" type="submit">save</button> -->
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

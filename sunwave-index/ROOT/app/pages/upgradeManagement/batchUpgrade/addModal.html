@@ -1,0 +1,282 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <!-- <h3 class="with-line" translate="UpgradeManagement.modal.BasicInformation">Basic Information</h3> -->
+    <form class="" name="myForm">
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div ng-class="{'cantModify':notView==false}"></div>
+
+            <div class="col-md-12 pad0">
+                <div class="col-lg-4 col-md-4 pad45">
+                    <div class="form-group">
+                        <label for="" class="zz-label" translate="UpgradeManagement.modal.TaskName">TaskName:</label>
+                        <input type="text" name="tskname" class="zz-input form-control" style="float: left;" ng-model="modal.tskTaskname" placeholder="" ng-maxlength="50" ng-readonly="readOnly" required>
+                        <span style="color:red;float: left;" ng-show="myForm.tskname.$error.required">*</span>
+                        <span style="color:red" class="zz-label-sm" ng-show="myForm.tskname.$error.maxlength" translate="AlarmConfiguration.AlarmMask_m.modal.TaskNameTips">Cannot exceed 50 characters </span>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-5 pad45">
+                    <div class="form-group">
+                        <label for="" class="zz-label" translate="UpgradeManagement.searchCondition.UpgradeFile">Upgrade File:</label>
+                        <input type="text" class="form-control zz-input float-input mar-l-5" id="inpit01" placeholder="" ng-model="fileName" ng-readonly="readOnly" required/>
+                        <button type="button" class="btn btn-sm btn-success btn-raised" ng-disabled="readOnly" ng-click="getUpgradeFile();"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 pad45">
+                    <div class="form-group">
+                        <label for="" class="zz-label" translate="UpgradeManagement.modal.FTPServer">FTP Server:</label>
+                        <input type="text" class="zz-input form-control mar-l-5" ng-model="ftpServer" placeholder="" readonly="true" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 pad0">
+                <div class="col-lg-4 col-md-4 pad45">
+                    <div class="form-group botm-0">
+                        <label for="" class="zz-label" translate="UpgradeManagement.modal.ExecutionTime">ExecutionTime:</label>
+                        <!-- <input type="text" class="zz-input-sm form-control" style="width: 50%;" ng-model="modal.tskNexttime" placeholder="00:00"> -->
+                        <div class="col-md-8 col-lg-6 pad0">
+                            <wui-date name="ExecutionTime" format="yyyy-mm-dd hh:mm" placeholder="" id="ExecutionTime" btns="{'ok':'ok','now':'today'}" ng-model="modal.tskNexttime" ng-disabled="readOnly" ng-readonly="readOnly" ng-change="exectiontimeChange();">
+                            </wui-date>
+                            <span style="color:red" class="zz-label-sm" ng-show="time_error" translate="UpgradeManagement.modal.ExecutionTimeTips">
+                        Wrong time!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 pad45">
+                    <div class="form-group botm-0">
+                        <div class="form-in">
+                            <label for="" class="zz-label" translate="UpgradeManagement.modal.MUDevices">MU Devices:</label>
+                            <!-- <label class="custom-radio">
+                            <input type="radio" ng-model="options.All" name="toasts" value="All" class=""><span>All</span>
+                        </label>
+                        <label class="custom-radio">
+                            <input type="radio" ng-model="options.Partial" name="toasts" value="Partial" class="" ng-checked="true"><span>Partial</span>
+                        </label> -->
+                            <label class="custom-radio zz-label mar-l-5">
+                            <input type="radio" ng-model="devices" value="" class="" ng-disabled="readOnly"><span translate="UpgradeManagement.modal.All">All</span>
+                        </label>
+                            <label class="custom-radio zz-label mar-l-5">
+                            <input type="radio" ng-model="devices" value="on" class="" ng-disabled="readOnly" ng-click="handlePartial()"><span translate="UpgradeManagement.modal.Partial">Partial</span>
+                        </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 pad0" ng-show="devices=='on'">
+                <div class="col-md-6 col-lg-6 border-blue">
+                    <div class="with-line-bg">
+                        <h3 class="with-line-2" translate="UpgradeManagement.modal.AvailableDevice">Available Device</h3>
+                    </div>
+                    <div class="">
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <!-- <div class="col-lg-6 col-md-12"> -->
+                            <div class="pad0 form-group col-lg-8 col-md-8 mar-b-0">
+                                <label for="input01" class="zz-label col-md-2 pad0" translate="UpgradeManagement.modal.select.Condition">Condition:</label>
+                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="searchCondition" style="width: 30%;float:left;" ng-init="searchCondition = '0'" ng-change="switchSearchCondition();">
+                                <option value="0" ng-selected="searchCondition == 0" translate="UpgradeManagement.modal.select.DeviceType">Device Type</option>
+                                <option value="1" ng-selected="searchCondition == 1" translate="UpgradeManagement.modal.select.DeviceStatus">Device Status</option>
+                                <option value="2" ng-selected="searchCondition == 2" translate="UpgradeManagement.modal.select.DeviceID">Device ID</option>
+                                <option value="3" ng-selected="searchCondition == 3" translate="UpgradeManagement.modal.select.DeviceName">Device Name</option>
+                                <option value="4" ng-selected="searchCondition == 4" translate="UpgradeManagement.modal.select.VendorName">Vendor Name</option>
+                            </select>
+                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicetypeid" ng-show="deviceTypeShow" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'"
+                                    style="width: 30%;">
+                                <option value="" translate="UpgradeManagement.modal.select.PleaseSelect">--Please Select--</option>
+                            </select>
+                                <!--vendor-->
+                                <select class="zz-input pad2 form-control inline v-middle" ng-model="modal.coCompanyid" ng-show="vendorShow" ng-options="vName.coCompanyid as vName.coName for vName in vNames" style="width: 30%;">
+                                    <option value="" translate="UpgradeManagement.modal.select.PleaseSelect">--Please Select--</option>
+                            </select>
+                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicestatusid" ng-show="deviceStatusShow" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" style="width: 30%;">
+                                <option value="" translate="UpgradeManagement.modal.select.PleaseSelect">--Please Select--</option>
+                            </select>
+                                <input type="text" class="zz-input-sm form-control" id="conditionValue" placeholder="" ng-show="devNameAndId" ng-model="conditionValue" style="width: 40%;" />
+                            </div>
+                            <div class="form-group col-md-4 col-lg-4 pad0">
+                                <button class="btn btn-green btn-sm btn-pd pad-sm-btn" ng-click="search();" ng-disabled="readOnly" translate="buttons.search"><i class="fa fa-search"></i>Search</button>
+
+                                <button class="btn btn-reset btn-sm btn-pd pad-sm-btn" ng-click="recoveryLeft();" ng-disabled="readOnly" translate="buttons.reset"><i class="fa fa-rotate-right"></i>Reset</button>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <!--area-->
+                            <div class="pad2 form-group col-lg-6 col-md-6 mar-b-0">
+                                <!-- <label for="" class="zz-label-sm">Area:</label> -->
+                                <button class="btn btn-xxs btn-sm btn-info float-l" ng-click="searchAreaTree();" translate="buttons.area">Area</button>
+                                <input type="text" class="zz-input-sm form-control" id="AreaInput" ng-model="area.selectArea" placeholder="" readonly="true" />
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12 col-lg-12 pad0">
+                        <div class="form-group col-md-4 col-lg-4 pad0">
+                            <label for="input01" class="zz-label-sm">Area:</label>
+                            <select class="zz-input-sm pad2 form-control inline v-middle">
+                                <option value="0">All</option>
+                                <option value="1">STATION01</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4 col-lg-4 pad0">
+                            <button class="btn btn-success btn-sm pad-sm-btn" ng-click="search();">Search</button>
+                        </div>
+                    </div> -->
+                    </div>
+                    <div class="">
+                        <table class="table-gd table table-bordered-s">
+                            <thead class="">
+                                <tr class="" style="background: #dbeeff;">
+                                    <th>
+                                        <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                    </th>
+                                    <th translate="UpgradeManagement.modal.table.thead.DeviceID">Device ID
+                                        <my-Order query="query" search="search()" order-name='neRepeaterid'></my-Order>
+                                    </th>
+                                    <th translate="UpgradeManagement.modal.table.thead.DeviceType">Device Type
+                                        <my-Order query="query" search="search()" order-name='neDevicetype.dtpName'></my-Order>
+                                    </th>
+                                    <th translate="UpgradeManagement.modal.table.thead.DeviceName">Device Name
+                                        <my-Order query="query" search="search()" order-name='neName'></my-Order>
+                                    </th>
+                                    <th translate="UpgradeManagement.modal.table.thead.DeviceStatus">Device Status
+                                        <my-Order query="query" search="search()" order-name='neDevicestatus.dsName'></my-Order>
+                                    </th>
+                                    <th translate="UpgradeManagement.modal.table.thead.DeviceSubID">Device Sub ID
+                                        <my-Order query="query" search="search()" order-name='neDeviceid'></my-Order>
+                                    </th>
+                                    <th translate="UpgradeManagement.modal.table.thead.Route">Route
+                                        <my-Order query="query" search="search()" order-name='neRoute'></my-Order>
+                                    </th>
+                                    <th translate="UpgradeManagement.modal.table.thead.Area">Area
+                                        <my-Order query="query" search="search()" order-name='areaName'></my-Order>
+                                    </th>
+                                    <th translate="PollingManagement.modal.table.thead.VendorName">Vendor Name
+                                        <my-Order query="query" search="search()" order-name='areaName'></my-Order>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <!-- ngRepeat: row in rows -->
+                                <tr class="" ng-repeat="row in rows track by $index">
+                                    <td><input type="checkbox" ng-model="row.checked" ng-change="selectOne()" /></td>
+                                    <td>{{row.neRepeaterid16}}</td>
+                                    <td>{{row.neDevicetype.dtpName}}</td>
+                                    <td>{{row.neName}}</td>
+                                    <td>{{row.neDevicestatus.dsName}}</td>
+                                    <td>{{row.neDeviceid}}</td>
+                                    <td>{{row.neRoute}}</td>
+                                    <td>{{row.areaName}}</td>
+                                    <td>{{row.neCompany.coName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <tm-pagination conf="paginationConf"></tm-pagination>
+                    </div>
+
+                    <!-- <div>已选数量：{{count}}</div>
+                <div>已选对象：{{selectData}}</div> -->
+                </div>
+                <div class="center-f">
+                    <button type="button" class="btn btn-info btn-with-icon center-f-btn" ng-click="doubleSelectToRight();" ng-disabled="readOnly"><i class="fa fa-arrow-right"></i></button>
+                    <button type="button" class="btn btn-info btn-with-icon center-f-btn" style="display: block;margin-top: 20px;" ng-click="doubleSelectToLeft();" ng-disabled="readOnly"><i class="fa fa-arrow-left"></i></button>
+                </div>
+                <div class="col-md-6 col-lg-6 border-blue">
+                    <div class="with-line-bg">
+                        <h3 class="with-line-2" translate="UpgradeManagement.modal.table.SelectedDevice">Selected Device</h3>
+                    </div>
+                    <div class="">
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <div class="pad0 form-group col-lg-8 col-md-8 mar-b-0">
+                                <label for="input01" class="zz-label col-md-2 pad0" translate="UpgradeManagement.modal.select.Condition">Condition:</label>
+                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="searchCondition2" style="width: 30%;float:left;" ng-init="searchCondition2 = '0'" ng-change="switchSearchCondition2();">
+                                    <option value="0" ng-selected="searchCondition2 == 0" translate="UpgradeManagement.modal.select.DeviceType">Device Type</option>
+                                    <option value="1" ng-selected="searchCondition2 == 1" translate="UpgradeManagement.modal.select.DeviceStatus">Device Status</option>
+                                    <option value="2" ng-selected="searchCondition2 == 2" translate="UpgradeManagement.modal.select.DeviceID">Device ID</option>
+                                    <option value="3" ng-selected="searchCondition2 == 3" translate="UpgradeManagement.modal.select.DeviceName">Device Name</option>
+                                    <option value="4" ng-selected="searchCondition2 == 4" translate="UpgradeManagement.modal.select.VendorName">Vendor Name</option>
+                                </select>
+                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query2.neDevicetypeid" ng-show="deviceTypeShow2" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'"
+                                    style="width: 30%;">
+                                    <option value="" translate="UpgradeManagement.modal.select.PleaseSelect">--Please Select--</option>
+                                </select>
+                                <!--vendor-->
+                                <select class="zz-input pad2 form-control inline v-middle" ng-model="query2.coCompanyid" ng-show="vendorShow2" ng-options="vName.coCompanyid as vName.coName for vName in vNames2" style="width: 30%;">
+                                        <option value="" translate="UpgradeManagement.modal.select.PleaseSelect">--Please Select--</option>
+                                </select>
+                                <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query2.neDevicestatusid" ng-show="deviceStatusShow2" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" style="width: 30%;">
+                                    <option value="" translate="UpgradeManagement.modal.select.PleaseSelect">--Please Select--</option>
+                                </select>
+                                <input type="text" class="zz-input-sm form-control" id="conditionValue2" placeholder="" ng-show="devNameAndId2" ng-model="conditionValue2" style="width: 40%;" />
+                            </div>
+                            <div class="form-group col-md-4 col-lg-4 pad0">
+
+                                <button class="btn btn-green btn-sm btn-pd pad-sm-btn" ng-click="search2();" ng-disabled="readOnly" translate="buttons.search"><i class="fa fa-search"></i>Search</button>
+
+                                <button class="btn btn-reset btn-sm btn-pd pad-sm-btn" ng-click="recovery();" ng-disabled="readOnly" translate="buttons.reset"><i class="fa fa-rotate-right" translate="buttons.reset"></i>Reset</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 pad0">
+                            <!--area-->
+                            <div class="pad2 form-group col-lg-6 col-md-6 mar-b-0">
+                                <!-- <label for="" class="zz-label-sm">Area:</label> -->
+                                <button class="btn btn-xxs btn-sm btn-info float-l" ng-click="searchAreaTree2();" translate="buttons.area">Area</button>
+                                <input type="text" class="zz-input-sm form-control" id="AreaInput2" ng-model="area2.selectArea" placeholder="" readonly="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <table class="table-gd table table-bordered-s" style="height: 242px;">
+                            <thead class="">
+                                <tr class="" style="background: #dbeeff;">
+                                    <th>
+                                        <input id="flag2" type="checkbox" ng-model="xx.select_all2" ng-change="selectAll2()"></input>
+                                    </th>
+                                    <th ng-click="orderFun('neRepeaterid16')" translate="UpgradeManagement.modal.table.thead.DeviceID">Device ID
+                                        <i class="fa fa-caret-up" ng-show="faUp">
+                                    </i>
+                                        <i class="fa fa-caret-down" ng-show="faDown"></i>
+                                    </th>
+                                    <th ng-click="orderFun('neDevicetype.dtpName')" translate="UpgradeManagement.modal.table.thead.DeviceType">Device Type</th>
+                                    <th ng-click="orderFun('neName')" translate="UpgradeManagement.modal.table.thead.DeviceName">Device Name</th>
+                                    <th ng-click="orderFun('neDevicestatus.dsName')" translate="UpgradeManagement.modal.table.thead.DeviceStatus">Device Status</th>
+                                    <th ng-click="orderFun('neDeviceid')" translate="UpgradeManagement.modal.table.thead.DeviceSubID">Device Sub ID</th>
+                                    <th ng-click="orderFun('neRoute')" translate="UpgradeManagement.modal.table.thead.Route">Route</th>
+                                    <th ng-click="orderFun('areaName')" translate="UpgradeManagement.modal.table.thead.Area">Area</th>
+                                    <th translate="PollingManagement.modal.table.thead.VendorName">Vendor Name
+                                        <my-Order query="query" search="search()" order-name='areaName'></my-Order>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <!-- ngRepeat: row in rows2 -->
+                                <tr class="" ng-repeat="row2 in rows2 | orderBy:order">
+                                    <td><input type="checkbox" ng-model="row2.checked" ng-change="selectOne2()" /></td>
+                                    <td>{{row2.neRepeaterid16}}</td>
+                                    <td>{{row2.neDevicetype.dtpName}}</td>
+                                    <td>{{row2.neName}}</td>
+                                    <td>{{row2.neDevicestatus.dsName}}</td>
+                                    <td>{{row2.neDeviceid}}</td>
+                                    <td>{{row2.neRoute}}</td>
+                                    <td>{{row2.areaName}}</td>
+                                    <td>{{row2.neCompany.coName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+                        <div class="right-select-div">Selected:<span class="right-select-span">{{count2}}</span></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary" ng-click="save()" ng-show="notView" translate="buttons.Save">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close();" translate="buttons.Close">Close</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,73 @@
+<div class="widgets">
+    <div class="row col-lg-12 col-md-12">
+        <div class="form-group">
+            <label for="input01" class="zz-label" translate="deviceManagement.deviceType.searchDevicetypeid">search:</label>
+            <input type="text" class="form-control zz-input float-input" id="input01" placeholder="" style="width: 30%;" ng-model="query.dtpDevicetypeid">
+
+            <!-- <button type="button" class="btn btn-sm btn-success btn-raised" style="margin-bottom: 5px;" ng-click="search
+                    ();">
+                        <i class="fa fa-search"></i>
+                    </button> -->
+            <button class="btn btn-green btn-sm btn-pd" ng-click="search();"><i class="fa fa-search" ng-click="search();"></i><span translate="buttons.search">Search</span></button>
+        </div>
+    </div>
+    <div class="mar0 row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <!-- <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModifyItem('', 'md');"><i></i>Modify</button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem('', 'md');"><i></i>Add</button>
+                <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();"><i></i>Delete</button> -->
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+            <!--nonono <button class="btn btn-danger btn-raised btn-pd" ng-model="toModifyPassword" ng-click="toModifyPassword();"><i></i>Modify Password</button> -->
+            <!-- <button class="btn btn-info btn-raised btn-pd" ng-model="getTree" ng-click="getAreaTree();"><i></i>授权</button> -->
+
+        </div>
+    </div>
+
+    <div class="col-md-12 col-lg-12 pad0" ba-panel ba-panel-class="with-scroll table-panel">
+        <div class="horizontal-scroll" style="overflow-x:scroll;overflow-y:scroll;">
+            <table class="table table-hover table-bordered-m">
+                <thead>
+                    <tr class="black-muted-bg">
+                        <th width="3%">
+                            <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                        </th>
+                        <!-- <th>dtpClassifyid
+                                        <my-Order query="query" search="search()" order-name='dtpClassifyid'></my-Order>
+                                    </th> -->
+                        <th><span translate="deviceManagement.deviceType.table.dtpDevicetypeid"></span>
+                            <my-Order query="query" search="search()" order-name='dtpDevicetypeid'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.deviceType.table.dtpName"></span>
+                            <my-Order query="query" search="search()" order-name='dtpName'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.deviceType.table.dtpProtocoldevicetypeid"></span>
+                            <my-Order query="query" search="search()" order-name='dtpProtocoldevicetypeid'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.deviceType.table.dtpProtocoltypeid"></span>
+                            <my-Order query="query" search="search()" order-name='dtpProtocoltypeid'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.deviceType.table.dtpIseffectcontrol"></span>
+                            <my-Order query="query" search="search()" order-name='dtpIseffectcontrol'></my-Order>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items | orderBy:order" ng-class="{'table-tr-checked':item.checked}">
+                        <td>
+                            <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                        </td>
+                        <!-- <td>{{item.dtpClassifyid}}</td> -->
+                        <td>{{item.dtpDevicetypeid}}</td>
+                        <td>{{item.dtpName}}</td>
+                        <td>{{item.dtpProtocoldevicetypeid}}</td>
+                        <td>{{item.dtpProtocoltypeid}}</td>
+                        <td>{{item.dtpIseffectcontrol}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+</div>

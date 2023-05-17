@@ -1,0 +1,171 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <!-- <form action="" name="searchForm" ng-submit="submitForm(searchForm.$valid)"> -->
+            <div class="col-lg-2 col-md-2 pad0" style="padding: 0 0 0 15px;">
+                <div class="form-group">
+                    <input type="text" class="form-control zz-input float-input wid-100" placeholder="{{'deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.input.serialNumber'|translate}}" ng-model="query.serialNumber" maxlength="30" ng-keypress="($event.which === 13)?searchBy():0"
+                        autocomplete="off">
+                </div>
+                <!-- Search by WAN INTERFACE IP -->
+            </div>
+            <div class="col-lg-2 col-md-2 pad0">
+                <div class="form-group">
+                    <!-- <input type="text" class="form-control zz-input float-input wid-100" placeholder="{{'deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.input.MANUFACTURER'|translate}}" ng-model="query.manufacturer" maxlength="30" ng-keypress="($event.which === 13)?searchBy():0"
+                            autocomplete="off"> -->
+                    <select class="zz-input pad2 form-control inline v-middle wid-100" ng-model="query1.manufacturer" ng-options="data for data in ManufacturerItems">
+                            </select>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 pad0">
+                <select class="zz-input pad2 form-control inline v-middle wid-100" ng-model="query.onlineStatus">
+                    <option translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.Searchselect.All" value="">All</option>
+                    <option translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.Searchselect.Online" value="1" >Online</option>
+                    <option translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.Searchselect.OffLine" value="0" >OffLine</option>
+                    </select>
+            </div>
+            <div class="col-lg-3 col-md-3 pad0">
+                <span>
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="searchBy();"><i
+                        class="fa fa-search" title="{{'deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.button.Search'|translate}}">Search</i></button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i
+                        class="fa fa-rotate-right" title="{{'deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.button.Reset'|translate}}">Reset</i></button>
+                    </span>
+                <!-- <span style="color:red" ng-show="searchForm.input1.$dirty && searchForm.input1.$invalid">
+                            <span style="color:red" ng-show="searchForm.input1.$error.maxlength">*deviceIp Maximum length cannot
+                                    exceed 30</span>
+                    </span>
+                    <span style="color:red" ng-show="searchForm.input2.$dirty && searchForm.input2.$invalid">
+                        <span style="color:red" ng-show="searchForm.input2.$error.maxlength">*manufacturer Maximum length cannot
+                                exceed 30</span>
+                    </span> -->
+            </div>
+            <!-- </form> -->
+            <div class="col-lg-4 col-md-4" ng-show="groupId==null">
+                <!-- <span style="float: right;">
+                    <button class="btn btn-info btn-raised btn-pd" title="Add new device" ng-model="toAddItem"
+                        ng-click="toDetails();"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-danger btn-raised btn-pd" title="CSV export" ng-click=""><span class="glyphicon glyphicon-export"></span></button>
+                <button class="btn btn-warning btn-raised btn-pd" title="{{'deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.button.editGroup'|translate}}" ng-click="addToGroup();"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-danger btn-raised btn-pd" ng-click="toUpgrade()" title="{{'deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.button.Upgrade'|translate}}"><span class="glyphicon glyphicon-arrow-up"></span></button>
+                <button class="btn btn-info btn-raised btn-pd" ng-click="advanceExportCSV()" title="Advanced export to CSV"><span class="glyphicon glyphicon-export"></span></button>
+                <button class="btn btn-warning btn-raised btn-pd" ng-click="" title="Import device from CSV"><span class="glyphicon glyphicon-import"></span></button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-click="deviceCount();" title="Device Count-Advance"><span class="glyphicon glyphicon-paperclip"></span></button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-click="reboot();" title="{{'deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.button.Reboot'|translate}}"><span class="glyphicon glyphicon-refresh"></span></button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-click="recovery();" title="{{'deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.button.Restore'|translate}}"><span class="glyphicon glyphicon-wrench"></span></button>
+                <button class="btn btn-warning btn-raised btn-pd" ng-click="toConfigure()" title="Configure">
+                    <span class="glyphicon glyphicon-cog"></span></button>
+                <button-permission ng-model="permissions2" nowUrl={{absUrl}}></button-permission>
+                </span> -->
+            </div>
+            <div class="col-lg-4 col-md-4" ng-show="groupId!=null">
+                <span style="float: right;">
+                    <button class="btn btn-danger btn-raised btn-pd" title="Remove Device From Group" ng-click="removeDeviceFromGroup()"><span class="glyphicon glyphicon-minus"></span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="mar0 row" ng-show="groupId==null">
+        <div class="col-lg-12 col-md-12 pad0">
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" class="cursor" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.NO">NO.</th>
+
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.SERIALNUMBER">SERIALNUMBER
+                                    <!-- <my-Order query="query" search="search()" order-name='serialNumber'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.WANINTERFACEIP">WAN INTERFACE IP
+                                    <!-- <my-Order query="query" search="search()" order-name='deviceIp'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.PRODUCT">PRODUCT
+                                    <!-- <my-Order query="query" search="search()" order-name='product'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.MANUFACTURER">MANUFACTURER
+                                    <!-- <my-Order query="query" search="search()" order-name='manufacturer'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.MODELNAME">MODEL NAME
+                                    <!-- <my-Order query="query" search="search()" order-name='modelName'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.SOFTWAVEVERSION">SOFTWAVE VERSION
+                                    <!-- <my-Order query="query" search="search()" order-name='softwareVersion'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.LASTCONNECTIONTIME">LAST CONNECTION TIME
+                                    <!-- <my-Order query="query" search="search()" order-name='lastVisitTime'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.CREATIONTIME">CREATIONTIME
+                                    <!-- <my-Order query="query" search="search()" order-name='creationTime'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.OUI">OUI
+                                    <!-- <my-Order query="query" search="search()" order-name='oui'></my-Order> -->
+                                </th>
+                                <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdevice.CPEdevice.form.ONLINESTATUS">ONLINESTATUS
+                                    <!-- <my-Order query="query" search="search()" order-name='onlineStatus'></my-Order> -->
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items">
+                                <td class="align-left">
+                                    <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left">{{$index+1+query.pageIndex*query.pageSize-query.pageSize}}</td>
+                                <!-- <td class="align-left" ng-click="toSummary(item)"><a href="">{{item.neNeid}}</a></td> -->
+                                <td class="align-left" ng-click="toDetails(item)">
+                                    <a href="">{{item.serialNumber}}</a>
+                                </td>
+                                <td class="align-left">{{item.deviceIp}}</td>
+                                <td class="align-left">{{item.product}}</td>
+                                <td class="align-left">{{item.manufacturer}}</td>
+                                <td class="align-left" ng-click="toSearchTree(item)"><a href="">{{item.modelName}}</a>
+                                </td>
+                                <td class="align-left">{{item.softwareVersion}}</td>
+                                <td class="align-left">{{item.lastVisitTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td class="align-left">{{item.creationTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td class="align-left">{{item.oui}}
+                                </td>
+                                <td class="align-left">
+                                    <!-- <div class="loadingBox" id="box" ng-if="item.onlineStatus == 2">
+                                        <div class="innerBox"></div>
+                                        <div class="outerBox"></div>
+                                    </div> -->
+                                    <div class="box2" ng-if="item.onlineStatus == 2" title="Loading">
+                                        <div class="r1"></div>
+                                        <div class="r2"></div>
+                                        <div class="r3"></div>
+                                        <!-- <div class="r4"></div>
+                                    <div class="r5"></div> -->
+                                    </div>
+                                    <div ng-if="item.onlineStatus == 0 ">
+                                        <div class="markerRed" title="OffLine"></div>
+                                    </div>
+                                    <div ng-if="item.onlineStatus == 1 ">
+                                        <div class="markerGreen" title="OnLine"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <p style="width:15%; margin: auto ;padding-top:10px">
+            <!--居中显示-->
+            <ion-spinner icon="bubbles" style="width:10%;stroke:#33cd5f;fill:#33cd5f;"></ion-spinner>
+            <!--bubbles加载动画的样式-->
+        </p>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+<!-- <div class="panel-head-style1">General Information</div> -->
+<div class="row no-padding">
+    <div class="col-lg-12 col-md-12 col-sm-12 pad0">
+        <div class="animated zoomIn">
+            <div class="p-r-md">
+                <div class="panel panel-blue panel-widget ">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <i class="ion-ios-monitor-outline"></i>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">{{totalElements}}</div>
+                            <div class="text-muted mar-t-10">Total Element</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-r-md" ng-click="goDeviceList();" style="cursor: pointer;">
+                <div class="panel panel-green panel-widget ">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <i class="fa fa-th-list"></i>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">{{deviceLists}}</div>
+                            <div class="text-muted mar-t-10">Device List</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-r-md" ng-click="goNotInService();" style="cursor: pointer;">
+                <div class="panel panel-teal panel-widget">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <i class="fa fa-gear"></i>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">{{notInServices}}</div>
+                            <div class="text-muted mar-t-10">Not In Service</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-r-md">
+                <div class="panel panel-orange panel-widget">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <i class="fa fa-warning"></i>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">{{currentAlarms}}</div>
+                            <div class="text-muted mar-t-10">Alarming Device</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-r-md">
+                <div class="panel panel-pin panel-widget">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-5 widget-left">
+                            <i class="fa fa-times-circle"></i>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">{{offLines}}</div>
+                            <div class="text-muted mar-t-10">OffLine</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="row no-padding">
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="fa fa-warning"></i>
+                    <div class="fontsize-14 style-inlineblock margin-r">Alarms:</div>
+                    <div class="large-dashbod style-inlineblock">24</div>
+                </div>
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="ion-checkmark-circled"></i>
+                    <div class="fontsize-14 style-inlineblock margin-r">Polling Success:</div>
+                    <div class="large-dashbod style-inlineblock">0.00%</div>
+                </div>
+            </div> -->
+<!-- <div class="animated zoomIn panel">
+    <div class="panel-head-style1">General Information</div>
+    <div class="panel-body">
+        <div class="widget-item-container p-r-md col-md-12 col-lg-12">
+            <div class="row no-padding">
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="fa fa-flag"></i>
+                    <div class="fontsize-14 style-inlineblock style-inlineblock margin-r">Device Qty:</div>
+                    <div class="large-dashbod style-inlineblock">120</div>
+                </div>
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="fa fa-bell-o"></i>
+                    <div class="fontsize-14 style-inlineblock margin-r">Alarming Device:</div>
+                    <div class="large-dashbod style-inlineblock">52</div>
+                </div>
+            </div>
+            <div class="row no-padding">
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="fa fa-warning"></i>
+                    <div class="fontsize-14 style-inlineblock margin-r">Alarms:</div>
+                    <div class="large-dashbod style-inlineblock">24</div>
+                </div>
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="ion-checkmark-circled"></i>
+                    <div class="fontsize-14 style-inlineblock margin-r">Polling Success:</div>
+                    <div class="large-dashbod style-inlineblock">0.00%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="animated zoomIn panel">
+    <div class="panel-head-style1">General Information</div>
+    <div class="panel-body">
+        <div class="widget-item-container p-r-md col-md-12 col-lg-12">
+            <div class="row no-padding">
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="fa fa-flag"></i>
+                    <div class="fontsize-14 style-inlineblock style-inlineblock margin-r">Device Qty:</div>
+                    <div class="large-dashbod style-inlineblock">120</div>
+                </div>
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="fa fa-bell-o"></i>
+                    <div class="fontsize-14 style-inlineblock margin-r">Alarming Device:</div>
+                    <div class="large-dashbod style-inlineblock">52</div>
+                </div>
+            </div>
+            <div class="row no-padding">
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="fa fa-warning"></i>
+                    <div class="fontsize-14 style-inlineblock margin-r">Alarms:</div>
+                    <div class="large-dashbod style-inlineblock">24</div>
+                </div>
+                <div class="col-sm-6 col-lg-6 widget-left">
+                    <i class="ion-checkmark-circled"></i>
+                    <div class="fontsize-14 style-inlineblock margin-r">Polling Success:</div>
+                    <div class="large-dashbod style-inlineblock">0.00%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

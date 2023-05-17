@@ -1,0 +1,48 @@
+{
+    "content": [{
+        "id": "01",
+        "announcement": "aaaaaaa",
+        "effectiveDate": "1111111",
+        "createDate": "xxxxxxx",
+        "issued": "djnjscjdscjdjc"
+    }, {
+        "id": "02",
+        "announcement": "vvvvvvv",
+        "effectiveDate": "1111111",
+        "createDate": "xxxxxxx",
+        "issued": "djnjscjdscjdjc"
+    }, {
+        "id": "03",
+        "announcement": "yyyyyyy",
+        "effectiveDate": "1111111",
+        "createDate": "xxxxxxx",
+        "issued": "djnjscjdscjdjc"
+    }, {
+        "id": "04",
+        "announcement": "bbbbb",
+        "effectiveDate": "1111111",
+        "createDate": "xxxxxxx",
+        "issued": "djnjscjdscjdjc"
+    }, {
+        "id": "05",
+        "announcement": "qwqqq",
+        "effectiveDate": "1111111",
+        "createDate": "xxxxxxx",
+        "issued": "djnjscjdscjdjc"
+    }, {
+        "id": "06",
+        "announcement": "fefer",
+        "effectiveDate": "1111111",
+        "createDate": "xxxxxxx",
+        "issued": "djnjscjdscjdjc"
+    }, {
+        "id": "07",
+        "announcement": "eynyuny",
+        "effectiveDate": "1111111",
+        "createDate": "xxxxxxx",
+        "issued": "djnjscjdscjdjc"
+    }],
+    "totalElements": 100,
+    "deleteIs": "OK"
+
+}

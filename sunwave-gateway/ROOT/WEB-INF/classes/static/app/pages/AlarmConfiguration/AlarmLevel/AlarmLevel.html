@@ -1,0 +1,83 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="row col-lg-12 col-md-12">
+                <div class="col-lg-3 col-md-3 pad0">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label">Level Name:</label>
+                        <input type="text" class="zz-input form-control" ng-model="query.levelName" id="input01" placeholder="Please Input" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 pad0">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label zz-label-r">Level ID:</label>
+                        <input type="text" class="zz-input form-control" ng-model="query.levelId" id="input01" placeholder="Please Input" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i>Search</button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-6 col-md-6">
+                        <!--nonono <button class="btn btn-info btn-raised btn-pd">Add</button>
+                        <button class="btn btn-danger btn-raised btn-pd">Delete</button> -->
+                        <!-- <button class="btn btn-warning btn-raised btn-pd" ng-click="toModifyItem('', 'md');">Modify</button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-click="toViewItem();">View</button> -->
+                        <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left">Level ID
+                                    <my-Order query="query" search="search()" order-name='alvAlarmlevelid'></my-Order>
+                                    <!-- <i class="fa fa-caret-down" ng-show="faDown" ng-click="orderFun('alvAlarmlevelid')"></i>
+                                    <i class="fa fa-caret-up" ng-show="faUp" ng-click="orderFun('alvAlarmlevelid')"></i> -->
+                                </th>
+                                <th class="align-left">Level Name
+                                    <my-Order query="query" search="search()" order-name='alvName'></my-Order>
+                                </th>
+                                <th class="align-left">Alarm Sound
+                                    <my-Order query="query" search="search()" order-name='alvSound'></my-Order>
+                                </th>
+                                <th class="align-left">Alarm Color
+                                    <my-Order query="query" search="search()" order-name='alvColor'></my-Order>
+                                </th>
+                                <th class="align-left">Remark</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <td class="align-left">
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                <td class="align-left">{{item.alvAlarmlevelid}}</td>
+                                <td class="align-left">{{item.alvName}}</td>
+                                <td class="align-left">{{item.alvSound}}</td>
+                                <td class="align-left"><span class="tdInspan" ng-style="{'background-color':item.alvColor}"></span></td>
+                                <td class="align-left">{{item.alvMemo}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

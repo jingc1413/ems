@@ -1,0 +1,110 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Configure CSV export</h4>
+    </div>
+    <div class="modal-body" style="padding-bottom: 5px;">
+        <div class="col-md-12 pad0">
+            <div class="col-md-6 col-lg-6 pad45">
+                <div class="form-group">
+                    <label for="state " class="zz-label-sm">Select export configuration</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.state " style="width: 100%;" ng-init="modal.state ='0'">
+                        <option value="0" ng-selected="modal.state  == 0">Custom export configuration</option>
+                        <option value="1" ng-selected="modal.state  == 1">Online status</option>
+                        <option value="1" ng-selected="modal.state  == 2">Online status report</option>
+                        <option value="1" ng-selected="modal.state  == 3">URL check</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 pad45">
+                <div class="form-group botm-0">
+                    <div class="form-in">
+                        <label for="input01">Show Configuration Editer</label>
+                        <label class="custom-radio">
+                            <input type="radio" ng-model="devices" value="1" class=""><span>YES</span>
+                        </label>
+                        <label class="custom-radio">
+                            <input type="radio" ng-model="devices" value="2" class=""><span>NO</span>
+                        </label>
+                    </div>
+                </div>
+            </div>          
+        </div>
+        <div class="col-md-12 col-lg-12 pad0" ng-show="devices=='1'">
+            <div class="col-md-6 col-lg-6 border-blue">
+                <div class="">
+                    <table class="table-gd table table-bordered-s">
+                        <thead class="">
+                            <tr class="" style="background: #dbeeff;width: 100%;">
+                                <th>
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th>AVAILABLE OPERATIONS
+                                    <my-Order query="query" search="search()" order-name='neRepeaterid' ></my-Order>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <!-- ngRepeat: row in rows -->
+                            <tr class="" ng-repeat="row in rows">
+                                <td><input type="checkbox" ng-model="row.checked" ng-change="selectOne()" /></td>
+                                <td>{{row.neRepeaterid16}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+                <!-- <div>已选数量：{{count}}</div>
+                <div>已选对象：{{selectData}}</div> -->
+            </div>
+            <div class="center-f">
+                <button type="button" class="btn btn-info btn-with-icon center-f-btn" ng-click="doubleSelectToRight();"><i class="fa fa-arrow-right"></i></button>
+                <button type="button" class="btn btn-info btn-with-icon center-f-btn" style="display: block;margin-top: 20px;" ng-click="doubleSelectToLeft();"><i
+                        class="fa fa-arrow-left"></i></button>
+
+            </div>
+            <div class="col-md-6 col-lg-6 border-blue" style="padding-bottom: 32.5px;">
+                <div class="">
+                    <table class="table-gd table table-bordered-s">
+                        <thead class="">
+                            <tr class="" style="background: #dbeeff;">
+                                <th>
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all2" ng-change="selectAll2()"></input>
+                                </th>
+                                <th ng-click="orderFun('neRepeaterid16')">COLUMN NAME
+                                </th>
+                                <th ng-click="orderFun('neDevicetype.dtpName')">OPERATION</th>
+                                <th ng-click="orderFun('neName')">REMOVE</th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <!-- ngRepeat: row in rows2 -->
+                            <tr class="" ng-repeat="row2 in rows2 | orderBy:order">
+                                <td><input type="checkbox" ng-model="row2.checked" ng-change="selectOne2()" /></td>
+                                <td>{{row2.neRepeaterid16}}</td>
+                                <td>{{row2.neDevicetype.dtpName}}</td>
+                                <td>{{row2.neName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="col-md-12 col-lg-12 pad0">
+            <button type="button" class="btn btn-primary" ng-click="" >Preview</button>
+            <button type="button" class="btn btn-primary" ng-click="">Download CSV</button>
+        </div>
+        <div class="col-md-12 col-lg-12 pad0">
+            <textarea  class="form-control ng-pristine ng-valid ng-empty ng-touched" id="textarea01"  ></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="checkAll()" ng-show="isSave">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+</div>

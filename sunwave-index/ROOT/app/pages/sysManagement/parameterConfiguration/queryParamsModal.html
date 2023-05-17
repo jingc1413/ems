@@ -1,0 +1,187 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <form name="userForm" ng-submit="submitForm()">
+
+            <div class="col-lg-7 col-md-7 mar-b-10 pad0">
+                <div class="form-group">
+                    <label for="name" class="mar-t-10 control-label col-md-4" translate="SysManagement.parameterConfiguration.modal.Parameters"></label>
+                    <div class="col-md-7">
+                        <input id="name" name="name" type="text" class="form-control" ng-model="query.deviceTypeStr" required readonly/>
+                        <!-- <span style="color:red" ng-show="userForm.name.$pristine">*</span> -->
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-5 col-md-5 mar-b-10 pad0">
+                <div class="form-group">
+                    <label for="number" class="mar-t-10 control-label col-md-4" translate="SysManagement.parameterConfiguration.modal.selectedNum">selectedNum:</label>
+                    <div class="col-md-8">
+                        <input id="number" name="number" type="number" class="form-control" ng-model="selectedNum" required readonly/>
+                    </div>
+
+                </div>
+            </div> -->
+
+
+            <div ng-show="isReport">
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopen=!colisopen" data-toggle="collapse" data-target="#cols1">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopen, 'fa fa-minus': colisopen}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAll_base" type="checkbox" class="" ng-checked="check_base.checkAllCol_base" ng-change="checkAll('check_base');">
+
+                    <span translate="SysManagement.parameterConfiguration.modal.BasicInformation">Basic Information</span>
+                </label>
+                </div>
+                <div id="cols1" class="col-div-scroll collapse col-md-12 col-lg-12">
+
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check_base in checks_base" style="margin-bottom: 5px;">
+                        <input ng-model="check_base.columnChecked" type="checkbox" id="check_base.columnIdEnable" class="" ng-checked="check_base.columnChecked" ng-change="checkOne('check_base');">
+                        <span>{{check_base.columnName}}</span>
+                    </label>
+
+                    </div>
+
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div ng-show="isReport">
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenOther=!colisopenOther" data-toggle="collapse" data-target="#cols2">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenOther, 'fa fa-minus': colisopenOther}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAll_omc" type="checkbox" class="" ng-checked="check_omc.checkAllCol_omc" ng-change="checkAll('check_omc');">
+
+                    <span translate="SysManagement.parameterConfiguration.modal.BasicOthers">Basic Others</span>
+                </label>
+                </div>
+                <div id="cols2" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check_omc in checks_omc" style="margin-bottom: 5px;">
+                        <input ng-model="check_omc.columnChecked" type="checkbox" id="check_omc.columnIdStatus" class="" ng-checked="check_omc.columnChecked" ng-change="checkOne('check_omc');">
+                        <span>{{check_omc.columnName}}</span>
+                    </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div ng-show="isReport">
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenEnable=!colisopenEnable" data-toggle="collapse" data-target="#cols3">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenEnable, 'fa fa-minus': colisopenEnable}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAll_alarmen" type="checkbox" class="" ng-checked="check_alarmen.checkAllCol_alarmen" ng-change="checkAll('check_alarmen');">
+
+                    <span translate="SysManagement.parameterConfiguration.modal.AlarmEnable">Alarm Enable</span>
+                </label>
+                </div>
+                <div id="cols3" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check_alarmen in checks_alarmen" style="margin-bottom: 5px;">
+                            <input ng-model="check_alarmen.columnChecked" type="checkbox" id="check_alarmen.columnId" class="" ng-checked="check_alarmen.columnChecked" ng-change="checkOne('check_alarmen');">
+                            <span>{{check_alarmen.columnName}}</span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenStatus=!colisopenStatus" data-toggle="collapse" data-target="#cols4">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenStatus, 'fa fa-minus': colisopenStatus}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAll_alarm" type="checkbox" class="" ng-checked="check_alarm.checkAllCol_alarm" ng-change="checkAll('check_alarm');">
+
+                    <span translate="SysManagement.parameterConfiguration.modal.AlarmStatus">Alarm Status</span>
+                </label>
+                </div>
+                <div id="cols4" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check_alarm in checks_alarm" style="margin-bottom: 5px;">
+                        <input ng-model="check_alarm.columnChecked" type="checkbox" id="check_alarm.columnId" class="" ng-checked="check_alarm.columnChecked" ng-change="checkOne('check_alarm');">
+                        <span>{{check_alarm.columnName}}</span>
+                    </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenSamply=!colisopenSamply" data-toggle="collapse" data-target="#cols5">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenSamply, 'fa fa-minus': colisopenSamply}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAll_realtime" type="checkbox" class="" ng-checked="check_realtime.checkAllCol_realtime" ng-change="checkAll('check_realtime');">
+                    <span translate="SysManagement.parameterConfiguration.modal.DeviceSamplingData">Device Sampling Data</span>
+                </label>
+                </div>
+                <div id="cols5" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check_realtime in checks_realtime" style="margin-bottom: 5px;">
+                        <input ng-model="check_realtime.columnChecked" type="checkbox" id="check_realtime.columnIdParams" class="" ng-checked="check_realtime.columnChecked" ng-change="checkOne('check_realtime');">
+                        <span>{{check_realtime.columnName}}</span>
+                    </label>
+
+                    </div>
+
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <div ng-show="isReport">
+                <div class="col-md-12 col-lg-12 pad0 bg-f5" style="margin-bottom: 4px;">
+                    <button type="button" class="col-btn btn-sm" ng-click="colisopenParams=!colisopenParams" data-toggle="collapse" data-target="#cols6">
+                    <i class="fa fa-plus" ng-class="{'fa fa-plus': !colisopenParams, 'fa fa-minus': colisopenParams}">
+                    </i>
+                </button>
+                    <label class="col-md-3 col-lg-3 checkbox-inline custom-checkbox nowrap">
+                    <input ng-model="columnCheckedAll_radio" type="checkbox" class="" ng-checked="check_radio.checkAllCol_radio" ng-change="checkAll('check_radio');">
+
+                    <span translate="SysManagement.parameterConfiguration.modal.DeviceSetParameters">Device Set Parameters</span>
+                </label>
+                </div>
+                <div id="cols6" class="col-div-scroll collapse col-md-12 col-lg-12" style="margin-top: 5px;">
+                    <div class="col-md-12 col-lg-12">
+                        <label class="col-md-4 col-lg-4 checkbox-inline custom-checkbox nowrap" ng-repeat="check_radio in checks_radio" style="margin-bottom: 5px;">
+                        <input ng-model="check_radio.columnChecked" type="checkbox" id="check_radio.columnIdSamply" class="" ng-checked="check_radio.columnChecked" ng-change="checkOne('check_radio');">
+                        <span>{{check_radio.columnName}}</span>
+                    </label>
+
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+        </form>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" type="submit" ng-click="save();" ng-show="view" translate="buttons.Save">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close();" translate="buttons.Close">Close</button>
+        </div>
+    </div>
+</div>

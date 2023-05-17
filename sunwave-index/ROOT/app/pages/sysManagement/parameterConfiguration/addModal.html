@@ -1,0 +1,73 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <div ng-class="{'cantModify':view==false}"></div>
+        <form name="userForm" ng-submit="submitForm()">
+
+            <!-- <div class="col-lg-7 col-md-7 mar-b-10 pad0">
+                <div class="form-group">
+
+                    <div class="col-md-7">
+                        <input id="name" name="name" type="text" class="form-control" ng-model="modal.reportName" ng-maxlength=50 ng-blur="isRoleExist(modal.reportName)" required/>
+                        <span style="color:red" ng-show="userForm.name.$pristine">*</span>
+                    </div>
+                </div>
+            </div> -->
+            <div class="pad2 form-group col-lg-12 col-md-12 mar-b-0">
+                <label for="type" class="col-md-3 text-r" translate="SysManagement.parameterConfiguration.modal.Type"></label>
+                <select class="zz-input-sm pad2 form-control inline v-middle float-l" ng-model="modal.type" name="Type" ng-click="getType()" ng-change="changeType()" required ng-disabled="NotModify">
+                    <option value=''>--please select--</option>
+                    <option value='PM'>PM</option>
+                    <option value='CM'>CM</option>
+                    <!-- <option value='CM_ConInfo'>CM_ConInfo</option>
+
+                    <option value='CM_SysPara'>CM_SysPara</option> -->
+                    <option value='Alarm_Report'>Alarm_Report</option>
+                </select>
+                <!-- <span style="color:red" ng-show="userForm.Type.$pristine">*</span> -->
+            </div>
+            <div class="pad2 form-group col-lg-12 col-md-12 mar-b-0">
+                <label for="name" class="col-md-3 text-r" translate="SysManagement.parameterConfiguration.modal.Alarm"></label>
+                <input type="text" class="zz-input form-control search-zz-input" ng-model="modal.alarmName" id="input01" placeholder="" ng-blur="isRoleExist(modal.alarmStr)" required readonly />
+
+                <span style="color:red" ng-show="userForm.name.$pristine">*</span>
+
+                <button type="button" class="btn btn-sm btn-success btn-raised" ng-click="alarmTypeModal();" ng-disabled="modal.type=='PM'||modal.type=='CM'||modal.type=='CM_SysPara'">Select Alarm
+                    <!-- <i class="fa fa-search"></i> -->
+                </button>
+            </div>
+
+            <div class="pad2 form-group col-lg-12 col-md-12 mar-b-0">
+                <label for="name" class="col-md-3 text-r" translate="SysManagement.parameterConfiguration.modal.Parameters"></label>
+                <!-- <input type="text" class="zz-input form-control search-zz-input" ng-model="query.paramName" id="input01" placeholder="" ng-blur="isRoleExist(modal.typeName)" required> -->
+                <select class="zz-input-sm pad2 form-control inline v-middle float-l" ng-model="modal.deviceTypeId" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'" ng-change="changeDeviceType()"
+                    name="deviceType" style="width:50%;">
+                    <!-- <option value="00" translate="deviceManagement.modal.PleaseSelect" ng-selected="modal.deviceTypeId=='00'">--Please Select--</option> -->
+                    <option value='' translate="deviceManagement.modal.All">All</option>
+                </select>
+                <!-- <span style="color:red" ng-show="userForm.deviceType.$pristine">*</span> -->
+
+                <button type="button" class="btn btn-sm btn-success btn-raised" ng-click="queryParams()">Select Param
+                    <!-- <i class="fa fa-search"></i> -->
+                </button>
+            </div>
+
+
+
+            <div class="clear"></div>
+
+
+
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" type="submit" ng-click="save();" translate="buttons.Save" ng-show="view">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close();" translate="buttons.Close">Close</button>
+    </div>
+</div>

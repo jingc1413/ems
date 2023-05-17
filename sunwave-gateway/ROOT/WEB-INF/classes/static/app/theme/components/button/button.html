@@ -1,0 +1,15 @@
+<div>
+    <div class="btn-group" ng-repeat="x in buttonArr1" ng-show="button1">
+        <button class={{x.class}} ng-model="butModel" ng-click="{{x.click}}">
+    <i></i>{{x.buttonName}}
+    </button>
+        <!-- <button class={{x.class}} ng-model="butModel" ng-click="search()">
+    <i ></i>{{x.buttonName}}
+    </button> -->
+    </div>
+    <div class="btn-group" ng-repeat="x in buttonArr2" ng-show="button2">
+        <button class={{x.class}} ng-model="butModel" ng-click="{{x.click}}">
+    <i></i>{{x.buttonName}}
+    </button>
+    </div>
+</div>

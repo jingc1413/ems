@@ -1,0 +1,1098 @@
+(function() {
+    'use strict';
+
+    angular.module('SunWave.pages.upgradeManagement.batchUpgrade', [
+            'SunWave.pages.deviceManagement.deviceList',
+            'SunWave.pages.PollingManagement.PollingTask',
+            'SunWave.pages.Authority.area'
+        ])
+        .controller('addBatchModalCtrl', addBatchModalCtrl);
+
+    function addBatchModalCtrl($rootScope, $scope, batchUpgradeService, transmitModalItems, modifyData, deviceListService, PollingTaskService, isAdd, $uibModal, $uibModalInstance, areaService, $filter, $log) {
+
+
+        $scope.modifyData = modifyData;
+        $scope.notView = true;
+        $scope.readOnly = false;
+        $scope.time_error = false;
+
+        $scope.devices = 'on';
+
+        $scope.modal = {
+            tskTaskname: "",
+            tskNexttime: "",
+            // ftpserver: "",
+            // fileId: "",
+            // tskFilter: "on"
+            // tskFilter: "2"
+            // tskFilter:Devices是ALL还是Partial,All 1，Partial传2
+        };
+
+        var areaFlag;
+
+        $scope.transmitModalItems = transmitModalItems;
+
+        $scope.fileName = "";
+        $scope.count2 = 0;
+
+        $scope.xx = {
+            select_all: "",
+            select_all2: ""
+        };
+
+        $scope.orignRows2 = [];
+
+
+        $scope.area = {
+            selectArea: ""
+        };
+        $scope.area2 = {
+            selectArea: ""
+        };
+
+
+        // 配置分页基本参数
+        $scope.paginationConf = { //分页信息
+            currentPage: 1,
+            itemsPerPage: 50,
+            pagesLength: 50,
+            perPageOptions: [15, 20, 30, 50, 100, 200]
+
+        };
+
+
+        $scope.isAdd = isAdd;
+        if ($scope.isAdd == 'Add') {
+            // $scope.title = 'Add';
+            if ($rootScope.language == 'chinese') {
+                $scope.title = '新增'
+            } else if ($rootScope.language == 'english') {
+                $scope.title = 'Add';
+            } else {
+                $scope.title = 'Add';
+            };
+            $scope.isModify = false;
+
+        } else if ($scope.isAdd == 'Modify') {
+            var firstSearchRightFlag = true;
+
+            // $scope.title = "Modify";
+            if ($rootScope.language == 'chinese') {
+                $scope.title = '编辑'
+            } else if ($rootScope.language == 'english') {
+                $scope.title = 'Modify';
+            } else {
+                $scope.title = 'Modify';
+            };
+
+            //file id
+            $scope.fileId = $scope.modifyData.tmpUpgradeFileId;
+            $scope.isModify = true;
+            $scope.ids = $scope.modifyData.selectedNeIds;
+            $scope.modal = $scope.modifyData;
+            $scope.devices = $scope.modifyData.tskFilter;
+            $scope.fileName = $scope.transmitModalItems.upgradeFileName;
+            $scope.ftpServer = $scope.transmitModalItems.serverSftpName;
+
+        } else {
+            // $scope.title = "View";
+            var firstSearchRightFlag = true;
+
+            if ($rootScope.language == 'chinese') {
+                $scope.title = '查看'
+            } else if ($rootScope.language == 'english') {
+                $scope.title = 'View';
+            } else {
+                $scope.title = 'View';
+            };
+
+            //save按钮
+            $scope.notView = false;
+            //file id
+            $scope.readOnly = true;
+            $scope.fileId = $scope.modifyData.tmpUpgradeFileId;
+            $scope.isModify = false;
+            $scope.devices = $scope.modifyData.tskFilter;
+            $scope.ids = $scope.modifyData.selectedNeIds;
+            $scope.modal = $scope.modifyData;
+            $scope.fileName = $scope.transmitModalItems.upgradeFileName;
+            $scope.ftpServer = $scope.transmitModalItems.serverSftpName;
+        };
+
+        $scope.query = { //查询设备
+            pageIndex: 0,
+            pageSize: 10,
+            keyword: "",
+            areaIds: "",
+            neCompanyid: "",
+            neSitelevelid: "",
+            neDevicestatusid: "",
+            neDevicetypeid: "",
+            neName: "",
+            neRepeaterid: "",
+            rightElementIds: ""
+        };
+
+
+        $scope.xx = {
+            select_all: "",
+            select_all2: ""
+        };
+        //下拉框 and Input的初始化
+        $scope.isWeek = false;
+        $scope.isInput = true;
+        $scope.deviceTypeShow = true;
+        $scope.deviceStatusShow = false;
+        $scope.devNameAndId = false;
+        $scope.vendorShow = false;
+
+        $scope.rows2 = [];
+
+        //判断查询条件
+        $scope.switchSearchCondition = function() {
+
+            switch ($scope.searchCondition) {
+                //0 type
+                case "0":
+                    $scope.deviceStatusShow = false;
+                    $scope.deviceTypeShow = true;
+                    $scope.devNameAndId = false;
+                    $scope.vendorShow = false;
+                    $scope.query.neCompanyid = "";
+                    $scope.query.neSitelevelid = "";
+                    $scope.query.neDevicestatusid = "";
+                    $scope.query.neName = "";
+                    $scope.query.neRepeaterid = "";
+                    $scope.query.rightElementIds = "";
+
+                    // $scope.query.dtpDevicetypeid = $scope.modal.neDevicetypeid;
+                    $scope.query.neDevicetypeid = $scope.modal.neDevicetypeid;
+                    $scope.query.deviceTypeclassifyId = "8";
+                    // $scope.searchDeviceType();
+                    break;
+                    //1 status
+                case "1":
+                    $scope.deviceStatusShow = true;
+                    $scope.deviceTypeShow = false;
+                    $scope.devNameAndId = false;
+                    $scope.vendorShow = false;
+                    $scope.query.neCompanyid = "";
+                    $scope.query.neSitelevelid = "";
+                    $scope.query.neDevicetypeid = "";
+                    $scope.query.neName = "";
+                    $scope.query.neRepeaterid = "";
+                    $scope.query.rightElementIds = "";
+                    $scope.query.neDevicestatusid = $scope.modal.neDevicestatusid;
+                    $scope.query.deviceTypeclassifyId = "8";
+                    // $scope.deviceStatuss();
+                    break;
+                case "2":
+                    $scope.deviceStatusShow = false;
+                    $scope.deviceTypeShow = false;
+                    $scope.devNameAndId = true;
+                    $scope.vendorShow = false;
+                    $scope.query.neCompanyid = "";
+                    $scope.query.neSitelevelid = "";
+                    $scope.query.neDevicestatusid = "";
+                    $scope.query.neName = "";
+                    $scope.query.neDevicetypeid = "";
+                    $scope.query.rightElementIds = "";
+                    $scope.query.neRepeaterid = $scope.conditionValue;
+                    $scope.query.deviceTypeclassifyId = "8";
+                    break;
+                case "3":
+                    $scope.deviceStatusShow = false;
+                    $scope.deviceTypeShow = false;
+                    $scope.devNameAndId = true;
+                    $scope.vendorShow = false;
+                    $scope.query.neCompanyid = "";
+                    $scope.query.neSitelevelid = "";
+                    $scope.query.neDevicestatusid = "";
+                    $scope.query.neDevicetypeid = "";
+                    $scope.query.neRepeaterid = "";
+                    $scope.query.rightElementIds = "";
+                    $scope.query.neName = $scope.conditionValue;
+                    $scope.query.deviceTypeclassifyId = "8";
+                    break;
+                case "4":
+                    $scope.deviceStatusShow = false;
+                    $scope.deviceTypeShow = false;
+                    $scope.devNameAndId = false;
+                    $scope.vendorShow = true;
+
+                    $scope.query.neDevicetypeid = "";
+                    $scope.query.neSitelevelid = "";
+                    $scope.query.neDevicestatusid = "";
+                    $scope.query.neName = "";
+                    $scope.query.neRepeaterid = "";
+                    $scope.query.rightElementIds = "";
+                    $scope.query.neCompanyid = $scope.modal.coCompanyid;
+                    $scope.query.deviceTypeclassifyId = "8";
+                    break;
+                default:
+                    $scope.query.keyword = "";
+                    $scope.query.deviceTypeclassifyId = "8";
+            }
+        };
+
+        $scope.search = function() {
+            $scope.switchSearchCondition();
+            searchForm();
+        };
+
+        $scope.exectiontimeChange = function() {
+            var cur_date = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm')
+            if ($scope.modal.tskNexttime < cur_date) {
+                alert('Cannot select time before current!');
+                $scope.modal.tskNexttime = '';
+            }
+        };
+
+        var clearArrays = function() {
+            $scope.checked = []; //选中的ID
+            $scope.checkedItems = []; //选中的对象数组
+            $scope.xx.select_all = false;
+        }
+
+        var clearArrays2 = function() {
+            $scope.checked2 = []; //选中的ID
+            $scope.checkedItems2 = []; //选中的对象数组
+            // $scope.xx.select_all2 = false;
+        }
+
+        var searchForm = function() { //查询
+            clearArrays();
+            $scope.query.pageIndex = $scope.paginationConf.currentPage;
+            $scope.query.pageSize = $scope.paginationConf.itemsPerPage;
+            if ($scope.isAdd == 'Add') {
+                // $scope.query.rightElementIds = "";
+                // // $scope.switchSearchCondition();
+                // PollingTaskService.searchForPolling($scope.query).success(function(response) {
+                //     // $scope.paginationConf.totalItems = response.data.totalElements;
+                //     $scope.totals = response.data.totalElements;
+                //     $scope.paginationConf.totalPages = response.data.totalPages;
+                //     $scope.rows = response.data.content;
+                //     for (let i = 0; i < $scope.rows.length; i++) {
+                //         var row1 = $scope.rows[i];
+                //         for (let j = 0; j < $scope.rows2.length; j++) {
+                //             var row2 = $scope.rows2[j];
+                //             if (row1.neNeid == row2.neNeid) {
+                //                 $scope.rows.splice(i, 1);
+                //                 i--;
+                //             }
+                //         }
+
+                //     }
+                //     $scope.paginationConf.totalItems = ($scope.totals - $scope.rows2.length);
+                // })
+                $scope.searchLeft();
+            } else {
+                if ($scope.ids) {
+                    $scope.idss = $scope.ids.split(',');
+                    $scope.query.rightElementIds = $scope.ids;
+                    // $scope.searchLeft();
+                    //查右边
+
+                    if (firstSearchRightFlag == true) {
+                        if ($scope.idss == '' || $scope.idss == undefined) {
+                            $scope.rows2 = [];
+                        } else {
+                            if ($scope.devices == 'on') {
+                                PollingTaskService.findByIds($scope.idss).success(function(response) {
+                                    $scope.rows2 = response.data;
+                                    //拷贝
+                                    $scope.orignRows2 = $scope.rows2;
+                                    $scope.count2 = $scope.rows2.length;
+                                    $scope.searchLeft();
+
+                                });
+                            }
+                        };
+                        firstSearchRightFlag = false;
+
+                    } else {
+                        $scope.searchLeft();
+                    }
+                } else {
+                    $scope.searchLeft();
+                    $scope.rows2 = [];
+                    firstSearchRightFlag = false;
+
+                }
+
+
+            }
+        };
+
+        // //type all
+        // $scope.searchDeviceTypeAll = function() {
+        //     deviceListService.searchDeviceTypeAll().success(function(res) {
+        //         // //console.log(`查的DeviceType是：${res.data}`);
+        //         $scope.devTypeAlls = res.data;
+        //     })
+        // };
+        // $scope.searchDeviceTypeAll();
+
+        //type
+        $scope.searchDeviceType = function() {
+            deviceListService.searchDeviceType().success(function(res) {
+                // //console.log(`查的DeviceType是：${res.data}`);
+                $scope.deviceTypes = res.data.filter(function(item) {
+                    return item.neDevicetypeclassify.dtcDevicetypeclassifyid == "8";
+                });
+            })
+        };
+        $scope.searchDeviceType();
+
+        //vendor
+        $scope.getVendorName = function() {
+            deviceListService.findAll().success(function(res) {
+                $scope.vNames = res.data;
+                $scope.vNames2 = res.data;
+            })
+        };
+        $scope.getVendorName();
+
+        //status
+        $scope.deviceStatuss = function() {
+            deviceListService.deviceStatuss().success(function(res) {
+                // //console.log(`查的DeviceType是：${res.data}`);
+                $scope.devStatuss = res.data;
+            })
+        };
+        $scope.deviceStatuss();
+
+        //查左
+        $scope.searchLeft = function() {
+            var idsArr = [];
+            $scope.query.rightElementIds = "";
+
+            if ($scope.orignRows2.length == 0) {} else {
+                for (let k = 0; k < $scope.orignRows2.length; k++) {
+                    idsArr.push($scope.orignRows2[k].neNeid);
+                }
+                $scope.query.rightElementIds = idsArr.toString();
+            }
+            PollingTaskService.searchForPolling($scope.query).success(function(response) {
+                $scope.paginationConf.totalPages = response.data.totalPages;
+                $scope.paginationConf.totalItems = response.data.totalElements;
+                $scope.rows = response.data.content;
+                // for (let i = 0; i < $scope.rows.length; i++) {
+                //     var row1 = $scope.rows[i];
+                //     for (let j = 0; j < $scope.rows2.length; j++) {
+                //         var row2 = $scope.rows2[j];
+                //         if (row1.neNeid == row2.neNeid) {
+                //             $scope.rows.splice(i, 1);
+                //             i--;
+                //         }
+                //     }
+                // }
+                // $scope.paginationConf.totalItems = ($scope.totals - $scope.rows2.length);
+            })
+        };
+
+        //areaTree
+        $scope.searchAreaTree = function(size) {
+            $scope.isArea = 'Area';
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop: "static",
+                templateUrl: 'app/pages/Authority/safe/areaTreeModal.html',
+                controller: 'areaTreeModalCtrl',
+                size: 'md',
+                resolve: {
+                    isArea: function() {
+                        return $scope.isArea;
+                    },
+                    areaService: function() {
+                        return areaService;
+                    },
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['app/pages/AlarmManagement/historyAlarm/areaTreeModalCtrl.js']);
+                        }
+                    ]
+                }
+            });
+
+            modalInstance.result.then(function(changedNodes) {
+                // //console.log(`已选择的area是${selectArea.name}`);
+                $scope.areaIdsArr = [];
+                $scope.areaNamesArr = [];
+                for (let i = 0; i < changedNodes.length; i++) {
+                    $scope.areaIdsArr.push(changedNodes[i].id);
+                    $scope.areaNamesArr.push(changedNodes[i].name);
+                };
+                $scope.area.selectArea = $scope.areaNamesArr.toString();
+                $scope.query.areaIds = $scope.areaIdsArr.toString();
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
+
+        $scope.handlePartial = function() {
+            if ($scope.devices == 'on') {
+                searchForm();
+            }
+        }
+
+        //----------------------------------前台条件查询-------------------------------------//
+
+        //areaTree
+        $scope.searchAreaTree2 = function(size) {
+            $scope.isArea = 'Area';
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop: "static",
+                templateUrl: 'app/pages/Authority/safe/areaTreeModal.html',
+                controller: 'areaTreeModalCtrl',
+                size: 'md',
+                resolve: {
+                    isArea: function() {
+                        return $scope.isArea;
+                    },
+                    areaService: function() {
+                        return areaService;
+                    },
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['app/pages/AlarmManagement/historyAlarm/areaTreeModalCtrl.js']);
+                        }
+                    ]
+                }
+            });
+
+            modalInstance.result.then(function(changedNodes) {
+                // //console.log(`已选择的area是${selectArea.name}`);
+                $scope.areaIdsArr2 = [];
+                $scope.areaNamesArr2 = [];
+                areaFlag = true;
+                for (let i = 0; i < changedNodes.length; i++) {
+                    $scope.areaIdsArr2.push(changedNodes[i].id);
+                    $scope.areaNamesArr2.push(changedNodes[i].name);
+                };
+                $scope.area2.selectArea = $scope.areaNamesArr2.toString();
+                $scope.query2.areaNames = $scope.areaNamesArr2.toString();
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
+        //前台查询条件
+        $scope.query2 = {
+            neDevicetypeid: "",
+            neDevicestatusid: "",
+            neRepeaterid16: "",
+            neName: "",
+            coCompanyid: "",
+            areaNames: ""
+        };
+
+        $scope.deviceTypeShow2 = true;
+
+
+        //前台判断查询条件
+        $scope.switchSearchCondition2 = function() {
+
+            switch ($scope.searchCondition2) {
+                //0 type
+                case "0":
+                    $scope.deviceStatusShow2 = false;
+                    $scope.deviceTypeShow2 = true;
+                    $scope.devNameAndId2 = false;
+                    $scope.vendorShow2 = false;
+                    $scope.query2Param = 'neDevicetypeid';
+                    break;
+                case "1":
+                    $scope.deviceStatusShow2 = true;
+                    $scope.deviceTypeShow2 = false;
+                    $scope.devNameAndId2 = false;
+                    $scope.vendorShow2 = false;
+                    $scope.query2Param = 'neDevicestatusid';
+                    break;
+                case "2":
+                    $scope.deviceStatusShow2 = false;
+                    $scope.deviceTypeShow2 = false;
+                    $scope.devNameAndId2 = true;
+                    $scope.query2Param = 'neRepeaterid16';
+                    $scope.vendorShow2 = false;
+                    $scope.query2.neRepeaterid16 = $scope.conditionValue2;
+                    break;
+                case "3":
+                    $scope.deviceStatusShow2 = false;
+                    $scope.deviceTypeShow2 = false;
+                    $scope.devNameAndId2 = true;
+                    $scope.vendorShow2 = false;
+                    $scope.query2Param = 'neName';
+                    $scope.query2.neName = $scope.conditionValue2;
+                    break;
+                case "4":
+                    $scope.deviceStatusShow2 = false;
+                    $scope.deviceTypeShow2 = false;
+                    $scope.devNameAndId2 = false;
+                    $scope.vendorShow2 = true;
+                    $scope.query2Param = 'coCompanyid';
+                    break;
+                default:
+                    $scope.query2.keyword = "";
+            }
+            return $scope.query2Param;
+        };
+
+
+        $scope.search2 = function() {
+            // $scope.rows2 = [];
+            $scope.new_rows2 = JSON.parse(JSON.stringify($scope.rows2));
+
+            for (let i = 0; i < $scope.rows2.length; i++) {
+                const row = $scope.rows2[i];
+                if (row.checked == true) {
+                    row.checked = false;
+                }
+            }
+
+            $scope.searchParam = $scope.switchSearchCondition2();
+
+            //前台条件查询
+            $scope.searchForm2($scope.searchParam);
+        };
+
+        var resetFlag = false;
+
+        $scope.searchForm2 = function(query2Params) {
+            clearArrays2();
+            if (resetFlag == true) {
+                $scope.rows2 = $scope.orignRows2;
+                $scope.count2 = $scope.rows2.length;
+                resetFlag = false;
+                return
+            } else {
+                $scope.rows2_new = [];
+                $scope.rows3_new = [];
+                var swArr = [];
+
+                if (areaFlag == true) {
+                    for (let index = 0; index < $scope.orignRows2.length; index++) {
+                        const el = $scope.orignRows2[index];
+                        for (let j = 0; j < $scope.areaNamesArr2.length; j++) {
+                            const areaN = $scope.areaNamesArr2[j];
+                            if (el.areaName == areaN) {
+                                $scope.rows2_new.push(el);
+                            }
+                        }
+                    };
+                    $scope.rows3_new = $scope.rows2_new;
+                } else {
+                    $scope.rows3_new = $scope.orignRows2;
+                };
+
+                for (let i = 0; i < $scope.rows3_new.length; i++) {
+                    switch (query2Params) {
+                        case 'neDevicetypeid':
+                            if ($scope.rows3_new[i].neDevicetype.dtpDevicetypeid == $scope.query2.neDevicetypeid) {
+                                swArr.push($scope.rows3_new[i]);
+                            } else if ($scope.query2.neDevicetypeid == '' || $scope.query2.neDevicetypeid == null) {
+                                swArr = $scope.rows3_new;
+                                if (swArr == $scope.rows3_new) {
+                                    $scope.rows2 = swArr;
+                                    $scope.count2 = $scope.rows2.length;
+                                    return
+                                }
+                            }
+                            break;
+                        case 'coCompanyid':
+                            if ($scope.rows3_new[i].neCompany.coCompanyid == $scope.query2.coCompanyid) {
+                                swArr.push($scope.rows3_new[i]);
+                            } else if ($scope.query2.neDevicestatusid == null || $scope.query2.coCompanyid == '') {
+                                swArr = $scope.rows3_new;
+                                if (swArr == $scope.rows3_new) {
+                                    $scope.rows2 = swArr;
+                                    $scope.count2 = $scope.rows2.length;
+                                    return
+                                }
+                            }
+                            break;
+                        case 'neRepeaterid16':
+                            if ($scope.rows3_new[i].neRepeaterid16.indexOf($scope.query2.neRepeaterid16.toLocaleUpperCase()) != -1) {
+                                swArr.push($scope.rows3_new[i]);
+                            } else if ($scope.query2.neRepeaterid16 == '') {
+                                swArr = $scope.rows3_new;
+                                if (swArr == $scope.rows3_new) {
+                                    $scope.rows2 = swArr;
+                                    $scope.count2 = $scope.rows2.length;
+                                    return
+                                }
+                            }
+                            break;
+                        case 'neName':
+                            if ($scope.rows3_new[i].neName.indexOf($scope.query2.neName) != -1) {
+                                swArr.push($scope.rows3_new[i]);
+                            } else if ($scope.query2.neName == '') {
+                                swArr = $scope.rows3_new;
+                                if (swArr == $scope.rows3_new) {
+                                    $scope.rows2 = swArr;
+                                    $scope.count2 = $scope.rows2.length;
+                                    return
+                                }
+                            } else {
+                                if ($scope.query2.neName == null) {
+                                    swArr.push($scope.rows3_new[i]);
+                                }
+                            }
+                            break;
+                        case 'neDevicestatusid':
+                            if ($scope.query2.neDevicestatusid == null || ((typeof $scope.query2.neDevicestatusid == 'string') && $scope.query2.neDevicestatusid == '')) {
+                                swArr = $scope.rows3_new;
+                                if (swArr == $scope.rows3_new) {
+                                    $scope.rows2 = swArr;
+                                    $scope.count2 = $scope.rows2.length;
+                                    return
+                                }
+                            } else if ($scope.rows3_new[i].neDevicestatus.dsId === $scope.query2.neDevicestatusid) {
+                                swArr.push($scope.rows3_new[i]);
+                            }
+                            break;
+
+                        default:
+                            break;
+                    };
+                }
+                resetFlag = false;
+                if ($scope.area2.selectArea == '') {
+                    areaFlag = false;
+                };
+
+                $scope.rows2 = swArr;
+                $scope.count2 = $scope.rows2.length;
+            }
+        };
+
+
+        //右边恢复
+        $scope.recovery = function() {
+            if ($scope.orignRows2 == undefined || $scope.orignRows2.length == 0) {
+                alert('Please select item first!')
+                return
+            }
+            $scope.query2 = {
+                neDevicetypeid: "",
+                neDevicestatusid: "",
+                neRepeaterid16: "",
+                neName: "",
+                coCompanyid: "",
+                areaNames: ""
+            };
+
+            $scope.searchParam = "";
+            $scope.searchCondition2 = '0';
+            $scope.conditionValue2 = "";
+            $scope.area2.selectArea = '';
+            $scope.deviceTypeShow2 = true;
+            $scope.deviceStatusShow2 = false;
+            $scope.vendorShow2 = false;
+            $scope.devNameAndId2 = false;
+            if ($scope.rows2 == undefined && $scope.rows2 == null) {
+                $scope.rows2 = [];
+            } else {
+                resetFlag = true;
+                areaFlag = false;
+                $scope.searchForm2();
+                // $scope.rows2 = $scope.orignRows2;
+                // $scope.searchForm2($scope.searchParam, true);
+            }
+
+        };
+        //左边恢复
+        $scope.recoveryLeft = function() {
+            $scope.query = { //查询设备
+                pageIndex: 0,
+                pageSize: 10,
+                keyword: "",
+                areaIds: "",
+                neCompanyid: "",
+                neSitelevelid: "",
+                neDevicestatusid: "",
+                neDevicetypeid: "",
+                neName: "",
+                neRepeaterid: "",
+                rightElementIds: "",
+                deviceTypeclassifyId: "8"
+            };
+            $scope.modal.neDevicetypeid = "";
+            $scope.modal.neDevicestatusid = "";
+            $scope.modal.coCompanyid = "";
+            $scope.query.rightElementIds = $scope.ids;
+            $scope.conditionValue = "";
+            $scope.searchCondition = "0";
+            $scope.area.selectArea = '';
+            $scope.deviceTypeShow = true;
+            $scope.devNameAndId = false;
+            $scope.vendorShow = false;
+            $scope.deviceStatusShow = false;
+            $scope.searchLeft();
+        };
+
+        //----------------------------------前台条件查询 end-------------------------------------//
+
+        //获取upgaradeFiles
+        $scope.getUpgradeFile = function() {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                backdrop: "static",
+                templateUrl: 'app/pages/upgradeManagement/batchUpgrade/upgradeFilesModal.html',
+                controller: 'upgradeFilesModalCtrl',
+                size: 'md',
+                resolve: {
+                    fileId: function() {
+                        return $scope.fileId;
+                    },
+                    isModify: function() {
+                        return $scope.isModify;
+                    },
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['app/pages/upgradeManagement/batchUpgrade/upgradeFilesModalCtrl.js']);
+                        }
+                    ]
+                }
+            });
+
+            modalInstance.result.then(function(checkedFiles) {
+                // //console.log(checkedFiles);
+                $scope.checkedFiles = checkedFiles;
+                var fileIdArr = [];
+                var fileNameArr = [];
+                var ftpServerName = [];
+                for (let i = 0; i < checkedFiles.length; i++) {
+                    fileIdArr.push(checkedFiles[i].id);
+                    fileNameArr.push(checkedFiles[i].name);
+                    ftpServerName.push(checkedFiles[i].upFtpServerConfig.name);
+                };
+
+                $scope.fileId = fileIdArr.toString();
+                $scope.fileName = fileNameArr.toString();
+                $scope.ftpServer = ftpServerName.toString();
+
+                // $scope.fileName = $scope.fileName;
+                // $scope.modal.fileId = $scope.fileId;
+
+                return $scope.fileId;
+            }, function(newItems) {
+                //console.log(newItems);
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
+        //console.log($scope.fileId);
+
+
+        /***************************************************************
+        当页码和页面记录数发生变化时监控后台查询
+        如果把currentPage和itemsPerPage分开监控的话则会触发两次后台事件。
+        ***************************************************************/
+        $scope.$watch(
+            'paginationConf.currentPage + paginationConf.itemsPerPage', $scope.search);
+
+        //物理排序
+        $scope.oldOrder = "";
+        $scope.orderFun = function(v) {
+            if ($scope.oldOrder == "" || $scope.oldOrder == undefined) {
+                $scope.oldOrder = v;
+            }
+            if ($scope.oldOrder == v) {
+                $scope.oldOrder = "-" + v;
+            } else {
+                $scope.oldOrder = v;
+            }
+            $scope.order = $scope.oldOrder;
+        };
+
+
+
+        $scope.m = [];
+        $scope.checked = []; //选中的ID
+        $scope.checkedItems = []; //选中的对象数组
+
+        $scope.selectAll = function() {
+            $scope.checked = [];
+            $scope.checkedItems = [];
+            if ($scope.xx.select_all) {
+                $scope.checked = [];
+                $scope.checkedItems = [];
+                angular.forEach($scope.rows, function(i) {
+                    i.checked = true;
+                    $scope.checked.push(i.neNeid);
+                    $scope.checkedItems.push(i);
+                });
+            } else {
+                angular.forEach($scope.rows, function(i) {
+                    i.checked = false;
+                    $scope.checked = [];
+                    $scope.checkedItems = [];
+                });
+            }
+            //console.log($scope.checked);
+        };
+        $scope.selectOne = function() {
+            $scope.checked = [];
+            $scope.checkedItems = [];
+            angular.forEach($scope.rows, function(i) {
+                var index = $scope.checked.indexOf(i.neNeid);
+                if (i.checked && index == -1) {
+                    $scope.checked.push(i.neNeid);
+                    $scope.checkedItems.push(i);
+                } else if (!i.checked && index !== -1) {
+                    $scope.checked.splice(index, 1);
+                    $scope.checkedItems.splice(index, 1);
+                };
+            });
+
+
+            if ($scope.rows.length == $scope.checked.length) {
+                $scope.xx.select_all = true;
+            } else {
+                $scope.xx.select_all = false;
+            }
+            //console.log($scope.checkedItems);
+        };
+
+
+        // -----------------------------第二个-------------------------------------
+
+        $scope.m = [];
+        $scope.checked2 = []; //选中的ID
+        $scope.checkedItems2 = []; //选中的对象数组
+
+        $scope.selectAll2 = function() {
+            $scope.checked2 = [];
+            $scope.checkedItems2 = [];
+            if ($scope.xx.select_all2) {
+                $scope.checked2 = [];
+                $scope.checkedItems2 = [];
+                angular.forEach($scope.rows2, function(i) {
+                    i.checked = true;
+                    $scope.checked2.push(i.neNeid);
+                    $scope.checkedItems2.push(i);
+                });
+            } else {
+                angular.forEach($scope.rows2, function(i) {
+                    i.checked = false;
+                    $scope.checked2 = [];
+                    $scope.checkedItems2 = [];
+                });
+            }
+            //console.log($scope.checked2);
+        };
+        $scope.selectOne2 = function() {
+            $scope.checked2 = [];
+            $scope.checkedItems2 = [];
+            angular.forEach($scope.rows2, function(i) {
+                var index = $scope.checked2.indexOf(i.neNeid);
+                if (i.checked && index == -1) {
+                    $scope.checked2.push(i.neNeid);
+                    $scope.checkedItems2.push(i);
+                } else if (!i.checked && index !== -1) {
+                    $scope.checked2.splice(index, 1);
+                    $scope.checkedItems2.splice(index, 1);
+                };
+            });
+
+
+            if ($scope.rows2.length == $scope.checked2.length) {
+                $scope.xx.select_all2 = true;
+            } else {
+                $scope.xx.select_all2 = false;
+            }
+            //console.log($scope.checkedItems2);
+        };
+
+        //   --------------------------------第二个end------------------------------
+        $scope.doubleSelectToRight = function() {
+            var cnt = $scope.rows.length;
+            for (let i = 0; i < cnt; i++) {
+                if ($scope.rows[i].checked == true) {
+                    //console.log($scope.rows2);
+                    $scope.rows2.push($scope.rows[i]);
+                    //console.log($scope.rows2);
+                }
+            };
+            for (let j = 0; j < $scope.rows.length;) {
+                var index = $scope.checked.indexOf($scope.rows[j].neNeid);
+                if (index > -1) {
+                    $scope.rows.splice(j, 1);
+                    $scope.checkedItems[index].checked = false;
+                } else {
+                    j++;
+                }
+            }
+            $scope.checked = [];
+            $scope.checkedItems = [];
+            $scope.xx.select_all = false;
+            $scope.count2 = $scope.rows2.length;
+
+            // $scope.orignRows2 = $scope.rows2;
+            for (let k = 0; k < $scope.rows2.length; k++) {
+                const row2 = $scope.rows2[k];
+                if ($scope.orignRows2.indexOf(row2) > -1) {
+
+                } else {
+                    $scope.orignRows2.push(row2);
+                }
+            }
+            $scope.searchLeft();
+        };
+        $scope.doubleSelectToLeft = function() {
+
+            var cnt = $scope.rows2.length;
+            for (let i = 0; i < cnt; i++) {
+                if ($scope.rows2[i].checked == true) {
+                    $scope.rows.push($scope.rows2[i]);
+                }
+            }
+
+            for (let j = 0; j < $scope.rows2.length;) {
+                var index = $scope.checked2.indexOf($scope.rows2[j].neNeid);
+                if (index > -1) {
+                    $scope.rows2.splice(j, 1);
+                    $scope.checkedItems2[index].checked = false;
+                } else {
+                    j++;
+                }
+            }
+
+            for (let k = 0; k < $scope.orignRows2.length;) {
+
+                var index2 = $scope.checked2.indexOf($scope.orignRows2[k].neNeid);
+                if (index2 > -1) {
+                    $scope.orignRows2.splice(k, 1);
+
+                } else {
+                    k++;
+                }
+            }
+
+            $scope.checked2 = [];
+            $scope.checkedItems2 = [];
+            $scope.xx.select_all2 = false;
+            $scope.count2 = $scope.rows2.length;
+            $scope.searchLeft();
+        };
+
+
+
+        $scope.save = function() {
+            var cur_date = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm')
+
+            if ($scope.modal.tskNexttime < cur_date) {
+                alert('Cannot select time before current!');
+                // $scope.time_error = true;
+            } else if ($scope.modal.tskNexttime == '' || $scope.modal.tskNexttime == null) {
+                alert('Must select time!');
+                return
+            } else {
+                var neIds = [];
+                $scope.modal.tskFilter = $scope.devices;
+                //取neIds
+                if ($scope.modal.tskFilter == 'on' && $scope.orignRows2.length == 0) {
+                    alert('Please select device!')
+                    return
+                } else {
+                    for (let i = 0; i < $scope.orignRows2.length; i++) {
+                        neIds.push($scope.orignRows2[i].neNeid);
+                    };
+                };
+
+                //其他参数
+                $scope.duration = 1;
+                $scope.setParamsId = "";
+                $scope.setValue = "";
+                $scope.objectIdAlarm = "";
+                $scope.objectIdAlarmEn = "";
+                $scope.objectIdBase = "";
+                $scope.objectIdRadio = "";
+                $scope.tskIsuse = 0;
+                $scope.peroids = "";
+                $scope.tskStyle = 200;
+
+                if ($scope.fileId && $scope.modal.tskTaskname) {
+                    if ($scope.isAdd == 'Add') {
+                        var data = {};
+                        data.duration = $scope.duration;
+                        data.fileId = $scope.fileId;
+                        data.neIds = neIds.toString();
+                        data.objSetParam = $scope.setParamsId;
+                        data.objSetParamValue = $scope.setValue;
+                        data.objectIdAlarm = $scope.objectIdAlarm;
+                        data.objectIdAlarmEn = $scope.objectIdAlarmEn;
+                        data.objectIdBase = $scope.objectIdBase;
+                        data.objectIdRadio = $scope.objectIdRadio;
+                        data.tskFilter = $scope.modal.tskFilter;
+                        data.tskIsuse = $scope.tskIsuse;
+                        data.tskNexttime = $scope.modal.tskNexttime;
+                        data.tskPeriod = $scope.peroids;
+                        data.tskStyle = $scope.tskStyle;
+                        data.tskTaskname = $scope.modal.tskTaskname;
+                        PollingTaskService.savePollTaskElements(data)
+                            .success(function(response) {
+                                if (response.code == 200) {
+                                    alert('Success!');
+                                    $scope.close();
+                                } else {
+                                    alert('Failed!' + response.msg)
+                                }
+
+                            })
+                            .error(function(err) {
+                                console.info(err);
+                            });
+                    } else {
+                        var data = {};
+                        data.duration = $scope.duration;
+                        data.fileId = $scope.fileId;
+                        data.neIds = neIds.toString();
+                        data.objSetParam = $scope.setParamsId;
+                        data.objSetParamValue = $scope.setValue;
+                        data.objectIdAlarm = $scope.objectIdAlarm;
+                        data.objectIdAlarmEn = $scope.objectIdAlarmEn;
+                        data.objectIdBase = $scope.objectIdBase;
+                        data.objectIdRadio = $scope.objectIdRadio;
+                        data.tskFilter = $scope.modal.tskFilter;
+                        data.tskIsuse = $scope.tskIsuse;
+                        data.tskNexttime = $scope.modal.tskNexttime;
+                        data.tskPeriod = $scope.peroids;
+                        data.tskStyle = $scope.tskStyle;
+                        data.tskTaskid = $scope.modal.tskTaskid;
+                        data.tskTaskname = $scope.modal.tskTaskname;
+                        batchUpgradeService.modifyPollTask(data)
+                            .success(function(response) {
+                                if (response.code == 200) {
+                                    alert('Success!');
+                                    $scope.close();
+                                } else {
+                                    alert('Failed!' + response.msg)
+                                }
+
+                            })
+                            .error(function(err) {
+                                console.info(err);
+                            });
+                    }
+                } else {
+                    if ($scope.fileId) {
+                        alert('Please check the missing information')
+                    } else {
+                        alert('Data error, please contact administrator')
+                    }
+
+                }
+            }
+
+        };
+
+        $scope.close = function(newItems) {
+            $uibModalInstance.close(newItems);
+        };
+
+    }
+})();

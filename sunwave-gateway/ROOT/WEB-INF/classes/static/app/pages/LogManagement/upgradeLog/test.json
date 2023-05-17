@@ -1,0 +1,26 @@
+{
+    "content": [{
+        "DeviceName": "1",
+        "DeviceID": "11111111",
+        "DeviceSubID": "namename111",
+        "UpgradeTime": "type111",
+        "UpdateStatus": "2019-9-7",
+        "SoftwareVersion": "Operation ReUpgradeTimeult01"
+    }, {
+        "DeviceName": "2",
+        "DeviceID": "22222222",
+        "DeviceSubID": "namename222",
+        "UpgradeTime": "type2222",
+        "UpdateStatus": "2019-9-7",
+        "SoftwareVersion": "Operation ReUpgradeTimeult01"
+    }, {
+        "DeviceName": "3",
+        "DeviceID": "33333",
+        "DeviceSubID": "namename333",
+        "UpgradeTime": "type33331",
+        "UpdateStatus": "2019-9-7",
+        "SoftwareVersion": "Operation ReUpgradeTimeult03"
+    }],
+    "totalElements": 100,
+    "deleteIs": "OK"
+}

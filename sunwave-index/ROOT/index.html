@@ -1,0 +1,555 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="SunWave">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
+
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+
+
+    <title>SUNWAVE CROSSFIRE EMS</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+    <!-- end -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'> -->
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/wui.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="libs/css/bootstrap/dist/css/bootstrap.css" />
+    <!-- <link rel="stylesheet" href="libs/css/animate.css/animate.css" /> -->
+    <link rel="stylesheet" href="libs/css/Ionicons/css/ionicons.css" />
+    <link rel="stylesheet" href="libs/css/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="libs/css/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="libs/angular/textAngular/dist/textAngular.css" />
+    <link rel="stylesheet" href="libs/jquery/doublebox-boostrap/css/doublebox-bootstrap.css" />
+    <!-- end -->
+    <!-- main css -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pagination.css">
+
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="assets/css/iconfont.css">
+    <!-- <link rel="stylesheet" href="assets/js/bootstrap-table/bootstrap-table.min.css"> -->
+
+    <!--map-->
+    <link rel="stylesheet" href="assets/v6.3.1-dist/ol.css">
+    <!--color picker-->
+    <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css">
+    <!--bootstrap table-->
+    <link rel="stylesheet" href="assets/css/bootstrap-table.css">
+
+    <!---select--->
+    <link rel="stylesheet" href="assets/css/jquery.searchableSelect.css">
+
+    <!--jedate-->
+    <link type="text/css" rel="stylesheet" href="assets/jedate/jeDate-test.css">
+    <link type="text/css" rel="stylesheet" href="assets/jedate/jedate.css">
+
+
+    <!-- end -->
+    <!--z-tree-->
+    <link rel="stylesheet" type="text/css" href="assets/js/zTree-3.5/css/zTreeStyle.css" />
+
+</head>
+
+<body ng-controller="AppCtrl">
+
+
+
+
+
+    <!-- Pre Loader -->
+    <div class="sk-cube-grid" ng-if="!$pageFinishedLoading">
+        <div class="sk-cube sk-cube1"></div>
+        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube sk-cube3"></div>
+        <div class="sk-cube sk-cube4"></div>
+        <div class="sk-cube sk-cube5"></div>
+        <div class="sk-cube sk-cube6"></div>
+        <div class="sk-cube sk-cube7"></div>
+        <div class="sk-cube sk-cube8"></div>
+        <div class="sk-cube sk-cube9"></div>
+    </div>
+
+    <main ng-if="$pageFinishedLoading" ng-show="authenticated" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
+        <!-- Menu sidebar -->
+        <ba-sidebar></ba-sidebar>
+        <!-- Header -->
+        <page-top></page-top>
+
+        <div class="al-main">
+            <div class="al-content">
+                <!-- <div class="flyover" ng-show="loading">
+                    <div class="mask"></div>
+                    <div class="alert alert-info">
+                        <strong>Loading...</strong>
+                    </div>
+                </div> -->
+                <lock-Page></lock-Page>
+                <my-Loading></my-Loading>
+                <password-Modify></password-Modify>
+                <my-Alert></my-Alert>
+                <password-Notice></password-Notice>
+                <content-top></content-top>
+                <div ui-view autoscroll="true" autoscroll-body-top></div>
+            </div>
+        </div>
+
+        <footer class="al-footer clearfix" ng-if="$pageFinishedLoading">
+            <div class="al-footer-main clearfix">
+                <div class="al-copy">Copyright © Sunwave Co.,Ltd. All Rights Reserved</div>
+            </div>
+        </footer>
+        <!-- Change color theme panel -->
+        <settings></settings>
+        <!-- Button back to top -->
+        <back-top></back-top>
+    </main>
+
+    <!-- <main class="auth-main" ng-show="authenticated_select">
+        <div class="auth-block">
+            <div></div>
+        </div>
+    </main> -->
+
+    <!-- login div begin -->
+    <main class="auth-main" ng-show="!authenticated">
+        <div class="auth-block">
+            <h1>SUNWAVE CROSSFIRE EMS</h1>
+            <!-- <a href="reg.html" class="auth-link">New to Nms? Sign up!</a> -->
+
+            <form class="form-horizontal" name="logForm">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="text" name="username" class="form-control" ng-model="user.username" id="inputEmail3" placeholder="Username" required>
+                        <!-- <span style="color:red;font-size: 10px;float:left;">*</span> -->
+                        <div class="clear"></div>
+                        <div class="error" ng-show="logForm.username.$dirty && logForm.username.$invalid">
+                            <small class="error" ng-show="logForm.username.$error.required" style="color:red;display: block;">
+                        *Username is required.
+                        </small>
+                            <!-- <small class="error" ng-show="logForm.username.$error.maxlength" style="color:red;display: block;">
+                            *Username cannot be longer than 20 characters.
+                        </small> -->
+                            <!-- <small class="error" ng-show="logForm.username.$error.pattern" style="color:red;display: block;">
+                            \ng-pattern="/^[a-zA-Z][a-zA-Z0-9]*$/"
+                            *Only contain numbers and letters and cannot start with a number.
+                        </small> -->
+                            <!-- <small class="error" ng-show="logForm.username.$error.pattern" style="color:red;">
+                            *Only input letters,numbers and _
+                        </small> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="password" name="password" ng-model="user.password" class="form-control" id="inputPassword3" ng-maxlength=20 placeholder="Password" required autocomplete="off">
+                        <div class="error" ng-show="logForm.password.$dirty && logForm.password.$invalid">
+                            <small class="error" ng-show="logForm.password.$error.required" style="color:red;">
+                        *Password is required.
+                        </small>
+                            <small class="error" ng-show="logForm.password.$error.maxlength" style="color:red;">
+                            *Password cannot be longer than 20 characters.
+                        </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <!-- <button style="width: 30%;float: left;font-size: 12px;line-height: 20px;" type="button" class="btn btn-primary btn-block" ng-click="sendVerification()" ng-bind="description">
+                        </button> -->
+
+                        <input style="width: 70%;float: left;font-size: 12px;border: 1px solid #DDD;" type="phone" placeholder="" class="form-control no-border" ng-model="user.verificationCode" ng-focus="getKey();" required>
+                        <div class="value-div" ng-click="sendVerification()"><i class="fa fa-repeat value-i"></i><span class="yzm-span">{{yzm_value}}</span></div>
+                        <div class="clearfix"></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button type="button" ng-click="login()" class="btn btn-auth btn-block" ng-keypress="($event.which === 13)?login():0" ng-disabled="logForm.$invalid" type="submit">Sign in</button>
+                            <!-- <button type="button" ng-click="testF()" class="btn btn-auth btn-block">test</button> -->
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                    <div class="col-sm-12">
+                        <a href class="forgot-pass">Forgot password?</a>
+                    </div>
+                </div> -->
+            </form>
+
+            <!-- <div class="col-sm-12">
+                <button type="button" ng-click="changeSys()" class="btn btn-auth btn-block">select sys</button>
+            </div> -->
+
+            <!-- <div class="auth-sep"><span><span>or Sign in with one click</span></span>
+            </div>
+
+            <div class="al-share-auth">
+                <ul class="al-share clearfix">
+                    <li><i class="socicon socicon-facebook" title="Sign in with Facebook"></i></li>
+                    <li><i class="socicon socicon-twitter" title="Sign in with Twitter"></i></li>
+                    <li><i class="socicon socicon-google" title="Sign in with Google Plus"></i></li>
+                    <li><i class="socicon socicon-linkedin" title="Sign in with Linkedin"></i></li>
+                </ul>
+            </div> -->
+            <!-- <p class="text-center m-t-m text-sm">Copyright © Sunwave Co.,Ltd. All Rights Reserved</p> -->
+            </div>
+    </main>
+    <!-- login div end -->
+
+    <!-- js -->
+    <!-- <script src="assets/js/wui-date.js"></script> -->
+    <!-- <script src="assets/js/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="assets/js/bootstrap-table/bootstrap-table-locale-all.min.js"></script> -->
+
+
+    <!-- <script src="assets/js/bable.min.js"></script> -->
+    <!------>
+    <!-- <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-{3.4.7}/dist/g6.min.js"></script> -->
+    <!--echarts-->
+
+    <script src="assets/js/echarts.min.js"></script>
+
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.3.4/vconsole.min.js"></script> -->
+
+
+
+    <script src="libs/jquery/jquery/dist/jquery.js"></script>
+    <script src="libs/jquery/jquery-ui/jquery-ui.js"></script>
+    <script src="libs/jquery/jquery.easing/js/jquery.easing.js"></script>
+    <script src="libs/jquery/jquery.easy-pie-chart/dist/jquery.easypiechart.js"></script>
+    <script src="libs/jquery/chart.js/dist/Chart.js"></script>
+    <script src="libs/jquery/amcharts/dist/amcharts/amcharts.js"></script>
+    <script src="libs/jquery/amcharts/dist/amcharts/plugins/responsive/responsive.min.js"></script>
+    <script src="libs/jquery/amcharts/dist/amcharts/serial.js"></script>
+    <script src="libs/jquery/amcharts/dist/amcharts/funnel.js"></script>
+    <script src="libs/jquery/amcharts/dist/amcharts/pie.js"></script>
+    <script src="libs/jquery/amcharts/dist/amcharts/gantt.js"></script>
+    <script src="libs/jquery/amcharts-stock/dist/amcharts/amstock.js"></script>
+    <script src="libs/jquery/ammap/dist/ammap/ammap.js"></script>
+    <script src="libs/jquery/ammap/dist/ammap/maps/js/worldLow.js"></script>
+    <script src="libs/angular/angular/angular.js"></script>
+    <script src="libs/angular/angular-route/angular-route.js"></script>
+    <script src="libs/jquery/slimScroll/jquery.slimscroll.js"></script>
+    <script src="libs/angular/angular-slimscroll/angular-slimscroll.js"></script>
+    <script src="libs/angular/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <!-- <script src="libs/angular/angular-touch/angular-touch.js"></script> -->
+    <script src="angular-touch.js"></script>
+    <script src="libs/angular/angular-ui-sortable/sortable.js"></script>
+    <script src="libs/css/bootstrap/dist/js/bootstrap.js"></script>
+
+
+    <script src="libs/jquery/doublebox-boostrap/js/doublebox-bootstrap.js"></script>
+
+    <script src="libs/jquery/bootstrap/js/dropdown.js"></script>
+    <script src="libs/jquery/moment/moment.js"></script>
+    <script src="libs/angular/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="libs/angular/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="libs/angular/angular-chartist.js/dist/angular-chartist.js"></script>
+    <script src="libs/jquery/eve-raphael/eve.js"></script>
+    <script src="libs/jquery/raphael/raphael.min.js"></script>
+    <script src="libs/jquery/mocha/mocha.js"></script>
+    <script src="libs/jquery/morris.js/morris.js"></script>
+    <script src="libs/angular/angular-morris-chart/src/angular-morris-chart.min.js"></script>
+    <script src="libs/angular/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="libs/angular/angular-animate/angular-animate.js"></script>
+    <script src="libs/jquery/rangy/rangy-core.js"></script>
+    <script src="libs/jquery/rangy/rangy-classapplier.js"></script>
+    <script src="libs/jquery/rangy/rangy-highlighter.js"></script>
+    <script src="libs/jquery/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="libs/jquery/rangy/rangy-serializer.js"></script>
+    <script src="libs/jquery/rangy/rangy-textrange.js"></script>
+    <script src="libs/angular/textAngular/dist/textAngular.js"></script>
+    <script src="libs/angular/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="libs/angular/textAngular/dist/textAngularSetup.js"></script>
+    <script src="libs/jquery/jstree/dist/jstree.js"></script>
+    <script src="libs/angular/oclazyload/dist/ocLazyLoad.js"></script>
+    <script src="assets/js/jquery.tabSlideOut.v1.3.js"></script>
+
+    <script src="libs/angular/angular-cookies/angular-cookies.js"></script>
+    <script src="libs/angular/ngstorage/ngStorage.js"></script>
+
+    <!-- translate -->
+    <script src="libs/angular/angular-translate/angular-translate.js"></script>
+    <script src="libs/angular/angular-translate/loader-static-files.js"></script>
+    <script src="libs/angular/angular-translate/storage-cookie.js"></script>
+    <script src="libs/angular/angular-translate/storage-local.js"></script>
+
+
+    <!-- end -->
+    <!-- 分页 -->
+    <script src="assets/js/tm.pagination.js"></script>
+    <script src="assets/js/wui-date.js"></script>
+    <!-- <script src="assets/js/jquery.searchableSelect.js"></script> -->
+
+
+    <!--ztree-->
+    <script src="assets/js/jQuery/jquery.browser.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/zTree-3.5/js/jquery.ztree.all-3.5.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/zTree-3.5/js/jquery.ztree.exhide-3.5.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/demoData.js" type="text/javascript" charset="utf-8"></script>
+    <!--添加数据列表文件-->
+    <script src="assets/js/ztreeModal.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="assets/js/Transfer.js" type="text/javascript" charset="utf-8"></script> -->
+
+    <!-- map -->
+    <!-- <script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyBFmWVqN8hjnpuIFBE93TR6xVozbz4kmB0"></script> -->
+    <!-- end -->
+    <script src="assets/v6.3.1-dist/ol.js" type="text/javascript" charset="utf-8"></script>
+
+    <!--color picker-->
+    <script src="assets/js/bootstrap-colorpicker.js" type="text/javascript" charset="utf-8"></script>
+    <!--bootstrap table-->
+    <script src="assets/js/bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- <script src="app/pages/deviceManagement/deviceList/moveModal.directive.js"></script> -->
+
+    <!-- app modules  -->
+    <!-- <script src="app/pages/pages.module.js "></script> -->
+    <script src="app/theme/theme.module.js "></script>
+    <!-- <script src="app/pages/charts/charts.module.js "></script> -->
+    <script src="app/pages/map/map.module.js "></script>
+    <script src="app/pages/top/top.module.js "></script>
+    <!-- <script src="app/pages/login_select/login_select.module.js"></script> -->
+    <!-- <script src="app/pages/components/components.module.js "></script> -->
+    <script src="app/pages/dashboard/dashboard.module.js "></script>
+    <script src="app/pages/dashboard/dashboardWidgets/dashboardWidgetsCtrl.js "></script>
+    <script src="app/pages/DatabaseBackUp/DatabaseBackUp.module.js "></script>
+    <script src="app/pages/DatabaseBackUp/backupSetting/backupSetting.module.js "></script>
+    <script src="app/pages/DatabaseBackUp/databaseLoad/databaseLoad.module.js"></script>
+    <!-- <script src="app/pages/dashboard/dashboardCtrl.js "></script> -->
+    <script src="app/pages/login/login.module.js"></script>
+    <script src="app/pages/sysManagement/vendorManagement/vendorManagement.module.js "></script>
+    <script src="app/pages/sysManagement/sysManagement.module.js "></script>
+    <script src="app/pages/sysManagement/sysAnnouncement/sysAnnouncement.module.js "></script>
+    <!-- <script src="app/pages/sysManagement/CPEconfigManagement/configManagement.module.js"></script> -->
+    <script src="app/pages/sysManagement/monitorType/monitorType.module.js"></script>
+    <script src="app/pages/sysManagement/parameterConfiguration/parameterConfiguration.module.js"></script>
+    <script src="app/pages/Authority/Authority.module.js "></script>
+    <script src="app/pages/Authority/organization/organization.module.js"></script>
+    <script src="app/pages/Authority/area/area.module.js"></script>
+    <script src="app/pages/Authority/safe/safe.module.js"></script>
+    <script src="app/pages/Authority/role/role.module.js"></script>
+    <script src="app/pages/Authority/safeManage/safeMange.module.js"></script>
+
+    <script src="app/pages/Authority/SeacurityManagement/SeacurityManagement.module.js"></script>
+    <script src="app/pages/Authority/SeacurityManagement/IpblockList/IpblockList.module.js"></script>
+    <script src="app/pages/Authority/SeacurityManagement/IpblockList_bl/IpblockList_bl.module.js"></script>
+    <script src="app/pages/Authority/SeacurityManagement/seacurityRules/seacurityRules.module.js"></script>
+
+    <script src="app/pages/deviceManagement/deviceManagement.module.js"></script>
+    <script src="app/pages/deviceManagement/deviceList/deviceList.module.js"></script>
+    <script src="app/pages/deviceManagement/NotInService/NotInService.module.js"></script>
+    <script src="app/pages/deviceManagement/deviceRecover/deviceRecover.module.js"></script>
+    <script src="app/pages/upgradeManagement/upgradeManagement.module.js"></script>
+    <script src="app/pages/upgradeManagement/batchUpgrade/batchUpgrade.module.js"></script>
+    <script src="app/pages/upgradeManagement/ftpConfig/ftpConfig.module.js"></script>
+    <script src="app/pages/upgradeManagement/upGradeFiles/upGradeFiles.module.js"></script>
+    <!-- <script src="app/pages/upgradeManagement/CPEfileManagement/fileManagement.module.js"></script> -->
+    <script src="app/pages/PollingManagement/PollingManagement.module.js"></script>
+    <script src="app/pages/PollingManagement/PollingTask/PollingTask.module.js"></script>
+    <script src="app/pages/AlarmManagement/currentAlarm/currentAlarm.module.js"></script>
+    <script src="app/pages/AlarmManagement/AlarmManagement.module.js"></script>
+    <script src="app/pages/AlarmManagement/historyAlarm/historyAlarm.module.js"></script>
+    <script src="app/pages/AlarmManagement/ServerStatus/ServerStatus.module.js"></script>
+    <script src="app/pages/AlarmManagement/ServerAlarm/ServerAlarm.module.js"></script>
+    <script src="app/pages/AlarmManagement/ServerAlarmHistory/ServerAlarmHistory.module.js"></script>
+    <script src="app/pages/AlarmManagement/maskAlarm/maskAlarm.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/AlarmConfiguration.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/AlarmCompress/AlarmCompress.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/AlarmConfig/AlarmConfig.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/AlarmForward/AlarmForward.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/AlarmKind/AlarmKind.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/AlarmMask/AlarmMask.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/generalSettings/generalSettings.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/AlarmLevel/AlarmLevel.module.js"></script>
+    <script src="app/pages/AlarmConfiguration/SNMPConfiguration/SNMPConfiguration.module.js"></script>
+
+    <script src="app/pages/LogManagement/LogManagement.module.js"></script>
+    <script src="app/pages/LogManagement/upgradeLog/upgradeLog.module.js"></script>
+    <script src="app/pages/LogManagement/alarmTransferLog/alarmTransferLog.module.js"></script>
+    <script src="app/pages/LogManagement/deviceLog/deviceLog.module.js"></script>
+    <script src="app/pages/LogManagement/HWLog/HWLog.module.js"></script>
+    <script src="app/pages/LogManagement/sysLog/sysLog.module.js"></script>
+    <script src="app/pages/LogManagement/heartbeatLog/heartbeatLog.module.js"></script>
+    <script src="app/pages/LogManagement/serverStatus/serverStatus.module.js"></script>
+    <script src="app/pages/LogManagement/systemLog/systemLog.module.js"></script>
+    <script src="app/pages/LogManagement/taskLog/taskLog.module.js"></script>
+    <!-- <script src="app/pages/LogManagement/CPElogManagement/logManagement.module.js"></script> -->
+    <script src="app/pages/LogManagement/logTransfer/logTransfer.module.js"></script>
+    <!-- <script src="app/pages/LogManagement/PSDeviceLog/PSDeviceLog.module.js"></script> -->
+    <script src="app/pages/LogManagement/dasLog/dasLog.module.js"></script>
+
+    <script src="app/pages/reportManagement/reportManagement.module.js"></script>
+    <script src="app/pages/reportManagement/performanceReport/performanceReport.module.js"></script>
+    <script src="app/pages/reportManagement/customReport/customReport.module.js"></script>
+    <script src="app/pages/reportManagement/deviceInformationReport/deviceInformationReport.module.js"></script>
+    <!-- <script src="app/pages/reportManagement/monitorManagement/monitorManagement.module.js"></script>
+    <script src="app/pages/reportManagement/monitorManagement/model/model.module.js"></script>
+    <script src="app/pages/reportManagement/monitorManagement/monitorTemplate/monitorTemplate.module.js"></script> -->
+
+    <script src="app/pages/deviceManagement/objectsList/objectsList.module.js"></script>
+    <script src="app/pages/deviceManagement/objectsListValue/objectsListValue.module.js"></script>
+    <script src="app/pages/deviceManagement/deviceType/deviceType.module.js"></script>
+    <script src="app/pages/deviceManagement/deviceStatus/deviceStatus.module.js"></script>
+    <script src="app/pages/deviceManagement/deviceList/device.directive.js"></script>
+    <!-- <script src="app/pages/deviceManagement/CPEdeviceManagement/deviceManagement.module.js"></script>
+    <script src="app/pages/deviceManagement/CPEdeviceManagement/deviceManagement.module.js"></script>
+    <script src="app/pages/deviceManagement/CPEdeviceManagement/Authorized/Authorized.module.js"></script>
+    <script src="app/pages/deviceManagement/CPEdeviceManagement/deviceDetails/deviceDetails.module.js"></script>
+    <script src="app/pages/deviceManagement/CPEdeviceManagement/MonitoringDetails/monitoringdetails.module.js"></script>
+    <script src="app/pages/deviceManagement/CPEdeviceGroup/deviceGroup.module.js"></script>
+    <script src="app/pages/deviceManagement/CPEdeviceGroup/groupManagement/groupManagement.module.js"></script> -->
+
+    <!-- <script src="app/pages/PerformanceManagement/PerformanceManagement.module.js"></script>
+    <script src="app/pages/PerformanceManagement/FormulaLibrary/FormulaLibrary.module.js"></script>
+    <script src="app/pages/PerformanceManagement/PerformanceDataReport/PerformanceDataReport.module.js"></script> -->
+
+    <!-- <script src="app/pages/ui/ui.module.js "></script> -->
+    <script src="app/theme/components/components.module.js "></script>
+    <script src="app/theme/inputs/inputs.module.js "></script>
+    <!-- <script src="app/pages/charts/amCharts/amCharts.module.js "></script>
+    <script src="app/pages/charts/chartist/chartist.module.js "></script>
+    <script src="app/pages/charts/chartJs/chartJs.module.js "></script>
+    <script src="app/pages/charts/morris/morris.module.js "></script>
+    <script src="app/pages/calendar/calendar.module.js "></script> -->
+    <!-- <script src="app/pages/components/timeline/timeline.module.js "></script>
+    <script src="app/pages/components/todo/todo.module.js "></script>
+    <script src="app/pages/components/tree/tree.module.js "></script> -->
+    <!-- <script src="app/pages/ui/alerts/alerts.module.js "></script>
+    <script src="app/pages/ui/buttons/buttons.module.js "></script>
+    <script src="app/pages/ui/grid/grid.module.js "></script>
+    <script src="app/pages/ui/icons/icons.module.js "></script>
+    <script src="app/pages/ui/modals/modals.module.js "></script>
+    <script src="app/pages/ui/notifications/notifications.module.js "></script>
+    <script src="app/pages/ui/panels/panels.module.js "></script>
+    <script src="app/pages/ui/progressBars/progressBars.module.js "></script>
+    <script src="app/pages/ui/slider/slider.module.js "></script>
+    <script src="app/pages/ui/tabs/tabs.module.js "></script>
+    <script src="app/pages/ui/typography/typography.module.js "></script> -->
+    <script src="app/pages/profile/profile.module.js "></script>
+    <!-- ************************************************************************************************* -->
+    <!-- ************************************************************************************************* -->
+    <script src="app/pages/pages.module.js "></script>
+    <script src="app/app.js "></script>
+    <!-- <script src="app/md5.js"></script> -->
+    <script src="app/HttpInterceptor.js"></script>
+    <script src="app/config.js "></script>
+    <script src="app/config_translate.js"></script>
+    <script src="app/bootstrap-contextmenu.js"></script>
+    <script src="app/authenticationSvc.js"></script>
+    <!-- <script type="text/babel" src="app/main.js "></script> -->
+    <script src="app/main.js "></script>
+    <!-- <script src="app/browser.js" type="text/babel"></script>
+    <script src="app/polyfill.min.js" type="text/babel"></script> -->
+
+    <script src="app/theme/theme.config.js "></script>
+    <script src="app/theme/theme.configProvider.js "></script>
+    <script src="app/theme/theme.constants.js "></script>
+    <script src="app/theme/theme.run.js "></script>
+    <script src="app/theme/theme.service.js "></script>
+    <script src="app/theme/components/toastrLibConfig.js "></script>
+    <script src="app/theme/directives/autoExpand.js "></script>
+
+    <script src="app/theme/directives/moveModal.js"></script>
+    <!-- <script src="app/theme/directives/maxM.html"></script> -->
+    <!-- <script src="app/theme/directives/maxM.js"></script> -->
+
+    <script src="app/theme/directives/autoFocus.js "></script>
+    <script src="app/theme/directives/includeWithScope.js "></script>
+    <script src="app/theme/directives/ionSlider.js "></script>
+    <script src="app/theme/directives/ngFileSelect.js "></script>
+    <script src="app/theme/directives/scrollPosition.js "></script>
+    <script src="app/theme/directives/trackWidth.js "></script>
+    <script src="app/theme/directives/zoomIn.js "></script>
+    <script src="app/theme/services/baUtil.js "></script>
+    <script src="app/theme/services/preloader.js "></script>
+    <script src="app/theme/components/backTop/backTop.directive.js "></script>
+    <script src="app/theme/components/button/buttonPermission.directive.js"></script>
+    <script src="app/theme/components/button/buttonPermission2.directive.js"></script>
+    <script type="text/babel" src="app/theme/components/lockPage/lockPage.directive.js"></script>
+    <script src="app/theme/components/lockPage/lockPageCtrl.js"></script>
+    <script src="app/theme/components/loading/loading.directive.js"></script>
+    <!-- <script src="app/theme/components/button/buttonCtrl.js"></script> -->
+    <!-- <script src="app/theme/components/button/buttonDo.directive.js"></script> -->
+
+    <script src="app/theme/components/settings/settings.directive.js "></script>
+    <script src="app/theme/components/settings/settingsCtrl.js "></script>
+    <script src="app/theme/components/baPanel/baPanel.directive.js "></script>
+    <script src="app/theme/components/baPanel/baPanel.service.js "></script>
+    <script src="app/theme/components/baPanel/baPanelBlur.directive.js "></script>
+    <script src="app/theme/components/baPanel/baPanelBlurHelper.service.js "></script>
+    <script src="app/theme/components/baPanel/baPanelSelf.directive.js "></script>
+    <script src="app/theme/components/baSidebar/BaSidebarCtrl.js "></script>
+    <script src="app/theme/components/baSidebar/baSidebar.directive.js "></script>
+    <script src="app/theme/components/baSidebar/baSidebar.service.js "></script>
+    <script src="app/theme/components/baSidebar/baSidebarHelpers.directive.js "></script>
+    <script src="app/theme/components/messageAlert/messageAlert.service.js"></script>
+
+    <script src="app/theme/components/baWizard/baWizard.directive.js "></script>
+    <script src="app/theme/components/baWizard/baWizardCtrl.js "></script>
+    <script src="app/theme/components/baWizard/baWizardStep.directive.js "></script>
+    <!-- <script type="text/babel" src="app/theme/components/contentTop/contentTop.directive.js "></script> -->
+    <script src="app/theme/components/contentTop/contentTop.directive.js "></script>
+    <script src="app/theme/components/msgCenter/msgCenter.directive.js "></script>
+    <!-- <script type="text/babel" src="app/theme/components/msgCenter/MsgCenterCtrl.js "></script> -->
+    <script src="app/theme/components/msgCenter/MsgCenterCtrl.js "></script>
+    <script src="app/theme/components/pageTop/pageTop.directive.js "></script>
+    <!-- <script type="text/babel" src="app/theme/components/pageTop/pageTopCtrl.js"></script> -->
+    <script src="app/theme/components/pageTop/pageTopCtrl.js"></script>
+    <script src="app/theme/components/progressBarRound/progressBarRound.directive.js "></script>
+    <script src="app/theme/components/widgets/widgets.directive.js "></script>
+
+    <script src="app/theme/components/modifyPassword/modifyPassword.directive.js"></script>
+    <script src="app/theme/components/modifyPassword/modifyPasswordCtrl.js"></script>
+    <script src="app/theme/components/myAlert/myAlertCtrl.js"></script>
+    <script src="app/theme/components/passwordNotice/passwordNoticeCtrl.js"></script>
+    <script src="app/theme/components/passwordNotice/passwordNotice.directive.js"></script>
+    <script src="app/theme/components/order/orderCtrl.js "></script>
+    <script src="app/theme/components/order/order.directive.js "></script>
+    <script src="app/theme/components/searchCondition/searchCondition.directive.js "></script>
+    <script src="app/theme/components/searchCondition/searchConditionCtrl.js"></script>
+    <script src="app/theme/components/myAlert/myAlert.directive.js "></script>
+    <script src="app/theme/filters/text/removeHtml.js "></script>
+    <script src="app/theme/filters/image/appImage.js "></script>
+    <script src="app/theme/filters/image/kameleonImg.js "></script>
+    <script src="app/theme/filters/image/profilePicture.js "></script>
+    <script src="app/theme/components/backTop/lib/jquery.backTop.min.js "></script>
+
+    <!--jedate-->
+    <script src="assets/jedate/jedate.js"></script>
+
+    <!-- end -->
+    <script src="app/run.js">
+    </script>
+
+    <!-- 文件上传 -->
+    <!-- <script src="libs/upload/directive/fileModel.js"></script>
+    <script src="libs/upload/service/fileReader.js"></script> -->
+
+    <!-- 带搜索的下拉框 -->
+    <!-- <script src="libs/searchSelect/inputSearch.directive.js"></script>
+    <script src="libs/searchSelect/inputSelect.directive.js"></script> -->
+
+
+    <script src="libs/angular/angular-ui-select/dist/angularjs-dropdown-multiselect.min.js"></script>
+
+    <!-- sweetalert -->
+    <!-- <script src="assets/sweetalert/sweetalert.min.js"></script>
+    <script src="assets/sweetalert/sweetalert.css"></script> -->
+
+
+</body>
+
+</html>

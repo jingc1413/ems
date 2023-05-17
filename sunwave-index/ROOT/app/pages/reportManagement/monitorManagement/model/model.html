@@ -1,0 +1,68 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control zz-input float-input" id="1nput01" placeholder="Search by ModelName" ng-model="query.keyword" maxlength="30" ng-keypress="($event.which === 13)?search():0" />
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i
+                        class="fa fa-search">Search</i></button>
+                </div>
+            </div>
+            <!-- <div class="col-lg-8 col-md-8">
+                <span style="float: right;">
+                   <button class="btn  btn-primary btn-raised btn-xs" ng-click="toAddItem()" title="Add MonitoringModel"><span class="glyphicon glyphicon-plus"></span></button> 
+                <button class="btn btn-info btn-xs" ng-click="toModifyItem()" title="Edite"><span class="glyphicon glyphicon-edit"></span></button> 
+                 <button class="btn btn-danger btn-xs" ng-model="deleteItem" title="Delete Monitoring" ng-click="deleteItem()"><span class="glyphicon glyphicon-minus align-center"></span></button>
+                <button class="btn btn-warning btn-raised btn-pd" title="View model" ng-click="toViewItem();"><span class="glyphicon glyphicon-eye-open"></span></button> 
+            </div> -->
+        </div>
+        <!-- <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-12 col-md-12">
+               
+            </div>
+        </div> -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg" style="height:28px">
+                                <!-- <th class="align-left">
+                                    <input id="flag" type="checkbox" class="cursor" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th> -->
+                                <th class="align-left" translate="reportManagement.CPEmonitorManagement.modelManagement.NO">NO.
+                                </th>
+                                <th class="align-left" translate="reportManagement.CPEmonitorManagement.modelManagement.ModelName">MODEL NAME
+                                </th>
+                                <!-- <th class="align-left">SAMPLINGINTERVAL
+                                </th> -->
+                                <!-- <th class="align-left">DESCRIPTION
+                                </th>
+                                <th class="align-left">CREATETION TIME
+                                </th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" style="height:28px">
+                                <!-- <td class="align-left">
+                                    <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" />
+                                </td> -->
+                                <td class="align-left">{{$index+1+query.pageIndex*query.pageSize-query.pageSize}}</td>
+                                <!-- <td class="align-left">{{item.name}}</td> -->
+                                <td class="align-left" ng-click="getMonitorType(item)"><a href="" title="Edit">{{item.modelName}}</a></td>
+                                <!-- <td class="align-left">{{item.samplingInterval}}</td> -->
+                                <!-- <td class="align-left">{{item.description}}</td> -->
+                                <!-- <td class="align-left"><a href="" ng-click="editCommemt(item)">{{item.creationTime|date:'yyyy-MM-dd HH:mm:ss'}}</a></td> -->
+                                <!-- <td class="align-left">{{item.creationTime|date:'yyyy-MM-dd HH:mm:ss'}}</td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <!-- ng-click="close()" aria-label="Close" -->
+        <button type="button" class="close" ng-click="close()">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <!-- <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4> -->
+        <h3 class="with-line" translate="lockPage.SessionTimeoutSetting">Session Timeout Setting</h3>
+    </div>
+    <div class="modal-body">
+        <form name="userForm" ng-submit="submitForm()">
+            <!-- <div ba-panel ba-panel-class="profile-page">
+                <div class="panel-content"> -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="" class="" translate="lockPage.SessionTimeouttime">Session Timeout time:</label>
+                            <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="locktime" ng-options="locktime.id as locktime.name for locktime in locktimes" id="">
+                            <!-- <option value="">----please select----</option> -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div>
+                <h3 class="with-line"></h3>
+            </div> -->
+        </form>
+        <div class="modal-footer">
+            <!-- <button type="submit" class="btn btn-primary" ng-click="save();">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close();">Close</button> -->
+            <!-- <div class="col-md-12"> -->
+            <!-- <div class="col-offset-md-8" style="float:right;"> -->
+            <button class="btn btn-sm btn-info" ng-click="save();"><i class="ion-android-checkmark-circle"></i><span translate="buttons.Save">Save</span></button>
+            <!-- </div>
+            </div> -->
+        </div>
+    </div>
+</div>

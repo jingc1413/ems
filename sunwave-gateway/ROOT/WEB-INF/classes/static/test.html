@@ -1,0 +1,27 @@
+<html>
+
+
+
+<head>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <button onclick="submit1()">test</button>
+    <script>
+        function submit1() {
+
+            $.ajax({
+                url: 'http://60.191.19.198:9030',
+                success: function(result) {
+                    alert(result)
+                }
+
+            })
+
+        }
+    </script>
+</body>
+
+</html>

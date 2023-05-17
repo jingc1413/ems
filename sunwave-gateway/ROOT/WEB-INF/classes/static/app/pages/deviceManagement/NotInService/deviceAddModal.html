@@ -1,0 +1,185 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm">
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neName" class="zz-label-sm">Device Name:</label>
+                        <input type="text" class="zz-input-sm form-control" id="neName" ng-model="modal.neName" placeholder="Please Input">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 pad45">
+                    <div class="form-group">
+                        <label for="inputStatus" class="zz-label-sm">Communication Type:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neCommtypeid" style="width: 40%;">
+                            <!-- <option value="0">--Please Select--</option> -->
+                            <option value="7" ng-selected="modal.neCommtypeid == '7'">SNMP</option>
+                            <option value="6" ng-selected="modal.neCommtypeid == '6'">UDP</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <div class="col-md-10 col-lg-10 pad45">
+                    <div class="form-group">
+                        <label for="inputStatus" class="zz-label-sm">Area:</label>
+                        <button class="btn btn-xxs btn-sm btn-info float-l" ng-click="searchAreaTree();">Please Select</button>
+                        <!-- <span>Selected:{{modal.neAreaid}}</span> -->
+                        <input type="text" class="zz-input form-control" id="AreaInput" ng-model="modal.areaName" placeholder="Please Select" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 mar-bom-5">
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neDeviceip" class="zz-label-sm">Device Ip:</label>
+                        <input type="text" class="zz-input-sm form-control" id="neDeviceip" ng-model="modal.neDeviceip" placeholder="Please Input">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <!-- <div class="col-md-6 col-lg-6 pad45">
+                    <div class="form-group">
+                        <label for="inputStatus" class="zz-label-sm">County:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.Status" ng-options="County.id as County.label for County in Counties">
+                                    <option value="">--Please Select--</option>
+                                </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neDeviceport" class="zz-label-sm">Device Port:</label>
+                        <input type="text" class="zz-input-sm form-control" id="neDeviceport" ng-model="modal.neDeviceport" placeholder="Please Input">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <div class="col-md-6 col-lg-6 pad45">
+                    <div class="form-group">
+                        <label for="inputStatus" class="zz-label-sm">Vendor Name:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neCompany.coCompanyid" ng-options="vName.coCompanyid as vName.coName for vName in vNames">
+                            <option value="">--Please Select--</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neRepeaterid16" class="zz-label-sm">Device ID:</label>
+                        <input type="text" class="zz-input-sm form-control" id="neRepeaterid16" ng-model="modal.neRepeaterid16" placeholder="Please Input">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neDeviceid" class="zz-label-sm">Device SubID:</label>
+                        <input type="text" class="zz-input-sm form-control" id="neDeviceid" ng-model="modal.neDeviceid" placeholder="Please Input">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neInoutid" class="zz-label-sm">Device Position:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neInoutid" style="width: 40%;">
+                             <!-- ng-init="modal.neInoutid='1'" -->
+                             <option value=0 ng-selected="modal.neInoutid == 0">indoor</option>
+                            <option value=1 ng-selected="modal.neInoutid == 1">indoor</option>
+                            <option value=2 ng-selected="modal.neInoutid == 2">outdoor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neDevicelevelid" class="zz-label-sm">Device Level:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicelevelid" style="width: 40%;">
+                            <option value="1" ng-selected="modal.neDevicelevelid == 1">normal</option>
+                            <option value="2" ng-selected="modal.neDevicelevelid == 2">vip</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty">Protocol Type:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neProtocoltypeid" style="width: 65%;">
+                            <!-- ng-options="proType.id as proType.label for proType in proTypes" -->
+                            <option value=1 ng-selected="modal.neProtocoltypeid == 1">GROUP PROTOCOLTYPE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty">Device Type:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicetype.dtpDevicetypeid" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes" style="width: 65%;">
+                            <option value="0">--Please Select--</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <div class="col-md-6 col-lg-6 pad45">
+                    <div class="form-group">
+                        <label for="inputStatus" class="zz-label-sm">Operation Date:</label>
+                        <div class="col-md-10 col-lg-6 pad0">
+                            <wui-date format="yyyy-mm-dd" placeholder="select date" id="operationDate" btns="{'ok':'ok','now':'today'}" ng-model="modal.neLastupdatetime">
+                            </wui-date>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 cl-md-6">
+                    <div class="form-group">
+                        <label for="inputStatus" class="zz-label-sm">Device Status:</label>
+                        <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="modal.neDevicestatus.dsId" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss">
+                            <!-- <option value="">--Please Select--</option> -->
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 col-lg-12 mar-bom-5">
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neLon" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty">Lon:</label>
+                        <input type="text" class="zz-input-sm form-control" ng-model="modal.neLon" id="neLon" placeholder="Please Input" style="width: 90%;">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neLat" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty">Lat:</label>
+                        <input type="text" class="zz-input-sm form-control" ng-model="modal.neLat" id="neLat" placeholder="Please Input" style="width: 90%;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="textarea01">Remark:</label>
+                        <textarea placeholder="Default Input" class="form-control ng-pristine ng-valid ng-empty ng-touched" id="textarea01" ng-model="modal.neRemark"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 pad45">
+                    <div class="form-group">
+                        <label for="neInstallplace" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty">Device Information Location:</label>
+                        <input type="text" class="zz-input-sm form-control" id="neInstallplace" ng-model="modal.neInstallplace" placeholder="Please Input" style="width:100%;">
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="save()" ng-show="notView" ng-disabled="myForm.$invalid" type="submit">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close()" ng-disabled="myForm.$invalid" type="submit">Close</button>
+        </div>
+    </form>
+</div>

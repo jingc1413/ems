@@ -1,0 +1,58 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color:#333;">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal" ng-submit="submitForm(userForm.$valid)">
+        <div class="modal-body">
+            <div class="form">
+
+                <div class="form-group">
+                    <label for="name" class="control-label col-md-3">Kind Name</label>
+                    <div class="col-md-6">
+                        <input id="name" name="name" type="text" class="form-control " ng-model="AlarmKind.name" ng-blur="isAlarmKindExist(AlarmKind.name)" required style="width: 95%;float: left;" ng-maxlength=50 />
+                        <span style="color:red;float: left;" ng-show="userForm.name.$error.required">*</span>
+                        <span style="color:red" class="zz-label" ng-show="userForm.name.$dirty && userForm.name.$invalid">
+                            <!-- <span style="color:red" ng-show="userForm.name.$error.required">Required !</span> -->
+                        <span style="color:red;font-size: 12px;" ng-show="userForm.name.$error.maxlength">*Maximum length cannot exceed 50</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="neName" class="control-label col-md-3">ID</label>
+                    <div class="col-md-6">
+                        <input id="id" name="id" type="text" class="form-control" ng-model="AlarmKind.id" ng-readonly="isreadonly" required style="width: 95%;float: left;" ng-pattern="/^(([0-9]|([1-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5]))))$/" />
+                        <span style="color:red;float: left;" ng-show="userForm.id.$error.required">*</span>
+                        <span style="color:red" class="zz-label" ng-show="userForm.id.$dirty && userForm.id.$invalid">
+                            <!-- <span style="color:red" ng-show="userForm.id.$error.required">Required !</span> -->
+                        <span style="color:red;font-size: 12px;" ng-show="userForm.id.$error.pattern">*ID can only consist of numbers and range from 0-255</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="neName" class="control-label col-md-3">Remark</label>
+                    <div class="col-md-6">
+                        <input id="memo" name="memo" type="text" class="form-control" style="width: 95%;float: left;" ng-model="AlarmKind.memo" ng-maxlength=300 />
+                        <span style="color:red" class="zz-label" ng-show="userForm.memo.$dirty && userForm.memo.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.memo.$error.maxlength">*Maximum length cannot exceed 300 </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
+                        <!-- <button class="btn btn-primary" ng-click="ok();" ng-disabled="userForm.$invalid" value="{{title}}" ng-show="isDisplay">Save</button> -->
+                        <!--   <button type="button" class="btn btn-primary" ng-click="cancel();">取消</button> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok();" ng-disabled="userForm.$invalid" value="{{title}}" ng-show="isDisplay">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close()">Close</button>
+        </div>
+    </form>
+</div>

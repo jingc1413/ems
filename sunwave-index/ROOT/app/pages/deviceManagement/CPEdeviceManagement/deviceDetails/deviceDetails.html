@@ -1,0 +1,135 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-12 col-md-12 ">
+                <div class="col-lg-12 col-md-12 pad0">
+                    <div class="col-lg-6 col-md-6 pad0">
+                        <h2>{{info.serialNumber}}</h2>
+                    </div>
+                    <div class="col-lg-6 col-md-6 pad0">
+                        <!-- <button class="btn btn-primary btn-raised btn-pd" ng-click="reboot();" title="Reboot"><span
+                                class="glyphicon glyphicon-refresh"></span></button>
+                        <button class="btn btn-primary btn-raised btn-pd" ng-click="recovery();" title="Restore factory settings"><span class="glyphicon glyphicon-wrench"></span></button> -->
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 mar-t-20 pad0">
+                    <!-- <label for="" class="zz-label-sm "> offline since 2020-03-30</label> -->
+                    <label for="" class="zz-label-sm ">
+                        <div class="box2" ng-if="info.onlineStatus == 2" title="Loading">
+                            <div class="r1"></div>
+                            <div class="r2"></div>
+                            <div class="r3"></div>
+                            
+                        </div>
+                        <div ng-if="info.onlineStatus == 0 ">
+                            <div class="markerRed float-l" title="OffLine">                                
+                            </div>
+                            <label translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.OnlineStatus"> offline since </label>{{info.lastVisitTime}}
+                </div>
+                <div ng-if="info.onlineStatus == 1 ">
+                    <div class="markerGreen" title="OnLine"></div>
+                </div>
+                </label>
+            </div>
+            <div class="col-lg-12 col-md-12 mar-t-20 pad0">
+                <div class="col-lg-4 col-md-4 pad0 mar-bom-20">
+                    <div class="col-lg-12 col-md-12 mar-t-10 pad0">
+                        <div class="col-lg-4 col-md-4 pad0">
+                            <label for="" class="zz-label-sm  float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.ModelName">ModelName:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 ">
+                            <label for="" class="zz-label-sm ">{{info.modelName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mar-t-10 pad0">
+                        <div class="col-lg-4 col-md-4 pad0">
+                            <label for="" class="zz-label-sm  float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.Manufacturer">Manufacturer:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <label for="" class="zz-label-sm ">{{info.manufacturer}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mar-t-10 pad0">
+                        <div class="col-lg-4 col-md-4 pad0">
+                            <label for="" class="zz-label-sm  float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.Product">Product:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <label for="" class="zz-label-sm ">{{info.product}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 pad0 mar-bom-20">
+                    <div class="col-lg-12 col-md-12 mar-t-10 pad0">
+                        <div class="col-lg-4 col-md-4 pad0">
+                            <label for="" class="zz-label-sm  float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.IP">IP:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <label for="" class="zz-label-sm ">{{info.deviceIp}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mar-t-10 pad0">
+                        <div class="col-lg-4 col-md-4 pad0">
+                            <label for="" class="zz-label-sm  float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.OUI">OUI:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <label for="" class="zz-label-sm ">{{info.oui}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mar-t-10 pad0">
+                        <div class="col-lg-4 col-md-4 pad0">
+                            <label for="" class="zz-label-sm  float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.SoftwaveVersion">SoftwaveVersion:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <label for="" class="zz-label-sm ">{{info.softwareVersion}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 pad0 mar-bom-20">
+                    <div class="col-lg-12 col-md-12 mar-t-10 pad0">
+                        <div class="col-lg-4 col-md-4 pad0">
+                            <label for="" class="zz-label-sm  float-r" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.CreateTime">CreateTime:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <label for="" class="zz-label-sm ">{{info.creationTime|date:'yyyy-MM-dd HH:mm:ss'}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 pad0 mar-t-20" style="height: 600px;">
+        <div class="col-lg-2 col-md-2 " style="background-color: lavender;height: 600px;">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-click="overview()"><a href=""><span class="glyphicon glyphicon-eye-open pad0-10-5-10"></span><span class="pad0-10-5-10" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.Overview">Overview</span></a></li>
+                <li ng-click="configuration()"><a href=""><span class="glyphicon glyphicon-cog pad0-10-5-10"></span><span class="pad0-10-5-10" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.Configuration">Configuration</span></a></li>
+                <li><a ng-click="toshow()" href=""><span class="glyphicon glyphicon-list-alt pad0-10-5-10"></span><span class="pad0-10-5-10 ng-binding" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.Maintenance">Maintenance</span>
+                        <b class="fa fa-angle-right ng-scope float-r" ui-sref-active="fa-angle-down"></b></a>
+                    <ul class="nav nav-pills nav-stacked" ng-show="child">
+                        <li ng-click="rebootDevice()"><a href=""><span style="padding-left: 50px;" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.Reboot">Reboot</span></a></li>
+                        <li ng-click="FactoryReset()"><a href=""><span style="padding-left: 50px;" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.FactoryReset">FactoryReset</span></a></li>
+                        <li ng-click="uploadFile()"><a href=""><span style="padding-left: 50px;" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.Upgrade">Upgrade</span></a></li>
+                    </ul>
+                </li>
+                <li ng-click="monitoring()"><a href=""><span class="glyphicon glyphicon-stats pad0-10-5-10"></span><span class="pad0-10-5-10" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.Monitoring">Monitor Task</span></a></li>
+                <li ng-click="dataModel()"><a href=""><span class="fa fa-tree pad0-10-5-10"></span><span class="pad0-10-5-10" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.DataModelTree">DataModelTree</span></a></li>
+                <li ng-click="deviceLog()"><a href=""><span class="fa fa-calendar pad0-10-5-10"></span><span class="pad0-10-5-10" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.CPEdeviceDetails.LogsManager">Logs Management</span></a></li>
+            </ul>
+        </div>
+        <div class="col-lg-10 col-md-10 pad0 horizontal-scroll" style="height: 600px;" ui-view="devices">
+        </div>
+        <!-- <div class="col-lg-10 col-md-10 pad0 " style="height: 600px;" ng-if="!over">
+            <div class="col-lg-12 col-md-12">
+                <div class="col-lg-12 col-md-12 panel2">
+                    <div id="visitingReasonChart" style="width: 100%;height:600px;">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+
+        </div>
+    </div>
+    <!-- <div id="visitingReasonChart" style="width: 600px;height:400px;"></div> -->
+</div>

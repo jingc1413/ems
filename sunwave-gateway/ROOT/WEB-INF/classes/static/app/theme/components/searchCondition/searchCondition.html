@@ -1,0 +1,42 @@
+<div class="col-lg-6 col-md-12 form-group">
+    <!-- <div class="pad0 form-group col-lg-10 col-md-10 pad0"> -->
+    <label for="input01" class="zz-label col-md-3 pad0">Search Condition:</label>
+    <select class="zz-input pad2 form-control inline v-middle" ng-model="searchCondition" style="width: 30%;float:left;" ng-init="searchCondition = '0'" ng-change="switchSearchCondition();">
+            <!-- <option value="">--Please Select--</option> -->
+
+            <option value="0" ng-selected="searchCondition == 0">Device ID</option>
+            <option value="1" ng-selected="searchCondition == 1">Device Name</option>
+            <option value="2" ng-selected="searchCondition == 2">Vendor Name</option>
+            <option value="3" ng-selected="searchCondition == 3">Device Type</option>
+            <option value="7" ng-selected="searchCondition == 7">Device Type All</option>
+            <option value="4" ng-selected="searchCondition == 4">Device Status</option>
+            <option value="5" ng-selected="searchCondition == 5">Device Level</option>
+            <option value="6" ng-selected="searchCondition == 6">Software Version</option>
+
+    </select>
+    <!--level-->
+    <select class="zz-input pad2 form-control inline v-middle" ng-model="device.neSitelevelid" ng-show="deviceLevelShow" ng-options="deviceLevel.slvSitelevelid as deviceLevel.slvName for deviceLevel in deviceLevels" style="width: 30%;">
+                    <option value="">--Please Select--</option>
+
+                    <!-- <option value="1" ng-selected="modal.neDevicelevelid == 1">normal</option>
+                    <option value="2" ng-selected="modal.neDevicelevelid == 2">vip</option> -->
+            </select>
+    <!--vendor-->
+    <select class="zz-input pad2 form-control inline v-middle" ng-model="device.coCompanyid" ng-show="vendorShow" ng-options="vName.coCompanyid as vName.coName for vName in vNames" style="width: 30%;">
+                    <option value="">--Please Select--</option>
+            </select>
+    <!--type-->
+    <select class="zz-input pad2 form-control inline v-middle" ng-model="device.neDevicetypeid" ng-show="deviceTypeShow" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes" style="width: 30%;">
+                    <option value="">--Please Select--</option>
+            </select>
+    <!--status-->
+    <select class="zz-input pad2 form-control inline v-middle" ng-model="device.neDevicestatusid" ng-show="deviceStatusShow" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" style="width: 30%;">
+                    <option value="">--Please Select--</option>
+            </select>
+    <!--type all-->
+    <select class="zz-input pad2 form-control inline v-middle" ng-model="device.neDevicetypeAllid" ng-show="deviceTypeAllShow" ng-options="devTypeAll.dtcDevicetypeclassifyid as devTypeAll.dtcName for devTypeAll in devTypeAlls" style="width: 30%;">
+                    <option value="">--Please Select--</option>
+            </select>
+    <input type="text" class="zz-input form-control" id="input01" placeholder="Please Input" ng-show="devNameIdVers" ng-model="conditionValue" style="width: 40%;" />
+    <!-- </div> -->
+</div>

@@ -1,0 +1,103 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="row col-lg-12 col-md-12 pad0">
+                <div class="col-lg-3 col-md-3">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label" translate="sysAnnouncement.searchCondition.test.Announcement">Announcement:</label>
+                        <input type="text" class="zz-input form-control" id="input01" placeholder="Please input" ng-model="query.afficheTitle" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="form-group">
+                        <!-- <div class="form-in">
+                            <label for="input01">Issued：</label>
+                            <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadiosinline" ng-model="query.affichePulish" id="optionsRadios3"
+                               value="1" checked />Yes
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadiosinline" ng-model="query.affichePulish" id="optionsRadios4"
+                               value="2" />No
+                            </label>
+
+                        </div> -->
+                        <div class="form-in">
+                            <label class="zz-label">Issued:</label>
+                            <label class="custom-radio" style="margin:5px;">
+                                <input type="radio" ng-model="query.affichePulish" name="toasts" value="1" class="" id="optionsRadios3"><span>Yes</span>
+                            </label>
+                            <label class="custom-radio" style="margin:5px;">
+                                <input type="radio" ng-model="query.affichePulish" name="toasts" value="0" class="" id="optionsRadios4"><span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-4">
+                    <!-- <button-permission2 ng-model="permissions2" nowUrl2={{absUrl2}}></button-permission2> -->
+                    <button class="btn btn-green btn-sm btn-pd" ng-click="search();"><i class="fa fa-search"></i>Search</button>
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i>Reset</button>
+
+
+                    <!-- <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <!-- <div class="col-lg-6 col-md-6"> -->
+                    <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+                    <!-- <button class="btn btn-info btn-raised btn-pd" ng-click="toAddItem('', 'md');">Add</button>
+                    <button class="btn btn-danger btn-raised btn-pd" ng-click="deleteItem();">Delete</button>
+                    <button class="btn btn-warning btn-raised btn-pd" ng-click="toModifyItem('', 'md');">Modify</button>
+                    <button class="btn btn-primary btn-raised btn-pd" ng-click="toShowItem('', 'md');">View</button> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left">NO.</th>
+                                <th class="align-left">Announcement
+                                    <my-Order query="query" search="search()" order-name='afficheTitle'></my-Order>
+                                </th>
+                                <th class="align-left">Expiration date
+                                    <my-Order query="query" search="search()" order-name='afficheInvalidate'></my-Order>
+                                </th>
+                                <th class="align-left">Create Time
+                                    <my-Order query="query" search="search()" order-name='inputTime'></my-Order>
+                                </th>
+                                <th class="align-left">Issued
+                                    <my-Order query="query" search="search()" order-name='affichePulish'></my-Order>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                <td>
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                <td class="align-left">{{item.afficheTitle}}</td>
+                                <td class="align-left">{{item.afficheInvalidate | date:'yyyy-MM-dd'}}</td>
+                                <td class="align-left">{{item.inputTime | date:'yyyy-MM-dd'}}</td>
+                                <td class="align-left">{{item.affichePulish=='1'?'Published':'Not Published'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color:#616161">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal form-validation" ng-submit="submitForm(userForm.$valid)"></form>
+    <div class="modal-body">
+        <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.vendorAddress.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.vendorAddress.$dirty && userForm.vendorAddress.$invalid">
+                        <span style="color:red;font-size: 12px;" ng-show="userForm.vendorAddress.$error.required">*</span>
+            </span>
+            <label class="col-lg-2 control-label zz-label">Name:</label>
+            <div class="col-lg-10">
+                <input type="name" class="form-control" ng-model="tree.name" required />
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.vendorName.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.vendorName.$dirty && userForm.vendorName.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.vendorName.$error.required">*</span>
+            </span>
+            <label class="col-lg-2 control-label zz-label">ID:</label>
+            <div class="col-lg-10">
+                <input type="ID" class="form-control" ng-model="tree.id" required />
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.vendorContactPerson.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.vendorContactPerson.$dirty && userForm.vendorContactPerson.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.vendorContactPerson.$error.required">*</span>
+            </span>
+            <label class="col-lg-2 control-label zz-label">PID:</label>
+            <div class="col-lg-10">
+                <input type="ID" class="form-control" ng-model="tree.pId" required />
+            </div>
+        </div>
+        <!-- <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.vendorContactPerson.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.vendorContactPerson.$dirty && userForm.vendorContactPerson.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.vendorContactPerson.$error.required">*</span>
+            </span>
+            <label class="col-lg-2 control-label zz-label">UpMenu:</label>
+            <div class="col-lg-10">
+                <input type="text" name="upMenu" class="form-control" ng-model="tree.pName" required />
+            </div>
+        </div> -->
+        <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.vendorPhone.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.vendorPhone.$dirty && userForm.vendorPhone.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.vendorPhone.$error.required">*</span>
+            </span>
+            <label class="col-lg-2 control-label zz-label">Code:</label>
+            <div class="col-lg-10">
+                <input type="ID" class="form-control" ng-model="tree.code" required />
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.toasts.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.toasts.$dirty && userForm.toasts.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.toasts.$error.required">*</span>
+            </span>
+            <div class="form-in">
+                <label class="zz-label col-md-2 col-lg-2">IS Menu:</label>
+                <div class="col-md-10 col-lg-10">
+                    <label class="custom-radio" style="margin:5px;">
+                        <input type="radio" ng-model="tree.isMenu" name="toasts" value=0 class="" id="option1"><span>Yes</span>
+                    </label>
+                    <label class="custom-radio" style="margin:5px;">
+                        <input type="radio" ng-model="tree.isMenu" name="toasts" value=2 class="" id="option2"><span>No</span>
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.isButton.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.isButton.$dirty && userForm.isButton.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.isButton.$error.required">*</span>
+            </span>
+            <div class="form-in">
+                <label class="zz-label col-md-2 col-lg-2">IS Button:</label>
+                <div class="col-md-10 col-lg-10">
+                    <label class="custom-radio" style="margin:5px;">
+                        <input type="radio" ng-model="tree.isButton" name="isButton" value=0 class="" id="isButton1"><span>Yes</span>
+                    </label>
+                    <label class="custom-radio" style="margin:5px;">
+                        <input type="radio" ng-model="tree.isButton" name="isButton" value=1 class="" id="isButton2"><span>No</span>
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.toasts3.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.toasts3.$dirty && userForm.toasts3.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.toasts3.$error.required">*</span>
+            </span>
+            <div class="form-in">
+                <label class="zz-label col-lg-2 col-md-2">Status:</label>
+                <div class="col-md-10 col-lg-10">
+                    <label class="custom-radio" style="margin:5px;">
+                        <input type="radio" ng-model="tree.status" name="toasts3" value=0 class="" id="option3"><span>Yes</span>
+                    </label>
+                    <label class="custom-radio" style="margin:5px;">
+                        <input type="radio" ng-model="tree.status" name="toasts3" value=1 class="" id="option4"><span>No</span>
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-md-12 form-group">
+            <span style="color:red" ng-show="userForm.sort.$pristine">*</span>
+            <span style="color:red" ng-show="userForm.sort.$dirty && userForm.sort.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.sort.$error.required">*</span>
+            </span>
+            <label class="col-lg-2 control-label zz-label">sort:</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" name="sort" ng-model="tree.sort" placeholder="please Input:1,2,3,4..." required />
+            </div>
+
+        </div>
+        <div class="clear"></div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+        </div>
+        </form>
+    </div>

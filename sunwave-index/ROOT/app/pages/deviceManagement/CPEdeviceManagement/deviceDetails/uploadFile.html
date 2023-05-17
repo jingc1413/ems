@@ -1,0 +1,66 @@
+<div class="widgets">
+    <div class="col-md-12 col-lg-12">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 ">
+                <div class="col-md-8 col-lg-8 pad0">
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <input type="text" style="width: 100%;" placeholder="Search By FileName" class="form-control zz-input float-input" ng-model="query.keyword" maxlength="40" ng-keypress="($event.which === 13)?search():0">
+                    </div>
+                    <div class="col-md-2 col-lg-2 pad0">
+                        <button class="btn btn-green  btn-sm btn-pd float-l" ng-click="search();"><i
+                        class="fa fa-search"></i></button>
+                    </div>
+                    <div class="col-md-2 col-lg-2 pad0">
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 pad0">
+                    <button class="btn btn-info btn-raised btn-pd float-r" title="Upload File" ng-click="toAddItem();"><span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="row">
+                <div ba-panel ba-panel-class="with-scroll table-panel">
+                    <div class="horizontal-scroll">
+                        <form ng-submit="myForm()" name="myForm" ng-model="myForm" class="form-validation">
+                            <!-- <h3 class="with-line">基本信息</h3> -->
+                            <div class="col-md-12 col-lg-12 pad0">
+                                <table class="table table-hover table-bordered-m">
+                                    <thead>
+                                        <tr class="black-muted-bg" style="height: 28px;">
+                                            <!-- <th class="align-left">
+                                                <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                            </th> -->
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Maintenance.Upgrade.FileName">FILE NAME</th>
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Maintenance.Upgrade.UploadTime">UPLOAD TIME</th>
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Maintenance.Upgrade.Version">VERSION</th>
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Maintenance.Upgrade.Manufacturer">MANUFACTURER</th>
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Maintenance.Upgrade.Remark">REMARK </th>
+                                            <th class="align-left" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Maintenance.Upgrade.Action">ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in items" style="height: 28px;">
+                                            <!-- <td class="align-left" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                                <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                            </td> -->
+                                            <td class="align-left">{{item.name}}</td>
+                                            <td class="align-left">{{item.uploadTime}}</td>
+                                            <td class="align-left">{{item.version}}</td>
+                                            <td class="align-left">{{item.manufacturer}}</td>
+                                            <td class="align-left">{{item.remark}}</td>
+                                            <!-- <td class="align-left"> <button class="btn btn-danger btn-raised btn-pd float-r" ng-click="upgrade(item)" title="Upgrade"><span class="glyphicon glyphicon-arrow-up"></span></button></td> -->
+                                            <td class="align-left"> <button class="btn btn-danger btn-raised btn-pd float-r" ng-click="upgrade(item)" title="Upgrade" translate="deviceManagement.CPEdeviceManagement.CPEdeviceDetails.Maintenance.Upgrade.Upgrade">Upgrade</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <tm-pagination conf="paginationConf"></tm-pagination>
+                        </form>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

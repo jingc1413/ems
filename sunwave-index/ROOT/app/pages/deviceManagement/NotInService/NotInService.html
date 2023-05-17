@@ -1,0 +1,174 @@
+<div class="widgets">
+    <div class="row col-lg-12 col-md-12 pad0">
+        <div class="col-lg-6 col-md-12">
+            <div class="pad0 form-group col-lg-10 col-md-10 pad0">
+                <label for="input01" class="zz-label col-md-3 pad0" translate="deviceManagement.searchCondition.searchCondition">Search Condition:</label>
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="searchCondition" style="width: 35%;float:left;" ng-init="searchCondition = '0'" ng-change="switchSearchCondition();">
+                    <option value="0" ng-selected="searchCondition == 0" translate="deviceManagement.searchCondition.DeviceID">Device ID</option>
+                    <option value="1" ng-selected="searchCondition == 1" translate="deviceManagement.searchCondition.DeviceName">Device Name</option>
+                    <option value="2" ng-selected="searchCondition == 2" translate="deviceManagement.searchCondition.VendorName">Vendor Name</option>
+                    <option value="3" ng-selected="searchCondition == 3" translate="deviceManagement.searchCondition.DeviceType">Device Type</option>
+                    <!-- <option value="7" ng-selected="searchCondition == 7" translate="deviceManagement.searchCondition.DeviceTypeAll">Device Type All</option> -->
+                    <option value="7" ng-selected="searchCondition == 7" translate="deviceManagement.searchCondition.DeviceClassification">Device Classification</option>
+                    <option value="4" ng-selected="searchCondition == 4" translate="deviceManagement.searchCondition.DeviceStatus">Device Status</option>
+                    <option value="5" ng-selected="searchCondition == 5" translate="deviceManagement.searchCondition.DeviceLevel">Device Level</option>
+                    <option value="6" ng-selected="searchCondition == 6" translate="deviceManagement.searchCondition.SoftwareVersion">Software Version</option>
+                    <option value="8" ng-selected="searchCondition == 8" translate="deviceManagement.searchCondition.BaseStationName">Base Station Name</option>
+                    <option value="9" ng-selected="searchCondition == 9" translate="deviceManagement.searchCondition.BaseStationID">Base Station ID</option>
+                </select>
+                <!--level-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="device.neSitelevelid" ng-show="deviceLevelShow" ng-options="deviceLevel.slvSitelevelid as deviceLevel.slvName for deviceLevel in deviceLevels" style="width: 30%;">
+                    <option value="" translate="deviceManagement.modal.PleaseSelect">--Please Select--</option>
+
+                    <!-- <option value="1" ng-selected="modal.neDevicelevelid == 1">normal</option>
+                    <option value="2" ng-selected="modal.neDevicelevelid == 2">vip</option> -->
+                </select>
+                <!--vendor-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="device.coCompanyid" ng-show="vendorShow" ng-options="vName.coCompanyid as vName.coName for vName in vNames" style="width: 30%;">
+                    <option value="" translate="deviceManagement.modal.PleaseSelect">--Please Select--</option>
+                </select>
+                <!--type-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="device.neDevicetypeid" ng-show="deviceTypeShow" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'"
+                    style="width: 30%;">
+                    <option value="" translate="deviceManagement.modal.PleaseSelect">--Please Select--</option>
+                </select>
+                <!--status-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="device.neDevicestatusid" ng-show="deviceStatusShow" ng-options="devStatus.dsId as devStatus.dsName for devStatus in devStatuss" style="width: 30%;">
+                    <option value="" translate="deviceManagement.modal.PleaseSelect">--Please Select--</option>
+                </select>
+                <!--type all-->
+                <select class="zz-input pad2 form-control inline v-middle" ng-model="device.neDevicetypeAllid" ng-show="deviceTypeAllShow" ng-options="devTypeAll.dtcDevicetypeclassifyid as devTypeAll.dtcName for devTypeAll in devTypeAlls" style="width: 30%;">
+                    <option value="" translate="deviceManagement.modal.PleaseSelect">--Please Select--</option>
+                </select>
+                <input type="text" class="zz-input form-control" id="input01" placeholder="" ng-show="devNameIdVers" ng-model="conditionValue" style="width: 40%;" />
+            </div>
+
+
+        </div>
+        <!--area-->
+        <div class="pad2 form-group col-lg-3 col-md-6 mar-b-0">
+            <!-- <label for="" class="zz-label-sm">Area:</label> -->
+            <button class="btn btn-xxs btn-sm btn-info float-l" ng-click="searchAreaTree();" translate="buttons.area">Area</button>
+            <input type="text" class="zz-input form-control" id="AreaInput" ng-model="area.selectArea" placeholder="" readonly="true" />
+        </div>
+        <div class="col-lg-3 col-md-6 pad0">
+            <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i class="fa fa-search" ng-click="search();"></i><span translate="buttons.search">Search</span></button>
+            <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+            <!-- <button type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportList();"><i class="ion-android-download"></i>Export</button> -->
+        </div>
+    </div>
+    <div class="mar0 row">
+        <div class="col-md-12 col-lg-12 pad0">
+            <!--nonono <button class="btn btn-info btn-raised btn-pd" ng-click=addItem();>Add</button> -->
+            <!-- <button class="btn btn-primary btn-raised btn-pd" ng-click=batchModify();>Batch Modify</button> -->
+            <!-- <button class="btn btn-blue btn-raised btn-pd" ng-click="batchModify();">batch modify</button> -->
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+
+            <!-- <button class="btn btn-warning btn-raised btn-pd" ng-click=editItem();>Modify</button>
+                    <button class="btn btn-danger btn-raised btn-pd" ng-click=deleteItem();>Delete</button>
+
+                    <button class="btn btn-blue btn-raised btn-pd" ng-click="queryDevice();">Query Device</button>
+                    <button class="btn btn-blue btn-raised btn-pd" ng-click="Operation();">In Operation</button> -->
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 pad0" ba-panel ba-panel-class="with-scroll table-panel">
+        <div class="horizontal-scroll">
+            <table class="table table-bordered">
+                <thead class="low-green">
+                    <tr>
+                        <th width="3%">
+                            <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                        </th>
+                        <th class="table-id">NO.</th>
+                        <th><span translate="deviceManagement.table.thead.DeviceID"></span>
+                            <my-Order query="query" search="search()" order-name='neRepeaterid'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DeviceSubID"></span>
+                            <my-Order query="query" search="search()" order-name='neDeviceid'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DeviceType"></span>
+                            <my-Order query="query" search="search()" order-name='neDevicetype'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.RouteAddress"></span>
+                            <my-Order query="query" search="search()" order-name='neRoute'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DeviceName"></span>
+                            <my-Order query="query" search="search()" order-name='neName'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DeviceInstallationLocation"></span>
+                            <my-Order query="query" search="search()" order-name='neInstallplace'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.Area"></span>
+                            <my-Order query="query" search="search()" order-name='sysArea.areaName'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.SoftwareVersion"></span>
+                            <my-Order query="query" search="search()" order-name='neVer'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.SerialNumber"></span>
+                            <my-Order query="query" search="search()" order-name='neSnnumber'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.UpdateTime"></span>
+                            <my-Order query="query" search="search()" order-name='neLastupdatetime'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DeviceStatus"></span>
+                            <my-Order query="query" search="search()" order-name='neDevicestatus'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DeviceIP"></span>
+                            <my-Order query="query" search="search()" order-name='neDeviceip'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.OMTIP"></span>
+                            <my-Order query="query" search="search()" order-name='omcIp'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DevicePort"></span>
+                            <my-Order query="query" search="search()" order-name='neDeviceport'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.VendorName"></span>
+                            <my-Order query="query" search="search()" order-name='neCompany'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DevicePosition"></span>
+                            <my-Order query="query" search="search()" order-name='neInout.ioName'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.DeviceLevel"></span>
+                            <my-Order query="query" search="search()" order-name='neSitelevelid'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.BaseStationID"></span>
+                            <my-Order query="query" search="search()" order-name='btsId'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.table.thead.BaseStationName"></span>
+                            <my-Order query="query" search="search()" order-name='btsName'></my-Order>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                        <td>
+                            <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                        </td>
+                        <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                        <td class="align-left">{{item.neRepeaterid16}}</td>
+                        <td class="align-left">{{item.neDeviceid}}</td>
+                        <td class="align-left">{{item.neDevicetype.dtpName}}</td>
+                        <td class="align-left">{{item.neRoute}}</td>
+                        <td class="align-left"><a href="" ng-click="detailDeviceName(item, $event);">{{item.neName}}</a></td>
+                        <td class="align-left">{{item.neInstallplace}}</td>
+                        <td class="align-left">{{item.areaName}}</td>
+                        <td class="align-left">{{item.neVer}}</td>
+                        <td class="align-left">{{item.neSnnumber}}</td>
+                        <td class="align-left">{{item.neLastupdatetime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td class="align-left">{{item.neDevicestatus.dsName}}</td>
+                        <td class="align-left">{{item.neDeviceip}}</td>
+                        <td class="align-left">{{item.omcIp}}</td>
+                        <td class="align-left">{{item.neDeviceport}}</td>
+                        <td class="align-left">{{item.neCompany.coName}}</td>
+                        <td class="align-left">{{item.neInoutName}}</td>
+                        <td class="align-left">{{item.neSitelevelid==1?'normal':'vip'}}</td>
+                        <td class="align-left">{{item.btsId}}</td>
+                        <td class="align-left">{{item.btsName}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+</div>

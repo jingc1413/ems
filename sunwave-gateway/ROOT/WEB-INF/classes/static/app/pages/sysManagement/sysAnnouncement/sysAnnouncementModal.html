@@ -1,0 +1,74 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #333;">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <form name="userForm" class="" ng-submit="submitForm(userForm.$valid)" enctype="multipart/form-data">
+            <div name="userForm" class="form-div" ng-submit="submitForm(userForm.$valid)">
+                <div class="col-lg-12 col-md-12 mar-b-10">
+                    <div class="form-group">
+                        <label for="input01" class="zz-label">afficheTitle: </label>
+                        <input name="afficheTitle" type="text" class="zz-input form-control float-input" id="input01" ng-model="modal.afficheTitle" required ng-maxlength=100 />
+                        <span style="color:red" ng-show="userForm.afficheTitle.$error.required">*</span>
+                        <span style="color:red" class="zz-label" ng-show="userForm.afficheTitle.$dirty && userForm.afficheTitle.$invalid">
+                            <!-- <span style="color:red;font-size: 12px;" ng-show="userForm.afficheTitle.$error.required">Required</span> -->
+                        <span style="color:red;font-size: 12px;" ng-show="userForm.afficheTitle.$error.maxlength">*The maximum length cannot exceed 100 characters</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 mar-b-10">
+                    <div class="form-group">
+
+                        <label for="input01" class="zz-label">Expiration date: </label>
+                        <!-- <input name="effectiveDate" type="text" class="zz-input form-control" id="input01" ng-model="modal.effectiveDate" required /> -->
+                        <div class="" style="margin: 8px auto;">
+                            <wui-date format="yyyy-mm-dd" placeholder="afficheInvalidate" id="beginTime" btns="{'ok':'ok','now':'today'}" ng-model="modal.afficheInvalidate" required />
+                            </wui-date>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 mar-b-10">
+                    <div class="form-group">
+                        <div class="form-in">
+                            <label>Issued: </label>
+                            <label class="custom-radio">
+                                <input type="radio" ng-model="modal.affichePulish" name="toasts" value="1" class="" id="optionsRadios3"><span>Yes</span>
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" ng-model="modal.affichePulish" name="toasts" value="0" class="" id="optionsRadios4"><span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 mar-b-10">
+                    <div class="form-group">
+                        <label for="textarea01">afficheContent: </label>
+                        <textarea placeholder="Default Input" class="form-control" id="textarea01" ng-model="modal.afficheContent"></textarea>
+                    </div>
+                </div>
+
+
+                <!-- <div class="col-lg-12 col-md-12 mar-b-10">
+
+                    <p>affiche</p>
+                    <input type="file" id="fileUpload" ng-model="modal.affiche" nv-file-select="" uploader="uploader" multiple="" style="height: 28px;">
+
+
+                </div> -->
+                <div class="clear"></div>
+
+        </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="userForm.$invalid" ng-show="isSave">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close()">Close</button>
+        </div>
+    </div>

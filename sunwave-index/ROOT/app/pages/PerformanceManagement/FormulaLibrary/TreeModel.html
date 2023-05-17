@@ -1,0 +1,37 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color:#333;">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!-- <div class="col-md-12 col-lg-12 mar-bom-10">
+                <div class="form-group">
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <span class="float-r">父节点名称:</span>
+                    </div>
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <input type="text" class="zz-input-sm form-control" placeholder="" ng-model="modal.FatherName" readonly>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-md-12 col-lg-12 mar-bom-10">
+                <div class="form-group">
+                    <div class="col-md-4 col-lg-4 pad0">
+                        <span class="float-r">节点名称:</span>
+                    </div>
+                    <div class="col-md-8 col-lg-8 pad0">
+                        <input type="text" class="zz-input-sm form-control" placeholder="" ng-model="modal.indexName">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="save()" translate="buttons.Save">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" translate="buttons.Close">Close</button>
+    </div>
+</div>

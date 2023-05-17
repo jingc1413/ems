@@ -1,0 +1,82 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}} Area</h4>
+    </div>
+    <form name="myForm" class="form-horizontal" class="form-control" ng-submit="submitForm()">
+        <div class="modal-body">
+            <div class="form">
+                <!-- <div class="col-lg-12 col-md-12 form-group">
+                <div class="col-lg-3 col-md-3" style="margin-top: 5px;">
+                    <button class="btn m-b-xs btn-sm btn-info" ng-model="getAreaTree" ng-click="getAreaTree();"><i></i>选择上级地区</button>
+                </div>
+                <div class="col-lg-4 col-md-4 pad0" style="margin-top: 10px;">
+                    <span>上级地区：{{upAreaName}}</span>
+                </div>
+            </div> -->
+                <div class="col-md-12 col-lg-12 form-group">
+                    <label class="control-label col-md-3 lingH-34 pad0 no-wrap">Upper Organization:</label>
+                    <div class="col-md-8">
+                        <input id="pAreaName" name="pAreaName" type="text" class="form-control " maxlength="25" ng-model="area.pAreaName" readonly required/>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right">Name:</label>
+                    <div class="col-md-9">
+                        <input id="areaName" name="areaName" type="text" class="form-control" maxlength="25" ng-model="area.areaName" required/>
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.areaName.$error.required">*</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right">Code:</label>
+                    <div class="col-md-9">
+                        <input id="areaCode" name="areaCode" type="text" class="form-control" maxlength="25" ng-model="area.areaCode" required>
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.areaCode.$error.required">*</span>
+                    <div class="clear"></div>
+                </div>
+
+                <!-- <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right">Code:</label>
+                    <div class="col-md-9">
+                        <input id="areaCode" name="areaCode" type="text" class="form-control" maxlength="100" ng-model="area.areaCode" required/>
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.areaCode.$error.required">*</span>
+                </div> -->
+
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right">Lat:</label>
+                    <div class="col-md-9">
+                        <input id="lat" name="lat" type="text" class="form-control " ng-model="area.lat" />
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.lat.$error.required">*</span>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right">Lon:</label>
+                    <div class="col-md-9">
+                        <input id="lon" name="lon" type="text" class="form-control" ng-model="area.lon" />
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.lon.$error.required">*</span>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+
+                    <label class="control-label col-md-2 lingH-34 align-right">Phone:</label>
+                    <div class="col-md-4">
+                        <input id="phone" name="phone" type="text" class="form-control" maxlength="100" ng-model="area.phone" />
+                    </div>
+                    <label class="control-label col-md-2 lingH-34 align-right">Remark:</label>
+                    <div class="col-md-4">
+                        <input id="other" name="other" type="text" class="form-control" ng-model="area.remark" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary" ng-click="saveEdit();">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="cancel() ">Close</button>
+        </div>
+    </form>
+</div>

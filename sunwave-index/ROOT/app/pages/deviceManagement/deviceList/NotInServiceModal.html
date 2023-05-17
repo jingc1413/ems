@@ -1,0 +1,31 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" translate="deviceManagement.NotInServiceModal.StatusChoose">Status Choose</h4>
+    </div>
+    <form ng-submit="myForm()" name="myForm" ng-model="myForm">
+        <!-- <h3 class="with-line">基本信息</h3> -->
+        <div class="modal-body" style="padding-bottom: 5px;">
+            <div class="col-md-12 col-lg-12 mar-bom-5 pad-20">
+                <!-- <div class="col-lg-6 col-md-6"> -->
+                <div class="form-group">
+                    <div class="form-in">
+                        <label class="radio-inline custom-radio nowrap mar-r-20" ng-repeat="collect in collections">
+                                <input type="radio" name="optionsRadiosinline" ng-model="modal.collectValue" value="{{collect.dsId}}" checked="">
+                                <span class="font-14">{{collect.dsName}}</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- </div> -->
+
+                <div class="clear"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="myForm.$invalid" type="submit" translate="buttons.Save">Save</button>
+                <button type="button" class="btn btn-default" ng-click="close()" ng-disabled="myForm.$invalid" type="submit" translate="buttons.Close">Close</button>
+            </div>
+    </form>
+    </div>

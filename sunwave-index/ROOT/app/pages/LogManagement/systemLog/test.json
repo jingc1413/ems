@@ -1,0 +1,26 @@
+{
+    "content": [{
+        "LogNumber": "1",
+        "UserName": "11111111",
+        "ModuleName": "namename111",
+        "IPAddress": "type111",
+        "IssuedTime": "2019-9-7",
+        "OperationResult": "Operation Result01"
+    }, {
+        "LogNumber": "2",
+        "UserName": "22222222",
+        "ModuleName": "namename222",
+        "IPAddress": "type2222",
+        "IssuedTime": "2019-9-7",
+        "OperationResult": "Operation Result01"
+    }, {
+        "LogNumber": "3",
+        "UserName": "33333",
+        "ModuleName": "namename333",
+        "IPAddress": "type33331",
+        "IssuedTime": "2019-9-7",
+        "OperationResult": "Operation Result03"
+    }],
+    "totalElements": 100,
+    "deleteIs": "OK"
+}

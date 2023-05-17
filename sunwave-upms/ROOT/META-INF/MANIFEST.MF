@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Implementation-Title: sunwave-upms
+Implementation-Version: 2.0.0
+Built-By: admin
+Implementation-Vendor-Id: com.sunwave
+Spring-Boot-Version: 2.0.8.RELEASE
+Main-Class: org.springframework.boot.loader.WarLauncher
+Start-Class: com.sunwave.upms.UpmsApplication
+Spring-Boot-Classes: WEB-INF/classes/
+Spring-Boot-Lib: WEB-INF/lib/
+Created-By: Apache Maven 3.6.3
+Build-Jdk: 1.8.0_131
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Sunwave-Parent/microservice.skeleton.upms
+

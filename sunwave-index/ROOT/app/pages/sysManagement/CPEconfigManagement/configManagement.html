@@ -1,0 +1,65 @@
+<my-alert></my-alert>
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-4 col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control zz-input float-input" id="1nput01" placeholder="Search by name" ng-model="query.teName" maxlength="20" ng-keypress="($event.which === 13)?search():0" />
+                    <button class="btn btn-green  btn-sm btn-pd" ng-click="search();"><i
+                            class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 float-r">
+                <span style="float: right;">
+                    <!-- <button class="btn btn-info btn-raised btn-pd" title="Add model" ng-model="toAddItem"
+                        ng-click="toAddItem();"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-info btn-raised btn-pd" title="toModifyItem" ng-click="editModel();"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-danger btn-raised btn-pd" title="Delete model" ng-click="deleteItem()"><span class="glyphicon glyphicon-minus"></span></button> -->
+                <!-- <button class="btn btn-warning btn-raised btn-pd" title="View model" ng-click="viewModel();"><span class="glyphicon glyphicon-eye-open"></span></button> -->
+                <!-- <button-permission ng-model="permissions2" nowUrl={{absUrl}}></button-permission> -->
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="mar0 row">
+        <div class="col-lg-12 col-md-12 pad0">
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ba-panel ba-panel-class="with-scroll table-panel">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover table-bordered-m">
+                        <thead>
+                            <tr class="black-muted-bg">
+                                <th class="align-left">
+                                    <input id="flag" type="checkbox" class="cursor" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                </th>
+                                <th class="align-left" translate="SysManagement.CPEconfigManagement.configManagement.Name">NAME</th>
+                                <th class="align-left" translate="SysManagement.CPEconfigManagement.configManagement.Description">DESCRIPTION
+                                    <my-Order query="query" search="search()" order-name='ip'></my-Order>
+                                </th>
+                                <!-- <th class="align-left">ACTION
+                                    <my-Order query="query" search="search()" order-name='ip'></my-Order>
+                                </th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items">
+                                <td class="align-left ">
+                                    <input type="checkbox" class="cursor" ng-model="item.checked" ng-change="selectOne()" />
+                                </td>
+                                <td class="align-left" ng-click="view(item);"><a href="">{{item.teName}}</a></td>
+                                <td class="align-left">{{item.teDescribe}}</td>
+                                <!-- <td class="align-left">{{item.action}}</td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <tm-pagination conf="paginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>

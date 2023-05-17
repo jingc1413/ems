@@ -1,0 +1,14 @@
+<div class="modal-over bg-black" ng-show="isLock">
+    <div class="modal-center animated fadeInUp text-center" style="width:200px;margin:-100px 0 0 -100px;">
+        <div class="thumb-lg">
+            <h3 class="lockpage-h3">No operation for a long time, screen locked</h3>
+        </div>
+        <p class="h4 m-t m-b">{{user.username}}</p>
+        <div class="input-group">
+            <input type="password" class="form-control text-sm btn-rounded no-border" placeholder="Enter pwd to continue" ng-model="psdInput">
+            <span class="input-group-btn">
+        <a href="" class="btn btn-success btn-rounded no-border" ng-click="goIndex();"><i class="fa fa-arrow-right"></i></a>
+      </span>
+        </div>
+    </div>
+</div>

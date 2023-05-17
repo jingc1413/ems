@@ -1,0 +1,99 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="myForm" class="form-horizontal" class="form-control" ng-submit="submitForm()">
+        <div class="modal-body">
+            <div class="form">
+                <!-- <div class="col-lg-12 col-md-12 form-group">
+                <div class="col-lg-3 col-md-3" style="margin-top: 5px;">
+                    <button class="btn m-b-xs btn-sm btn-info" ng-model="getAreaTree" ng-click="getAreaTree();"><i></i>选择上级地区</button>
+                </div>
+                <div class="col-lg-4 col-md-4 pad0" style="margin-top: 10px;">
+                    <span>上级地区：{{upAreaName}}</span>
+                </div>
+            </div> -->
+                <div class="col-md-12 col-lg-12 form-group">
+                    <label class="control-label col-md-3 lingH-34 pad0 no-wrap" translate="Authority.area.modal.UpperOrganization">Upper Organization:</label>
+                    <div class="col-md-8">
+                        <input id="pAreaName" name="pAreaName" type="text" class="form-control " maxlength="25" ng-model="area.pAreaName" readonly required/>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right" translate="Authority.area.modal.Name">Name:</label>
+                    <div class="col-md-9">
+                        <input id="areaName" name="areaName" type="text" class="form-control" maxlength="25" ng-model="area.areaName" required/>
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.areaName.$error.required">*</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right" translate="Authority.area.modal.Code">Code:</label>
+                    <div class="col-md-9">
+                        <input id="areaCode" name="areaCode" type="text" class="form-control" maxlength="25" ng-model="area.areaCode" required>
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.areaCode.$error.required">*</span>
+                    <div class="clear"></div>
+                </div>
+
+                <!-- <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right">Code:</label>
+                    <div class="col-md-9">
+                        <input id="areaCode" name="areaCode" type="text" class="form-control" maxlength="100" ng-model="area.areaCode" required/>
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.areaCode.$error.required">*</span>
+                </div> -->
+
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right" translate="Authority.area.modal.Lat">Lat:</label>
+                    <div class="col-md-9">
+                        <input id="lat" name="lat" type="text" class="form-control " ng-model="area.lat" ng-pattern="/^[\-\+]?([0-8]?\d{1}\.\d{1,6}|90\.0{1,6})$/" />
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.lat.$error.required">*</span>
+                    <div class="clear"></div>
+                    <small class="error" ng-show="myForm.lat.$error.pattern" style="color:red;" translate="deviceManagement.modal.LatTips">
+                        *Lat only can be number(-90.000000～90.000000)!
+                    </small>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="control-label col-md-2 lingH-34 align-right" translate="Authority.area.modal.Lon">Lon:</label>
+                    <div class="col-md-9">
+                        <input id="lon" name="lon" type="text" class="form-control" ng-model="area.lon" ng-pattern="/^[\-\+]?(0?\d{1,2}\.\d{1,6}|1[0-7]?\d{1}\.\d{1,6}|180\.0{1,6})$/" />
+                    </div>
+                    <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.lon.$error.required">*</span>
+                    <div class="clear"></div>
+                    <small class="error" ng-show="myForm.lon.$error.pattern" style="color:red;" translate="deviceManagement.modal.LonTips">
+                        *Lon only can be number(-180.000000～180.000000)!
+                    </small>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+
+                    <label class="control-label col-md-2 lingH-34 align-right" translate="Authority.area.modal.Phone">Phone:</label>
+                    <div class="col-md-4">
+                        <input id="phone" name="phone" type="text" class="form-control" ng-maxlength="20" ng-model="area.phone" ng-pattern="/^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/" />
+                        <span style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+                        <small class="error" ng-show="myForm.phone.$error.pattern || myForm.phone.$error.maxlength" style="color:red;padding-left: 25%;" translate="SysManagement.vendorManagement.modal.PhoneTips">
+                            *Phone up to 20 characters, including +, -, and numbers!
+                        </small>
+                    </span>
+                    </div>
+                    <label class="control-label col-md-2 lingH-34 align-right" translate="Authority.area.modal.Remark">Remark:</label>
+                    <div class="col-md-4">
+                        <input id="other" name="other" type="text" class="form-control" ng-model="area.remark" ng-maxlength="200" />
+                        <div class="error" ng-show="myForm.other.$dirty && myForm.other.$invalid">
+                            <small class="error" ng-show="myForm.other.$error.maxlength" style="color:red;" translate="deviceManagement.modal.remarkTips">
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary" ng-click="saveEdit();" translate="buttons.Save">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="cancel()" translate="buttons.Close">Close</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,200 @@
+<div class="modal-content">
+    <div class="bg-index modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal form-validation" ng-submit="submitForm(userForm.$valid)">
+        <div class="modal-body">
+            <div ng-class="{'cantModify':isDisplay==false}"></div>
+
+            <div class="form">
+                <div class="col-md-6 col-lg-6 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-in">
+                            <label for="Issued" class="control-label zz-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.Type">Type:</label>
+                            <div class="col-md-8">
+                                <label class="custom-radio" style="margin:5px;">
+                                    <input type="radio" ng-model="modal.trapType" name="" value="Alarm" class="" id="optionsRadios3"><span translate="AlarmConfiguration.SNMPConfiguration.modal.Alarm">Alarm</span>
+                                </label>
+                                <label class="custom-radio" style="margin:5px;">
+                                    <input type="radio" ng-model="modal.trapType" name="" value="ServerAlarm" class="" id="optionsRadios3"><span translate="AlarmConfiguration.SNMPConfiguration.modal.ServerAlarm">ServerAlarm</span>
+                                </label>
+                                <label class="custom-radio" style="margin:5px;">
+                                    <input type="radio" ng-model="modal.trapType" name="" value="Heartbeat" class="" id="optionsRadios4"><span translate="AlarmConfiguration.SNMPConfiguration.modal.Heartbeat">Heartbeat</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.IP">IP</label>
+                        <div class="col-md-8">
+                            <input id="" name="trapIp" type="text" class="form-control" ng-model="modal.trapIp" required style="width: 95%;float: left;" ng-pattern="/^(?:(?:1[0-9][0-9]\.)|(?:2[0-4][0-9]\.)|(?:25[0-5]\.)|(?:[1-9][0-9]\.)|(?:[0-9]\.)){3}(?:(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5])|(?:[1-9][0-9])|(?:[0-9]))$/"
+                                ng-maxlength="20" />
+                            <span style="color:red;float:left;" ng-show="userForm.trapIp.$error.required">*</span>
+                            <div class="clear"></div>
+                            <small class="error" ng-show="userForm.trapIp.$error.pattern" style="color:red;" translate="AlarmConfiguration.SNMPConfiguration.modal.IPTips"> </small>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.trapIp.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                            <!-- <span style="color:red;float: left;" ng-show="userForm.trapIp.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.trapIp.$dirty && userForm.trapIp.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.trapIp.$error.pattern" translate="AlarmConfiguration.SNMPConfiguration.modal.IPTips"></span>
+                            </span> -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.Port">Port</label>
+                        <div class="col-md-8">
+                            <input id="" name="trapPort" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.trapPort" ng-maxlength=20 min="0" max="65535" ng-pattern="/^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"
+                                required/>
+                            <span style="color:red;float: left;" ng-show="userForm.trapPort.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.trapPort.$dirty && userForm.trapPort.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.trapPort.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.trapPort.$error.pattern" translate="deviceManagement.modal.DevicePortTips">The port must be in range 0 to 65535</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label zz-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersion">SNMP Version</label>
+                        <div class="col-md-8">
+                            <select class="form-control inline v-middle float-l" ng-model="modal.trapVer" name="trapVer" style="width: 95%;" required>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                        </select>
+                        </div>
+                        <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.securityLevel.$error.required">*</span>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.Community">Community(Context)</label>
+                        <div class="col-md-8">
+                            <input id="" name="community" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.community" ng-maxlength=20 required/>
+                            <span style="color:red;float: left;" ng-show="userForm.community.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.community.$dirty && userForm.community.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.community.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neDevicelevelid" class="control-label zz-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.SecurityLevel">Security Level:</label>
+                        <div class="col-md-8">
+                            <select class="form-control inline v-middle float-l" ng-model="modal.securityLevel" name="securityLevel" style="width: 95%;" ng-disabled="modal.trapVer=='2'" required>
+                            <option value='noAuthNoPriv' translate="AlarmConfiguration.SNMPConfiguration.modal.noAuthNoPriv">noAuthNoPriv</option>
+                            <option value='authNoPriv' translate="AlarmConfiguration.SNMPConfiguration.modal.authNoPriv">authNoPriv</option>
+                            <option value='authPriv' translate="AlarmConfiguration.SNMPConfiguration.modal.authPriv">
+                            authPriv</option>
+                        </select>
+                        </div>
+                        <span style="color:red;font-size: 10px;float:left;" ng-show="myForm.securityLevel.$error.required">*</span>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-in">
+                            <label for="Issued" class="control-label zz-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.Status">Status:</label>
+                            <div class="col-md-8">
+                                <label class="custom-radio" style="margin:5px;">
+                                <input type="radio" ng-model="modal.trapStatus" name="trapStatus" value=1 class="" id="optionsRadios3">
+                                <span translate="AlarmConfiguration.SNMPConfiguration.modal.Enable">Enable</span>
+                            </label>
+                                <label class="custom-radio" style="margin:5px;">
+                                <input type="radio" ng-model="modal.trapStatus" name="trapStatus" value=0 class="" id="optionsRadios4">
+                                <span translate="AlarmConfiguration.SNMPConfiguration.modal.Disable">Disable</span>
+                            </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-6">
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.Interval">Interval (second)</label>
+                        <div class="col-md-8">
+                            <input id="" name="intervalTime" type="text" ng-class="{grayBg: isHeartbeat}" class="form-control" style="width: 95%;float: left;" ng-disabled="modal.trapType=='Alarm'||modal.trapType=='ServerAlarm'" min="20" max="65535" ng-maxlength="20" ng-model="modal.intervalTime"
+                                ng-pattern="/^([2-9]\d{1,3}|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/" ng-required="modal.trapType=='Heartbeat'" />
+                            <span style="color:red" class="zz-label" ng-show="userForm.intervalTime.$dirty && userForm.intervalTime.$invalid"></span>
+
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.intervalTime.$error.pattern">The interval can only be a number and the interval is 20 to 65535</span>
+                            <span style="color:red;float: left;" ng-show="userForm.intervalTime.$error.required">*</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.UserName">User Name</label>
+                        <div class="col-md-8">
+                            <input id="" name="username" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.username" ng-disabled="modal.trapVer=='2'" ng-maxlength=20 ng-required="modal.trapVer=='3'" />
+                            <span style="color:red;float: left;" ng-show="userForm.username.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.username.$dirty && userForm.username.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.username.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neDevicelevelid" class="control-label zz-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.AuthProtocol">Auth Protocol</label>
+                        <div class="col-md-8">
+                            <select class="form-control inline v-middle float-l" ng-model="modal.authProtocol" name="authProtocol" style="width: 95%;" ng-disabled="modal.securityLevel=='noAuthNoPriv'" required>
+                            <option value="none">None</option>
+                            <option value='MD5'>MD5</option>
+                            <option value='SHA'>SHA</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.AuthPassword">Auth Password</label>
+                        <div class="col-md-8">
+                            <input id="" name="authPwd" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.authPwd" ng-disabled="modal.authProtocol=='none'" min="8" max="20" ng-maxlength="20" />
+                            <span style="color:red" class="zz-label" ng-show="userForm.authPwd.$dirty && userForm.authPwd.$invalid"></span>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.authPwd.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.authPwd.$error.min || userForm.authPwd.$error.max">The password must be in range 8 to 20</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neDevicelevelid" class="control-label zz-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.PrivacyProtocol">Privacy Protocol</label>
+                        <div class="col-md-8">
+                            <select class="form-control inline v-middle float-l" ng-model="modal.privacyProtocol" name="privacyProtocol" style="width: 95%;" ng-disabled="modal.securityLevel=='noAuthNoPriv'||modal.securityLevel=='authNoPriv'" required>
+                            <option value="none">None</option>
+                            <option value='DES'>DES</option>
+                            <option value='3DES'>3DES</option>
+                            <option value='IDEA'>IDEA</option>
+                            <option value='AES'>AES</option>
+                            <!-- <option value='AES128'>AES128</option>
+                            <option value='AES196'>AES196</option>
+                            <option value='AES256'>AES256</option> -->
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.PrivacyPassword">Privacy Password</label>
+                        <div class="col-md-8">
+                            <input id="" name="privacyPwd" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.privacyPwd" ng-disabled="modal.privacyProtocol=='none'" min="8" max="20" ng-maxlength="20" />
+                            <span style="color:red" class="zz-label" ng-show="userForm.privacyPwd.$dirty && userForm.privacyPwd.$invalid"></span>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.privacyPwd.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.privacyPwd.$error.min || userForm.privacyPwd.$error.max">The password must be in range 8 to 20</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="AlarmConfiguration.SNMPConfiguration.modal.EngineId">Engine Id</label>
+                        <div class="col-md-8">
+                            <input id="" name="engineId" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.engineId" ng-disabled="modal.trapVer=='2'" min="8" max="20" ng-maxlength="20" ng-required="modal.trapVer=='3'" />
+                            <span style="color:red;float: left;" ng-show="userForm.engineId.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.engineId.$dirty && userForm.engineId.$invalid"></span>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.engineId.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.engineId.$error.min || userForm.engineId.$error.max">The password must be in range 8 to 20</span>
+
+
+                            <!-- <span style="color:red;font-size: 12px;" ng-show="userForm.engineId.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.RemarkTips">*Maximum length cannot exceed 300 </span>                            -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="save();" ng-disabled="userForm.$invalid" value="{{title}}" ng-show="isDisplay" translate="buttons.Save">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close()" translate="buttons.Close">Close</button>
+        </div>
+    </form>
+</div>

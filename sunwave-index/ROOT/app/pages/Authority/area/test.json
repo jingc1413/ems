@@ -1,0 +1,66 @@
+{
+    "code": 0,
+    "data": [{
+        "areaCode": "1111",
+        "areaName": "浙江",
+        "createTime": "2019-3-4",
+        "descs": "string",
+        "id": 1,
+        "pCode": "0000",
+        "pId": "0",
+        "sort": "string",
+        "updateTime": "2019-9-8"
+    }, {
+        "areaCode": "2222",
+        "areaName": "上海",
+        "createTime": "2019-3-4",
+        "descs": "string",
+        "id": 2,
+        "pCode": "0000",
+        "pId": "0",
+        "sort": "string",
+        "updateTime": "2019-9-8"
+    }, {
+        "areaCode": "3333",
+        "areaName": "杭州",
+        "createTime": "2019-4-4",
+        "descs": "string",
+        "id": 3,
+        "pCode": "1111",
+        "pId": "1",
+        "sort": "string",
+        "updateTime": "2019-9-8"
+    }],
+    "description": "string",
+    "msg": "string",
+    "totalElements": 50,
+    "tree": [{
+        "checked": true,
+        "id": "1",
+        "name": "浙江",
+        "open": "true",
+        "pId": "0",
+        "t": "string"
+    }, {
+        "checked": true,
+        "id": "2",
+        "name": "上海",
+        "open": "true",
+        "pId": "0",
+        "t": "string"
+    }, {
+        "checked": true,
+        "id": "3",
+        "name": "杭州",
+        "open": "true",
+        "pId": "1",
+        "t": "string"
+    }],
+    "upAreas": [{
+        "areaId": 1,
+        "areaLabel": "upArea01"
+    }, {
+        "areaId": 2,
+        "areaLabel": "upArea02"
+    }]
+}

@@ -1,0 +1,145 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel" style="color:#333;">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form">
+            <form name="userForm" class="form-horizontal" ng-submit="submitForm(userForm.$valid)">
+                <div class="form-group">
+                    <label for="userName" class="control-label col-md-3">UserName</label>
+                    <div class="col-md-8 col-lg-8">
+                        <input id="name" name="name" type="text" class="form-control zz-input width-100" ng-model="AlarmForward.useName" required ng-maxlength=100 style="float: left;width: 95%;" />
+                        <span style="color:red;float: left;" ng-show="userForm.name.$error.required">*</span>
+                        <span style="color:red" ng-show="userForm.name.$dirty && userForm.name.$invalid">
+                            <!-- <span style="color:red" ng-show="userForm.name.$error.required">Required !</span> -->
+                        <span style="color:red" ng-show="userForm.name.$error.maxlength">*Maximum length cannot
+                                exceed 100</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userName" class="control-label col-md-3">UserID</label>
+                    <div class="col-md-8 col-lg-8">
+                        <input name="useUserid" id="useUserid" type="text" class="form-control zz-input width-100" ng-model="AlarmForward.useUserid" required style="float: left;width: 95%;" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="alarmCondition" class="control-label col-md-3">User Mobile</label>
+                    <div class="col-md-8 col-lg-8">
+                        <input id="useMobile" name="useMobile" type="text" class="form-control zz-input width-100" ng-model="AlarmForward.useMobile" required style="float: left;width: 95%;" ng-pattern="/^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/"
+                        />
+                        <span style="color:red" ng-show="userForm.useMobile.$error.required">*</span>
+                        <span style="color:red" ng-show="userForm.useMobile.$dirty && userForm.useMobile.$invalid">
+                            <!-- <span style="color:red" ng-show="userForm.useMobile.$error.required">Required !</span> -->
+                        <span style="color:red" ng-show="userForm.useMobile.$error.pattern">*Mobile format is
+                                wrong!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label class="control-label col-md-3">Mobile Turn:</label>
+                    <div class="form-in col-md-8 col-lg-8">
+                        <label class="custom-radio">
+                            <input type="radio" ng-model="AlarmForward.useMobileturn" name="selectState" value=-1
+                                class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched"
+                                id="optionsRadios3"><span>Yes</span>
+                        </label>
+                        <label class="custom-radio" style="margin:5px;">
+                            <input type="radio" ng-model="AlarmForward.useMobileturn" name="selectState" value=0
+                                class="ng-pristine ng-untouched ng-valid ng-not-empty"
+                                id="optionsRadios4"><span>No</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="alarmCondition" class="control-label col-md-3">Response Time</label>
+                    <div class="col-md-8 col-lg-8">
+                        <input id="useResponsetime" name="useResponsetime" type="text" style="float: left;width: 95%;" class="form-control zz-input width-100" ng-model="AlarmForward.useResponsetime" required ng-pattern="/^(([0-9]|([1-9]\d)|([1-9]\d\d)|(1\d\d\d)|(2([0-7]\d\d|8([0-7]\d|80)))))$/"
+                        />
+                        <span style="color:red" ng-show="userForm.useResponsetime.$error.required">*</span>
+                        <span style="color:red" ng-show="userForm.useResponsetime.$dirty && userForm.useResponsetime.$invalid">
+                            <!-- <span style="color:red" ng-show="userForm.useResponsetime.$error.required">Required !</span> -->
+                        <span style="color:red" ng-show="userForm.useResponsetime.$error.pattern">*Only numbers can
+                                be entered, maximum 2880!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputStatus" class="control-label col-md-3">User Level:</label>
+                    <div class="col-md-8 col-lg-8">
+                        <select class="zz-input width-100 form-control inline v-middle float-l" ng-model="AlarmForward.useSitelevel" name="useSitelevel" ng-options="useLevel.id as useLevel.name for useLevel in useLevels" required style="float: left;width: 95%;">
+                            <option value="">--Please Select--</option>
+                        </select>
+                        <span style="color:red" ng-show="userForm.useSitelevel.$error.required">*</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label col-md-3">Alarm Condition</label>
+                    <div class="col-md-1 col-lg-1">
+                        <button type="button" class="btn btn-xs btn-success btn-raised" ng-click="getCondition()" style="margin-top: 4px;">Select</button>
+                    </div>
+                    <div class="col-md-7 col-lg-7">
+                        <input readonly id="useAlarmturncondition" name="useAlarmturncondition" type="text" class="form-control zz-input width-100 float-input" ng-model="AlarmForward.useAlarmturncondition" required style="float: left;width: 93%;" />
+                        <span style="color:red" ng-show="userForm.useAlarmturncondition.$error.required">*</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label col-md-3">Vendor Name:</label>
+                    <div class="col-md-1 col-lg-1">
+                        <button type="button" class="btn btn-xs btn-success btn-raised" ng-click="getVendor()" style="margin-top: 4px;">Select</button>
+                    </div>
+                    <div class="col-md-7 col-lg-7">
+                        <input readonly id="useCompany" name="useCompany" type="text" class="form-control zz-input width-100 float-input" ng-model="AlarmForward.useCompany" required style="float: left;width: 93%;" />
+                        <span style="color:red" ng-show="userForm.useCompany.$error.required">*</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="" class="control-label col-md-3">Device Level:</label>
+                    <div class="col-md-1 col-lg-1">
+                        <button type="button" class="btn btn-xs btn-success btn-raised" ng-click="getDeviceLevel()" style="margin-top: 4px;">Select</button>
+                    </div>
+                    <div class="col-md-7 col-lg-7">
+                        <input readonly id="useAlarmlevel" name="useAlarmlevel" type="text" class="form-control zz-input width-100 float-input" ng-model="AlarmForward.useAlarmlevel" required style="float: left;width: 93%;" />
+                        <span style="color:red" ng-show="userForm.useAlarmlevel.$error.required">*</span>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="" class="control-label col-md-3">Area</label>
+                    <div class="col-md-1 col-lg-1">
+                        <button type="button" class="btn btn-xs btn-success btn-raised" ng-click="areaTree()" style="margin-top: 4px;">Select</button>
+                    </div>
+                    <div class="col-md-7 col-lg-7">
+                        <input readonly id="useArea" name="useArea" type="text" class="form-control zz-input width-100 float-input" ng-model="AlarmForward.useArea" required style="float: left;width: 93%;" />
+                        <span style="color:red" ng-show="userForm.useArea.$error.required">*</span>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
+                        <button class="btn btn-primary" ng-click="ok();" value="{{title}}" ng-show="isShow">{{title}}</button>
+                        <button type="button" class="btn btn-primary" ng-click="close();" ng-show="isShow">取消</button>
+                    </div>
+                </div> -->
+
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok();" ng-disabled="userForm.$invalid" value="{{title}}" ng-show="isShow">Save</button>
+        <!-- <button type="button" class="btn btn-primary" ng-click="close();" ng-show="isShow">Cancel</button> -->
+        <button type="button" class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+    </form>
+</div>

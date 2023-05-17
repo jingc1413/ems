@@ -1,0 +1,90 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel" style="color: #616161;">{{title}}</h4>
+    </div>
+    <form name="listForm" class="form-horizontal" class="form-control" ng-submit="submitForm()">
+        <div class="modal-body">
+            <div class="form">
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="edit-label control-label col-md-3" style="margin: 0px;">objActiveTypeDiv</label>
+                    <div class="col-md-6">
+                        <input id="objActiveTypeDiv" name="objActiveTypeDiv" type="text" class="form-control "
+                            ng-maxlength=40 ng-model="list.objActiveTypeDiv" required style="float: left;width: 95%;"/>
+                        <span style="color:red;float: left;" ng-show="listForm.objActiveTypeDiv.$error.required">*</span>
+                        <span style="color:red"
+                            ng-show="listForm.objActiveTypeDiv.$dirty && listForm.objActiveTypeDiv.$invalid">
+                            <!-- <span style="color:red" ng-show="listForm.objActiveTypeDiv.$error.required">Required
+                                !</span> -->
+                            <span style="color:red"
+                                ng-show="listForm.objActiveTypeDiv.$error.maxlength">*objActiveTypeDiv cannot be longer
+                                than 40 characters.</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="edit-label control-label col-md-3" style="margin: 0px;">objActivetype</label>
+                    <div class="col-md-6">
+                        <input id="objActivetype" name="objActivetype" type="text" class="form-control" ng-maxlength=20
+                            ng-model="list.objActivetype" style="float: left;width: 95%;" required />
+                            <span style="color:red;float: left;" ng-show="listForm.objActivetype.$error.required">*</span>
+                        <span style="color:red"
+                            ng-show="listForm.objActivetype.$dirty && listForm.objActivetype.$invalid">
+                            <!-- <span style="color:red" ng-show="listForm.objActivetype.$error.required">Required
+                                !</span> -->
+                            <span style="color:red" ng-show="listForm.objActivetype.$error.maxlength">*objActivetype
+                                cannot be longerthan 20 characters.</span>
+                    </div>  
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="edit-label control-label col-md-3" style="margin: 0px;">objObjid</label>
+                    <div class="col-md-6">
+                        <input id="objObjid" name="objObjid" type="text" class="form-control" ng-model="list.objObjid"
+                            ng-readonly="isReadonly" ng-pattern="/^[a-zA-Z0-9]{4}$/" style="float: left;width: 95%;" required />
+                        <span style="color:red;float: left;" ng-show="listForm.objObjid.$error.required">*</span>
+                        <span style="color:red" ng-show="listForm.objObjid.$dirty && listForm.objObjid.$invalid">
+                            <!-- <span style="color:red" ng-show="listForm.objObjid.$error.required">Required
+                                !</span> -->
+                            <span style="color:red" ng-show="listForm.objObjid.$error.pattern">*Consists of four capital
+                                letters or numbers</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="edit-label control-label col-md-3" style="margin: 0px;">objObjname</label>
+                    <div class="col-md-6">
+                        <input id="objObjname" name="objObjname" type="text" class="form-control"
+                            ng-model="list.objObjname" ng-maxlength=100 style="float: left;width: 95%;" required />
+                        <span style="color:red;float: left;" ng-show="listForm.objObjname.$error.required">*</span>
+                        <span style="color:red" ng-show="listForm.objObjname.$dirty && listForm.objObjname.$invalid">
+                            <!-- <span style="color:red" ng-show="listForm.objObjname.$error.required">Required!</span> -->
+                            <span style="color:red" ng-show="listForm.objObjname.$error.maxlength">*objObjname cannot be
+                                longer than 100 characters.</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="edit-label control-label col-md-3" style="margin: 0px;">objObjtype</label>
+                    <div class="col-md-6">
+                        <input id="objObjtype" name="objObjtype" type="text" class="form-control"
+                            ng-model="list.objObjtype" ng-maxlength=20 style="float: left;width: 95%;" required />
+                        <span style="color:red;float: left;" ng-show="listForm.objObjtype.$error.required">*</span>
+                        <span style="color:red" ng-show="listForm.objObjtype.$dirty && listForm.objObjtype.$invalid">
+                            <!-- <span style="color:red" ng-show="listForm.objObjtype.$error.required">Required!</span> -->
+                            <span style="color:red" ng-show="listForm.objObjtype.$error.maxlength">*objObjtype cannot be
+                                longer than 20 characters.</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 form-group">
+                    <label class="edit-label control-label col-md-3" style="margin: 0px;">objOid</label>
+                    <div class="col-md-6">
+                        <input id="objOid" name="objOid" type="text" class="form-control" ng-model="list.objOid" style="float: left;width: 95%;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <button type="submit " class="btn btn-primary " ng-disabled="listForm.$invalid" ng-click="saveEdit(); ">{{title}}</button>
+            <button type="button " class="btn btn-primary " ng-click="cancel() ">关闭</button>
+        </div>
+    </form>
+</div>

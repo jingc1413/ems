@@ -1,0 +1,70 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <!-- <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="modifyArea();"><i></i>Modify</button>
+            <button class="btn btn-primary btn-raised btn-pd" ng-model="toAddItem" ng-click="addArea();"><i></i>Add</button>
+            <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteArea();"><i></i>Delete</button></div> -->
+            <button-permission ng-model="permissions2" nowUrl={{absUrl}}></button-permission>
+
+        </div>
+        <div class="col-md-4 col-lg-4 zTreeDemoBackground left tree-bg-b">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+        <!-- <div class="col-md-8 col-lg-8">
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-19 col-md-12 pad0">
+                <div class="form-group">
+                    <label for="input01" class="zz-label" ng-model="query.areaName">search:</label>
+                    <input type="text" class="form-control zz-input float-input" id="input01" placeholder="Input AreaName" style="width: 30%;" ng-model="query.areaName">
+
+                    <button type="button" class="btn btn-sm btn-success btn-raised" style="margin-bottom: 5px;" ng-click="search
+                    ();">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 pad0">
+            <div class="col-lg-10 col-md-10 pad0">
+                <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModifyItem('', 'md');"><i></i>Modify</button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem('', 'md');"><i></i>新增</button>
+                <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();"><i></i>Delete</button>
+            </div>
+            <div class="col-md-12 col-lg-12 pad0">
+                <div ba-panel ba-panel-title="表格名称：AreaList" ba-panel-class="with-scroll table-panel">
+                    <div class="horizontal-scroll" style="overflow-x:scroll;overflow-y:scroll;">
+                        <table class="table table-hover table-bordered-m">
+                            <thead>
+                                <tr class="black-muted-bg">
+                                    <th width="3%">
+                                        <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                                    </th>
+                                    <th ng-click="orderFun('areaName')">地区名称</th>
+                                    <th ng-click="orderFun('areaCode')">地区编号</th>
+                                    <th ng-click="orderFun('createTime')">创建时间</th>
+                                    <th ng-click="orderFun('updateTime')">更新时间</th>
+                                    <th ng-click="orderFun('upArea')">pId</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in items | orderBy:order">
+                                    <td>
+                                        <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                    </td>
+                                    <td>{{item.areaName}}</td>
+                                    <td>{{item.areaCode}}</td>
+                                    <td>{{item.createTime}}</td>
+                                    <td>{{item.updateTime}}</td>
+                                    <td>{{item.pCode}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <tm-pagination conf="paginationConf"></tm-pagination>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+
+    </div>

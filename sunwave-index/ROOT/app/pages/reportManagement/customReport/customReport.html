@@ -1,0 +1,112 @@
+<div class="widgets">
+    <div class="mar0 row">
+        <div ba-panel ba-panel-class="with-scroll table-panel">
+
+            <div class="col-lg-12 col-md-12 pad0">
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="input01" class="zz-label-sm" translate="reportManagement.customReport.DeviceName">Device Name:</label>
+                    <input type="text" class="zz-input-sm form-control" ng-model="query.deviceName" id="input01" placeholder="" style="float:left;">
+                    <!-- <button type="button" class="btn btn-sm btn-success btn-raised" ng-click="searchDeviceName();" style="padding: 2px 8px;">
+                    <i class="fa fa-search"></i> -->
+                </div>
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="input01" class="zz-label-sm" translate="reportManagement.customReport.DeviceID">Device ID:</label>
+                    <input type="text" class="zz-input-sm form-control" ng-model="query.deviceId" id="input01" placeholder="">
+                </div>
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="input01" class="zz-label-sm" translate="reportManagement.customReport.SerialNumber">Serial Number:</label>
+                    <input type="text" class="zz-input-sm form-control" ng-model="query.deviceSn" id="input01" placeholder="">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 pad0">
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="input01" class="zz-label-sm" translate="reportManagement.customReport.SoftwareVersion">Software Version:</label>
+                    <input type="text" class="zz-input-sm form-control" ng-model="query.deviceSwVer" id="input01" placeholder="">
+                </div>
+                <div class="col-lg-4 col-md-6 mar-bom-10 form-group pad0">
+                    <label for="deviceLevel" class="zz-label-sm" translate="reportManagement.customReport.DeviceLevel">Device Level:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query.deviceLevel" style="width:50%;">
+                        <option value="" translate="reportManagement.customReport.PleaseSelect">--Please Select--</option>
+                        <option value="1" ng-selected="query.deviceLevel == 1" translate="reportManagement.customReport.normal">normal</option>
+                        <option value="2" ng-selected="query.deviceLevel == 2" translate="reportManagement.customReport.vip">vip</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group pad0">
+                    <label for="input01" class="zz-label-sm" translate="reportManagement.customReport.VendorName">Vendor Name:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query.companyStr" ng-options="vName.coCompanyid as vName.coName for vName in vNames" id="input01" placeholder="">
+                        <option value="" translate="reportManagement.customReport.PleaseSelect">--Please Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 pad0">
+                <div class="col-lg-6 col-md-10 pad2 form-group pad0">
+                    <div class="col-md-8 col-lg-2 zz-label-sm pad0" translate="reportManagement.customReport.UpdateTime">Update Time:</div>
+                    <div class="col-md-8 col-lg-4 pad0">
+                        <wui-date format="yyyy-mm-dd hh:mm:ss" class="zz-input-sm" placeholder="Begin Time" id="startTime" btns="{'ok':'ok','now':'today'}" ng-model="query.startTime">
+                        </wui-date>
+                    </div>
+                    <span class="col-lg-1 col-md-2 zz-label" style="text-align: center;" translate="reportManagement.customReport.to">to</span>
+                    <div class="col-md-8 col-lg-4 pad0">
+                        <wui-date format="yyyy-mm-dd hh:mm:ss" class="zz-input-sm" placeholder="End Time" id="endTime" btns="{'ok':'ok','now':'today'}" ng-model="query.endTime">
+                        </wui-date>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 mar-bom-10 form-group">
+                    <label for="input01" class="zz-label-sm ng-pristine ng-untouched ng-valid ng-empty" translate="reportManagement.customReport.DeviceType">Device Type:</label>
+                    <select class="zz-input-sm pad2 form-control inline v-middle" ng-model="query.deviceType" ng-options="deviceType.dtpDevicetypeid as deviceType.dtpName for deviceType in deviceTypes | orderBy:'neDevicetypeclassify.dtcDevicetypeclassifyid'">
+                        <option value="" translate="reportManagement.customReport.PleaseSelect">--Please Select--</option>
+                    </select>
+                </div>
+                <div class="col-lg-1 col-md-6 mar-bom-10 form-group pad0">
+                    <button class="btn btn-reset  btn-sm btn-pd" ng-click="reset();"><i class="fa fa-rotate-right"></i><span translate="buttons.reset">Reset</span></button>
+                </div>
+                <!-- <div class="col-lg-1 col-md-6 mar-bom-10 form-group pad0">
+                    <button type="button" class="btn btn-primary btn-with-icon btn-pd" ng-click="exportList();"><i class="ion-android-download"></i>Export</button>
+                </div> -->
+            </div>
+            <div class="col-md-12 col-lg-12 pad0">
+                <div class="col-lg-6 col-md-6 pad0">
+                    <div class="mar0 row">
+                        <div class="col-lg-12 col-md-12 pad0">
+                            <!-- <button class="status-button btn btn-xs btn-info" ng-click="addReport();">Add</button>
+                        <button class="status-button btn btn-xs btn-success" ng-click="modifyReport();">Modify</button>
+                        <button class="status-button btn btn-xs btn-danger" ng-click="deleteReport();">delete</button> -->
+                            <button-permission style="float: left;" ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+                        </div>
+                    </div>
+                    <div class="mar0 row">
+                        <div class="col-lg-12 col-md-12 pad0">
+                            <div class="horizontal-scroll">
+                                <table class="table table-hover table-bordered-m">
+                                    <thead>
+                                        <tr class="">
+                                            <th width="3%">
+                                                <input id="flag" type="checkbox" ng-model="xx.select_all" ng-change="selectAll()"></input>
+                                            </th>
+                                            <th class="align-left">NO.</th>
+                                            <th class="align-left" translate="reportManagement.customReport.table.ReportName">Report Name</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in items" class="no-top-border" ng-class="{'table-tr-checked':item.checked}">
+                                            <td>
+                                                <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                                            </td>
+                                            <td class="align-left" ng-class="nowrap">{{$index+1}}</td>
+                                            <td class=" align-left ">{{item.text}}</td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 zTreeDemoBackground left tree-bg-b2">
+                    <ul id="aTree" class="ztree"></ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+        </div>
+    </div>
+</div>
+</div>

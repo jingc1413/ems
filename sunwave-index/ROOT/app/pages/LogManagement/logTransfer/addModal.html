@@ -1,0 +1,162 @@
+<div class="modal-content">
+    <div class="bg-index modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+    </div>
+    <form name="userForm" class="form-horizontal" ng-submit="submitForm(userForm.$valid)">
+        <div class="modal-body">
+            <div ng-class="{'cantModify':isShow==false}"></div>
+            <div class="form">
+                <div class="col-md-6 col-lg-6 col-xs-6">
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.TaskName">TaskName</label>
+                        <div class="col-md-8">
+                            <input id="" name="taskName" type="text" class="form-control" ng-model="modal.taskName" required ng-maxlength="50" style="width: 95%;float: left;" />
+                            <span style="color:red;float: left;" ng-show="userForm.taskName.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.taskName.$dirty && userForm.taskName.$invalid"></span>
+                            <!-- <span style="color:red;font-size: 12px;" ng-show="userForm.taskName.$error.pattern" translate="LogManagement.logTransfer.modal.taskNameTips"></span> -->
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.taskName.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips50">*Maximum length cannot exceed 50 </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.IP">IP</label>
+                        <div class="col-md-8">
+                            <input id="" name="sftpIp" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.sftpIp" required ng-pattern="/^(?:(?:1[0-9][0-9]\.)|(?:2[0-4][0-9]\.)|(?:25[0-5]\.)|(?:[1-9][0-9]\.)|(?:[0-9]\.)){3}(?:(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5])|(?:[1-9][0-9])|(?:[0-9]))$/"
+                                ng-maxlength="20" />
+                            <span style="color:red;float: left;" ng-show="userForm.sftpIp.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.sftpIp.$dirty && userForm.sftpIp.$invalid">
+                            <small class="error" ng-show="userForm.sftpIp.$error.pattern" style="color:red;" translate="AlarmConfiguration.SNMPConfiguration.modal.IPTips"> </small>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.sftpIp.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.Port">Port</label>
+                        <div class="col-md-8">
+                            <input id="" name="sftpPort" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.sftpPort" ng-pattern="/^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/" required/>
+                            <span style="color:red;float: left;" ng-show="userForm.sftpPort.$error.required">*</span>
+                            <span style="color:red;font-size: 10px;float:left;" ng-show="userForm.sftpPort.$error.pattern" translate="deviceManagement.modal.DevicePortTips">*</span>
+                        </div>
+
+                        <div style="clear: both;"></div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neDevicelevelid" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.Type">Type</label>
+                        <!-- <ui-select multiple ng-model="selectpickerVm.multipleItem.selected" ng-disabled="false" search-enabled="true" append-to-body="true" class="form-control ">
+                            <ui-select-match placeholder="Multiple Select">
+                                {{$item.label}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="multipleItem in selectpickerVm.multipleSelectItems | filter: $select.search">
+                                {{multipleItem.label}}
+                            </ui-select-choices>
+                        </ui-select> -->
+
+                        <!---多选下拉框-->
+                        <!-- <div class="col-md-8">
+                            <div ng-dropdown-multiselect="" options="typeDatas" selected-model="typeDataModel" optionSettings="optionSettings" extra-settings="typeSelectSetting" required></div>
+                        </div> -->
+
+                        <!--单选下拉-->
+                        <div class="col-md-8">
+                            <select class="form-control inline v-middle float-l" ng-model="typeDataModel" name="typedata" style="width: 95%;" ng-options="type.id as type.label for type in typeDatas" ng-change="deterMType();" required>
+                                <option value="" translate="deviceManagement.modal.PleaseSelect">--Please Select--</option>
+                            </select>
+                            <span style="color:red;float: left;" ng-show="userForm.typedata.$error.required">*</span>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-in">
+                            <label for="Issued" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.Status">Status:</label>
+                            <div class="col-md-8">
+                                <label class="custom-radio" style="margin:5px;">
+                                <input type="radio" ng-model="modal.taskStatus" name="taskStatus" value=1 class="" id="optionsRadios3">
+                                <span translate="LogManagement.logTransfer.modal.Enable">Enable</span>
+                            </label>
+                                <label class="custom-radio" style="margin:5px;">
+                                <input type="radio" ng-model="modal.taskStatus" name="taskStatus" value=0 class="" id="optionsRadios4">
+                                <span translate="LogManagement.logTransfer.modal.Disable">Disable</span>
+                            </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-6">
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.Path">Path</label>
+                        <div class="col-md-8">
+                            <input id="" name="sftpSavePath" type="text" ng-class="{grayBg: isHeartbeat}" class="form-control" ng-maxlength="40" style="width: 95%;float: left;" ng-model="modal.sftpSavePath" required/>
+                            <span style="color:red;float: left;" ng-show="userForm.sftpSavePath.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.sftpSavePath.$dirty && userForm.sftpSavePath.$invalid"></span>
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.sftpSavePath.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips40">*Maximum length cannot exceed 40 </span>
+                            <!-- <span style="color:red;font-size: 12px;" ng-show="userForm.memo.$error.maxlength" translate="LogManagement.logTransfer.modal.RemarkTips">*Maximum length cannot exceed 300 </span> -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neName" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.UserName">User Name</label>
+                        <div class="col-md-8">
+                            <input id="" name="sftpUser" type="text" class="form-control" style="width: 95%;float: left;" ng-model="modal.sftpUser" ng-maxlength=20 required/>
+                            <span style="color:red;float: left;" ng-show="userForm.sftpUser.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.sftpUser.$dirty && userForm.sftpUser.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.sftpUser.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neDevicelevelid" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.Password">Password</label>
+                        <div class="col-md-8">
+                            <input id="psd-input" name="sftpPasswd" type="{{pwshow ? 'text':'password'}}" class="form-control pad-r-25" style="width: 95%;float: left;" ng-model="modal.sftpPasswd" ng-maxlength=20 required/>
+                            <i class="fa fa-eye-slash psd-i" ng-class="{'fa fa-eye psd-i':pwshow==true,'fa fa-eye-slash psd-i':pwshow==false}" ng-click="changePsd_eye();"></i>
+                            <span style="color:red;float: left;" ng-show="userForm.sftpPasswd.$error.required">*</span>
+                            <span style="color:red" class="zz-label" ng-show="userForm.sftpPasswd.$dirty && userForm.sftpPasswd.$invalid">
+                            <span style="color:red;font-size: 12px;" ng-show="userForm.sftpPasswd.$error.maxlength" translate="AlarmConfiguration.SNMPConfiguration.modal.SNMPVersionTips20">*Maximum length cannot exceed 20 </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neDevicelevelid" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.Interval">Interval</label>
+                        <div class="col-md-8">
+                            <select class="form-control inline v-middle float-l" ng-model="modal.taskInterval" name="taskInterval" style="width: 95%;" ng-disabled="isCM" ng-options="Interval.id as Interval.label for Interval in Intervals" required>
+                                <option value="">--please select--</option>
+
+                                <!-- <option value=15 ng-selected="modal.taskInterval==15">15 min</option>
+                                <option value=30 ng-selected="modal.taskInterval==30">30 min</option>
+                                <option value=60 ng-selected="modal.taskInterval==60">1 hour</option>
+                                <option value=1440 ng-selected="modal.taskInterval==1440">1 day</option> -->
+                            </select>
+                            <span style="color:red;float: left;" ng-show="userForm.taskInterval.$error.required">*</span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="neDevicelevelid" class="control-label col-md-3" translate="LogManagement.logTransfer.modal.ExecutionTime">Time</label>
+                        <div class="col-lg-6 col-md-8">
+                            <wui-date name="ExecutionTime" format="yyyy-mm-dd hh:mm" placeholder="" id="ExecutionTime" btns="{'ok':'ok','now':'today'}" ng-model="modal.lastExecutionTimeStr" ng-disabled="readOnly" ng-readonly="readOnly" ng-change="exectiontimeChange();">
+                            </wui-date>
+                            <span style="color:red" class="zz-label-sm" ng-show="time_error" translate="UpgradeManagement.modal.ExecutionTimeTips">
+                        Wrong time!</span>
+                            <span style="color:red;" ng-show="!modal.lastExecutionTimeStr">*</span>
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="save();" ng-disabled="userForm.$invalid" value="{{title}}" ng-show="isDisplay" translate="buttons.Save">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="close()" translate="buttons.Close">Close</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,57 @@
+<div class="modal-content">
+    <div class="modal-head-new modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Tabs configuration</h4>
+    </div>
+    <div class="modal-body">
+        <div  class="col-md-12 col-lg-12 pad0">
+            <div  class="col-md-6 col-lg-6 pad0">
+               <label for=""><h4>Available tabs</h4></label>
+            </div>
+            <div  class="col-md-6 col-lg-6 pad0">
+                <span><label for=""><h4>Selected tabs</h4></label>
+                <button type="button" class="btn btn-primary" ng-click="" style="float: right;">Add group</button></span>
+            </div>
+        </div>
+        <div  class="col-md-12 col-lg-12 pad0">
+            <div  class="col-md-6 col-lg-6 pad10">
+                <ul>
+                    <li ng-repeat="tab in tabs"> 
+                        <label for="" class="form-control zz-lable-sm mar0">{{tab.name}}</label>
+                    </li>
+                </ul>            
+            </div>
+            <div  class="col-md-6 col-lg-6 pad0">
+                <ul>
+                    <li ng-repeat="tab in tabs"> 
+                        <label for="" class="form-control zz-lable-sm mar0" ng-click="subTabs(tab.name)">{{tab.name}}</label>
+                        <ul ng-show="tab.name == currentName && isShow">
+                            <li ng-repeat="subTab in tab.subTabs"> 
+                                <label for="" class="form-control zz-lable-sm mar0">{{subTab.name}}</label>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>                   
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12 pad0" style="height: 50px;"></div>
+        <div class="col-md-12 col-lg-12 pad0">
+            <div class="col-md-6 col-lg-6 pad0 mar0">
+                <label for=""><h5>Manu style</h5></label>
+                <select name="" id="" class="zz-select-sm">
+                    <option value="0">Icon ane text</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-lg-6 pad0">
+                <button type="button" class="btn btn-primary" ng-click="" type="submit">Restore defaults</button>
+                <button type="button" class="btn btn-primary" ng-click="" type="submit">Comfirm</button>
+                <button type="button" class="btn btn-primary" ng-click="close()" type="submit">Close</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        
+    </div>
+</div>

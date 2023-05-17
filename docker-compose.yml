@@ -1,0 +1,474 @@
+version: "3.7"
+# networks:
+#   sunwave-net:
+#     driver: bridge
+services:
+  
+#  zookeeper:
+ #   image: zookeeper:3.6.1
+  #  restart: always
+   # hostname: zookeeper
+   # container_name: zookeeper
+   # ports:
+    #  - "2181:2181"
+    #deploy:
+     # resources:
+      #  limits:
+       #   cpus: '0.50'
+        #  memory: 6g
+
+
+
+  rabbitmq:
+       container_name: rabbitmq
+       hostname: rabbitmq
+       environment:
+         RABBITMQ_DEFAULT_VHOST: "10.7.6.245"
+         RABBITMQ_DEFAULT_USER: "guest"
+         RABBITMQ_DEFAULT_PASS: "guest"
+       image: "rabbitmq:3.8.7"
+       restart: always
+       volumes:
+         - "./data:/var/lib/rabbitmq"
+         - "./log:/var/log/rabbitmq/log"
+       ports:
+         - "15672:15672"
+         - "4369:4369"
+         - "5672:5672"
+         - "25672:25672"
+       deploy:
+         resources:
+           limits:
+             cpus: '0.50'
+             memory: 8g
+
+
+  redis:
+    image: redis:6.0.5
+    container_name: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+  
+  seata:
+    image: seataio/seata-server:1.4.1
+    container_name: seata
+    restart: always
+    ports:
+      - "8091:8091"
+    environment:
+      - SEATA_PORT=8091
+      - STORE_MODE=file
+    volumes:
+      - ./seata/conf/registry.conf:/seata-server/resources/registry.conf
+      - ./seata/conf/file.conf:/seata-server/resources/file.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+#  elasticsearch:
+ #   image: elasticsearch:7.10.1
+  #  container_name: elasticsearch
+   # restart: always
+   # ports:
+    #  - 9200:9200
+     # - 5601:5601
+   # environment:
+    #  - cluster.name=sunwave.elasticsearch
+     # - "discovery.type=single-node"
+     # - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+    #ulimits:
+     #   memlock:
+      #    soft: -1
+       #   hard: -1
+    #volumes:
+     # - ./elasticsearch/data:/usr/share/elasticsearch/data
+
+
+
+
+  eureka:
+    container_name: eureka
+    restart: always
+    image: tomcat:8.5
+    hostname: eureka
+    # networks:
+    #   - sunwave-net
+    ports:
+      - 8848:8080
+    volumes:
+      - ./eureka-server/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./eureka-server/logs/:/usr/local/tomcat/logs/
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxPermSize=1024m
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+
+  configserver:
+    container_name: configserver
+    # restart: always
+    hostname: configserver
+    image: tomcat:8.5
+    ports:
+      - 8866:8866
+    # networks:
+    #   - sunwave-net
+    volumes:
+      - ./sunwave-config/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-config/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-config/logs/:/usr/local/tomcat/logs/
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    links:
+      - eureka
+    depends_on:
+      - eureka 
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+  
+  sunwave-auth:
+    container_name: uaa
+    hostname: uaa
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9060:9060
+    volumes:
+      - ./sunwave-auth/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-auth/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-auth/logs/:/usr/local/tomcat/logs/
+    depends_on:
+      - configserver
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+   
+  sunwave-gateway:
+    container_name: sunwave-gateway
+    hostname: sunwave-gateway
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9030:443
+    volumes:
+      - ./sunwave-gateway/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-gateway/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-gateway/logs/:/usr/local/tomcat/logs/
+      - ./sunwave-gateway/conf/nmsweb.keystore:/home/springcloud/sunwave-gateway/conf/nmsweb.keystore
+    depends_on:
+      - sunwave-auth
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+  sunwave-upms:
+    container_name: sunwave-upms
+    hostname: sunwave-upms
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9021:9021
+    volumes:
+      - ./sunwave-upms/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-upms/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-upms/logs/:/usr/local/tomcat/logs/
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-gateway
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+  sunwave-authority:
+    container_name: sunwave-authority
+    hostname: sunwave-authority
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9051:9051
+    volumes:
+      - ./sunwave-authority/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-authority/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-authority/logs/:/usr/local/tomcat/logs/
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-upms
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+  sunwave-alarm:
+    container_name: sunwave-alarm
+    hostname: sunwave-alarm-management
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9052:9052
+    volumes:
+      - ./sunwave-alarm/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-alarm/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-alarm/logs/:/usr/local/tomcat/logs/
+    links:
+      - configserver
+    depends_on:
+      - sunwave-authority
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+  sunwave-device:
+    container_name: sunwave-device
+    hostname: sunwave-device-management
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9054:9054
+    volumes:
+      - ./sunwave-device/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-device/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-device/logs/:/usr/local/tomcat/logs/
+      - /home/dasftp/log/:/usr/local/tomcat/csvTmp
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-alarm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+  sunwave-platform:
+    container_name: sunwave-platform
+    hostname: sunwave-application-platform
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9053:9053
+    volumes:
+      - ./sunwave-platform/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-platform/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-platform/logs/:/usr/local/tomcat/logs/
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-alarm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+  sunwave-report:
+    container_name: sunwave-report
+    hostname: sunwave-report-management
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9057:9057
+    volumes:
+      - ./sunwave-report/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-report/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-report/logs/:/usr/local/tomcat/logs/
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-alarm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+  sunwave-encryption:
+    container_name: sunwave-encryption
+    hostname: sunwave-encryption
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 8000:8000
+    volumes:
+      - ./sunwave-encryption/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-encryption/conf/password.txt:/usr/local/tomcat/conf/password.txt
+      - ./sunwave-encryption/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-encryption/logs/:/usr/local/tomcat/logs/
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-alarm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+  sunwave-log:
+    container_name: sunwave-log
+    hostname: sunwave-log
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9055:9055
+    volumes:
+      - ./sunwave-log/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-log/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-log/logs/:/usr/local/tomcat/logs/
+      - /home/dasftp/log/:/usr/local/tomcat/reportLog
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-alarm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+  sunwave-map:
+    container_name: sunwave-map
+    hostname: sunwave-map
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 9056:9056
+    volumes:
+      - ./sunwave-map/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-map/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-map/logs/:/usr/local/tomcat/logs/
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-alarm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+  sunwave-dbbackups:
+    container_name: sunwave-dbbackups
+    hostname: sunwave-dbbackups
+    restart: always
+    image: sunwave/tomcat_mysqlclient
+   # image: tomcat:8.5
+    ports:
+      - 9059:9059
+    volumes:
+      - ./sunwave-dbbackups/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-dbbackups/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-dbbackups/logs/:/usr/local/tomcat/logs/
+      - ./sunwave-dbbackups/backpath/:/home/springcloud/backpath
+      - ./sunwave-dbbackups/backpath/:/usr/local/tomcat/webapps/ROOT/backpath
+    environment:
+      - TZ=Asia/Tokyo
+      - JAVA_OPTS=-Xmx6g -Xms6g -XX:MaxMetaspaceSize=1024m
+    depends_on:
+      - sunwave-alarm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+
+  sunwave-index:
+    container_name: sunwave-index
+    hostname: sunwave-index
+    restart: always
+    image: tomcat:8.5
+    ports:
+      - 443:443
+    volumes:
+      - ./sunwave-index/conf/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./sunwave-index/ROOT:/usr/local/tomcat/webapps/ROOT
+      - ./sunwave-index/logs/:/usr/local/tomcat/logs/
+      - ./sunwave-index/conf/nmsweb.keystore:/home/springcloud/sunwave-index/conf/nmsweb.keystore
+    depends_on:
+      - sunwave-alarm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 8g
+
+
+
+volumes:
+  upload_dir:
+
+
+
+

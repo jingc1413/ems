@@ -1,0 +1,62 @@
+<div class="widgets">
+    <div class="col-lg-12 col-md-12 pad0">
+        <div class="form-group">
+            <label for="input01" class="zz-label" translate="deviceManagement.objectListValue.searchvalueKey">search:</label>
+            <input type="text" class="form-control zz-input float-input" id="input01" placeholder="" style="width: 30%;" ng-model="query.valueKey">
+
+            <!-- <button type="button" class="btn btn-sm btn-success btn-raised" style="margin-bottom: 5px;" ng-click="search
+                    ();">
+                        <i class="fa fa-search"></i>
+                    </button> -->
+            <button class="btn btn-green btn-sm btn-pd" ng-click="search();"><i class="fa fa-search" ng-click="search();"></i><span translate="buttons.search">Search</span></button>
+        </div>
+    </div>
+    <div class="mar0 row">
+        <div class="col-lg-10 col-md-10 pad0">
+            <!-- <button class="btn btn-warning btn-raised btn-pd" ng-model="toModifyItem" ng-click="toModifyItem('', 'md');"><i></i>Modify</button>
+                <button class="btn btn-primary btn-raised btn-pd" ng-model="toAddItem" ng-click="toAddItem('', 'md');"><i></i>Add</button>
+                <button class="btn btn-danger btn-raised btn-pd" ng-model="deleteItem" ng-click="deleteItem();"><i></i>Delete</button>
+                <button class="btn btn-info btn-raised btn-pd" ng-model="getTree" ng-click="getAuthorizeTree();"><i></i>Authorize</button> -->
+            <button-permission ng-model="permissions" nowUrl={{absUrl}}></button-permission>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-12 pad0" ba-panel ba-panel-class="with-scroll table-panel">
+        <div class="horizontal-scroll" style="overflow-x:scroll;overflow-y:scroll;">
+            <table class="table table-hover table-bordered-m">
+                <thead>
+                    <tr class="black-muted-bg">
+                        <th width="3%">
+                            <input id="flag" type="checkbox" ng-model="checkbox.select_all" ng-change="selectAll()"></input>
+                        </th>
+                        <th><span translate="deviceManagement.objectListValue.table.valueId"></span>
+                            <my-Order query="query" search="search()" order-name='valueId'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.objectListValue.table.valueKey"></span>
+                            <my-Order query="query" search="search()" order-name='valueKey'></my-Order>
+                        </th>
+                        <th translate="deviceManagement.objectListValue.table.valueSort"><span></span>
+                            <my-Order query="query" search="search()" order-name='valueSort'></my-Order>
+                        </th>
+                        <th><span translate="deviceManagement.objectListValue.table.valueValue"></span>
+                            <my-Order query="query" search="search()" order-name='valueValue'></my-Order>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items | orderBy:order" ng-class="{'table-tr-checked':item.checked}">
+                        <td>
+                            <input type="checkbox" ng-model="item.checked" ng-change="selectOne()" />
+                        </td>
+                        <!-- <td>{{item.valueDesc}}</td> -->
+                        <td>{{item.valueId}}</td>
+                        <td>{{item.valueKey}}</td>
+                        <td>{{item.valueSort}}</td>
+                        <td>{{item.valueValue}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+</div>
